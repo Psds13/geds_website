@@ -2,6 +2,7 @@
 
 import { FiEdit, FiAward, FiBriefcase, FiCode, FiMail } from 'react-icons/fi';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import Image from 'next/image';
 
 const UserProfile = () => {
   // Dados do usuário - podem vir de props ou API
@@ -10,7 +11,7 @@ const UserProfile = () => {
     role: "Desenvolvedor Full Stack",
     avatar: "https://randomuser.me/api/portraits/men/32.jpg",
     bio: "Especialista em React, Node.js e soluções escaláveis. Apaixonado por criar experiências digitais excepcionais.",
-    email: "carlos.silva@ynnothivix.com.br",
+    email: "carlos.silva@gedsinovacao.com",
     skills: ["React", "TypeScript", "Node.js", "UI/UX", "AWS"],
     stats: {
       projects: 24,
@@ -25,11 +26,13 @@ const UserProfile = () => {
         {/* Cabeçalho do perfil */}
         <div className="relative h-32 bg-gradient-to-r from-orange-500 to-blue-600">
           <div className="absolute -bottom-16 left-6">
-            <div className="relative">
-              <img 
+              <Image 
                 src={user.avatar} 
                 alt={user.name}
+                width={128}
+                height={128}
                 className="w-32 h-32 rounded-full border-4 border-gray-800 object-cover shadow-lg"
+                priority
               />
               <button className="absolute bottom-2 right-2 bg-gray-800 p-2 rounded-full text-white hover:bg-gray-700 transition">
                 <FiEdit className="text-orange-400" />
@@ -121,8 +124,7 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+                );
 };
 
 export default UserProfile;

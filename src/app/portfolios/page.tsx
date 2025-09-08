@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
+import Image from "next/image";
 
 interface Collaborator {
   name: string;
@@ -72,68 +73,68 @@ export default function PortfoliosPage() {
             >
               <div className="p-6">
                 <div className="flex flex-col items-center">
-                  <div className="relative mb-4">
-                    <img
-                      src={colab.avatar}
-                      alt={colab.name}
-                      className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md"
-                    />
-                    <div className="absolute inset-0 rounded-full border-2 border-orange-400 animate-ping opacity-0 hover:opacity-100 transition-opacity"></div>
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-800">{colab.name}</h2>
-                  <p className="text-orange-500 font-medium">{colab.role}</p>
-                  <p className="text-gray-600 mt-3 text-center">{colab.bio}</p>
+                  <Image
+                    src={colab.avatar}
+                    alt={colab.name}
+                    width={112}
+                    height={112}
+                    className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md"
+                  />
+                  <div className="absolute inset-0 rounded-full border-2 border-orange-400 animate-ping opacity-0 hover:opacity-100 transition-opacity"></div>
                 </div>
+                <h2 className="text-2xl font-bold text-gray-800">{colab.name}</h2>
+                <p className="text-orange-500 font-medium">{colab.role}</p>
+                <p className="text-gray-600 mt-3 text-center">{colab.bio}</p>
+              </div>
 
-                <div className="mt-6">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3 border-b pb-2">
-                    Projetos Destacados
-                  </h3>
-                  <ul className="space-y-4">
-                    {colab.projects.map((project, i) => (
-                      <li key={i} className="bg-gray-50 p-3 rounded-lg">
-                        <div className="flex justify-between items-start">
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-800 hover:text-orange-500 font-medium flex items-center"
-                          >
-                            {project.title}
-                            <FiExternalLink className="ml-1 text-sm" />
-                          </a>
+              <div className="mt-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-3 border-b pb-2">
+                  Projetos Destacados
+                </h3>
+                <ul className="space-y-4">
+                  {colab.projects.map((project, i) => (
+                    <li key={i} className="bg-gray-50 p-3 rounded-lg">
+                      <div className="flex justify-between items-start">
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-800 hover:text-orange-500 font-medium flex items-center"
+                        >
+                          {project.title}
+                          <FiExternalLink className="ml-1 text-sm" />
+                        </a>
+                      </div>
+                      {project.description && (
+                        <p className="text-sm text-gray-600 mt-1">{project.description}</p>
+                      )}
+                      {project.techs && (
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {project.techs.map((tech, j) => (
+                            <span
+                              key={j}
+                              className="bg-orange-100 text-orange-800 text-xs font-medium px-2 py-1 rounded-full"
+                            >
+                              {tech}
+                            </span>
+                          ))}
                         </div>
-                        {project.description && (
-                          <p className="text-sm text-gray-600 mt-1">{project.description}</p>
-                        )}
-                        {project.techs && (
-                          <div className="flex flex-wrap gap-2 mt-2">
-                            {project.techs.map((tech, j) => (
-                              <span
-                                key={j}
-                                className="bg-orange-100 text-orange-800 text-xs font-medium px-2 py-1 rounded-full"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                <div className="mt-6 text-center">
-                  <a
-                    href={colab.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
-                  >
-                    <FiGithub className="mr-2" />
-                    Ver GitHub
-                  </a>
-                </div>
+              <div className="mt-6 text-center">
+                <a
+                  href={colab.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                >
+                  <FiGithub className="mr-2" />
+                  Ver GitHub
+                </a>
               </div>
             </motion.div>
           ))}
