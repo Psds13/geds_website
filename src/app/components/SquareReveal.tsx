@@ -1,6 +1,6 @@
 'use client';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 interface SquareRevealProps {
     children: React.ReactNode;
@@ -10,12 +10,22 @@ interface SquareRevealProps {
 export default function SquareReveal({ children, gridSize = 10 }: SquareRevealProps) {
     const containerRef = useRef(null);
     const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+    const [mounted, setMounted] = useState(false);
+    const [shuffledSquares, setShuffledSquares] = useState<number[]>([]);
 
-    // Generate an array of indices for the grid
-    const squares = Array.from({ length: gridSize * gridSize }, (_, i) => i);
+    useEffect(() => {
+        const squares = Array.from({ length: gridSize * gridSize }, (_, i) => i);
+        setShuffledSquares([...squares].sort(() => Math.random() - 0.5));
+        setMounted(true);
+    }, [gridSize]);
 
-    // Shuffle squares to make the reveal look random/staggered
-    const shuffledSquares = [...squares].sort(() => Math.random() - 0.5);
+    if (!mounted) {
+        return (
+            <div ref={containerRef} className="relative w-full h-full overflow-hidden">
+                <div>{children}</div>
+            </div>
+        );
+    }
 
     return (
         <div ref={containerRef} className="relative w-full h-full overflow-hidden">

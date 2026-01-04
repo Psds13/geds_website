@@ -1,7 +1,7 @@
 "use client";
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { useState} from 'react';
+import { useState } from 'react';
 import { FiCopy, FiCheck, FiLock, FiCreditCard, FiDollarSign } from 'react-icons/fi';
 import { FaBarcode } from 'react-icons/fa';
 
@@ -22,12 +22,12 @@ const PaymentPage: NextPage = () => {
   const handleCardInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     let formattedValue = value;
-    
+
     // Formatação do número do cartão
     if (name === 'number') {
       formattedValue = value.replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim();
     }
-    
+
     // Formatação da data de expiração
     if (name === 'expiry') {
       formattedValue = value
@@ -35,7 +35,7 @@ const PaymentPage: NextPage = () => {
         .replace(/^(\d{2})\/(\d{2})(\d)/g, '$1/$2')
         .substr(0, 5);
     }
-    
+
     setCardData(prev => ({
       ...prev,
       [name]: formattedValue
@@ -96,7 +96,7 @@ const PaymentPage: NextPage = () => {
             {/* Opções de Pagamento */}
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-800 mb-6">Método de Pagamento</h2>
-              
+
               <div className="grid grid-cols-3 gap-2 mb-8">
                 <button
                   onClick={() => setActiveTab('pix')}
@@ -131,7 +131,7 @@ const PaymentPage: NextPage = () => {
                       </h3>
                       <span className="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Instantâneo</span>
                     </div>
-                    
+
                     <div className="grid md:grid-cols-2 gap-6">
                       {/* QR Code */}
                       <div className="flex flex-col items-center">
@@ -139,12 +139,18 @@ const PaymentPage: NextPage = () => {
                           <div className="w-48 h-48 bg-gray-100 flex items-center justify-center rounded">
                             <div className="text-center">
                               <div className="w-40 h-40 bg-white mx-auto mb-2 grid grid-cols-10 grid-rows-10 gap-0.5 p-1">
-                                {Array.from({ length: 100 }).map((_, i) => (
-                                  <div 
-                                    key={i} 
-                                    className={`w-full h-full ${Math.random() > 0.4 ? 'bg-indigo-600' : 'bg-white'}`}
-                                  />
-                                ))}
+                                {Array.from({ length: 100 }).map((_, i) => {
+                                  // Use a simple pseudo-random check based on index for SSR, 
+                                  // or just dots that only appear on client.
+                                  // For a "fake" QR code that doesn't mismatch, we can use a deterministic pattern or state.
+                                  const isColored = ((i * 13) % 7) > 2;
+                                  return (
+                                    <div
+                                      key={i}
+                                      className={`w-full h-full ${isColored ? 'bg-indigo-600' : 'bg-white'}`}
+                                    />
+                                  );
+                                })}
                               </div>
                               <span className="text-xs text-gray-500">QR Code</span>
                             </div>
@@ -152,7 +158,7 @@ const PaymentPage: NextPage = () => {
                           <p className="text-sm text-gray-600 mb-2">Escaneie este código no seu app bancário</p>
                         </div>
                       </div>
-                      
+
                       {/* Código Copia e Cola */}
                       <div>
                         <h4 className="font-medium text-gray-700 mb-3">Ou copie o código Pix:</h4>
@@ -178,7 +184,7 @@ const PaymentPage: NextPage = () => {
                         >
                           {copiedPixCode ? 'Código copiado!' : 'Copiar código Pix'}
                         </button>
-                        
+
                         <div className="mt-4 bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r">
                           <div className="flex">
                             <div className="flex-shrink-0">
@@ -209,7 +215,7 @@ const PaymentPage: NextPage = () => {
                       </h3>
                       <span className="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Até 3 dias úteis</span>
                     </div>
-                    
+
                     <div className="bg-white p-6 rounded-lg border border-gray-200 text-center">
                       <div className="max-w-xs mx-auto">
                         <div className="bg-gray-100 p-4 rounded">
@@ -221,7 +227,7 @@ const PaymentPage: NextPage = () => {
                         <p className="mt-4 text-sm text-gray-600">O boleto será gerado após a confirmação da compra</p>
                       </div>
                     </div>
-                    
+
                     <div className="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r">
                       <div className="flex">
                         <div className="flex-shrink-0">
@@ -250,7 +256,7 @@ const PaymentPage: NextPage = () => {
                       </h3>
                       <span className="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Pagamento recorrente</span>
                     </div>
-                    
+
                     <div className="space-y-4">
                       <div>
                         <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700 mb-1">Número do Cartão</label>
@@ -270,7 +276,7 @@ const PaymentPage: NextPage = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div>
                         <label htmlFor="cardName" className="block text-sm font-medium text-gray-700 mb-1">Nome no Cartão</label>
                         <input
@@ -283,7 +289,7 @@ const PaymentPage: NextPage = () => {
                           className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         />
                       </div>
-                      
+
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="cardExpiry" className="block text-sm font-medium text-gray-700 mb-1">Validade</label>
@@ -298,7 +304,7 @@ const PaymentPage: NextPage = () => {
                             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                           />
                         </div>
-                        
+
                         <div>
                           <label htmlFor="cardCvv" className="block text-sm font-medium text-gray-700 mb-1">CVV</label>
                           <div className="relative">
@@ -318,7 +324,7 @@ const PaymentPage: NextPage = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div>
                         <label htmlFor="installments" className="block text-sm font-medium text-gray-700 mb-1">Parcelamento</label>
                         <select
@@ -335,7 +341,7 @@ const PaymentPage: NextPage = () => {
                         </select>
                       </div>
                     </div>
-                    
+
                     <div className="mt-6 flex items-center justify-center space-x-2 bg-white p-3 rounded-lg border border-gray-200">
                       <FiLock className="h-5 w-5 text-green-600" />
                       <span className="text-sm text-gray-600">Pagamento seguro criptografado</span>
@@ -421,19 +427,19 @@ const PaymentPage: NextPage = () => {
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <div className="flex flex-col items-center space-y-4">
                   <div className="flex items-center space-x-6">
-                    <img 
-                      src="/visa.png" 
-                      alt="Visa" 
+                    <img
+                      src="/visa.png"
+                      alt="Visa"
                       className="h-8 opacity-80 hover:opacity-100 transition-opacity"
                     />
-                    <img 
-                      src="/mastercard.png" 
-                      alt="Mastercard" 
+                    <img
+                      src="/mastercard.png"
+                      alt="Mastercard"
                       className="h-8 opacity-80 hover:opacity-100 transition-opacity"
                     />
-                    <img 
-                      src="https://logodownload.org/wp-content/uploads/2017/04/elo-logo-1.png" 
-                      alt="Elo" 
+                    <img
+                      src="https://logodownload.org/wp-content/uploads/2017/04/elo-logo-1.png"
+                      alt="Elo"
                       className="h-8 opacity-80 hover:opacity-100 transition-opacity"
                     />
                   </div>
