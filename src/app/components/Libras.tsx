@@ -6,15 +6,15 @@ const Libras = () => {
 
   useEffect(() => {
     setMounted(true);
-    // Check if script already exists to avoid duplicate loads
+    // Verificar se o script já existe para evitar carregamentos duplicados
     const existingScript = document.getElementById('vlibras-script');
 
     const initWidget = () => {
-      if ((window as any).VLibras && (window as any).VLibras.Widget) {
+      if (window.VLibras && window.VLibras.Widget) {
         try {
-          new (window as any).VLibras.Widget('https://vlibras.gov.br/app');
+          new window.VLibras.Widget('https://vlibras.gov.br/app');
         } catch (e) {
-          console.error('VLibras error:', e);
+          console.error('Erro ao inicializar VLibras:', e);
         }
       }
     };
