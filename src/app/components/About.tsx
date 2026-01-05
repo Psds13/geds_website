@@ -69,7 +69,7 @@ export default function About() {
           >
             <div>
               <h2 className="text-3xl font-black text-white mb-6 tracking-tight">
-                GEDS INOVAÇÃO TECHNOLOGY
+                TECNOLOGIA GEDS INOVAÇÃO
               </h2>
               <p className="text-lg text-gray-400 leading-relaxed font-light">
                 Especialistas em <strong className="text-white font-bold">desenvolvimento de software moderno</strong>,
@@ -82,7 +82,7 @@ export default function About() {
               {[
                 { icon: FiCode, title: "Código de Qualidade", desc: "Desenvolvimento de alta fidelidade seguindo padrões globais." },
                 { icon: FiTrendingUp, title: "Resultados Exponenciais", desc: "Sistemas focados em conversão e crescimento acelerado." },
-                { icon: FiUsers, title: "Human Centric Design", desc: "Experiências memoráveis desenhadas para usuários reais." }
+                { icon: FiUsers, title: "Design Centrado no Ser Humano", desc: "Experiências memoráveis desenhadas para usuários reais." }
               ].map((item, i) => (
                 <div key={i} className="flex gap-5 group">
                   <div className="bg-white/5 p-4 rounded-xl text-cyan flex-shrink-0 group-hover:bg-cyan group-hover:text-black transition-all duration-300 border border-white/5 group-hover:border-cyan">

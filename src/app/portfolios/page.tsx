@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import Image from "next/image";
+import SquareReveal from "../components/SquareReveal";
 
 interface Collaborator {
   name: string;
@@ -45,101 +46,106 @@ const collaborators: Collaborator[] = [
 
 export default function PortfoliosPage() {
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-white py-16">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Portfólios dos Colaboradores
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Conheça nosso time de talentos e explore seus projetos incríveis
-          </p>
-        </motion.div>
+    <section className="bg-black text-white py-16">
+      <SquareReveal gridSize={12}>
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Portfólios dos Colaboradores
+            </h1>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Conheça nosso time de talentos e explore seus projetos incríveis
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {collaborators.map((colab, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ y: -5 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
-            >
-              <div className="p-6">
-                <div className="flex flex-col items-center">
-                  <Image
-                    src={colab.avatar}
-                    alt={colab.name}
-                    width={112}
-                    height={112}
-                    className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md"
-                  />
-                  <div className="absolute inset-0 rounded-full border-2 border-orange-400 animate-ping opacity-0 hover:opacity-100 transition-opacity"></div>
-                </div>
-                <h2 className="text-2xl font-bold text-gray-800">{colab.name}</h2>
-                <p className="text-orange-500 font-medium">{colab.role}</p>
-                <p className="text-gray-600 mt-3 text-center">{colab.bio}</p>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {collaborators.map((colab, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                whileHover={{ y: -5 }}
+                className="bg-white/5 rounded-xl shadow-lg overflow-hidden border border-white/10 hover:shadow-[0_0_20px_rgba(0,219,255,0.2)] hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm"
+              >
+                <div className="p-6">
+                  <div className="flex flex-col items-center relative">
+                    <div className="relative w-28 h-28 mb-4">
+                      <Image
+                        src={colab.avatar}
+                        alt={colab.name}
+                        width={112}
+                        height={112}
+                        className="w-full h-full rounded-full object-cover border-4 border-black shadow-lg z-10 relative"
+                      />
+                      <div className="absolute inset-0 rounded-full border-2 border-cyan-400 animate-ping opacity-0 hover:opacity-100 transition-opacity z-0"></div>
+                      <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 blur opacity-30"></div>
+                    </div>
+                    <h2 className="text-2xl font-bold text-white">{colab.name}</h2>
+                    <p className="text-cyan-400 font-medium">{colab.role}</p>
+                    <p className="text-gray-400 mt-3 text-center text-sm">{colab.bio}</p>
+                  </div>
 
-              <div className="mt-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3 border-b pb-2">
-                  Projetos Destacados
-                </h3>
-                <ul className="space-y-4">
-                  {colab.projects.map((project, i) => (
-                    <li key={i} className="bg-gray-50 p-3 rounded-lg">
-                      <div className="flex justify-between items-start">
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-800 hover:text-orange-500 font-medium flex items-center"
-                        >
-                          {project.title}
-                          <FiExternalLink className="ml-1 text-sm" />
-                        </a>
-                      </div>
-                      {project.description && (
-                        <p className="text-sm text-gray-600 mt-1">{project.description}</p>
-                      )}
-                      {project.techs && (
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {project.techs.map((tech, j) => (
-                            <span
-                              key={j}
-                              className="bg-orange-100 text-orange-800 text-xs font-medium px-2 py-1 rounded-full"
+                  <div className="mt-6">
+                    <h3 className="text-sm font-semibold text-gray-300 mb-3 border-b border-white/10 pb-2 uppercase tracking-wider">
+                      Projetos Destacados
+                    </h3>
+                    <ul className="space-y-4">
+                      {colab.projects.map((project, i) => (
+                        <li key={i} className="bg-black/30 p-3 rounded-lg border border-white/5 hover:border-cyan-500/30 transition-colors">
+                          <div className="flex justify-between items-start">
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-white hover:text-cyan-400 font-medium flex items-center transition-colors"
                             >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                              {project.title}
+                              <FiExternalLink className="ml-1 text-sm" />
+                            </a>
+                          </div>
+                          {project.description && (
+                            <p className="text-sm text-gray-500 mt-1">{project.description}</p>
+                          )}
+                          {project.techs && (
+                            <div className="flex flex-wrap gap-2 mt-2">
+                              {project.techs.map((tech, j) => (
+                                <span
+                                  key={j}
+                                  className="bg-cyan-900/40 text-cyan-300 text-xs font-medium px-2 py-1 rounded-full border border-cyan-500/20"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              <div className="mt-6 text-center">
-                <a
-                  href={colab.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
-                >
-                  <FiGithub className="mr-2" />
-                  Ver GitHub
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                  <div className="mt-6 text-center">
+                    <a
+                      href={colab.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-white/5 text-white rounded-lg hover:bg-white/10 border border-white/10 hover:border-white/30 transition-all"
+                    >
+                      <FiGithub className="mr-2" />
+                      Ver GitHub
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      </SquareReveal>
     </section>
   );
 }

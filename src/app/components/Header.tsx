@@ -28,13 +28,19 @@ const Header = () => {
 
         {/* Navegação principal */}
         <nav className="hidden md:flex gap-8 items-center">
-          {["Início", "Sobre", "Serviços", "Processos", "Portfólios"].map((item) => (
+          {[
+            { name: "Início", href: "/" },
+            { name: "Sobre", href: "/#about" },
+            { name: "Serviços", href: "/#servicos" },
+            { name: "Processos", href: "/#processo" },
+            { name: "Portfólios", href: "/#portfolios" }
+          ].map((item) => (
             <Link
-              key={item}
-              href={`/#${item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+              key={item.name}
+              href={item.href}
               className="relative text-sm font-bold uppercase tracking-widest text-white/70 hover:text-cyan transition-all duration-300 py-1 group"
             >
-              {item}
+              {item.name}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
@@ -71,14 +77,20 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-black/95 backdrop-blur-xl px-6 py-8 absolute w-full top-full left-0 shadow-2xl border-b border-cyan/20 animate-in slide-in-from-top duration-300">
           <nav className="flex flex-col gap-6">
-            {["Início", "Sobre", "Serviços", "Processos", "Portfólios"].map((item) => (
+            {[
+              { name: "Início", href: "/" },
+              { name: "Sobre", href: "/#about" },
+              { name: "Serviços", href: "/#servicos" },
+              { name: "Processos", href: "/#processo" },
+              { name: "Portfólios", href: "/#portfolios" }
+            ].map((item) => (
               <Link
-                key={item}
-                href={`/#${item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+                key={item.name}
+                href={item.href}
                 className="text-lg font-bold text-white hover:text-cyan transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item}
+                {item.name}
               </Link>
             ))}
             <Link

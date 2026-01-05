@@ -1,49 +1,47 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { useEffect, useState } from 'react';
+
+import { useEffect, useRef } from 'react';
 
 const Libras = () => {
-  const [mounted, setMounted] = useState(false);
+  const isLoaded = useRef(false);
 
   useEffect(() => {
-    setMounted(true);
+    if (isLoaded.current) return;
+    isLoaded.current = true;
 
-    const scriptId = 'vlibras-script';
-    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+    const scriptSrc = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+    const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
 
-    const initVLibras = () => {
+    const initWidget = () => {
       const w = window as any;
       if (w.VLibras && typeof w.VLibras.Widget === 'function') {
         new w.VLibras.Widget('https://vlibras.gov.br/app');
       }
-    }
+    };
 
-    if (!script) {
-      script = document.createElement('script');
-      script.id = scriptId;
-      script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = scriptSrc;
       script.async = true;
       script.onload = () => {
-        // Pequeno delay para garantir que o script carregou no window
-        setTimeout(initVLibras, 500);
+        initWidget();
       };
       document.body.appendChild(script);
     } else {
-      initVLibras();
+      // Script já existe, tenta iniciar se ainda não foi
+      initWidget();
     }
-
-    // Cleanup para evitar duplicação em desenvolvimento (Strict Mode)
-    return () => {
-      // Opcional: remover elementos injetados pelo VLibras se necessário
-    };
   }, []);
 
-  if (!mounted) return null;
-
   return (
-    <div {...({ 'vw': 'true' } as any)} className="enabled">
-      <div {...({ 'vw-access-button': 'true' } as any)} className="active" />
-      <div {...({ 'vw-plugin-wrapper': 'true' } as any)}>
-        <div className="vw-plugin-top-wrapper" />
+    // Wrapper apenas para garantir z-index, sem forçar posição (o VLibras cuida disso)
+    <div className="vlibras-container">
+      <div {...({ 'vw': 'true' } as any)} className="enabled">
+        <div {...({ 'vw-access-button': 'true' } as any)} className="active" />
+        <div {...({ 'vw-plugin-wrapper': 'true' } as any)}>
+          <div className="vw-plugin-top-wrapper" />
+        </div>
       </div>
     </div>
   );

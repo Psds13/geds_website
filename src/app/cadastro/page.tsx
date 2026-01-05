@@ -10,6 +10,7 @@ import {
   FiEyeOff,
   FiAlertCircle,
 } from "react-icons/fi";
+import SquareReveal from "../components/SquareReveal";
 
 export default function Cadastro() {
   const [form, setForm] = useState({
@@ -156,9 +157,8 @@ export default function Cadastro() {
                 placeholder="Seu nome completo"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className={`w-full pl-10 pr-3 py-3 border ${
-                  errors.name ? "border-red-500" : "border-gray-300"
-                } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`w-full pl-10 pr-3 py-3 border ${errors.name ? "border-red-500" : "border-gray-300"
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
             </div>
             {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
@@ -180,9 +180,8 @@ export default function Cadastro() {
                 placeholder="seu@email.com"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className={`w-full pl-10 pr-3 py-3 border ${
-                  errors.email ? "border-red-500" : "border-gray-300"
-                } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`w-full pl-10 pr-3 py-3 border ${errors.email ? "border-red-500" : "border-gray-300"
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
             </div>
             {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
@@ -204,9 +203,8 @@ export default function Cadastro() {
                 placeholder="Sua senha"
                 value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
-                className={`w-full pl-10 pr-10 py-3 border ${
-                  errors.password ? "border-red-500" : "border-gray-300"
-                } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`w-full pl-10 pr-10 py-3 border ${errors.password ? "border-red-500" : "border-gray-300"
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
               <button
                 type="button"
@@ -235,9 +233,8 @@ export default function Cadastro() {
                 placeholder="Confirme sua senha"
                 value={form.confirmPassword}
                 onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                className={`w-full pl-10 pr-10 py-3 border ${
-                  errors.confirmPassword ? "border-red-500" : "border-gray-300"
-                } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                className={`w-full pl-10 pr-10 py-3 border ${errors.confirmPassword ? "border-red-500" : "border-gray-300"
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
               />
               <button
                 type="button"
@@ -275,9 +272,8 @@ export default function Cadastro() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition flex justify-center items-center ${
-              loading ? "opacity-70 cursor-not-allowed" : ""
-            }`}
+            className={`w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition flex justify-center items-center ${loading ? "opacity-70 cursor-not-allowed" : ""
+              }`}
           >
             {loading ? (
               <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>

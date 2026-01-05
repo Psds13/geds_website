@@ -102,14 +102,14 @@ export default function Footer() {
         {/* Copyright e Voltar ao Topo */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">
-            © 2026 <span className="text-cyan">GEDS INOVAÇÃO</span>. ALL RIGHTS RESERVED.
+            © 2026 <span className="text-cyan">GEDS INOVAÇÃO</span>. TODOS OS DIREITOS RESERVADOS.
           </p>
 
           <button
             onClick={scrollToTop}
             className="group flex items-center justify-center bg-white/5 border border-white/10 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest hover:border-cyan hover:text-cyan transition-all duration-500"
           >
-            Back to Top
+            Ir pro topo
             <svg className="h-4 w-4 ml-2 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
             </svg>
