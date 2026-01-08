@@ -17,11 +17,11 @@ const PricingSection = () => {
       features: [
         { text: "Acesso ao chat básico", icon: <FiCheck className="text-green-400" /> },
         { text: "50 interações por mês", icon: <FiClock className="text-blue-400" /> },
-        { text: "Suporte por e-mail", icon: <FiUsers className="text-purple-400" /> },
+        { text: "Suporte por e-mail", icon: <FiUsers className="text-cyan-400" /> },
         { text: "Acesso a modelos básicos", icon: <FiLayers className="text-yellow-400" /> }
       ],
       cta: "Começar agora",
-      ctaLink: "/cadastro",
+      ctaLink: "/pagamento?plan=Gratuito&price=0",
       popular: false
     },
     premium: {
@@ -37,7 +37,7 @@ const PricingSection = () => {
         { text: "Acesso a modelos avançados", icon: <FiLayers className="text-yellow-400" /> }
       ],
       cta: "Teste grátis por 7 dias",
-      ctaLink: "/pagamento",
+      ctaLink: `/pagamento?plan=Premium&price=${annualBilling ? "499.99" : "49.99"}`,
       popular: true
     },
     advanced: {
@@ -49,12 +49,12 @@ const PricingSection = () => {
         { text: "Modelos de última geração", icon: <FiCheck className="text-green-400" /> },
         { text: "10.000 interações por mês", icon: <FiClock className="text-blue-400" /> },
         { text: "Integrações com APIs", icon: <FiGlobe className="text-indigo-400" /> },
-        { text: "Suporte via chat 24/5", icon: <FiUsers className="text-purple-400" /> },
+        { text: "Suporte via chat 24/5", icon: <FiUsers className="text-cyan-400" /> },
         { text: "Prioridade na fila", icon: <FiStar className="text-yellow-400" /> },
         { text: "Segurança avançada", icon: <FiShield className="text-emerald-400" /> }
       ],
       cta: "Teste grátis por 7 dias",
-      ctaLink: "/pagamento",
+      ctaLink: `/pagamento?plan=Advanced&price=${annualBilling ? "949.99" : "99.99"}`,
       popular: false
     },
     enterprise: {
@@ -63,7 +63,7 @@ const PricingSection = () => {
       period: "",
       description: "Soluções personalizadas para empresas com necessidades específicas.",
       features: [
-        { text: "Suporte dedicado 24/7", icon: <FiUsers className="text-purple-400" /> },
+        { text: "Suporte dedicado 24/7", icon: <FiUsers className="text-cyan-400" /> },
         { text: "Consultoria personalizada", icon: <FiBriefcase className="text-blue-400" /> },
         { text: "Integração total com sistemas", icon: <FiGlobe className="text-indigo-400" /> },
         { text: "Treinamento para equipes", icon: <FiStar className="text-yellow-400" /> },
@@ -81,7 +81,7 @@ const PricingSection = () => {
     <section className="bg-black min-h-screen py-20 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
       {/* Background Ambience */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] left-[20%] w-[800px] h-[800px] bg-indigo-600/10 blur-[150px] rounded-full"></div>
+        <div className="absolute top-[-20%] left-[20%] w-[800px] h-[800px] bg-cyan/10 blur-[150px] rounded-full"></div>
         <div className="absolute bottom-[-20%] right-[10%] w-[600px] h-[600px] bg-cyan-600/10 blur-[150px] rounded-full"></div>
         <div className="absolute inset-0 bg-[url('/grid-pattern.png')] opacity-10 bg-repeat"></div>
       </div>
@@ -93,14 +93,14 @@ const PricingSection = () => {
           </h2>
           <p className="mt-4 text-xl text-gray-400 max-w-3xl mx-auto">
             Comece gratuitamente e evolua conforme suas necessidades.
-            <span className="text-indigo-400 font-medium ml-1">Economize 15% com o plano anual.</span>
+            <span className="text-cyan font-medium ml-1">Economize 15% com o plano anual.</span>
           </p>
 
           <div className="mt-10 flex items-center justify-center bg-white/5 backdrop-blur-sm p-1.5 rounded-full w-fit mx-auto border border-white/10">
             <button
               onClick={() => setAnnualBilling(false)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${!annualBilling
-                ? 'bg-indigo-600 text-white shadow-lg'
+                ? 'bg-cyan text-black shadow-lg shadow-cyan/20'
                 : 'text-gray-400 hover:text-white'
                 }`}
             >
@@ -109,7 +109,7 @@ const PricingSection = () => {
             <button
               onClick={() => setAnnualBilling(true)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${annualBilling
-                ? 'bg-indigo-600 text-white shadow-lg'
+                ? 'bg-cyan text-black shadow-lg shadow-cyan/20'
                 : 'text-gray-400 hover:text-white'
                 }`}
             >
@@ -125,12 +125,12 @@ const PricingSection = () => {
               onMouseEnter={() => setHoveredPlan(key)}
               onMouseLeave={() => setHoveredPlan(null)}
               className={`relative flex flex-col p-6 rounded-2xl border transition-all duration-500 group ${plan.popular
-                ? 'bg-gradient-to-b from-indigo-900/20 to-black/40 border-indigo-500/50 hover:border-indigo-400 shadow-[0_0_30px_-10px_rgba(79,70,229,0.3)]'
+                ? 'bg-gradient-to-b from-cyan/10 to-black/40 border-cyan/50 hover:border-cyan shadow-[0_0_30px_-10px_rgba(0,219,255,0.3)]'
                 : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'
                 } ${hoveredPlan === key ? '-translate-y-2' : ''}`}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg border border-indigo-400/30">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-cyan to-cyan-600 text-black text-xs font-bold px-4 py-1 rounded-full shadow-lg border border-cyan/30">
                   Mais Popular
                 </div>
               )}
@@ -166,7 +166,7 @@ const PricingSection = () => {
               <Link href={plan.ctaLink} className="mt-auto">
                 <button
                   className={`w-full py-3.5 px-4 rounded-xl text-sm font-semibold transition-all duration-300 transform group-hover:scale-[1.02] active:scale-[0.98] ${plan.popular
-                    ? 'bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-lg shadow-indigo-500/25'
+                    ? 'bg-cyan hover:bg-cyan-600 text-black shadow-lg shadow-cyan/25'
                     : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
                     }`}
                 >

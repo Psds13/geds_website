@@ -11,6 +11,7 @@
   "dependencies": {
     "framer-motion": "^12.24.0",
     "glob": "^11.0.3",
+    "jspdf": "^4.0.0",
     "lucide-react": "^0.487.0",
     "minimatch": "^10.0.3",
     "next": "15.5.9",
