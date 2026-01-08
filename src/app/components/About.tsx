@@ -38,7 +38,7 @@ export default function About() {
           >
             <div className="relative group">
               <img
-                src="/GEDS inovação.png"
+                src="/GEDS Inovação.jpg"
                 alt="Equipe GEDS Inovação"
                 className="w-full h-[500px] object-cover rounded-2xl shadow-2xl border border-white/10 group-hover:border-cyan/30 transition-all duration-500"
               />
