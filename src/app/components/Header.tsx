@@ -1,5 +1,6 @@
 'use client';
 import Link from "next/link";
+import Image from "next/image";
 import { LogIn, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -13,12 +14,13 @@ const Header = () => {
         {/* Logo da Empresa como link para Home */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative">
-            <img
+            <Image
               src="/GEDS Inovação.png"
               alt="Logo GEDS Inovação"
               width={50}
               height={50}
               className="rounded-full transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:shadow-[0_0_15px_rgba(0,219,255,0.6)]"
+              priority
             />
             <div className="absolute inset-0 rounded-full bg-cyan/20 blur-md -z-10 group-hover:bg-cyan/40 transition-all"></div>
           </div>

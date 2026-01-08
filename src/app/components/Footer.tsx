@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -17,10 +18,12 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6 group cursor-pointer">
               <div className="relative">
-                <img
+                <Image
                   src="/GEDS Inovação.png"
                   alt="GEDS Inovação"
-                  className="h-12 w-12 rounded-full mr-4 border border-cyan/30 transition-all group-hover:shadow-[0_0_15px_rgba(0,219,255,0.4)]"
+                  width={48}
+                  height={48}
+                  className="rounded-full mr-4 border border-cyan/30 transition-all group-hover:shadow-[0_0_15px_rgba(0,219,255,0.4)]"
                 />
                 <div className="absolute inset-0 bg-cyan/20 blur-md rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FiAward, FiCode, FiTrendingUp, FiUsers, FiGlobe, FiHeart } from "react-icons/fi";
 
 export default function About() {
@@ -36,14 +37,16 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="relative group">
-              <img
+            <div className="relative group w-full h-[500px] overflow-hidden rounded-2xl shadow-2xl border border-white/10 group-hover:border-cyan/30 transition-all duration-500">
+              <Image
                 src="/GEDS Inovação.jpg"
                 alt="Equipe GEDS Inovação"
-                className="w-full h-[500px] object-cover rounded-2xl shadow-2xl border border-white/10 group-hover:border-cyan/30 transition-all duration-500"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-2xl"></div>
-              <div className="absolute inset-0 bg-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
 
             <div className="absolute -bottom-6 -right-6 bg-black/80 backdrop-blur-xl p-5 rounded-2xl shadow-2xl border border-cyan/30">

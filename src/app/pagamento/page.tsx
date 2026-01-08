@@ -1,5 +1,6 @@
 "use client";
 import { NextPage } from 'next';
+import NextImage from 'next/image';
 import Head from 'next/head';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -286,8 +287,14 @@ const PaymentContent = () => {
                       </div>
                       <div className="grid md:grid-cols-2 gap-8">
                         <div className="flex flex-col items-center justify-center">
-                          <div className="bg-white p-3 rounded-xl border-2 border-dashed border-cyan/30 mb-4 shadow-lg overflow-hidden">
-                            <img src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(getPixCode())}`} alt="QR Code Pix" />
+                          <div className="bg-white p-3 rounded-xl border-2 border-dashed border-cyan/30 mb-4 shadow-lg overflow-hidden relative w-40 h-40">
+                            <NextImage
+                              src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(getPixCode())}`}
+                              alt="QR Code Pix"
+                              fill
+                              className="object-contain"
+                              unoptimized
+                            />
                           </div>
                           <p className="text-xs text-gray-400">Escaneie com seu banco</p>
                         </div>
@@ -339,8 +346,8 @@ const PaymentContent = () => {
                           <FiCreditCard className="mr-2 text-cyan" /> Cartão de Crédito
                         </h3>
                         <div className="flex gap-2">
-                          <img src="/visa.png" alt="Visa" className="h-6 w-auto opacity-70 grayscale hover:grayscale-0 transition-all" />
-                          <img src="/mastercard.png" alt="Mastercard" className="h-6 w-auto opacity-70 grayscale hover:grayscale-0 transition-all" />
+                          <NextImage src="/visa.png" alt="Visa" width={32} height={20} className="opacity-70 grayscale hover:grayscale-0 transition-all object-contain" />
+                          <NextImage src="/mastercard.png" alt="Mastercard" width={32} height={20} className="opacity-70 grayscale hover:grayscale-0 transition-all object-contain" />
                         </div>
                       </div>
                       <div className="space-y-4">

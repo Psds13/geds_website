@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
 import {
   Code2,
@@ -92,17 +93,21 @@ const HomeContent = () => {
       <section className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <motion.div
-            className="md:w-1/2"
+            className="md:w-1/2 relative"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-              alt="Desenvolvimento Web Moderno"
-              className="rounded-2xl shadow-xl object-cover w-full h-80 md:h-96 grayscale hover:grayscale-0 transition-all duration-700"
-            />
+            <div className="relative w-full h-80 md:h-96 rounded-2xl overflow-hidden shadow-xl grayscale hover:grayscale-0 transition-all duration-700">
+              <Image
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                alt="Desenvolvimento Web Moderno"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </motion.div>
 
           <motion.div
@@ -271,12 +276,14 @@ const HomeContent = () => {
         >
           <div className="bg-white/5 p-6 rounded-2xl shadow-xl overflow-hidden border border-white/10 hover:border-cyan/30 transition-all">
             <div className="relative h-64 rounded-xl overflow-hidden mb-6">
-              <img
+              <Image
                 src="https://images.pexels.com/photos/3184451/pexels-photo-3184451.jpeg"
                 alt="Projetos Web"
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6">
                 <h3 className="text-white text-2xl font-bold">Projetos Web Completos</h3>
               </div>
             </div>
@@ -287,12 +294,14 @@ const HomeContent = () => {
 
           <div className="bg-white/5 p-6 rounded-2xl shadow-xl overflow-hidden border border-white/10 hover:border-cyan/30 transition-all">
             <div className="relative h-64 rounded-xl overflow-hidden mb-6">
-              <img
+              <Image
                 src="https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg"
                 alt="Design de Interfaces"
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6">
                 <h3 className="text-white text-2xl font-bold">Design de Interfaces</h3>
               </div>
             </div>

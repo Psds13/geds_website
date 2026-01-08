@@ -1,8 +1,7 @@
 // app/layout.tsx
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
-import GoldChatWidget from "@/app/components/GoldChatWidget";
-import Libras from "@/app/components/Libras";
+import ClientLayoutExtras from "@/app/components/ClientLayoutExtras";
 import "./globals.css";
 
 import { Roboto } from "next/font/google";
@@ -45,8 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1 overflow-x-hidden">{children}</main>
         <Footer />
-        <GoldChatWidget />
-        <Libras />
+        <ClientLayoutExtras />
       </body>
     </html>
   );

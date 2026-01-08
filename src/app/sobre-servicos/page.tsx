@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import NextImage from "next/image";
 import Link from "next/link";
 import { FiArrowLeft, FiCheckCircle } from "react-icons/fi";
 import SquareReveal from "../components/SquareReveal";
@@ -15,12 +16,14 @@ const ServiceDetail = ({ id, title, description, benefits, image, reverse }: { i
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-white/10 w-full h-[400px]">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
-                    <img
+                    <NextImage
                         src={image}
                         alt={title}
-                        className="w-full h-[400px] object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        fill
+                        className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                     <div className="absolute bottom-0 left-0 p-6 z-20">
                         <div className="h-1 w-20 bg-cyan-500 mb-4 rounded-full" />

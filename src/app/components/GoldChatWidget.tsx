@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import NextImage from "next/image";
 
 export default function GoldChatWidget() {
   const [open, setOpen] = useState(false);
@@ -297,11 +298,14 @@ export default function GoldChatWidget() {
           <div className="bg-cyan/10 border-b border-cyan/20 p-4 flex justify-between items-center bg-gradient-to-r from-cyan/20 to-transparent">
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <img
-                  src="/gold.jpg"
-                  alt="Gold"
-                  className="w-10 h-10 rounded-full border-2 border-cyan shadow-[0_0_10px_rgba(0,219,255,0.5)] object-cover"
-                />
+                <div className="w-10 h-10 rounded-full border-2 border-cyan shadow-[0_0_10px_rgba(0,219,255,0.5)] overflow-hidden relative">
+                  <NextImage
+                    src="/gold.jpg"
+                    alt="Gold"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-black animate-pulse"></div>
               </div>
               <div>
