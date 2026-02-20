@@ -119,7 +119,7 @@ export default function ForgotPasswordPage() {
                             </p>
                             <Link
                                 href="/login"
-                                className="block w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-4 rounded-xl transition-all shadow-lg hover:shadow-green-500/25"
+                                className="block w-full bg-linear-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-4 rounded-xl transition-all shadow-lg hover:shadow-green-500/25"
                             >
                                 Ir para Login
                             </Link>
@@ -146,7 +146,7 @@ export default function ForgotPasswordPage() {
                             <Link href="/login" className="inline-flex items-center text-sm text-gray-500 hover:text-white transition-colors mb-6 group">
                                 <FiArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" /> Voltar para login
                             </Link>
-                            <h2 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                            <h2 className="text-3xl font-bold bg-linear-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                                 recuperar conta
                             </h2>
                             <p className="text-gray-400 text-sm mt-3">
@@ -160,7 +160,7 @@ export default function ForgotPasswordPage() {
                         {/* Error Message */}
                         {error && (
                             <div className="flex items-center gap-2 bg-red-500/10 text-red-400 border border-red-500/20 p-3 rounded-lg mb-6 text-sm animate-pulse">
-                                <FiAlertCircle className="flex-shrink-0" />
+                                <FiAlertCircle className="shrink-0" />
                                 <span>{error}</span>
                             </div>
                         )}

@@ -6,36 +6,59 @@ import { FiMail, FiLock, FiEye, FiEyeOff, FiAlertCircle } from "react-icons/fi";
 import SquareReveal from "../components/SquareReveal";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+
+const loginSchema = z.object({
+  email: z.string().email({ message: "Email inválido" }),
+  password: z.string().min(1, { message: "Senha é obrigatória" }),
+  stayLogged: z.boolean(),
+});
+
+type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [stayLogged, setStayLogged] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      stayLogged: false,
+    },
+  });
+
+  const onSubmit = async (values: LoginFormValues) => {
     setError("");
-
-    if (!email || !password) {
-      setError("Preencha todos os campos");
-      return;
-    }
-
     setLoading(true);
 
     try {
       const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: values.email,
+        password: values.password,
       });
 
       if (signInError) throw signInError;
 
       if (data.user) {
+        // You might want to handle 'stayLogged' here if you have specific logic for persistence
         router.push("/userProfile");
       }
     } catch (err: any) {
@@ -59,7 +82,7 @@ export default function LoginPage() {
 
           <div className="relative z-10 w-full max-w-md p-8 bg-white/5 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)]">
             <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">Bem-vindo de volta</h2>
+              <h2 className="text-3xl font-bold bg-linear-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">Bem-vindo de volta</h2>
               <p className="text-gray-400 text-sm mt-2">Acesse sua conta para continuar</p>
             </div>
 
@@ -70,70 +93,95 @@ export default function LoginPage() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block mb-2 text-sm font-medium text-gray-300">Email</label>
-                <div className="relative group">
-                  <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300" />
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-3 py-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300"
-                    placeholder="seu@email.com"
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">Email</FormLabel>
+                      <div className="relative group">
+                        <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300 z-10" />
+                        <FormControl>
+                          <Input
+                            placeholder="seu@email.com"
+                            className="pl-10"
+                            {...field}
+                          />
+                        </FormControl>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">Senha</FormLabel>
+                      <div className="relative group">
+                        <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300 z-10" />
+                        <FormControl>
+                          <Input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Sua senha"
+                            className="pl-10 pr-10"
+                            {...field}
+                          />
+                        </FormControl>
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition-colors z-10"
+                        >
+                          {showPassword ? <FiEyeOff /> : <FiEye />}
+                        </button>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <div className="flex items-center justify-between">
+                  <FormField
+                    control={form.control}
+                    name="stayLogged"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-start space-x-2 space-y-0">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel className="text-gray-400 cursor-pointer font-normal">
+                            Manter conectado
+                          </FormLabel>
+                        </div>
+                      </FormItem>
+                    )}
                   />
-                </div>
-              </div>
 
-              <div>
-                <label className="block mb-2 text-sm font-medium text-gray-300">Senha</label>
-                <div className="relative group">
-                  <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300" />
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-10 pr-10 py-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300"
-                    placeholder="Sua senha"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition-colors"
-                  >
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="stayLogged"
-                    checked={stayLogged}
-                    onChange={() => setStayLogged(!stayLogged)}
-                    className="h-4 w-4 rounded border-white/10 bg-black/40 text-cyan-500 focus:ring-cyan-500/20 focus:ring-offset-0 transition-colors"
-                  />
-                  <label htmlFor="stayLogged" className="ml-2 text-sm text-gray-400 cursor-pointer select-none">
-                    Manter conectado
-                  </label>
+                  <Link href="/esqueci-senha" className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors hover:underline decoration-cyan-500/30">
+                    Esqueci a senha?
+                  </Link>
                 </div>
 
-                <Link href="/esqueci-senha" className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors hover:underline decoration-cyan-500/30">
-                  Esqueci a senha?
-                </Link>
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full relative group overflow-hidden bg-cyan-500 hover:bg-cyan-400 text-black py-3.5 rounded-xl font-bold transition-all duration-300 shadow-[0_0_20px_rgba(0,219,255,0.4)] hover:shadow-[0_0_25px_rgba(0,219,255,0.6)] disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                <span className="relative z-10">{loading ? "Entrando..." : "Entrar"}</span>
-                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-shine" />
-              </button>
-            </form>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  variant="shiny"
+                  className="w-full py-6 text-base"
+                >
+                  {loading ? "Entrando..." : "Entrar"}
+                </Button>
+              </form>
+            </Form>
 
             <div className="mt-8 pt-6 border-t border-white/5 text-center">
               <p className="text-sm text-gray-400">

@@ -6,19 +6,44 @@ import { useForm } from 'react-hook-form';
 import SquareReveal from '../components/SquareReveal';
 import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
-type FormData = {
-  name: string;
-  email: string;
-  subject?: string;
-  message: string;
-};
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+const contactSchema = z.object({
+  name: z.string().min(2, { message: "Nome é obrigatório" }),
+  email: z.string().email({ message: "Email inválido" }),
+  subject: z.string().optional(),
+  message: z.string().min(10, { message: "Mensagem deve ter pelo menos 10 caracteres" }),
+});
+
+type ContactFormValues = z.infer<typeof contactSchema>;
 
 export default function Contact() {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = async (data: FormData) => {
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
       const { error } = await supabase
@@ -36,7 +61,7 @@ export default function Contact() {
       if (error) throw error;
 
       alert(`Obrigado pela mensagem, ${data.name}! Entraremos em contato em breve.`);
-      reset();
+      form.reset();
     } catch (error: any) {
       console.error('Erro ao enviar mensagem:', error.message);
       alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.');
@@ -66,7 +91,7 @@ export default function Contact() {
               viewport={{ once: true }}
               className="text-center mb-20"
             >
-              <h2 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent mb-6 tracking-tight">
+              <h2 className="text-5xl md:text-7xl font-bold bg-linear-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent mb-6 tracking-tight">
                 Vamos Criar o Futuro?
               </h2>
               <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
@@ -86,14 +111,14 @@ export default function Contact() {
                 className="space-y-8"
               >
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-linear-to-r from-cyan-600 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition-opacity duration-500"></div>
                   <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-all duration-300">
                     <h3 className="text-3xl font-bold text-white mb-8">Canais de Atendimento</h3>
 
                     <div className="space-y-6">
                       {/* Email Card */}
                       <a href="mailto:contato@gedsinovacao.com" className="flex items-center gap-6 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-cyan-500/30 transition-all group/item">
-                        <div className="h-14 w-14 rounded-full bg-cyan-500/20 flex items-center justify-center group-hover/item:scale-110 transition-transform">
+                        <div className="w-12 h-12 rounded-xl bg-linear-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center border border-cyan-500/30 group-hover:scale-110 transition-transform duration-300">
                           <FaEnvelope className="text-cyan-400 text-2xl" />
                         </div>
                         <div>
@@ -158,7 +183,7 @@ export default function Contact() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="relative"
               >
-                <div className="absolute -inset-1 bg-gradient-to-br from-cyan-600 via-blue-600 to-purple-600 rounded-2xl blur opacity-30"></div>
+                <div className="absolute -inset-1 bg-linear-to-br from-cyan-600 via-blue-600 to-purple-600 rounded-2xl blur opacity-30"></div>
                 <div className="relative bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 shadow-2xl">
                   <div className="flex items-center gap-4 mb-8">
                     <div className="p-3 bg-cyan-500/10 rounded-lg">
@@ -167,77 +192,106 @@ export default function Contact() {
                     <h3 className="text-3xl font-bold text-white">Envie uma Mensagem</h3>
                   </div>
 
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-medium text-gray-400 ml-1">Seu Nome</label>
-                        <input
-                          type="text"
-                          id="name"
-                          {...register('name', { required: 'Nome é obrigatório' })}
-                          className={`w-full px-4 py-3.5 bg-black/40 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300`}
-                          placeholder="João Silva"
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-gray-400 ml-1">Seu Nome</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="João Silva"
+                                  className="py-6"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
-                        {errors.name && <span className="text-red-400 text-xs ml-1">{errors.name.message}</span>}
+
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-gray-400 ml-1">Seu Email</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="email"
+                                  placeholder="joao@exemplo.com"
+                                  className="py-6"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
                       </div>
 
-                      <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-gray-400 ml-1">Seu Email</label>
-                        <input
-                          type="email"
-                          id="email"
-                          {...register('email', { required: 'Email é obrigatório', pattern: { value: /^\S+@\S+$/i, message: "Email inválido" } })}
-                          className={`w-full px-4 py-3.5 bg-black/40 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300`}
-                          placeholder="joao@exemplo.com"
-                        />
-                        {errors.email && <span className="text-red-400 text-xs ml-1">{errors.email.message}</span>}
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="subject" className="text-sm font-medium text-gray-400 ml-1">Assunto (Opcional)</label>
-                      <input
-                        type="text"
-                        id="subject"
-                        {...register('subject')}
-                        className="w-full px-4 py-3.5 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300"
-                        placeholder="Interesse em desenvolvimento web..."
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-gray-400 ml-1">Sua Mensagem</label>
-                      <textarea
-                        id="message"
-                        rows={5}
-                        {...register('message', { required: 'Mensagem é obrigatória', minLength: { value: 10, message: "Mínimo 10 caracteres" } })}
-                        className={`w-full px-4 py-3.5 bg-black/40 border ${errors.message ? 'border-red-500/50' : 'border-white/10'} rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300 resize-none`}
-                        placeholder="Conte-nos sobre seu projeto ou dúvida..."
-                      ></textarea>
-                      {errors.message && <span className="text-red-400 text-xs ml-1">{errors.message.message}</span>}
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className={`w-full group relative px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl shadow-[0_0_20px_rgba(0,219,255,0.4)] hover:shadow-[0_0_30px_rgba(0,219,255,0.6)] transition-all duration-300 overflow-hidden ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                    >
-                      <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-shine" />
-                      <span className="relative z-10 flex items-center justify-center gap-2">
-                        {isSubmitting ? (
-                          <>Enviando...</>
-                        ) : (
-                          <>
-                            <FaPaperPlane /> Enviar Agora
-                          </>
+                      <FormField
+                        control={form.control}
+                        name="subject"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-gray-400 ml-1">Assunto (Opcional)</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Interesse em desenvolvimento web..."
+                                className="py-6"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
                         )}
-                      </span>
-                    </button>
+                      />
 
-                    <p className="text-center text-xs text-gray-500 mt-4">
-                      Ao enviar, você concorda com nossa <a href="/politica-de-privacidade" className="text-cyan-500 hover:underline">Política de Privacidade</a>.
-                    </p>
-                  </form>
+                      <FormField
+                        control={form.control}
+                        name="message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-gray-400 ml-1">Sua Mensagem</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder="Conte-nos sobre seu projeto ou dúvida..."
+                                className="resize-none"
+                                rows={5}
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        variant="shiny"
+                        className="w-full py-6 text-base"
+                      >
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          {isSubmitting ? (
+                            <>Enviando...</>
+                          ) : (
+                            <>
+                              <FaPaperPlane /> Enviar Agora
+                            </>
+                          )}
+                        </span>
+                      </Button>
+
+                      <p className="text-center text-xs text-gray-500 mt-4">
+                        Ao enviar, você concorda com nossa <a href="/politica-de-privacidade" className="text-cyan-500 hover:underline">Política de Privacidade</a>.
+                      </p>
+                    </form>
+                  </Form>
                 </div>
               </motion.div>
             </div>

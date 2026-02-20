@@ -295,7 +295,7 @@ export default function GoldChatWidget() {
           className="w-80 sm:w-96 h-[500px] bg-black/90 backdrop-blur-xl rounded-2xl shadow-[0_0_40px_rgba(0,219,255,0.2)] border border-cyan/30 flex flex-col overflow-hidden"
         >
           {/* Header */}
-          <div className="bg-cyan/10 border-b border-cyan/20 p-4 flex justify-between items-center bg-gradient-to-r from-cyan/20 to-transparent">
+          <div className="bg-cyan/10 border-b border-cyan/20 p-4 flex justify-between items-center bg-linear-to-r from-cyan/20 to-transparent">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <div className="w-10 h-10 rounded-full border-2 border-cyan shadow-[0_0_10px_rgba(0,219,255,0.5)] overflow-hidden relative">

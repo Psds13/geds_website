@@ -82,7 +82,7 @@ const HomeContent = () => {
         transition={{ duration: 0.6 }}
       >
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white leading-[1.1]">
-          Soluções Digitais que <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-blue-400">Impulsionam Negócios</span>
+          Soluções Digitais que <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan to-blue-400">Impulsionam Negócios</span>
         </h1>
         <p className="text-xl text-gray-400 max-w-2xl mx-auto">
           Somos parceiros de tecnologia para empresas que buscam ir além. Unimos engenharia de ponta e design estratégico para criar produtos que o mercado ama.
@@ -283,7 +283,7 @@ const HomeContent = () => {
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent flex items-end p-6">
                 <h3 className="text-white text-2xl font-bold">Projetos Web Completos</h3>
               </div>
             </div>
@@ -301,7 +301,7 @@ const HomeContent = () => {
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent flex items-end p-6">
                 <h3 className="text-white text-2xl font-bold">Design de Interfaces</h3>
               </div>
             </div>
@@ -329,7 +329,7 @@ const HomeContent = () => {
 
       {/* CTA Final */}
       <motion.section
-        className="max-w-4xl mx-auto text-center bg-gradient-to-br from-cyan/20 to-black p-1 py-16 px-8 rounded-3xl shadow-[0_0_50px_rgba(0,219,255,0.1)] border border-cyan/20"
+        className="max-w-4xl mx-auto text-center bg-linear-to-br from-cyan/20 to-black p-1 py-16 px-8 rounded-3xl shadow-[0_0_50px_rgba(0,219,255,0.1)] border border-cyan/20"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}

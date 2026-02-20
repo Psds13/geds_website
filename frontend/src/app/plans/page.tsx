@@ -89,7 +89,7 @@ const PricingSection = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold sm:text-5xl bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-6">
+          <h2 className="text-4xl font-extrabold sm:text-5xl bg-linear-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-6">
             Planos que se adaptam ao seu crescimento
           </h2>
           <p className="mt-4 text-xl text-gray-400 max-w-3xl mx-auto">
@@ -132,12 +132,12 @@ const PricingSection = () => {
                 onMouseEnter={() => setHoveredPlan(plan.name)}
                 onMouseLeave={() => setHoveredPlan(null)}
                 className={`relative flex flex-col p-6 rounded-2xl border transition-all duration-500 group ${plan.popular
-                  ? 'bg-gradient-to-b from-cyan/10 to-black/40 border-cyan/50 hover:border-cyan shadow-[0_0_30px_-10px_rgba(0,219,255,0.3)]'
+                  ? 'bg-linear-to-b from-cyan/10 to-black/40 border-cyan/50 hover:border-cyan shadow-[0_0_30px_-10px_rgba(0,219,255,0.3)]'
                   : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'
                   } ${hoveredPlan === plan.name ? '-translate-y-2' : ''}`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-cyan to-cyan-600 text-black text-xs font-bold px-4 py-1 rounded-full shadow-lg border border-cyan/30">
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-linear-to-r from-cyan to-cyan-600 text-black text-xs font-bold px-4 py-1 rounded-full shadow-lg border border-cyan/30">
                     Mais Popular
                   </div>
                 )}
@@ -164,7 +164,7 @@ const PricingSection = () => {
                 <ul className="space-y-4 mb-8 flex-1">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="mr-3 mt-0.5 flex-shrink-0">{feature.icon}</span>
+                      <span className="mr-3 mt-0.5 shrink-0">{feature.icon}</span>
                       <span className="text-sm text-gray-300 group-hover:text-gray-200 transition-colors">{feature.text}</span>
                     </li>
                   ))}

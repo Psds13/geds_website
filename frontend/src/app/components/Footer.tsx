@@ -27,7 +27,7 @@ export default function Footer() {
                 />
                 <div className="absolute inset-0 bg-cyan/20 blur-md rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
-              <span className="text-2xl font-black bg-gradient-to-r from-white to-cyan bg-clip-text text-transparent tracking-tighter">
+              <span className="text-2xl font-black bg-linear-to-r from-white to-cyan bg-clip-text text-transparent tracking-tighter">
                 GEDS INOVAÇÃO
               </span>
             </div>
@@ -121,7 +121,7 @@ export default function Footer() {
         </div>
 
         {/* Divisor */}
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan/30 to-transparent mb-10"></div>
+        <div className="h-px w-full bg-linear-to-r from-transparent via-cyan/30 to-transparent mb-10"></div>
 
         {/* Copyright e Voltar ao Topo */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
