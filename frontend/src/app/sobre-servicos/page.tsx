@@ -17,7 +17,7 @@ const ServiceDetail = ({ id, title, description, benefits, image, reverse }: { i
                 transition={{ duration: 0.6 }}
             >
                 <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-white/10 w-full h-[400px]">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent z-10" />
                     <NextImage
                         src={image}
                         alt={title}
@@ -48,7 +48,7 @@ const ServiceDetail = ({ id, title, description, benefits, image, reverse }: { i
                 <ul className="space-y-4 pt-4">
                     {benefits.map((benefit, index) => (
                         <li key={index} className="flex items-start gap-3">
-                            <FiCheckCircle className="text-cyan-400 text-xl mt-1 flex-shrink-0" />
+                            <FiCheckCircle className="text-cyan-400 text-xl mt-1 shrink-0" />
                             <span className="text-gray-400">{benefit}</span>
                         </li>
                     ))}
@@ -136,7 +136,7 @@ export default function ServicesPage() {
                         <motion.h1
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-100 to-blue-200 mb-6"
+                            className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white via-cyan-100 to-blue-200 mb-6"
                         >
                             Nossa Expertise em Detalhes
                         </motion.h1>
@@ -163,8 +163,8 @@ export default function ServicesPage() {
 
                     {/* CTA Footer */}
                     <div className="mt-24 text-center">
-                        <div className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 border border-cyan-500/20 rounded-3xl p-12 relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+                        <div className="bg-linear-to-r from-cyan-900/20 to-blue-900/20 border border-cyan-500/20 rounded-3xl p-12 relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
                             <h2 className="text-3xl font-bold mb-6">Pronto para começar seu projeto?</h2>
                             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
                                 Não importa o tamanho do desafio, nossa equipe está preparada para entregar a melhor solução tecnológica.

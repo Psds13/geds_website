@@ -20,7 +20,7 @@ export default function About() {
             Nossa Essência
           </span>
           <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
-            Parceiros Tecnológicos de <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-white drop-shadow-[0_0_10px_rgba(0,219,255,0.3)]">Longo Prazo</span>
+            Parceiros Tecnológicos de <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan to-white drop-shadow-[0_0_10px_rgba(0,219,255,0.3)]">Longo Prazo</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Somos uma casa de software boutique. Acompanhamos sua jornada de transformação digital com times dedicados, metodologia ágil e obsessão por qualidade.
@@ -45,7 +45,7 @@ export default function About() {
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent"></div>
               <div className="absolute inset-0 bg-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
 
@@ -86,7 +86,7 @@ export default function About() {
                 { icon: FiUsers, title: "Design Centrado no Ser Humano", desc: "Experiências memoráveis desenhadas para usuários reais." }
               ].map((item, i) => (
                 <div key={i} className="flex gap-5 group">
-                  <div className="bg-white/5 p-4 rounded-xl text-cyan flex-shrink-0 group-hover:bg-cyan group-hover:text-black transition-all duration-300 border border-white/5 group-hover:border-cyan">
+                  <div className="bg-white/5 p-4 rounded-xl text-cyan shrink-0 group-hover:bg-cyan group-hover:text-black transition-all duration-300 border border-white/5 group-hover:border-cyan">
                     <item.icon className="text-2xl" />
                   </div>
                   <div>

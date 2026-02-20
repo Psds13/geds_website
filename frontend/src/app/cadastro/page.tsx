@@ -12,81 +12,89 @@ import {
 } from "react-icons/fi";
 import SquareReveal from "../components/SquareReveal";
 import { supabase } from "@/lib/supabase";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 
-export default function Cadastro() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormDescription,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+
+const registerSchema = z
+  .object({
+    name: z.string().min(2, { message: "Nome deve ter pelo menos 2 caracteres" }),
+    email: z.string().email({ message: "E-mail inválido" }),
+    password: z.string().min(6, { message: "Senha deve ter pelo menos 6 caracteres" }),
+    confirmPassword: z.string().min(6, { message: "Confirmação é obrigatória" }),
+    terms: z.boolean().refine((val) => val === true, {
+      message: "Você deve aceitar os termos e condições",
+    }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "As senhas não coincidem",
+    path: ["confirmPassword"],
   });
 
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+type RegisterFormValues = z.infer<typeof registerSchema>;
+
+export default function Cadastro() {
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [globalError, setGlobalError] = useState("");
 
-  const validate = () => {
-    const newErrors: { [key: string]: string } = {};
+  const form = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      terms: false,
+    },
+  });
 
-    if (!form.name.trim()) newErrors.name = "Nome é obrigatório";
-    if (!form.email.trim()) newErrors.email = "E-mail é obrigatório";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      newErrors.email = "E-mail inválido";
-
-    if (!form.password) newErrors.password = "Senha é obrigatória";
-    else if (form.password.length < 6)
-      newErrors.password = "A senha deve ter pelo menos 6 caracteres";
-
-    if (!form.confirmPassword)
-      newErrors.confirmPassword = "Confirmação é obrigatória";
-    else if (form.password !== form.confirmPassword)
-      newErrors.confirmPassword = "As senhas não coincidem";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validate()) return;
-
+  const onSubmit = async (values: RegisterFormValues) => {
     setLoading(true);
-    setErrors({});
+    setGlobalError("");
 
     try {
       // 1. Criar usuário no Supabase Auth
       const { data: authData, error: signUpError } = await supabase.auth.signUp({
-        email: form.email,
-        password: form.password,
+        email: values.email,
+        password: values.password,
       });
 
       if (signUpError) throw signUpError;
 
       if (authData.user) {
         // 2. Inserir dados complementares na tabela 'usuarios'
-        const { error: dbError } = await supabase
-          .from('usuarios')
-          .insert([
-            {
-              id: authData.user.id,
-              nome: form.name,
-              email: form.email,
-              cargo: 'Usuário'
-            }
-          ]);
+        const { error: dbError } = await supabase.from("usuarios").insert([
+          {
+            id: authData.user.id,
+            nome: values.name,
+            email: values.email,
+            cargo: "Usuário",
+          },
+        ]);
 
         if (dbError) throw dbError;
       }
 
       setSuccess(true);
-      setForm({ name: "", email: "", password: "", confirmPassword: "" });
+      form.reset();
     } catch (error: any) {
       console.error("Erro no cadastro:", error.message);
-      setErrors({
-        form: error.message || "Erro ao cadastrar. Tente novamente.",
-      });
+      setGlobalError(error.message || "Erro ao cadastrar. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -119,17 +127,16 @@ export default function Cadastro() {
                     />
                   </svg>
                 </div>
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-4">
+                <h2 className="text-3xl font-bold bg-linear-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-4">
                   Cadastro concluído!
                 </h2>
                 <p className="text-gray-400 text-sm mb-8">
                   Sua conta foi criada com sucesso. Agora você pode fazer login e aproveitar todos os recursos.
                 </p>
-                <Link
-                  href="/login"
-                  className="w-full inline-block bg-cyan-500 hover:bg-cyan-400 text-black py-3.5 rounded-xl font-bold transition-all duration-300 shadow-[0_0_20px_rgba(0,219,255,0.4)] hover:shadow-[0_0_25px_rgba(0,219,255,0.6)] text-center"
-                >
-                  Ir para Login
+                <Link href="/login" className="w-full">
+                  <Button variant="shiny" className="w-full py-6 text-base">
+                    Ir para Login
+                  </Button>
                 </Link>
               </div>
             </div>
@@ -143,7 +150,6 @@ export default function Cadastro() {
     <main className="h-screen w-full bg-black overflow-hidden relative">
       <SquareReveal gridSize={12}>
         <div className="w-full h-full flex items-center justify-center p-4 relative">
-
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-[url('/grid-pattern.png')] opacity-20 pointer-events-none bg-repeat"></div>
 
@@ -152,148 +158,185 @@ export default function Cadastro() {
 
           <div className="relative z-10 w-full max-w-md p-8 bg-white/5 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] max-h-[90vh] overflow-y-auto custom-scrollbar">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">Crie sua conta</h2>
-              <p className="text-gray-400 text-sm mt-2">Preencha os campos abaixo para começar</p>
+              <h3 className="text-lg font-bold bg-linear-to-r from-white to-gray-400 bg-clip-text text-transparent">Configuração de Acesso</h3>
+              <h2 className="text-3xl font-bold bg-linear-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                Crie sua conta
+              </h2>
+              <p className="text-gray-400 text-sm mt-2">
+                Preencha os campos abaixo para começar
+              </p>
             </div>
 
-            {errors.form && (
+            {globalError && (
               <div className="flex items-center gap-2 bg-red-500/10 text-red-400 border border-red-500/20 p-3 rounded-lg mb-6 text-sm animate-pulse">
                 <FiAlertCircle />
-                <span>{errors.form}</span>
+                <span>{globalError}</span>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Nome */}
-              <div>
-                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-300">
-                  Nome completo
-                </label>
-                <div className="relative group">
-                  <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300" />
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Seu nome completo"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className={`w-full pl-10 pr-3 py-3 bg-black/40 border ${errors.name ? "border-red-500/50" : "border-white/10"} rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300`}
-                  />
-                </div>
-                {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
-              </div>
-
-              {/* E-mail */}
-              <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-300">
-                  E-mail
-                </label>
-                <div className="relative group">
-                  <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300" />
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="seu@email.com"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className={`w-full pl-10 pr-3 py-3 bg-black/40 border ${errors.email ? "border-red-500/50" : "border-white/10"} rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300`}
-                  />
-                </div>
-                {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
-              </div>
-
-              {/* Senha */}
-              <div>
-                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-300">
-                  Senha
-                </label>
-                <div className="relative group">
-                  <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300" />
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id="password"
-                    name="password"
-                    placeholder="Sua senha"
-                    value={form.password}
-                    onChange={(e) => setForm({ ...form, password: e.target.value })}
-                    className={`w-full pl-10 pr-10 py-3 bg-black/40 border ${errors.password ? "border-red-500/50" : "border-white/10"} rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300`}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition-colors"
-                  >
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
-                  </button>
-                </div>
-                {errors.password && <p className="mt-1 text-xs text-red-400">{errors.password}</p>}
-              </div>
-
-              {/* Confirmar Senha */}
-              <div>
-                <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-300">
-                  Confirme sua senha
-                </label>
-                <div className="relative group">
-                  <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300" />
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    placeholder="Confirme sua senha"
-                    value={form.confirmPassword}
-                    onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                    className={`w-full pl-10 pr-10 py-3 bg-black/40 border ${errors.confirmPassword ? "border-red-500/50" : "border-white/10"} rounded-xl text-white placeholder-gray-600 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all duration-300`}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition-colors"
-                  >
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
-                  </button>
-                </div>
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-xs text-red-400">{errors.confirmPassword}</p>
-                )}
-              </div>
-
-              {/* Termos */}
-              <div className="flex items-start">
-                <input
-                  type="checkbox"
-                  id="terms"
-                  className="mt-1 h-4 w-4 rounded border-white/10 bg-black/40 text-cyan-500 focus:ring-cyan-500/20 focus:ring-offset-0 transition-colors"
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                {/* Nome */}
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">Nome completo</FormLabel>
+                      <div className="relative group">
+                        <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300 z-10" />
+                        <FormControl>
+                          <Input
+                            placeholder="Seu nome completo"
+                            className="pl-10"
+                            {...field}
+                          />
+                        </FormControl>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                <label htmlFor="terms" className="ml-2 block text-sm text-gray-400">
-                  Eu concordo com os{" "}
-                  <Link href="/termos" className="text-cyan-400 hover:text-cyan-300 transition-colors hover:underline decoration-cyan-500/30">
-                    Termos de Serviço
-                  </Link>{" "}
-                  e{" "}
-                  <Link href="/privacidade" className="text-cyan-400 hover:text-cyan-300 transition-colors hover:underline decoration-cyan-500/30">
-                    Política de Privacidade
-                  </Link>
-                </label>
-              </div>
 
-              {/* Botão de cadastro */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full relative group overflow-hidden bg-cyan-500 hover:bg-cyan-400 text-black py-3.5 rounded-xl font-bold transition-all duration-300 shadow-[0_0_20px_rgba(0,219,255,0.4)] hover:shadow-[0_0_25px_rgba(0,219,255,0.6)] disabled:opacity-70 disabled:cursor-not-allowed mt-2"
-              >
-                <span className="relative z-10">{loading ? "Carregando..." : "Cadastrar"}</span>
-                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:animate-shine" />
-              </button>
-            </form>
+                {/* E-mail */}
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">E-mail</FormLabel>
+                      <div className="relative group">
+                        <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300 z-10" />
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="seu@email.com"
+                            className="pl-10"
+                            {...field}
+                          />
+                        </FormControl>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Senha */}
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">Senha</FormLabel>
+                      <div className="relative group">
+                        <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300 z-10" />
+                        <FormControl>
+                          <Input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Sua senha"
+                            className="pl-10 pr-10"
+                            {...field}
+                          />
+                        </FormControl>
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition-colors z-10"
+                        >
+                          {showPassword ? <FiEyeOff /> : <FiEye />}
+                        </button>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Confirmar Senha */}
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">
+                        Confirme sua senha
+                      </FormLabel>
+                      <div className="relative group">
+                        <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-cyan-400 transition-colors duration-300 z-10" />
+                        <FormControl>
+                          <Input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Confirme sua senha"
+                            className="pl-10 pr-10"
+                            {...field}
+                          />
+                        </FormControl>
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition-colors z-10"
+                        >
+                          {showPassword ? <FiEyeOff /> : <FiEye />}
+                        </button>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Termos */}
+                <FormField
+                  control={form.control}
+                  name="terms"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md p-2">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormDescription className="text-gray-400">
+                          Eu concordo com os{" "}
+                          <Link
+                            href="/termos"
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors hover:underline decoration-cyan-500/30"
+                          >
+                            Termos de Serviço
+                          </Link>{" "}
+                          e{" "}
+                          <Link
+                            href="/privacidade"
+                            className="text-cyan-400 hover:text-cyan-300 transition-colors hover:underline decoration-cyan-500/30"
+                          >
+                            Política de Privacidade
+                          </Link>
+                        </FormDescription>
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
+
+                {/* Botão de cadastro */}
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  variant="shiny"
+                  className="w-full py-6 text-base mt-2"
+                >
+                  {loading ? "Carregando..." : "Cadastrar"}
+                </Button>
+              </form>
+            </Form>
 
             <div className="mt-8 pt-6 border-t border-white/5 text-center">
               <p className="text-sm text-gray-400">
                 Já tem uma conta?{" "}
-                <Link href="/login" className="text-cyan-400 font-medium hover:text-cyan-300 transition-colors hover:underline decoration-cyan-500/30">
+                <Link
+                  href="/login"
+                  className="text-cyan-400 font-medium hover:text-cyan-300 transition-colors hover:underline decoration-cyan-500/30"
+                >
                   Faça login
                 </Link>
               </p>

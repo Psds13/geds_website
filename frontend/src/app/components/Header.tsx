@@ -24,7 +24,7 @@ const Header = () => {
             />
             <div className="absolute inset-0 rounded-full bg-cyan/20 blur-md -z-10 group-hover:bg-cyan/40 transition-all"></div>
           </div>
-          <span className="hidden sm:block font-black text-xl bg-gradient-to-r from-white to-cyan bg-clip-text text-transparent tracking-tighter">
+          <span className="hidden sm:block font-black text-xl bg-linear-to-r from-white to-cyan bg-clip-text text-transparent tracking-tighter">
             GEDS INOVAÇÃO
           </span>
         </Link>

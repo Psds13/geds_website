@@ -39,7 +39,7 @@ export default function Hero() {
             <span className="text-white">
               Engenharia de Software
             </span><br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-white drop-shadow-[0_0_15px_rgba(0,219,255,0.5)]">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan to-white drop-shadow-[0_0_15px_rgba(0,219,255,0.5)]">
               & Soluções Digitais
             </span>
           </h1>
@@ -77,7 +77,7 @@ export default function Hero() {
         </motion.div>
 
         <div className="mt-20 opacity-30">
-          <div className="w-px h-24 bg-gradient-to-b from-cyan to-transparent mx-auto"></div>
+          <div className="w-px h-24 bg-linear-to-b from-cyan to-transparent mx-auto"></div>
         </div>
       </div>
     </section>

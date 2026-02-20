@@ -102,7 +102,7 @@ const Services = () => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
                   <div className="absolute bottom-4 left-4 p-2 bg-black/60 rounded-lg backdrop-blur-md border border-white/10">
                     {renderIcon(service.nome_icone)}
                   </div>
@@ -133,7 +133,7 @@ const Services = () => {
           viewport={{ once: true }}
         >
           <div className="flex flex-col lg:flex-row">
-            <div className="lg:w-1/2 p-10 lg:p-14 bg-gradient-to-r from-blue-900/60 to-cyan-900/60 text-white border-r border-white/10">
+            <div className="lg:w-1/2 p-10 lg:p-14 bg-linear-to-r from-blue-900/60 to-cyan-900/60 text-white border-r border-white/10">
               <h3 className="text-3xl font-bold mb-4">Tecnologias que Dominamos</h3>
               <p className="text-gray-300 mb-6">
                 Utilizamos as ferramentas mais modernas do mercado para entregar soluções de alta performance e qualidade.

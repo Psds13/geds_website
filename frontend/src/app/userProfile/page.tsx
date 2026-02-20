@@ -99,7 +99,7 @@ const UserProfile = () => {
       <SquareReveal gridSize={14}>
         <div className="bg-white/5 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-white/10">
           {/* Cabeçalho do perfil */}
-          <div className="relative h-40 bg-gradient-to-r from-cyan-900 to-blue-900">
+          <div className="relative h-40 bg-linear-to-r from-cyan-900 to-blue-900">
             <div className="absolute inset-0 bg-[url('/grid-pattern.png')] opacity-30"></div>
             <div className="absolute -bottom-16 left-6">
               <Image

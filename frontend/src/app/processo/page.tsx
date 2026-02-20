@@ -86,7 +86,7 @@ const ProcessoPage = () => {
                 <ul className="space-y-2">
                   {etapa.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-2">
-                      <FiCheckCircle className="text-cyan-400 flex-shrink-0" />
+                      <FiCheckCircle className="text-cyan-400 shrink-0" />
                       <span className="text-gray-300">{feature}</span>
                     </li>
                   ))}
@@ -97,7 +97,7 @@ const ProcessoPage = () => {
         </section>
 
         {/* Highlight Section */}
-        <section className="py-20 px-6 bg-gradient-to-r from-blue-900/40 to-cyan-900/40 border-y border-white/10 backdrop-blur-sm">
+        <section className="py-20 px-6 bg-linear-to-r from-blue-900/40 to-cyan-900/40 border-y border-white/10 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6 text-white">Compromisso com Prazos e Transparência</h2>
             <p className="text-xl mb-8 text-gray-300">

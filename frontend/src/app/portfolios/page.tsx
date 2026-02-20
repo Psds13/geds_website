@@ -120,7 +120,7 @@ export default function PortfoliosPage() {
                           className="w-full h-full rounded-full object-cover border-4 border-black shadow-lg z-10 relative"
                         />
                         <div className="absolute inset-0 rounded-full border-2 border-cyan-400 animate-ping opacity-0 hover:opacity-100 transition-opacity z-0"></div>
-                        <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 blur opacity-30"></div>
+                        <div className="absolute -inset-1 rounded-full bg-linear-to-r from-cyan-500 to-blue-600 blur opacity-30"></div>
                       </div>
                       <h2 className="text-2xl font-bold text-white">{colab.name}</h2>
                       <p className="text-cyan-400 font-medium">{colab.role}</p>
