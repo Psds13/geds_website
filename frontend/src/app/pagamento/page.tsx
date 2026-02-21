@@ -2,10 +2,10 @@
 import { NextPage } from 'next';
 import NextImage from 'next/image';
 import Head from 'next/head';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { FiCopy, FiCheck, FiLock, FiCreditCard, FiDollarSign, FiAlertCircle, FiDownload, FiCheckCircle, FiTag } from 'react-icons/fi';
-import { FaBarcode, FaQrcode } from 'react-icons/fa';
+import { FiCheckCircle } from 'react-icons/fi';
+
 import jsPDF from 'jspdf';
 import SquareReveal from '../components/SquareReveal';
 import { supabase } from '@/lib/supabase';
@@ -72,7 +72,6 @@ const PaymentContent = () => {
 
   const [activeTab, setActiveTab] = useState<'boleto' | 'pix' | 'cartao'>('pix');
   const [copiedPixCode, setCopiedPixCode] = useState(false);
-  const [copiedBoleto, setCopiedBoleto] = useState(false);
   const [pagamentoFinalizado, setPagamentoFinalizado] = useState(false);
 
   const [planName, setPlanName] = useState('Plano Premium');
@@ -95,6 +94,13 @@ const PaymentContent = () => {
 
   const discountCode = useWatch({ control: form.control, name: "discountCode" });
 
+  const generarCodigoBarrasAleatorio = useCallback(() => {
+    const r1 = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+    const r2 = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+    const code = `23790.12345 ${r1}.678901 ${r2}.123456 1 999900000${Math.floor(valorOriginal * 100)}`;
+    setBoletoCode(code);
+  }, [valorOriginal]);
+
   useEffect(() => {
     const plan = searchParams.get('plan');
     const price = searchParams.get('price');
@@ -106,10 +112,10 @@ const PaymentContent = () => {
       setValorComDesconto(p);
     }
     generarCodigoBarrasAleatorio();
-  }, [searchParams]);
+  }, [searchParams, generarCodigoBarrasAleatorio]);
 
   useEffect(() => {
-    form.setValue("paymentMethod", activeTab as any);
+    form.setValue("paymentMethod", activeTab);
   }, [activeTab, form]);
 
   const aplicarDescontoLogic = (valor: number, codigo?: string) => {
@@ -147,13 +153,6 @@ const PaymentContent = () => {
     setValorComDesconto(resultado.valorComDesconto);
   };
 
-  const generarCodigoBarrasAleatorio = () => {
-    const r1 = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
-    const r2 = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
-    const r3 = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
-    const code = `23790.12345 ${r1}.678901 ${r2}.123456 1 999900000${Math.floor(valorOriginal * 100)}`;
-    setBoletoCode(code);
-  };
 
   const getPixCode = () => {
     const valor = descontoAplicado ? valorComDesconto : valorOriginal;
@@ -274,7 +273,7 @@ const PaymentContent = () => {
 
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                     <div className="lg:col-span-2 space-y-8">
-                      <Tabs defaultValue="pix" value={activeTab} onValueChange={(v) => setActiveTab(v as any)} className="w-full">
+                      <Tabs defaultValue="pix" value={activeTab} onValueChange={(v) => setActiveTab(v as 'boleto' | 'pix' | 'cartao')} className="w-full">
                         <TabsList className="grid w-full grid-cols-3 bg-white/5 border border-white/10">
                           <TabsTrigger value="pix">Pix</TabsTrigger>
                           <TabsTrigger value="boleto">Boleto</TabsTrigger>
@@ -299,7 +298,7 @@ const PaymentContent = () => {
 
                         <TabsContent value="boleto" className="space-y-6 pt-4">
                           <div className="bg-white/5 p-8 rounded-xl border border-white/10">
-                            <p className="text-gray-400 text-sm mb-4">O boleto será gerado após clicar em "Gerar Boleto".</p>
+                            <p className="text-gray-400 text-sm mb-4">O boleto será gerado após clicar em &quot;Gerar Boleto&quot;.</p>
                             <div className="bg-black/40 p-4 rounded border border-white/10 font-mono text-xs text-gray-300 break-all">
                               {boletoCode}
                             </div>

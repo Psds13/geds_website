@@ -53,5 +53,5 @@ declare module 'swiper/modules' {
     export const Controller: any;
 }
 
-declare module 'swiper/css' { }
-declare module 'swiper/css/*' { }
+declare module 'swiper/css' { const content: string; export default content; }
+declare module 'swiper/css/*' { const content: string; export default content; }

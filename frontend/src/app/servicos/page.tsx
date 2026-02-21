@@ -5,9 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
-import { Code2, Cloud, LineChart, Search, Layout, ArrowRight } from "lucide-react";
+import { Code2, Cloud, LineChart, Search, Layout, ArrowRight, type LucideIcon } from "lucide-react";
 
-const IconMap: { [key: string]: any } = {
+const IconMap: { [key: string]: LucideIcon } = {
   Code2: Code2,
   Cloud: Cloud,
   LineChart: LineChart,

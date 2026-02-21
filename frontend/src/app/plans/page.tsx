@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FiCheck, FiZap, FiBriefcase, FiUsers, FiStar, FiClock, FiShield, FiGlobe, FiLayers } from 'react-icons/fi';
+import { FiCheck, FiZap, FiUsers, FiClock, FiShield, FiGlobe, FiLayers } from 'react-icons/fi';
 import { supabase } from '@/lib/supabase';
 
 interface PlanFeature {
@@ -41,6 +41,12 @@ const PricingSection = () => {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
+        if (!supabase) {
+          console.warn('Supabase not configured, skipping fetchPlans');
+          setLoading(false);
+          return;
+        }
+
         const { data, error } = await supabase
           .from('planos')
           .select('*')

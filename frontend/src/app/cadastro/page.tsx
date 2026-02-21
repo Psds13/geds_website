@@ -92,9 +92,10 @@ export default function Cadastro() {
 
       setSuccess(true);
       form.reset();
-    } catch (error: any) {
-      console.error("Erro no cadastro:", error.message);
-      setGlobalError(error.message || "Erro ao cadastrar. Tente novamente.");
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Erro ao cadastrar. Tente novamente.";
+      console.error("Erro no cadastro:", message);
+      setGlobalError(message);
     } finally {
       setLoading(false);
     }

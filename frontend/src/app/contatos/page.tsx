@@ -62,8 +62,9 @@ export default function Contact() {
 
       alert(`Obrigado pela mensagem, ${data.name}! Entraremos em contato em breve.`);
       form.reset();
-    } catch (error: any) {
-      console.error('Erro ao enviar mensagem:', error.message);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Erro ao enviar mensagem';
+      console.error('Erro ao enviar mensagem:', message);
       alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.');
     } finally {
       setIsSubmitting(false);

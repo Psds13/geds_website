@@ -61,8 +61,9 @@ export default function LoginPage() {
         // You might want to handle 'stayLogged' here if you have specific logic for persistence
         router.push("/userProfile");
       }
-    } catch (err: any) {
-      console.error("Erro no login:", err.message);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Erro no login";
+      console.error("Erro no login:", message);
       setError("Credenciais inválidas ou erro no servidor");
     } finally {
       setLoading(false);
