@@ -46,7 +46,14 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase
+      const client = supabase as any;
+      if (!client) {
+        alert("Serviço de mensagens indisponível no momento.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      const { error } = await client
         .from('contatos')
         .insert([
           {
@@ -63,7 +70,7 @@ export default function Contact() {
       alert(`Obrigado pela mensagem, ${data.name}! Entraremos em contato em breve.`);
       form.reset();
     } catch (error: any) {
-      console.error('Erro ao enviar mensagem:', error.message);
+      console.error('Erro ao enviar mensagem:', error);
       alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.');
     } finally {
       setIsSubmitting(false);

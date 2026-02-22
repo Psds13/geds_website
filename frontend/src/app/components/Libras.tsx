@@ -3,19 +3,24 @@
 import { useEffect, useCallback } from 'react';
 import Script from 'next/script';
 
+declare global {
+  interface Window {
+    VLibras?: {
+      Widget: new (url: string) => { init: () => void; };
+    };
+  }
+}
+
 const Libras = () => {
   const initVLibras = useCallback(() => {
-    const w = window as any;
-    if (w.VLibras && typeof w.VLibras.Widget === 'function') {
+    if (window.VLibras && typeof window.VLibras.Widget === 'function') {
       const wrapper = document.querySelector('[vw-plugin-wrapper]');
-
-      // VLibras injeta um iframe quando funciona. Se não houver iframe, tentamos inicializar.
       const hasIframe = wrapper?.querySelector('iframe');
 
       if (wrapper && !hasIframe) {
         try {
           console.log("Tentando inicializar VLibras...");
-          new w.VLibras.Widget('https://vlibras.gov.br/app');
+          new window.VLibras.Widget('https://vlibras.gov.br/app');
         } catch (e) {
           console.error("Erro ao inicializar VLibras:", e);
         }
@@ -24,12 +29,8 @@ const Libras = () => {
   }, []);
 
   useEffect(() => {
-    // Tenta inicializar IMEDIATAMENTE se o script já estiver no window
     const timer = setTimeout(initVLibras, 500);
-
-    // Intervalo de verificação para garantir que o widget permaneça ativo em navegações SPA
     const interval = setInterval(initVLibras, 3000);
-
     return () => {
       clearTimeout(timer);
       clearInterval(interval);
@@ -40,12 +41,12 @@ const Libras = () => {
     <>
       <Script
         src="https://vlibras.gov.br/app/vlibras-plugin.js"
-        strategy="lazyOnload" // Mudança para lazyOnload para garantir que o DOM esteja pronto
+        strategy="lazyOnload"
         onReady={initVLibras}
       />
-      <div {...({ 'vw': 'true' } as any)} className="enabled">
-        <div {...({ 'vw-access-button': 'true' } as any)} className="active" />
-        <div {...({ 'vw-plugin-wrapper': 'true' } as any)}>
+      <div data-vw="true" className="enabled">
+        <div data-vw-access-button="true" className="active" />
+        <div data-vw-plugin-wrapper="true">
           <div className="vw-plugin-top-wrapper" />
         </div>
       </div>

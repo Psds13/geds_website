@@ -50,7 +50,14 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+      const client = supabase as any;
+      if (!client) {
+        setError("Serviço de autenticação indisponível.");
+        setLoading(false);
+        return;
+      }
+
+      const { data, error: signInError } = await client.auth.signInWithPassword({
         email: values.email,
         password: values.password,
       });
@@ -62,8 +69,8 @@ export default function LoginPage() {
         router.push("/userProfile");
       }
     } catch (err: any) {
-      console.error("Erro no login:", err.message);
-      setError("Credenciais inválidas ou erro no servidor");
+      console.error("Erro no login:", err);
+      setError(err?.message || "Credenciais inválidas ou erro no servidor");
     } finally {
       setLoading(false);
     }
