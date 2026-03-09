@@ -19,16 +19,6 @@ export default function Hero() {
       </div>
 
       <div className="max-w-4xl px-6 text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
-        >
-          <div className="inline-block bg-cyan/10 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-cyan/30">
-            <span className="text-cyan font-bold tracking-widest text-xs uppercase">Desenvolvimento Especializado</span>
-          </div>
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}

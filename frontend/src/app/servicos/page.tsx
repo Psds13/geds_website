@@ -3,8 +3,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { supabase } from "@/lib/supabase";
-import { useEffect, useState } from "react";
 import { Code2, Cloud, LineChart, Search, Layout, ArrowRight, type LucideIcon } from "lucide-react";
 
 const IconMap: { [key: string]: LucideIcon } = {
@@ -15,66 +13,53 @@ const IconMap: { [key: string]: LucideIcon } = {
   Layout: Layout,
 };
 
-interface Service {
-  id: number;
-  titulo: string;
-  descricao: string;
-  nome_icone: string;
-  url_imagem: string;
-  url_link: string;
-  categoria: string;
-}
+const services = [
+  {
+    id: "desenvolvimento-sob-medida",
+    titulo: "Desenvolvimento Sob Medida",
+    descricao: "Criamos software corporativo de alta complexidade desenhado especificamente para as regras de negócio da sua empresa.",
+    nome_icone: "Code2",
+    url_imagem: "https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg",
+    url_link: "/sobre-servicos#desenvolvimento-sob-medida"
+  },
+  {
+    id: "cloud-infraestrutura",
+    titulo: "Cloud & Infraestrutura",
+    descricao: "Modernize sua operação migrando para a nuvem. Projetamos e gerenciamos infraestruturas cloud-native.",
+    nome_icone: "Cloud",
+    url_imagem: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg",
+    url_link: "/sobre-servicos#cloud-infraestrutura"
+  },
+  {
+    id: "consultoria-estrategica",
+    titulo: "Consultoria Estratégica",
+    descricao: "Nossos especialistas atuam como parceiros estratégicos para transformar desafios de negócio em roadmaps técnicos viáveis.",
+    nome_icone: "LineChart",
+    url_imagem: "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg",
+    url_link: "/sobre-servicos#consultoria-estrategica"
+  },
+  {
+    id: "data-analytics",
+    titulo: "Data & Analytics",
+    descricao: "Transforme dados brutos em vantagem competitiva. Construímos pipelines de dados e dashboards inteligentes.",
+    nome_icone: "Search",
+    url_imagem: "https://images.pexels.com/photos/3810787/pexels-photo-3810787.jpeg",
+    url_link: "/sobre-servicos#data-analytics"
+  },
+  {
+    id: "ux-ui-design",
+    titulo: "UX/UI Design",
+    descricao: "Interfaces que encantam e convertem. Nosso time cria experiências digitais centradas no usuário.",
+    nome_icone: "Layout",
+    url_imagem: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
+    url_link: "/sobre-servicos#ux-ui-design"
+  }
+];
 
 const Services = () => {
-  const [services, setServices] = useState<Service[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        const client = supabase;
-        if (!client) {
-          console.warn('Supabase not configured, skipping fetchServices');
-          setLoading(false);
-          return;
-        }
-
-        const { data, error } = await client
-          .from('servicos')
-          .select('*')
-          .order('id', { ascending: true });
-
-        if (error) throw error;
-        if (data) setServices(data as Service[]);
-      } catch (error) {
-        console.error('Erro ao buscar serviços:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchServices();
-  }, []);
-
   const renderIcon = (iconName: string) => {
     const IconComponent = IconMap[iconName] || Layout;
     return <IconComponent className="w-12 h-12 text-cyan-400" />;
-  };
-
-  const fallbackImages: Record<string, string> = {
-    "Desenvolvimento Sob Medida": "https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg",
-    "Cloud & Infraestrutura": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg",
-    "Consultoria Estratégica": "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg",
-    "Data & Analytics": "https://images.pexels.com/photos/3810787/pexels-photo-3810787.jpeg",
-    "UX/UI Design": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
-  };
-
-  const linkMap: Record<string, string> = {
-    "Desenvolvimento Sob Medida": "/sobre-servicos#desenvolvimento-sob-medida",
-    "Cloud & Infraestrutura": "/sobre-servicos#cloud-infraestrutura",
-    "Consultoria Estratégica": "/sobre-servicos#consultoria-estrategica",
-    "Data & Analytics": "/sobre-servicos#data-analytics",
-    "UX/UI Design": "/sobre-servicos#ux-ui-design",
   };
 
   return (
@@ -100,56 +85,49 @@ const Services = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {loading ? (
-            <div className="col-span-full text-center py-10">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500 mx-auto mb-4"></div>
-              <p className="text-gray-400">Carregando serviços...</p>
-            </div>
-          ) : (
-            services.map((service, index) => {
-              const imageUrl = fallbackImages[service.titulo.trim()] || service.url_imagem;
-              const targetLink = linkMap[service.titulo.trim()] || service.url_link || "/sobre-servicos";
+          {services.map((service, index) => {
+            const imageUrl = service.url_imagem;
+            const targetLink = service.url_link;
 
-              return (
-                <Link href={targetLink} key={service.id} className="block">
-                  <motion.div
-                    className="group bg-white/5 rounded-xl shadow-lg overflow-hidden border border-white/10 hover:shadow-[0_0_20px_rgba(0,219,255,0.2)] hover:border-cyan-500/50 transition-all h-full"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05, duration: 0.3 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -10 }}
-                  >
-                    <div className="relative h-48 overflow-hidden">
-                      <Image
-                        src={imageUrl}
-                        alt={service.titulo}
-                        width={400}
-                        height={192}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
-                      <div className="absolute bottom-4 left-4 p-2 bg-black/60 rounded-lg backdrop-blur-md border border-white/10">
-                        {renderIcon(service.nome_icone)}
-                      </div>
+            return (
+              <Link href={targetLink} key={service.id} className="block">
+                <motion.div
+                  className="group bg-white/5 rounded-xl shadow-lg overflow-hidden border border-white/10 hover:shadow-[0_0_20px_rgba(0,219,255,0.2)] hover:border-cyan-500/50 transition-all h-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -10 }}
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src={imageUrl}
+                      alt={service.titulo}
+                      width={400}
+                      height={192}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
+                    <div className="absolute bottom-4 left-4 p-2 bg-black/60 rounded-lg backdrop-blur-md border border-white/10">
+                      {renderIcon(service.nome_icone)}
                     </div>
+                  </div>
 
-                    <div className="p-6 flex flex-col justify-between h-[calc(100%-12rem)]">
-                      <div>
-                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{service.titulo}</h3>
-                        <p className="text-gray-400 mb-4">{service.descricao}</p>
-                      </div>
-                      <span className="inline-flex items-center text-cyan-400 font-medium group-hover:text-cyan-300 transition mt-4">
-                        Saiba mais
-                        <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
-                      </span>
+                  <div className="p-6 flex flex-col justify-between h-[calc(100%-12rem)]">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{service.titulo}</h3>
+                      <p className="text-gray-400 mb-4">{service.descricao}</p>
                     </div>
-                  </motion.div>
-                </Link>
-              );
-            })
-          )}
+                    <span className="inline-flex items-center text-cyan-400 font-medium group-hover:text-cyan-300 transition mt-4">
+                      Saiba mais
+                      <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </motion.div>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Destaque Tecnológico */}

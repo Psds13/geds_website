@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FiCheck, FiZap, FiUsers, FiClock, FiShield, FiGlobe, FiLayers } from 'react-icons/fi';
-import { supabase } from '@/lib/supabase';
 
 interface PlanFeature {
   text: string;
@@ -21,6 +20,41 @@ interface Plan {
   ctaLink: string;
   popular: boolean;
 }
+
+const rawPlans = [
+  {
+    id: 1,
+    name: "Gratuito",
+    preco_mensal: 0,
+    preco_anual: 0,
+    descricao: "Ideal para experimentar nossos serviços básicos.",
+    beneficios: ["50 Interações/mês", "Velocidade padrão", "Suporte por e-mail (48h)", "Acesso à API básica"]
+  },
+  {
+    id: 2,
+    name: "Premium",
+    preco_mensal: 49.99,
+    preco_anual: 499.90,
+    descricao: "Para profissionais e pequenas equipes.",
+    beneficios: ["2.000 Interações/mês", "2x mais rápida", "Suporte por e-mail (24h)", "Integrações básicas"]
+  },
+  {
+    id: 3,
+    name: "Advanced",
+    preco_mensal: 99.99,
+    preco_anual: 999.90,
+    descricao: "Opção robusta para grandes volumes e velocidade.",
+    beneficios: ["10.000 Interações/mês", "3x mais rápida", "Modelos Premium", "Chat 24/5", "Integrações completas"]
+  },
+  {
+    id: 4,
+    name: "Empresarial",
+    preco_mensal: 0,
+    preco_anual: 0,
+    descricao: "Soluções customizadas para sua empresa.",
+    beneficios: ["Interações Ilimitadas*", "Prioridade máxima", "Modelos customizados", "Suporte dedicado 24/7"]
+  }
+];
 
 const PricingSection = () => {
   const [annualBilling, setAnnualBilling] = useState(false);
@@ -41,41 +75,25 @@ const PricingSection = () => {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
-        const client = supabase;
-        if (!client) {
-          console.warn('Supabase not configured, skipping fetchPlans');
-          setLoading(false);
-          return;
-        }
-
-        const { data, error } = await client
-          .from('planos')
-          .select('*')
-          .order('id', { ascending: true });
-
-        if (error) throw error;
-
-        if (data) {
-          const mappedPlans: Plan[] = data.map((p: Record<string, unknown>) => ({
-            id: p.id as number,
-            name: p.nome as string,
-            price: annualBilling && (p.preco_anual as number) > 0
-              ? `R$${(p.preco_anual as number).toString().replace('.', ',')}`
-              : (p.preco_mensal as number) > 0 ? `R$${(p.preco_mensal as number).toString().replace('.', ',')}` : "Grátis",
-            period: (p.preco_mensal as number) > 0 ? (annualBilling ? "/ano" : "/mês") : "",
-            description: p.descricao as string,
-            features: ((p.beneficios as string[]) || []).map((b: string) => ({
-              text: b,
-              icon: getIconForFeature(b)
-            })),
-            cta: (p.nome as string) === 'Empresarial' ? "Fale com nosso time" : ((p.nome as string) === 'Gratuito' ? "Começar agora" : "Teste grátis por 7 dias"),
-            ctaLink: (p.nome as string) === 'Empresarial' ? "/contatos" : `/pagamento?plan=${p.nome}&price=${annualBilling ? p.preco_anual : p.preco_mensal}`,
-            popular: (p.nome as string) === 'Premium'
-          }));
-          setPlansList(mappedPlans);
-        }
+        const mappedPlans: Plan[] = rawPlans.map((p) => ({
+          id: p.id,
+          name: p.name,
+          price: annualBilling && p.preco_anual > 0
+            ? `R$${p.preco_anual.toString().replace('.', ',')}`
+            : p.preco_mensal > 0 ? `R$${p.preco_mensal.toString().replace('.', ',')}` : "Grátis",
+          period: p.preco_mensal > 0 ? (annualBilling ? "/ano" : "/mês") : "",
+          description: p.descricao,
+          features: (p.beneficios || []).map((b: string) => ({
+            text: b,
+            icon: getIconForFeature(b)
+          })),
+          cta: p.name === 'Empresarial' ? "Fale com nosso time" : (p.name === 'Gratuito' ? "Começar agora" : "Teste grátis por 7 dias"),
+          ctaLink: p.name === 'Empresarial' ? "/contatos" : `/pagamento?plan=${encodeURIComponent(p.name)}&price=${annualBilling ? p.preco_anual : p.preco_mensal}`,
+          popular: p.name === 'Premium'
+        }));
+        setPlansList(mappedPlans);
       } catch (error) {
-        console.error('Erro ao buscar planos:', error);
+        console.error('Erro ao carregar planos:', error);
       } finally {
         setLoading(false);
       }
@@ -136,9 +154,7 @@ const PricingSection = () => {
             <FiShield className="w-16 h-16 text-gray-600 mx-auto mb-4 opacity-50" />
             <h3 className="text-xl font-semibold text-white mb-2">Planos indisponíveis</h3>
             <p className="text-gray-400 max-w-md mx-auto">
-              {!supabase
-                ? "Conexão com o banco de dados não configurada. Verifique as variáveis de ambiente."
-                : "Não conseguimos carregar os planos no momento. Tente novamente mais tarde."}
+              Não conseguimos carregar os planos no momento. Tente novamente mais tarde.
             </p>
             <Link href="/contatos" className="inline-block mt-6 px-6 py-2 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition-colors">
               Fale conosco
