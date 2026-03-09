@@ -138,7 +138,7 @@ export default function ServicesPage() {
                             animate={{ opacity: 1, y: 0 }}
                             className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white via-cyan-100 to-blue-200 mb-6"
                         >
-                            Nossa Expertise em Detalhes
+                            Nossos Serviços em Detalhes
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0 }}

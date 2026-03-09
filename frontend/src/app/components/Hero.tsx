@@ -60,19 +60,19 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-6"
+          className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6"
         >
           <a
             href="#servicos"
-            className="group relative px-8 py-4 bg-cyan text-black rounded-full text-lg font-bold transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,219,255,0.6)] hover:scale-105"
+            className="w-full sm:w-auto text-center px-8 py-4 bg-cyan text-black rounded-full text-lg font-bold transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,219,255,0.6)] hover:scale-105"
           >
-            Nossos Serviços
+            Soluções Corporativas
           </a>
           <Link
             href="/login"
-            className="group relative px-8 py-4 border border-cyan/50 text-cyan rounded-full text-lg font-bold transition-all duration-300 hover:bg-cyan/10 hover:shadow-[0_0_20px_rgba(0,219,255,0.2)] hover:scale-105"
+            className="w-full sm:w-auto text-center px-8 py-4 border border-cyan/50 text-cyan rounded-full text-lg font-bold transition-all duration-300 hover:bg-cyan/10 hover:shadow-[0_0_20px_rgba(0,219,255,0.2)] hover:scale-105"
           >
-            Acessar Plataforma
+            Portal do Cliente
           </Link>
         </motion.div>
 

@@ -34,9 +34,9 @@ const Header = () => {
           {[
             { name: "Início", href: "/" },
             { name: "Sobre", href: "/#about" },
-            { name: "Expertise", href: "/#servicos" },
-            { name: "Metodologia", href: "/#processo" },
-            { name: "Cases", href: "/#portfolios" }
+            { name: "Serviços", href: "/#servicos" },
+            { name: "Processos", href: "/#processo" },
+            { name: "Portfólio", href: "/#portfolios" }
           ].map((item) => (
             <Link
               key={item.name}
@@ -90,9 +90,9 @@ const Header = () => {
               {[
                 { name: "Início", href: "/" },
                 { name: "Sobre", href: "/#about" },
-                { name: "Expertise", href: "/#servicos" },
-                { name: "Metodologia", href: "/#processo" },
-                { name: "Cases", href: "/#portfolios" }
+                { name: "Serviços", href: "/#servicos" },
+                { name: "Processos", href: "/#processo" },
+                { name: "Portfólio", href: "/#portfolios" }
               ].map((item) => (
                 <Link
                   key={item.name}

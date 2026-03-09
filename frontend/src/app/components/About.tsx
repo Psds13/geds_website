@@ -37,7 +37,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="relative group w-full h-[500px] overflow-hidden rounded-2xl shadow-2xl border border-white/10 group-hover:border-cyan/30 transition-all duration-500">
+            <div className="relative group w-full h-80 sm:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl shadow-2xl border border-white/10 group-hover:border-cyan/30 transition-all duration-500">
               <Image
                 src="/GEDS Inovação.jpg"
                 alt="Equipe GEDS Inovação"
