@@ -31,32 +31,33 @@ export default function About() {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Imagem - Tamanho ajustado */}
           <motion.div
-            className="lg:w-1/2 relative"
+            className="w-full lg:w-1/2 relative"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="relative group w-full h-80 sm:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl shadow-2xl border border-white/10 group-hover:border-cyan/30 transition-all duration-500">
+            <div className="relative group w-full h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl shadow-2xl border border-white/10 group-hover:border-cyan/30 transition-all duration-500">
               <Image
                 src="/GEDS Inovação.jpg"
                 alt="Equipe GEDS Inovação"
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
               />
               <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent"></div>
               <div className="absolute inset-0 bg-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
 
-            <div className="absolute -bottom-6 -right-6 bg-black/80 backdrop-blur-xl p-5 rounded-2xl shadow-2xl border border-cyan/30">
+            <div className="absolute -bottom-6 right-2 sm:-right-6 bg-black/90 backdrop-blur-xl p-4 sm:p-5 rounded-2xl shadow-2xl border border-cyan/30 z-10 max-w-[85%] sm:max-w-none">
               <div className="flex items-center gap-3">
-                <div className="bg-cyan/20 p-3 rounded-full">
-                  <FiAward className="text-cyan text-2xl" />
+                <div className="bg-cyan/20 p-2 sm:p-3 rounded-full shrink-0">
+                  <FiAward className="text-cyan text-xl sm:text-2xl" />
                 </div>
                 <div>
-                  <p className="text-2xl font-black text-white">+50</p>
-                  <p className="text-[10px] text-cyan uppercase tracking-widest font-bold">Projetos Entregues</p>
+                  <p className="text-xl sm:text-2xl font-black text-white">+50</p>
+                  <p className="text-[9px] sm:text-[10px] text-cyan uppercase tracking-widest font-bold leading-tight">Projetos Entregues</p>
                 </div>
               </div>
             </div>
