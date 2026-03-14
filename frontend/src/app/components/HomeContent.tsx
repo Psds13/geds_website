@@ -255,6 +255,106 @@ const HomeContent = () => {
         </motion.div>
       </section>
 
+      {/* GEDS Lab Teaser */}
+      <section id="geds-lab" className="max-w-7xl mx-auto pt-10 pb-16">
+        <motion.div
+          className="bg-linear-to-r from-cyan/20 via-blue-900/40 to-black border border-cyan/20 p-8 md:p-16 rounded-[2.5rem] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10 shadow-[0_0_40px_rgba(0,219,255,0.1)]"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-cyan/10 blur-[100px] rounded-full"></div>
+
+          <div className="w-full md:w-2/3 relative z-10">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-2xl">🧪</span>
+              <span className="text-cyan font-bold bg-cyan/10 px-3 py-1 rounded-full text-xs uppercase tracking-widest border border-cyan/20">
+                Laboratório de Inovação
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Descubra o <span className="bg-linear-to-r from-cyan to-blue-400 bg-clip-text text-transparent">GEDS Lab</span>
+            </h2>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed mb-8">
+              O espaço onde ideias se transformam em tecnologia. Explore nossos <strong>protótipos</strong>, <strong>experimentos</strong> e <strong>projetos em desenvolvimento</strong>.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <span className="text-gray-400 text-sm font-semibold flex items-center gap-2">✨ Ideias</span>
+              <span className="text-gray-400 text-sm font-semibold flex items-center gap-2">🚀 Projetos Futuros</span>
+              <span className="text-gray-400 text-sm font-semibold flex items-center gap-2">🤖 Tecnologias</span>
+            </div>
+          </div>
+
+          <div className="w-full md:w-1/3 flex flex-col items-center md:items-end justify-center gap-6 relative z-10">
+            <div className="relative w-full max-w-[240px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(0,219,255,0.2)] border border-white/10 hidden md:block">
+              <Image src="/GEDS Lab.png" alt="GEDS Lab" fill className="object-cover" />
+            </div>
+            <Link href="/geds-lab">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="bg-linear-to-r from-cyan to-blue-600 p-[2px] rounded-full shadow-[0_0_20px_rgba(0,219,255,0.4)]"
+              >
+                <div className="bg-black text-white hover:bg-transparent px-8 py-4 rounded-full font-black text-sm uppercase tracking-wider transition-all flex items-center gap-3 h-full">
+                  Explorar o Lab
+                  <FiArrowRight className="w-5 h-5" />
+                </div>
+              </motion.div>
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Green Tech Teaser */}
+      <section id="green-tech" className="max-w-7xl mx-auto pb-16">
+        <motion.div
+          className="bg-linear-to-r from-emerald-900/40 via-cyan-900/20 to-black border border-emerald-500/20 p-8 md:p-16 rounded-[2.5rem] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10 shadow-[0_0_40px_rgba(52,211,153,0.1)]"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full"></div>
+
+          <div className="w-full md:w-2/3 relative z-10">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-2xl">🌱</span>
+              <span className="text-emerald-400 font-bold bg-emerald-400/10 px-3 py-1 rounded-full text-xs uppercase tracking-widest border border-emerald-400/20">
+                Inovação Sustentável
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Conheça a <span className="bg-linear-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Green Tech</span>
+            </h2>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed mb-8">
+              Na GEDS Inovação, acreditamos que a tecnologia pode ajudar a construir um futuro mais sustentável. Desenvolvemos soluções digitais que reduzem o uso de papel, otimizam processos e incentivam práticas eficientes.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <span className="text-gray-400 text-sm font-semibold flex items-center gap-2">💻 Digitalização</span>
+              <span className="text-gray-400 text-sm font-semibold flex items-center gap-2">⚡ Eficiência</span>
+              <span className="text-gray-400 text-sm font-semibold flex items-center gap-2">🌎 Inovação Responsável</span>
+            </div>
+          </div>
+
+          <div className="w-full md:w-1/3 flex flex-col items-center md:items-end justify-center gap-6 relative z-10">
+            <div className="relative w-full max-w-[240px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_0_15px_rgba(52,211,153,0.2)] border border-white/10 hidden md:block">
+              <Image src="/GEDS Green Tech.png" alt="GEDS Green Tech" fill className="object-cover" />
+            </div>
+            <Link href="/green-tech">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="bg-linear-to-r from-emerald-400 to-cyan-400 p-[2px] rounded-full shadow-[0_0_20px_rgba(52,211,153,0.4)]"
+              >
+                <div className="bg-black text-white hover:bg-transparent px-8 py-4 rounded-full font-black text-sm uppercase tracking-wider transition-all flex items-center gap-3 h-full">
+                  Ver o Impacto
+                  <FiArrowRight className="w-5 h-5" />
+                </div>
+              </motion.div>
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Portfólios */}
       <section id="portfolios" className="max-w-7xl mx-auto pt-10">
         <motion.div

@@ -48,6 +48,18 @@ const Header = () => {
             </Link>
           ))}
           <Link
+            href="/#green-tech"
+            className="flex items-center gap-2 bg-linear-to-r from-emerald-400 to-cyan-400 text-black px-5 py-2 rounded-full transition-all duration-300 font-black text-sm uppercase tracking-wider hover:scale-105 hover:shadow-[0_0_20px_rgba(52,211,153,0.5)] border border-emerald-400/30"
+          >
+            <span className="text-lg">🌱</span> Green Tech
+          </Link>
+          <Link
+            href="/#geds-lab"
+            className="flex items-center gap-2 bg-linear-to-r from-cyan to-blue-600 text-white px-5 py-2 rounded-full transition-all duration-300 font-black text-sm uppercase tracking-wider hover:scale-105 hover:shadow-[0_0_20px_rgba(0,219,255,0.5)] border border-cyan/20"
+          >
+            <span className="text-lg">🧪</span> Lab
+          </Link>
+          <Link
             href="/plans"
             className="bg-cyan text-black px-6 py-2 rounded-full transition-all duration-300 font-black text-sm uppercase tracking-wider hover:bg-white hover:shadow-[0_0_20px_rgba(0,219,255,0.4)]"
           >
@@ -103,6 +115,20 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href="/#green-tech"
+                className="bg-linear-to-r from-emerald-400 to-cyan-400 text-black px-4 py-3 rounded-full transition-all duration-300 font-bold text-center flex items-center justify-center gap-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span>🌱</span> Green Tech
+              </Link>
+              <Link
+                href="/#geds-lab"
+                className="bg-linear-to-r from-cyan to-blue-600 text-white px-4 py-3 rounded-full transition-all duration-300 font-bold text-center flex items-center justify-center gap-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span>🧪</span> GEDS Lab
+              </Link>
               <Link
                 href="/plans"
                 className="bg-cyan text-black px-4 py-3 rounded-full transition-all duration-300 font-bold text-center"
