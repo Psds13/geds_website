@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { FiArrowRight, FiCheck, FiX, FiStar } from "react-icons/fi";
 import {
   Code2, Cloud, LineChart, Layout, Search, PenTool, Zap, ShieldCheck,
