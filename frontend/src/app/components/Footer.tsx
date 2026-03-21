@@ -22,11 +22,13 @@ const socialLinks = [
 
 const quickLinks = [
   { label: 'Início', href: '/#hero' },
-  { label: 'Sobre', href: '/#about' },
-  { label: 'Serviços', href: '/#servicos' },
+  { label: 'Sobre Nós', href: '/#about' },
+  { label: 'Serviços (Catálogo)', href: '/servicos' },
+  { label: 'Sobre os Serviços', href: '/sobre-servicos' },
   { label: 'Portfólio', href: '/#portfolio' },
-  { label: 'Planos', href: '/#plans' },
+  { label: 'Planos', href: '/plans' },
   { label: 'Processo', href: '/processo' },
+  { label: 'Acessibilidade', href: '/geds-accessibility' },
 ];
 
 const legalLinks = [
@@ -46,7 +48,17 @@ export default function Footer() {
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
       {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-[0.03] -z-10"></div>
+      <div 
+        className="absolute inset-0 opacity-[0.03] -z-10"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: "40px 40px",
+          maskImage: "linear-gradient(180deg, white, rgba(255,255,255,0))"
+        }}
+      />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">

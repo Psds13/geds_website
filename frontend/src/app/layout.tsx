@@ -4,12 +4,12 @@ import Header from "@/app/components/Header";
 import ClientLayoutExtras from "@/app/components/ClientLayoutExtras";
 import "./globals.css";
 
-import { Roboto } from "next/font/google";
+import { Outfit } from "next/font/google";
 
-// Configura a fonte Roboto com Next.js
-const roboto = Roboto({
-  weight: ["400", "700"],
+const fontMain = Outfit({
   subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "700", "900"],
 });
 
 export const metadata = {
@@ -26,21 +26,19 @@ export const metadata = {
   },
 };
 
-// Viewport agora recebe o themeColor (resolvendo o warning)
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#facc15",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={roboto.className}>
+    <html lang="pt-BR" className={fontMain.className}>
       <head>
-        {/* O Next.js gerencia title, description e icons automaticamente */}
         <link rel="icon" href="/GEDS Inovação.png" />
       </head>
-      <body className="relative min-h-screen flex flex-col bg-black text-white selection:bg-cyan selection:text-black">
+      <body className="relative min-h-screen flex flex-col bg-black text-white selection:bg-cyan selection:text-black antialiased">
         <Header />
         <main className="flex-1 overflow-x-hidden">{children}</main>
         <Footer />

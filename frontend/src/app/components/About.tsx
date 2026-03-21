@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FiAward, FiCode, FiTrendingUp, FiUsers, FiGlobe, FiHeart } from "react-icons/fi";
+import { FiAward, FiCode, FiTrendingUp } from "react-icons/fi";
 
 export default function About() {
   return (
-    <section id="about" className="py-20 px-4 bg-black">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-24 px-6 bg-black overflow-hidden">
+      <div className="max-w-7xl mx-auto">
         {/* Cabeçalho */}
         <motion.div
           className="text-center mb-16"
@@ -16,20 +16,20 @@ export default function About() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block mb-4 text-cyan font-bold bg-cyan/10 px-4 py-2 rounded-full text-xs uppercase tracking-widest border border-cyan/20">
+          <span className="inline-block mb-4 text-cyan-400 font-bold bg-cyan-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-widest border border-cyan-500/20 shadow-xl">
             Nossa Essência
           </span>
-          <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
-            Parceiros Tecnológicos de <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan to-white drop-shadow-[0_0_10px_rgba(0,219,255,0.3)]">Longo Prazo</span>
+          <h1 className="text-3xl md:text-5xl font-extrabold text-cyan-400 mb-6 tracking-tight">
+            Parceiros Tecnológicos de Longo Prazo
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Somos uma casa de software boutique. Acompanhamos sua jornada de transformação digital com times dedicados, metodologia ágil e obsessão por qualidade.
+          <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Somos uma casa de software boutique. Acompanhamos sua jornada de transformação digital com times dedicados e obsessão por qualidade técnica.
           </p>
         </motion.div>
 
         {/* Conteúdo Principal */}
         <div className="flex flex-col lg:flex-row items-center gap-16">
-          {/* Imagem - Tamanho ajustado */}
+          {/* Imagem */}
           <motion.div
             className="w-full lg:w-1/2 relative"
             initial={{ opacity: 0, x: -20 }}
@@ -37,27 +37,26 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="relative group w-full h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl shadow-2xl border border-white/10 group-hover:border-cyan/30 transition-all duration-500">
+            <div className="relative group w-full h-[300px] sm:h-[400px] lg:h-[450px] overflow-hidden rounded-[2rem] shadow-2xl border border-white/5 group-hover:border-cyan-500/20 transition-all duration-500">
               <Image
                 src="/GEDS Inovação.jpg"
                 alt="Equipe GEDS Inovação"
                 fill
-                className="object-cover object-center"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-1000"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent"></div>
-              <div className="absolute inset-0 bg-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
             </div>
 
-            <div className="absolute -bottom-6 right-2 sm:-right-6 bg-black/90 backdrop-blur-xl p-4 sm:p-5 rounded-2xl shadow-2xl border border-cyan/30 z-10 max-w-[85%] sm:max-w-none">
-              <div className="flex items-center gap-3">
-                <div className="bg-cyan/20 p-2 sm:p-3 rounded-full shrink-0">
-                  <FiAward className="text-cyan text-xl sm:text-2xl" />
+            <div className="absolute -bottom-6 right-6 bg-[#0a0a0a] border border-cyan-500/30 p-6 rounded-2xl shadow-2xl z-20">
+              <div className="flex items-center gap-4">
+                <div className="bg-cyan-500/10 p-3 rounded-xl border border-cyan-500/20">
+                  <FiAward className="text-cyan-400 text-2xl" />
                 </div>
                 <div>
-                  <p className="text-xl sm:text-2xl font-black text-white">+50</p>
-                  <p className="text-[9px] sm:text-[10px] text-cyan uppercase tracking-widest font-bold leading-tight">Projetos Entregues</p>
+                  <p className="text-2xl font-extrabold text-white">50+</p>
+                  <p className="text-[9px] text-cyan-400 uppercase tracking-widest font-black leading-none mt-1">Projetos Ativos</p>
                 </div>
               </div>
             </div>
@@ -72,37 +71,39 @@ export default function About() {
             viewport={{ once: true }}
           >
             <div>
-              <h2 className="text-3xl font-black text-white mb-6 tracking-tight">
-                TECNOLOGIA GEDS INOVAÇÃO
+              <p className="text-cyan-400 text-[10px] uppercase font-black tracking-widest mb-4">GEDS Inovação Tech</p>
+              <h2 className="text-3xl font-extrabold text-white mb-6 tracking-tight uppercase italic opacity-90">
+                Engenharia de precisão para resultados exponenciais
               </h2>
-              <p className="text-lg text-gray-400 leading-relaxed font-light text-justify">
-                A GEDS Inovação Tech atua com tecnologia e desenvolvimento de software moderno, criando soluções digitais bem estruturadas, com foco em qualidade técnica, boa performance e experiência do usuário. Nosso trabalho é entregar sistemas organizados e pensados para atender necessidades reais de negócios, transmitindo confiança e domínio técnico. 🚀 Desenvolvemos soluções que ajudam sua empresa a fortalecer a presença digital e se posicionar melhor no ambiente tecnológico.
+              <p className="text-base text-gray-400 leading-relaxed text-justify">
+                Desenvolvemos soluções digitais de alta fidelidade técnica, com foco absoluto em performance e experiência do usuário. 
+                Cada linha de código é pensada para transmitir confiança e domínio técnico, fortalecendo sua presença digital 
+                em um ambiente tecnológico competitivo. 🚀
               </p>
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               {[
-                { icon: FiCode, title: "Código de Qualidade", desc: "Desenvolvimento de alta fidelidade seguindo padrões globais." },
-                { icon: FiTrendingUp, title: "Resultados Exponenciais", desc: "Sistemas focados em conversão e crescimento acelerado." },
-                { icon: FiUsers, title: "Design Centrado no Ser Humano", desc: "Experiências memoráveis desenhadas para usuários reais." }
+                { icon: FiCode, title: "Qualidade Global", desc: "Desenvolvimento técnico seguindo padrões internacionais de codificação." },
+                { icon: FiTrendingUp, title: "Escalabilidade Real", desc: "Sistemas projetados para suportar o crescimento rápido do seu negócio." },
               ].map((item, i) => (
-                <div key={i} className="flex gap-5 group">
-                  <div className="bg-white/5 p-4 rounded-xl text-cyan shrink-0 group-hover:bg-cyan group-hover:text-black transition-all duration-300 border border-white/5 group-hover:border-cyan">
-                    <item.icon className="text-2xl" />
+                <div key={i} className="flex gap-5 group items-start">
+                  <div className="bg-white/5 p-4 rounded-xl text-cyan-400 shrink-0 group-hover:bg-cyan-500 group-hover:text-black transition-all border border-white/5">
+                    <item.icon className="text-xl" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-lg mb-1">{item.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="font-bold text-white text-lg mb-1 tracking-tight">{item.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="pt-6 border-t border-white/5">
-              <h4 className="font-bold text-white mb-5 uppercase tracking-widest text-xs">Stack Tecnológica</h4>
-              <div className="flex flex-wrap gap-3">
-                {['Next.js', 'React', 'Node.js', 'PostgreSQL', 'AWS', 'Tailwind'].map((tech) => (
-                  <span key={tech} className="px-4 py-1.5 bg-cyan/5 text-cyan border border-cyan/20 rounded-full font-bold text-[10px] uppercase tracking-wider hover:bg-cyan hover:text-black transition-all cursor-default">
+            <div className="pt-8 border-t border-white/5">
+              <p className="text-[9px] text-gray-500 uppercase font-black tracking-widest mb-6">Master Stack</p>
+              <div className="flex flex-wrap gap-2.5">
+                {['Next.js', 'React', 'Node.js', 'PostgreSQL', 'AWS'].map((tech) => (
+                  <span key={tech} className="px-5 py-2 bg-white/5 text-gray-300 border border-white/10 rounded-full font-bold text-[9px] uppercase tracking-widest hover:border-cyan-500/40 hover:text-cyan-400 transition-all cursor-default">
                     {tech}
                   </span>
                 ))}
@@ -110,28 +111,6 @@ export default function About() {
             </div>
           </motion.div>
         </div>
-
-        {/* Estatísticas */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-32"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {[
-            { icon: FiAward, val: "50+", label: "Projetos Concluídos", color: "cyan" },
-            { icon: FiUsers, val: "30+", label: "Clientes Satisfeitos", color: "white" },
-            { icon: FiGlobe, val: "15+", label: "Tecnologias", color: "cyan" },
-            { icon: FiHeart, val: "100%", label: "Dedicados", color: "white" }
-          ].map((stat, i) => (
-            <div key={i} className="text-center p-8 bg-white/5 rounded-2xl border border-white/5 hover:border-cyan/20 transition-all group">
-              <stat.icon className={`text-3xl ${stat.color === 'cyan' ? 'text-cyan' : 'text-white'} mx-auto mb-4 group-hover:scale-110 transition-transform`} />
-              <div className="text-4xl font-black text-white mb-2 tracking-tighter">{stat.val}</div>
-              <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{stat.label}</p>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

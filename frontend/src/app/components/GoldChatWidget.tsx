@@ -272,96 +272,111 @@ export default function GoldChatWidget() {
             initial={{ opacity: 0, y: 10, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="absolute bottom-20 right-0 bg-black/80 backdrop-blur-md text-cyan text-xs font-bold px-4 py-2 rounded-full shadow-[0_0_15px_rgba(0,219,255,0.3)] border border-cyan/40 mb-2 whitespace-nowrap"
+            className="absolute bottom-20 right-0 bg-black/40 backdrop-blur-xl text-cyan-400 text-[10px] sm:text-xs font-black px-5 py-2.5 rounded-2xl shadow-[0_0_20px_rgba(0,219,255,0.15)] border border-cyan-500/20 mb-2 whitespace-nowrap uppercase tracking-widest"
           >
-            Dúvidas? Fale comigo! <span className="animate-bounce inline-block">👇</span>
+            Dúvidas? Fale comigo! <span className="animate-bounce inline-block ml-1">👇</span>
           </motion.div>
         )}
       </AnimatePresence>
 
       {!open ? (
         <motion.button
-          whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(0,219,255,0.6)" }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,219,255,0.4)" }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => setOpen(true)}
-          className="bg-black text-cyan p-4 rounded-full shadow-[0_0_15px_rgba(0,219,255,0.3)] border-2 border-cyan/50 transition-all duration-300"
+          className="bg-black/80 backdrop-blur-md text-cyan-400 p-5 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.5),0_0_20px_rgba(0,219,255,0.2)] border border-cyan-500/30 transition-all duration-500 group relative overflow-hidden"
         >
-          <MessageCircle className="w-8 h-8" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          <MessageCircle className="w-8 h-8 relative z-10" />
         </motion.button>
       ) : (
         <motion.div
-          initial={{ opacity: 0, y: 100, scale: 0.5, transformOrigin: "bottom right" }}
+          initial={{ opacity: 0, y: 50, scale: 0.9, transformOrigin: "bottom right" }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          className="w-80 sm:w-96 h-[500px] bg-black/90 backdrop-blur-xl rounded-2xl shadow-[0_0_40px_rgba(0,219,255,0.2)] border border-cyan/30 flex flex-col overflow-hidden"
+          exit={{ opacity: 0, y: 20, scale: 0.95 }}
+          className="w-[320px] sm:w-[400px] h-[550px] bg-[#050505]/95 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(0,219,255,0.1)] border border-white/10 flex flex-col overflow-hidden relative"
         >
           {/* Header */}
-          <div className="bg-cyan/10 border-b border-cyan/20 p-4 flex justify-between items-center bg-linear-to-r from-cyan/20 to-transparent">
-            <div className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="w-10 h-10 rounded-full border-2 border-cyan shadow-[0_0_10px_rgba(0,219,255,0.5)] overflow-hidden relative">
+          <div className="p-6 flex justify-between items-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-transparent -z-10" />
+            
+            <div className="flex items-center space-x-4">
+              <div className="relative group">
+                <div className="w-12 h-12 rounded-2xl border border-cyan-500/30 shadow-[0_0_15px_rgba(0,219,255,0.2)] overflow-hidden relative transition-transform duration-500 group-hover:scale-105">
                   <NextImage
                     src="/gold.jpg"
-                    alt="Gold"
+                    alt="Assistente Virtual"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-black animate-pulse"></div>
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-[3px] border-[#0a0a0a] shadow-lg">
+                   <div className="w-full h-full bg-emerald-400 rounded-full animate-ping opacity-75" />
+                </div>
               </div>
               <div>
-                <h3 className="text-white font-bold text-sm">Gold</h3>
-                <p className="text-cyan/70 text-[10px] uppercase tracking-widest">Assistente de IA</p>
+                <h3 className="text-white font-black text-lg tracking-tight leading-none mb-1">Assistente virtual</h3>
+                <p className="text-cyan-400 text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 mt-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                  Online • Pronto para ajudar
+                </p>
               </div>
             </div>
+            
             <button
               onClick={() => setOpen(false)}
-              className="text-white/50 hover:text-cyan transition-colors"
+              className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition-all duration-300"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-4 custom-scrollbar">
+          <div className="flex-1 px-6 py-4 overflow-y-auto space-y-5 custom-scrollbar bg-gradient-to-b from-white/[0.02] to-transparent">
             {messages.map((msg, i) => (
               <motion.div
-                initial={{ opacity: 0, x: msg.from === "gold" ? -10 : 10 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
                 key={i}
                 className={`flex ${msg.from === "gold" ? "justify-start" : "justify-end"}`}
               >
                 <div
-                  className={`max-w-[85%] px-4 py-2 rounded-2xl text-sm leading-relaxed ${msg.from === "gold"
-                    ? "bg-white/5 text-white border border-white/10 rounded-tl-none"
-                    : "bg-cyan/20 text-cyan border border-cyan/30 rounded-tr-none shadow-[0_0_10px_rgba(0,219,255,0.1)]"
+                  className={`max-w-[85%] px-5 py-3 rounded-2xl text-sm leading-relaxed shadow-lg ${msg.from === "gold"
+                    ? "bg-white/5 text-gray-200 border border-white/10 rounded-tl-none"
+                    : "bg-cyan-500/20 text-cyan-50 border border-cyan-500/30 rounded-tr-none shadow-[0_0_20px_rgba(0,219,255,0.1)]"
                     }`}
                 >
-                  <p className="whitespace-pre-line">{msg.text}</p>
+                  <p className="whitespace-pre-line font-medium">{msg.text}</p>
+                  <div className={`text-[9px] mt-1 opacity-40 font-bold uppercase tracking-tighter ${msg.from === "gold" ? "text-right" : "text-left"}`}>
+                    {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </div>
                 </div>
               </motion.div>
             ))}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
-          <div className="p-4 bg-black/50 border-t border-cyan/20">
-            <div className="flex items-center bg-white/5 rounded-full border border-white/10 px-4 py-2 focus-within:border-cyan/50 focus-within:shadow-[0_0_10px_rgba(0,219,255,0.2)] transition-all">
+          {/* Input Area */}
+          <div className="p-6 bg-[#0a0a0a]/50 border-t border-white/5 backdrop-blur-md">
+            <div className="flex items-center bg-white/5 rounded-2xl border border-white/10 p-1.5 focus-within:border-cyan-500/40 focus-within:bg-white/10 transition-all duration-300 shadow-inner">
               <input
                 type="text"
-                placeholder="Digite sua mensagem..."
-                className="flex-1 bg-transparent border-none outline-none text-white text-sm placeholder:text-white/30"
+                placeholder="Como posso ajudar?"
+                className="flex-1 bg-transparent border-none outline-none text-white text-base font-bold px-4 placeholder:text-white/40"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
               />
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleSend}
-                className="ml-2 text-cyan hover:text-white transition-colors p-1"
+                className="bg-cyan-500 hover:bg-cyan-400 text-black w-10 h-10 rounded-xl flex items-center justify-center transition-colors shadow-lg shadow-cyan-500/20"
               >
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current rotate-90">
+                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
                   <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                 </svg>
-              </button>
+              </motion.button>
             </div>
           </div>
         </motion.div>

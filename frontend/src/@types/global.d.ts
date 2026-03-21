@@ -4,8 +4,17 @@ declare global {
   interface Window {
     VLibras?: {
       Widget: new (url: string) => {
-        init: () => void; // Você pode adicionar mais métodos conforme precisar
+        init: () => void;
       };
     };
+  }
+}
+
+import 'react';
+
+declare module 'react' {
+  interface StyleHTMLAttributes<T> extends React.HTMLAttributes<T> {
+    jsx?: boolean;
+    global?: boolean;
   }
 }

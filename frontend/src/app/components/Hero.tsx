@@ -3,22 +3,15 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
-import { FiArrowRight, FiActivity, FiZap, FiTrendingUp, FiShield } from "react-icons/fi";
+import { FiActivity, FiZap, FiTrendingUp, FiShield, FiX } from "react-icons/fi";
 
-const INITIAL_PARTICLES = Array.from({ length: 40 }, (_, i) => ({
-  id: i,
-  x: (i * 13) % 100,
-  y: (i * 17) % 100,
-  size: (i % 3) + 1,
-  duration: (i % 8) + 5,
-  delay: (i % 5),
-}));
+
 
 const METRICS = [
-  { label: "Projetos Entregues", value: 50, suffix: "+", icon: FiActivity, color: "cyan" },
-  { label: "Clientes Ativos", value: 30, suffix: "+", icon: FiZap, color: "emerald" },
-  { label: "Economia Gerada", value: 40, suffix: "%", icon: FiTrendingUp, color: "cyan" },
-  { label: "Uptime Garantido", value: 99, suffix: "%", icon: FiShield, color: "emerald" },
+  { label: "Projetos", value: 50, suffix: "+", icon: FiActivity, color: "cyan" },
+  { label: "Clientes", value: 30, suffix: "+", icon: FiZap, color: "emerald" },
+  { label: "Economia", value: 40, suffix: "%", icon: FiTrendingUp, color: "cyan" },
+  { label: "Uptime", value: 99, suffix: "%", icon: FiShield, color: "emerald" },
 ];
 
 function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
@@ -31,16 +24,12 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
-          let start = 0;
-          const step = target / 60;
-          const interval = setInterval(() => {
-            start += step;
-            if (start >= target) {
-              setCount(target);
-              clearInterval(interval);
-            } else {
-              setCount(Math.floor(start));
-            }
+          let frame = 0;
+          const totalFrames = 60;
+          const timer = setInterval(() => {
+            frame++;
+            setCount(Math.round(target * (frame / totalFrames)));
+            if (frame === totalFrames) clearInterval(timer);
           }, 16);
         }
       },
@@ -50,307 +39,118 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
     return () => observer.disconnect();
   }, [target]);
 
-  return (
-    <span ref={ref} className="tabular-nums">
-      {count}{suffix}
-    </span>
-  );
+  return <span ref={ref} className="tabular-nums">{count}{suffix}</span>;
 }
 
-const TYPING_PHRASES = [
-  "Transformação Digital",
-  "Automação Inteligente",
-  "Inovação Sustentável",
-  "Crescimento Exponencial",
-];
+const TYPING_PHRASES = ["Transformação Digital", "Automação Inteligente", "Engenharia de Elite"];
 
 function TypingText() {
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const phrase = TYPING_PHRASES[phraseIndex];
-    const speed = isDeleting ? 40 : 80;
-
+    const phrase = TYPING_PHRASES[index];
     const timeout = setTimeout(() => {
       if (!isDeleting) {
-        if (displayed.length < phrase.length) {
-          setDisplayed(phrase.slice(0, displayed.length + 1));
-        } else {
-          setTimeout(() => setIsDeleting(true), 1500);
-        }
+        if (text.length < phrase.length) setText(phrase.slice(0, text.length + 1));
+        else setTimeout(() => setIsDeleting(true), 2000);
       } else {
-        if (displayed.length > 0) {
-          setDisplayed(displayed.slice(0, -1));
-        } else {
-          setIsDeleting(false);
-          setPhraseIndex((prev) => (prev + 1) % TYPING_PHRASES.length);
-        }
+        if (text.length > 0) setText(text.slice(0, -1));
+        else { setIsDeleting(false); setIndex((prev) => (prev + 1) % TYPING_PHRASES.length); }
       }
-    }, speed);
-
+    }, isDeleting ? 30 : 60);
     return () => clearTimeout(timeout);
-  }, [displayed, isDeleting, phraseIndex]);
+  }, [text, isDeleting, index]);
 
-  return (
-    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-      {displayed}
-      <span className="animate-pulse text-cyan-400">|</span>
-    </span>
-  );
+  return <span className="text-cyan-400 font-bold">{text}<span className="animate-pulse">|</span></span>;
 }
 
 export default function Hero() {
   const [showDiagnostic, setShowDiagnostic] = useState(false);
 
   return (
-    <section
-      id="hero"
-      className="relative bg-black text-white min-h-screen flex flex-col items-center justify-center overflow-hidden"
-    >
-      {/* Animated particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {INITIAL_PARTICLES.map((p) => (
-          <motion.div
-            key={p.id}
-            className="absolute rounded-full bg-cyan-400/30"
-            style={{
-              left: `${p.x}%`,
-              top: `${p.y}%`,
-              width: p.size,
-              height: p.size,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.1, 0.6, 0.1],
-            }}
-            transition={{
-              duration: p.duration,
-              delay: p.delay,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+    <section id="hero" className="relative bg-black text-white min-h-[90vh] flex flex-col items-center justify-center p-6 pt-32 pb-20 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(0,219,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,219,255,1)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(circle_at_center,black,transparent_80%)]" />
 
-        {/* Grid lines */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(0,219,255,0.8) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0,219,255,0.8) 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        {/* Glow orbs */}
-        <div className="absolute top-[-15%] left-[-10%] w-[55%] h-[55%] bg-cyan-500/10 rounded-full filter blur-[130px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full filter blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[30%] bg-cyan-400/5 rounded-full filter blur-[100px] animate-pulse" style={{ animationDelay: "2s" }} />
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-5xl px-6 text-center relative z-10 pt-20">
-
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 backdrop-blur-sm"
-        >
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-          <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest">
-            Startup de Tecnologia e Inovação
-          </span>
+      <div className="container mx-auto relative z-10 text-center">
+        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="inline-block mb-10 px-5 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 backdrop-blur-sm text-cyan-400 text-[10px] uppercase font-bold tracking-widest">
+           Engenharia & IA
         </motion.div>
 
-        {/* Headline */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-4">
-            <span className="text-white">Sua empresa precisa de</span>
-            <br />
-            <TypingText />
-          </h1>
-        </motion.div>
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-8 tracking-tight text-cyan-400">
+          Sua empresa precisa de<br />
+          <TypingText />
+        </h1>
 
-        {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
-        >
-          A <strong className="text-cyan-400">GEDS Inovação</strong> transforma desafios empresariais em
-          soluções digitais de alto impacto. Do diagnóstico à entrega, somos seu parceiro estratégico
-          em cada etapa da jornada.
-        </motion.p>
+        <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Transformamos gargalos operacionais em vantagens tecnológicas de alto desempenho. 
+          Resultados reais para empresas que buscam o próximo nível.
+        </p>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16"
-        >
-          <button
-            onClick={() => setShowDiagnostic(true)}
-            className="group w-full sm:w-auto text-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black rounded-full text-base transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,219,255,0.5)] hover:scale-105 flex items-center justify-center gap-3"
-          >
-            <span>🧠</span>
-            Fazer Diagnóstico Inteligente
-            <FiArrowRight className="transition-transform group-hover:translate-x-1" />
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-20">
+          <button onClick={() => setShowDiagnostic(true)} className="w-full sm:w-auto px-10 py-5 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all shadow-xl font-bold uppercase text-xs tracking-widest">
+            Fazer Diagnóstico
           </button>
-          <Link
-            href="/contatos"
-            className="w-full sm:w-auto text-center px-8 py-4 border border-cyan-500/40 text-cyan-400 rounded-full text-base font-bold transition-all duration-300 hover:bg-cyan-500/10 hover:shadow-[0_0_20px_rgba(0,219,255,0.2)] hover:scale-105"
-          >
+          <Link href="/contatos" className="w-full sm:w-auto px-10 py-5 border border-white/20 text-white rounded-full hover:bg-white/5 transition-all font-bold uppercase text-xs tracking-widest">
             Falar com Especialista
           </Link>
-        </motion.div>
+        </div>
 
-        {/* Trust badges */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="flex flex-wrap justify-center gap-4 mb-16 text-xs text-gray-500"
-        >
-          {["🔒 Dados Seguros", "⚡ Entrega Ágil", "🌱 Sustentável", "🤖 IA Integrada"].map((tag) => (
-            <span key={tag} className="flex items-center gap-1">{tag}</span>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Metrics Strip */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.1 }}
-        className="w-full max-w-5xl px-6 relative z-10"
-      >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {METRICS.map((metric, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05, y: -4 }}
-              className="bg-white/[0.03] backdrop-blur-sm border border-white/10 hover:border-cyan-500/30 rounded-2xl p-5 text-center transition-all duration-300"
-            >
-              <metric.icon
-                className={`mx-auto mb-2 w-5 h-5 ${metric.color === "cyan" ? "text-cyan-400" : "text-emerald-400"}`}
-              />
-              <div className={`text-2xl md:text-3xl font-black mb-1 ${metric.color === "cyan" ? "text-cyan-400" : "text-emerald-400"}`}>
-                <AnimatedCounter target={metric.value} suffix={metric.suffix} />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          {METRICS.map((m, i) => (
+            <div key={i} className="p-6 bg-white/[0.02] border border-white/5 rounded-[2rem]">
+              <div className={`text-3xl font-bold mb-1 ${m.color === "cyan" ? "text-cyan-400" : "text-emerald-400"}`}>
+                <AnimatedCounter target={m.value} suffix={m.suffix} />
               </div>
-              <p className="text-gray-500 text-[10px] uppercase tracking-widest font-bold">{metric.label}</p>
-            </motion.div>
+              <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{m.label}</p>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-gray-600 text-[10px] uppercase tracking-widest">Explorar</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-          className="w-px h-12 bg-gradient-to-b from-cyan-500/50 to-transparent"
-        />
-      </motion.div>
-
-      {/* Diagnostic Modal */}
       <AnimatePresence>
         {showDiagnostic && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4"
+          <motion.div 
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[200] flex items-center justify-center p-4 sm:p-6 cursor-default"
             onClick={() => setShowDiagnostic(false)}
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+            <motion.div 
+              initial={{ scale: 0.95, y: 10 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 10 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-black border border-cyan-500/30 rounded-3xl p-8 max-w-lg w-full shadow-[0_0_60px_rgba(0,219,255,0.15)]"
+              className="bg-[#0a0a0a] border border-white/10 rounded-[2rem] p-8 sm:p-12 max-w-lg w-full shadow-2xl relative overflow-hidden"
             >
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-cyan-500/20">
-                  <span className="text-3xl">🧠</span>
-                </div>
-                <h3 className="text-2xl font-black text-white mb-2">Raio-X Digital</h3>
-                <p className="text-gray-400 text-sm">Avalie o nível tecnológico da sua empresa em 60 segundos</p>
-              </div>
+              <button onClick={() => setShowDiagnostic(false)} className="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors">
+                <FiX className="text-2xl" />
+              </button>
 
-              <div className="space-y-3 mb-6">
+              <h3 className="text-3xl font-bold mb-8 text-cyan-400 uppercase italic">Raio-X Digital</h3>
+              
+              <div className="space-y-6 mb-10 overflow-y-auto max-h-[50vh] pr-2 custom-scrollbar">
                 {[
-                  "Sua empresa ainda usa processos manuais?",
-                  "Você perde tempo com tarefas repetitivas?",
-                  "Clientes reclamam de lentidão no atendimento?",
-                  "Você não tem dados claros sobre seu negócio?",
+                  "Seus processos dependem de planilhas?",
+                  "Há tarefas manuais repetitivas?",
+                  "Sua tecnologia atual é um gargalo?",
+                  "Sua equipe perde tempo resolvendo bugs?",
                 ].map((q, i) => (
-                  <DiagnosticQuestion key={i} question={q} index={i} />
+                   <div key={i} className="p-5 bg-white/[0.03] border border-white/5 rounded-2xl">
+                      <p className="text-sm font-medium mb-4 text-gray-300">{q}</p>
+                      <div className="flex gap-3">
+                        <button className="flex-1 py-3 bg-white/5 rounded-xl text-[9px] uppercase font-black hover:bg-cyan-500/20 transition-all border border-white/5">Sim</button>
+                        <button className="flex-1 py-3 bg-white/5 rounded-xl text-[9px] uppercase font-black hover:bg-white/10 transition-all border border-white/5">Não</button>
+                      </div>
+                   </div>
                 ))}
               </div>
 
-              <Link
-                href="/contatos"
-                onClick={() => setShowDiagnostic(false)}
-                className="block w-full text-center py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black rounded-full hover:shadow-[0_0_30px_rgba(0,219,255,0.4)] transition-all"
-              >
-                Ver meu diagnóstico completo →
+              <Link href="/contatos" onClick={() => setShowDiagnostic(false)} className="block w-full text-center py-5 bg-cyan-500 text-black font-black rounded-full uppercase text-xs tracking-widest hover:bg-cyan-400 transition-all">
+                Receber Diagnóstico Completo
               </Link>
-              <button
-                onClick={() => setShowDiagnostic(false)}
-                className="block w-full text-center py-3 text-gray-600 text-sm mt-3 hover:text-gray-400 transition-colors"
-              >
-                Fechar
-              </button>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </section>
-  );
-}
-
-function DiagnosticQuestion({ question, index }: { question: string; index: number }) {
-  const [answer, setAnswer] = useState<null | boolean>(null);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: index * 0.1 }}
-      className="flex items-center justify-between gap-4 p-3 bg-white/[0.03] rounded-xl border border-white/5"
-    >
-      <p className="text-gray-300 text-sm flex-1">{question}</p>
-      <div className="flex gap-2 shrink-0">
-        <button
-          onClick={() => setAnswer(true)}
-          className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${answer === true ? "bg-red-500 text-white" : "bg-white/5 text-gray-400 hover:bg-red-500/20"}`}
-        >
-          Sim
-        </button>
-        <button
-          onClick={() => setAnswer(false)}
-          className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${answer === false ? "bg-emerald-500 text-white" : "bg-white/5 text-gray-400 hover:bg-emerald-500/20"}`}
-        >
-          Não
-        </button>
-      </div>
-    </motion.div>
   );
 }

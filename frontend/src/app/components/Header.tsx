@@ -34,9 +34,10 @@ const Header = () => {
           {[
             { name: "Início", href: "/" },
             { name: "Sobre", href: "/#about" },
-            { name: "Serviços", href: "/#servicos" },
-            { name: "Processos", href: "/#processo" },
-            { name: "Portfólio", href: "/#portfolios" },
+            { name: "Serviços", href: "/servicos" },
+            { name: "Segurança", href: "/geds-security" },
+            { name: "Acessibilidade", href: "/geds-accessibility" },
+            { name: "Processos", href: "/processo" },
             { name: "Contato", href: "/contatos" }
           ].map((item) => (
             <Link
@@ -103,9 +104,10 @@ const Header = () => {
               {[
                 { name: "Início", href: "/" },
                 { name: "Sobre", href: "/#about" },
-                { name: "Serviços", href: "/#servicos" },
-                { name: "Processos", href: "/#processo" },
-                { name: "Portfólio", href: "/#portfolios" },
+                { name: "Serviços", href: "/servicos" },
+                { name: "Segurança", href: "/geds-security" },
+                { name: "Acessibilidade", href: "/geds-accessibility" },
+                { name: "Processos", href: "/processo" },
                 { name: "Contato", href: "/contatos" }
               ].map((item) => (
                 <Link

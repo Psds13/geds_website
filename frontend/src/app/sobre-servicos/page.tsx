@@ -119,6 +119,18 @@ export default function ServicesPage() {
                 "Design Systems completos",
                 "Foco em acessibilidade e conversão"
             ]
+        },
+        {
+            id: "automacao-inteligente",
+            title: "Automação Inteligente",
+            description: "Otimize fluxos de trabalho e elimine tarefas repetitivas. Nossas soluções de automação utilizam IA avançada e RPA (Robotic Process Automation) para integrar sistemas e processar grandes volumes de dados de forma autônoma e precisa.",
+            image: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg",
+            benefits: [
+                "Eliminação de erros manuais",
+                "Redução drástica do ciclo de tempo",
+                "Integração de APIs e sistemas (RPA)",
+                "Tomada de decisão autônoma com IA"
+            ]
         }
     ];
 

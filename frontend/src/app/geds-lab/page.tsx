@@ -3,6 +3,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 import { Beaker, Code, Cpu, Lightbulb, Brain, Globe, Terminal, GitBranch, Play, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -177,7 +178,7 @@ function AITest() {
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && send()}
           placeholder="Digite sua dúvida..."
-          className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-white text-xs placeholder:text-gray-600 focus:outline-none focus:border-cyan-500/40"
+          className="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-base font-bold placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/60 transition-all"
         />
         <button
           onClick={send}
@@ -404,60 +405,96 @@ export default function GedsLab() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* ── Hero ─────────────────────────────────────────────── */}
-        <section className="text-center mb-20">
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring', duration: 0.8 }}
-            className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl mb-6 relative border border-cyan-500/20"
-          >
-            <Beaker className="w-12 h-12 text-cyan-400 relative z-10" />
-            <div className="absolute inset-0 bg-cyan-500/20 blur-[30px] rounded-2xl" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <span className="inline-block mb-4 text-cyan-400 font-bold bg-cyan-500/10 px-4 py-2 rounded-full text-xs uppercase tracking-widest border border-cyan-500/20">
-              Laboratório de Inovação
-            </span>
-            <h1 className="text-5xl md:text-7xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-blue-400">
-              GEDS Lab
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-400 mb-3 max-w-3xl mx-auto">
-              O ambiente onde ideias se tornam tecnologia real
-            </p>
-            <p className="text-gray-600 max-w-2xl mx-auto text-base italic">
-              &ldquo;Inovação não é acidente. É o resultado de experimentos contínuos e coragem para falhar rápido.&rdquo;
-            </p>
-          </motion.div>
-
-          {/* Live stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-4 mt-10"
-          >
-            {[
-              { label: 'Projetos Ativos', value: '6', icon: '🔬' },
-              { label: 'Tecnologias Testadas', value: '18+', icon: '⚡' },
-              { label: 'Protótipos Entregues', value: '12', icon: '🚀' },
-              { label: 'Horas de P&D / mês', value: '200+', icon: '🧪' },
-            ].map((stat, i) => (
+        <section className="mb-24 mt-12">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            {/* Texto Hero */}
+            <motion.div 
+              className="lg:w-1/2 text-left"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               <motion.div
-                key={i}
-                whileHover={{ scale: 1.05, y: -3 }}
-                className="bg-white/[0.03] border border-white/8 hover:border-cyan-500/30 rounded-xl px-5 py-3 text-center transition-all"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', duration: 0.8 }}
+                className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl mb-6 relative border border-cyan-500/20 shadow-[0_0_20px_rgba(0,219,255,0.1)]"
               >
-                <div className="text-lg mb-0.5">{stat.icon}</div>
-                <div className="text-cyan-400 font-black text-xl">{stat.value}</div>
-                <div className="text-gray-600 text-[10px] uppercase tracking-wider">{stat.label}</div>
+                <Beaker className="w-8 h-8 text-cyan-400 relative z-10" />
+                <div className="absolute inset-0 bg-cyan-500/20 blur-[20px] rounded-2xl" />
               </motion.div>
-            ))}
-          </motion.div>
+
+              <span className="inline-block mb-4 text-cyan-400 font-bold bg-cyan-500/10 px-4 py-2 rounded-full text-[10px] uppercase tracking-widest border border-cyan-500/20">
+                Innovation Testing Grounds
+              </span>
+              <h1 className="text-5xl md:text-7xl font-black mb-6 leading-[1.1] tracking-tight text-white">
+                GEDS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Lab</span>
+              </h1>
+              <p className="text-xl text-gray-400 mb-8 max-w-xl leading-relaxed">
+                Onde a imaginação encontra a execução técnica. Projetamos, testamos e validamos as tecnologias que ditarão o ritmo do mercado amanhã.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mb-10">
+                <Link
+                  href="/contatos"
+                  className="bg-cyan-500 hover:bg-cyan-400 text-black font-black px-10 py-4 rounded-full transition-all shadow-[0_10px_30px_rgba(0,219,255,0.2)] hover:shadow-[0_15px_40px_rgba(0,219,255,0.4)]"
+                >
+                  Iniciar um projeto
+                </Link>
+                <button className="px-10 py-4 rounded-full border border-white/10 hover:border-cyan-500/50 text-white font-bold transition-all backdrop-blur-sm">
+                  Ver Roadmap
+                </button>
+              </div>
+
+              <div className="flex flex-wrap gap-8 items-center border-t border-white/5 pt-8">
+                {[
+                  { label: 'Projetos Ativos', value: '12+' },
+                  { label: 'P&D Mensal', value: '300h+' },
+                ].map((stat, i) => (
+                  <div key={i}>
+                    <p className="text-2xl font-black text-white">{stat.value}</p>
+                    <p className="text-gray-500 text-[10px] uppercase tracking-widest font-bold">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Imagem Hero */}
+            <motion.div 
+              className="lg:w-1/2 relative"
+              initial={{ opacity: 0, scale: 0.95, x: 30 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <div className="relative z-10 w-full aspect-[4/5] sm:aspect-square overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl group">
+                <Image 
+                  src="/GEDS Lab.jpg"
+                  alt="GEDS Lab Environment"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                
+                {/* Overlay Badge */}
+                <div className="absolute bottom-10 left-10 right-10 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-3xl">
+                  <div className="flex items-center gap-5">
+                    <div className="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center border border-cyan-500/30">
+                      <Cpu className="text-cyan-400 w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-white font-black text-lg leading-none">Status: Ativo</p>
+                      <p className="text-cyan-400 text-[10px] uppercase font-black tracking-widest mt-1">Ambiente Controlado</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute -top-12 -right-12 w-64 h-64 bg-cyan-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
+              <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-blue-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
+            </motion.div>
+          </div>
         </section>
 
         {/* ── AI Tester ─────────────────────────────────────────── */}

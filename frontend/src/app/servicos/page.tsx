@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Code2, Cloud, LineChart, Search, Layout, ArrowRight, type LucideIcon } from "lucide-react";
+import { Code2, Cloud, LineChart, Search, Layout, Zap, ArrowRight, type LucideIcon } from "lucide-react";
 
 const IconMap: { [key: string]: LucideIcon } = {
   Code2: Code2,
@@ -11,6 +11,7 @@ const IconMap: { [key: string]: LucideIcon } = {
   LineChart: LineChart,
   Search: Search,
   Layout: Layout,
+  Zap: Zap,
 };
 
 const services = [
@@ -53,6 +54,14 @@ const services = [
     nome_icone: "Layout",
     url_imagem: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
     url_link: "/sobre-servicos#ux-ui-design"
+  },
+  {
+    id: "automacao-inteligente",
+    titulo: "Automação Inteligente",
+    descricao: "Otimize fluxos de trabalho e elimine tarefas repetitivas com o uso de IA e robótica de software.",
+    nome_icone: "Zap",
+    url_imagem: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg",
+    url_link: "/sobre-servicos#automacao-inteligente"
   }
 ];
 
