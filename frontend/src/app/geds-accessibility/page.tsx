@@ -43,7 +43,7 @@ const features = [
 
 export default function AccessibilityPage() {
   return (
-    <div className="bg-black min-h-screen text-white selection:bg-cyan-500 selection:text-black">
+    <div className="bg-background min-h-screen text-foreground selection:bg-cyan-500 selection:text-black">
       {/* ── HERO SECTION ────────────────────────────────────────── */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none -z-10">
@@ -73,7 +73,7 @@ export default function AccessibilityPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-lg text-foreground/70 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             Acreditamos que a tecnologia deve ser um ponto de união, não de exclusão. Nossas ferramentas de acessibilidade garantem que todos tenham a mesma experiência premium, independentemente de suas necessidades.
           </motion.p>
@@ -91,7 +91,7 @@ export default function AccessibilityPage() {
           >
             <div className="absolute inset-0 bg-linear-to-b from-transparent via-purple-500/5 to-purple-500/10 pointer-events-none z-10" />
             
-            <div className="relative aspect-[16/9] w-full transform group-hover:scale-105 transition-transform duration-700">
+            <div className="relative aspect-video w-full transform group-hover:scale-105 transition-transform duration-700">
               <Image 
                 src="/GEDS Accessibility.png" 
                 alt="Plataforma GEDS Accessibility" 
@@ -102,11 +102,11 @@ export default function AccessibilityPage() {
             </div>
             
             {/* Overlay Gradient for Text Readability if needed */}
-            <div className="absolute bottom-0 left-0 w-full p-12 bg-linear-to-t from-black via-black/40 to-transparent z-20">
-               <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter text-white">
+            <div className="absolute bottom-0 left-0 w-full p-12 bg-linear-to-t from-background via-background/60 to-transparent z-20">
+               <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter text-foreground">
                  Interface Universal & <span className="text-purple-400">Inteligente</span>
                </h2>
-               <p className="text-gray-400 text-sm mt-2 max-w-xl font-medium uppercase tracking-widest">Design focado no humano • Engenharia de Inclusão</p>
+               <p className="text-foreground/70 text-sm mt-2 max-w-xl font-medium uppercase tracking-widest">Design focado no humano • Engenharia de Inclusão</p>
             </div>
           </motion.div>
         </div>
@@ -123,13 +123,13 @@ export default function AccessibilityPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group p-8 rounded-[2.5rem] bg-[#050505] border border-white/5 hover:border-purple-500/30 transition-all duration-500 shadow-xl"
+                className="group p-8 rounded-[2.5rem] bg-foreground/5 border border-foreground/5 hover:border-purple-500/30 transition-all duration-500 shadow-xl"
               >
                 <div className={`w-16 h-16 rounded-2xl bg-linear-to-br ${item.color} flex items-center justify-center text-black mb-8 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(168,85,247,0.2)]`}>
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-black text-white mb-4 tracking-tight uppercase italic">{item.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed font-medium group-hover:text-gray-400 transition-colors">
+                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight uppercase italic">{item.title}</h3>
+                <p className="text-foreground/60 text-sm leading-relaxed font-medium group-hover:text-foreground/70 transition-colors">
                   {item.desc}
                 </p>
               </motion.div>
@@ -139,7 +139,7 @@ export default function AccessibilityPage() {
       </section>
 
       {/* ── WHAT IS SECTION (EXPLANATION) ─────────────────────────── */}
-      <section className="py-24 px-6 bg-[#030303] border-y border-white/5 relative overflow-hidden">
+      <section className="py-24 px-6 bg-foreground/2 border-y border-foreground/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/5 blur-[100px] pointer-events-none" />
         
         <div className="max-w-4xl mx-auto">
@@ -155,10 +155,10 @@ export default function AccessibilityPage() {
              
              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                <div className="space-y-6">
-                 <p className="text-gray-400 leading-relaxed font-medium">
+                 <p className="text-foreground/70 leading-relaxed font-medium">
                    O **GEDS Accessibility** não é apenas um plugin ou um menu flutuante. É uma filosofia de desenvolvimento integrada em todo o ecossistema GEDS. Nossa missão é remover as barreiras digitais que impedem milhões de pessoas de acessar informações e serviços com dignidade.
                  </p>
-                 <p className="text-gray-400 leading-relaxed font-medium">
+                 <p className="text-foreground/70 leading-relaxed font-medium">
                    Através de algoritmos inteligentes e design adaptativo, transformamos interfaces complexas em experiências fluidas para todos os tipos de interação humana.
                  </p>
                </div>
@@ -172,9 +172,9 @@ export default function AccessibilityPage() {
                     "Navegação por Voz e Teclado",
                     "Otimização em Tempo Real"
                   ].map((text, i) => (
-                    <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                    <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-foreground/5 border border-foreground/10">
                       <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0" />
-                      <span className="text-xs font-bold text-gray-300 uppercase tracking-widest leading-none">{text}</span>
+                      <span className="text-xs font-bold text-foreground/80 uppercase tracking-widest leading-none">{text}</span>
                     </div>
                   ))}
                </div>
@@ -184,10 +184,10 @@ export default function AccessibilityPage() {
       </section>
 
       {/* ── CTA FINAL ───────────────────────────────────────────── */}
-      <section className="relative py-32 px-6 overflow-hidden bg-[#00050a]">
+      <section className="relative py-32 px-6 overflow-hidden bg-foreground/5">
         <div className="absolute inset-0 bg-linear-to-b from-transparent to-purple-900/10" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
-           <h2 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter uppercase italic text-white drop-shadow-lg">
+           <h2 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter uppercase italic text-foreground drop-shadow-lg">
              Torne sua web <span className="text-purple-400">acessível</span> hoje
            </h2>
            <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -200,7 +200,7 @@ export default function AccessibilityPage() {
              </Link>
              <Link 
               href="/" 
-              className="inline-flex items-center justify-center gap-4 px-12 py-6 border border-white/10 text-white font-black rounded-full hover:bg-white/5 transition-all uppercase text-sm tracking-widest"
+              className="inline-flex items-center justify-center gap-4 px-12 py-6 border border-foreground/10 text-foreground font-black rounded-full hover:bg-foreground/5 transition-all uppercase text-sm tracking-widest"
              >
                Testar Agora
              </Link>

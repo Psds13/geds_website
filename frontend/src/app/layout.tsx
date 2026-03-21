@@ -5,6 +5,7 @@ import ClientLayoutExtras from "@/app/components/ClientLayoutExtras";
 import "./globals.css";
 
 import { Outfit } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const fontMain = Outfit({
   subsets: ["latin"],
@@ -34,15 +35,22 @@ export const viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={fontMain.className}>
+    <html lang="pt-BR" className={fontMain.className} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/GEDS Inovação.png" />
       </head>
-      <body className="relative min-h-screen flex flex-col bg-black text-white selection:bg-cyan selection:text-black antialiased">
-        <Header />
-        <main className="flex-1 overflow-x-hidden">{children}</main>
-        <Footer />
-        <ClientLayoutExtras />
+      <body className="relative min-h-screen flex flex-col bg-background text-foreground selection:bg-cyan selection:text-black antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="flex-1 overflow-x-hidden">{children}</main>
+          <Footer />
+          <ClientLayoutExtras />
+        </ThemeProvider>
       </body>
     </html>
   );

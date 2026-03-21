@@ -42,20 +42,20 @@ const HomeNavigator = () => {
           <motion.a
             key={item.id}
             href={`#${item.id}`}
-            className="group block p-6 bg-[#050505] border border-white/5 rounded-3xl hover:border-white/20 transition-all shadow-lg hover:shadow-white/5 relative overflow-hidden"
+            className="group block p-6 bg-background border border-foreground/5 rounded-3xl hover:border-foreground/20 transition-all shadow-lg hover:shadow-foreground/5 relative overflow-hidden"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.05 }}
             whileHover={{ y: -5 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-linear-to-tr from-foreground/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             
-            <div className={`w-10 h-10 rounded-xl mb-4 flex items-center justify-center bg-white/5 group-hover:scale-110 transition-transform ${item.color}`}>
+            <div className={`w-10 h-10 rounded-xl mb-4 flex items-center justify-center bg-foreground/5 group-hover:scale-110 transition-transform ${item.color}`}>
               <item.icon size={20} />
             </div>
             
-            <h3 className="text-white font-black text-sm uppercase tracking-widest mb-1">{item.label}</h3>
-            <p className="text-gray-600 text-[10px] font-bold uppercase tracking-tight opacity-70 group-hover:text-gray-400">
+            <h3 className="text-foreground font-black text-sm uppercase tracking-widest mb-1">{item.label}</h3>
+            <p className="text-foreground/50 text-[10px] font-bold uppercase tracking-tight opacity-70 group-hover:text-foreground/70">
                {item.desc}
             </p>
           </motion.a>
@@ -69,8 +69,8 @@ const HomeNavigator = () => {
         transition={{ delay: 1 }}
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="text-gray-700 text-[10px] uppercase font-black tracking-[0.3em]">Explore Nosso Ecossistema</span>
-          <ArrowDown className="text-cyan-400 animate-bounce" />
+          <span className="text-foreground/40 text-[10px] uppercase font-black tracking-[0.3em]">Explore Nosso Ecossistema</span>
+          <ArrowDown className="text-cyan-500 dark:text-cyan-400 animate-bounce" />
         </div>
       </motion.div>
     </div>
@@ -79,49 +79,49 @@ const HomeNavigator = () => {
 
 const HomeContent = () => {
   return (
-    <main className="bg-black overflow-x-hidden selection:bg-cyan-400 selection:text-black">
+    <main className="bg-background overflow-x-hidden selection:bg-cyan-500 selection:text-black">
       {/* ── NAVEGAÇÃO RÁPIDA (QUADRADO) ───────────────────────────────── */}
-      <section className="relative z-10 border-b border-white/5 bg-linear-to-b from-black to-[#030303]">
+      <section className="relative z-10 border-b border-foreground/5 bg-linear-to-b from-background to-foreground/1">
         <HomeNavigator />
       </section>
 
       {/* ── SEÇÃO SERVIÇOS ─────────────────────────────────────────── */}
-      <section id="servicos" className="relative z-10 border-b border-white/5">
+      <section id="servicos" className="relative z-10 border-b border-foreground/5">
          <Servicos />
       </section>
 
       {/* ── SEÇÃO PROCESSO ─────────────────────────────────────────── */}
-      <section id="processo" className="relative z-10 border-b border-white/5 bg-[#030303]">
+      <section id="processo" className="relative z-10 border-b border-foreground/5 bg-foreground/2">
         <Processo />
       </section>
 
       {/* ── SEÇÃO DASHBOARD & SIMULADOR ─────────────────────────────── */}
-      <section id="dashboard" className="relative z-10 border-b border-white/5">
+      <section id="dashboard" className="relative z-10 border-b border-foreground/5">
         <DashboardSimulator />
       </section>
 
       {/* ── SEÇÃO TRANSFORMAÇÃO ────────────────────────────────────── */}
-      <section id="transformacao" className="relative z-10 border-b border-white/5 bg-[#030303]">
+      <section id="transformacao" className="relative z-10 border-b border-foreground/5 bg-foreground/2">
         <Transformacao />
       </section>
 
       {/* ── SEÇÃO PORTFÓLIO ────────────────────────────────────────── */}
-      <section id="portfolio" className="relative z-10 border-b border-white/5">
+      <section id="portfolio" className="relative z-10 border-b border-foreground/5">
         <Portfolio />
       </section>
 
       {/* ── SEÇÃO TEASERS (LAB & GREEN) ────────────────────────────── */}
-      <section className="relative z-10 border-b border-white/5">
+      <section className="relative z-10 border-b border-foreground/5 bg-foreground/2">
         <Teasers />
       </section>
 
       {/* ── SEÇÃO DIFERENCIAIS ─────────────────────────────────────── */}
-      <section id="diferenciais" className="relative z-10 border-b border-white/5 bg-[#030303]">
+      <section id="diferenciais" className="relative z-10 border-b border-foreground/5">
         <Diferenciais />
       </section>
 
       {/* ── SEÇÃO PROVA SOCIAL & SEGURANÇA ─────────────────────────── */}
-      <section id="social-proof" className="relative z-10 border-b border-white/5">
+      <section id="social-proof" className="relative z-10 border-b border-foreground/5 bg-foreground/2">
         <SocialProof />
       </section>
 

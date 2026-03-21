@@ -14,20 +14,20 @@ const processo = [
 
 export default function Processo() {
   return (
-    <section id="processo" className="max-w-7xl mx-auto py-24 px-6 bg-black">
+    <section id="processo" className="max-w-7xl mx-auto py-24 px-6 bg-background transition-colors">
       <motion.div
         className="text-center mb-16"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
       >
-        <span className="inline-block mb-4 text-cyan-400 font-bold bg-cyan-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-widest border border-cyan-500/20">
+        <span className="inline-block mb-4 text-cyan-600 dark:text-cyan-400 font-bold bg-cyan-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-widest border border-cyan-500/20">
           Metodologia de Elite
         </span>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-cyan-400 mb-6 tracking-tight leading-tight">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-cyan-500 dark:text-cyan-400 mb-6 tracking-tight leading-tight">
           Do desafio à entrega disruptiva em 4 passos
         </h2>
-        <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed">
           Transparência, agilidade e excelência técnica integradas em cada milissegundo.
         </p>
       </motion.div>
@@ -41,22 +41,22 @@ export default function Processo() {
             transition={{ delay: i * 0.15 }}
             viewport={{ once: true }}
             whileHover={{ y: -5 }}
-            className="group relative bg-[#050505] border border-white/5 hover:border-cyan-500/20 rounded-3xl p-10 text-center transition-all duration-300 shadow-xl overflow-hidden flex flex-col items-center"
+            className="group relative bg-background border border-foreground/5 hover:border-cyan-500/20 rounded-3xl p-10 text-center transition-all duration-300 shadow-xl overflow-hidden flex flex-col items-center"
           >
-            <div className="relative mb-10 w-24 h-24 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black group-hover:scale-105 transition-all duration-500 z-10 shrink-0">
+            <div className="relative mb-10 w-24 h-24 bg-foreground/5 border border-foreground/10 rounded-2xl flex items-center justify-center text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white dark:group-hover:text-black group-hover:scale-105 transition-all duration-500 z-10 shrink-0">
               <div className="scale-110">{item.icon}</div>
             </div>
 
             <div className="z-20 relative">
-              <h3 className="font-bold text-white text-xl mb-4 tracking-tight group-hover:text-cyan-400 transition-colors uppercase leading-none">{item.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed font-medium group-hover:text-gray-400 transition-colors px-2">{item.desc}</p>
+              <h3 className="font-bold text-foreground text-xl mb-4 tracking-tight group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors uppercase leading-none">{item.title}</h3>
+              <p className="text-foreground/60 text-sm leading-relaxed font-medium group-hover:text-foreground/80 transition-colors px-2">{item.desc}</p>
             </div>
           </motion.div>
         ))}
       </div>
 
       <motion.div className="flex justify-center mt-20" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-        <Link href="/processo" className="inline-flex items-center gap-4 border border-cyan-500/20 text-cyan-400 px-10 py-5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-cyan-500 hover:text-black transition-all group shadow-xl">
+        <Link href="/processo" className="inline-flex items-center gap-4 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 px-10 py-5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-cyan-500 hover:text-white dark:hover:text-black transition-all group shadow-xl">
           Visualizar Roadmap Estratégico
           <FiArrowRight className="text-lg transition-transform group-hover:translate-x-2" />
         </Link>

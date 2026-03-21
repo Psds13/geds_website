@@ -12,7 +12,7 @@ export default function CTA() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="relative bg-gradient-to-br from-[#050505] to-black border border-cyan-500/10 p-12 md:p-20 rounded-[3rem] overflow-hidden text-center shadow-2xl group"
+        className="relative bg-linear-to-br from-background to-background dark:from-[#050505] dark:to-black border border-cyan-500/10 p-12 md:p-20 rounded-[3rem] overflow-hidden text-center shadow-2xl group transition-colors"
       >
         <div className="relative z-10 flex flex-col items-center">
           <motion.div
@@ -28,7 +28,7 @@ export default function CTA() {
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-3xl md:text-5xl font-extrabold text-cyan-400 mb-8 tracking-tight leading-tight uppercase italic"
+            className="text-3xl md:text-5xl font-extrabold text-cyan-600 dark:text-cyan-400 mb-8 tracking-tight leading-tight uppercase italic"
           >
             Pronto para liderar a inovação?
           </motion.h2>
@@ -37,7 +37,7 @@ export default function CTA() {
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mb-12"
+            className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed mb-12"
           >
             Fale hoje com nosso time de elite e descubra como a GEDS Inovação impulsionará sua escalabilidade.
           </motion.p>

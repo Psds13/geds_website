@@ -64,21 +64,21 @@ const services = [
 
 export default function Servicos() {
   return (
-    <section id="servicos" className="max-w-7xl mx-auto py-24 px-6 bg-black">
+    <section id="servicos" className="max-w-7xl mx-auto py-24 px-6 bg-background transition-colors">
       <motion.div
         className="text-center mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <span className="inline-block mb-4 text-cyan-400 font-bold bg-cyan-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-widest border border-cyan-500/20">
+        <span className="inline-block mb-4 text-cyan-500 dark:text-cyan-400 font-bold bg-cyan-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-widest border border-cyan-500/20">
           Nossas Soluções
         </span>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-cyan-400 mb-6 tracking-tight leading-tight">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-cyan-500 dark:text-cyan-400 mb-6 tracking-tight leading-tight">
           Cada problema tem uma<br />
           solução GEDS de precisão
         </h2>
-        <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed">
           Engenharia disruptiva para desafios complexos. Transformamos gargalos em vantagens competitivas de mercado.
         </p>
       </motion.div>
@@ -92,27 +92,27 @@ export default function Servicos() {
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -10 }}
-              className="group h-full relative bg-[#050505] border border-white/5 hover:border-cyan-500/20 rounded-3xl p-8 transition-all duration-300 flex flex-col shadow-xl cursor-pointer"
+              className="group h-full relative bg-background border border-foreground/5 hover:border-cyan-500/20 rounded-3xl p-8 transition-all duration-300 flex flex-col shadow-xl cursor-pointer"
             >
-              <div className={`w-14 h-14 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0`}>
-                <div className="text-black scale-110">{item.icon}</div>
+              <div className={`w-14 h-14 bg-linear-to-br ${item.color} rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0`}>
+                <div className="text-white dark:text-black scale-110">{item.icon}</div>
               </div>
               
-              <h3 className="text-xl font-bold text-white mb-6 group-hover:text-cyan-400 transition-colors tracking-tight">{item.title}</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors tracking-tight">{item.title}</h3>
 
               <div className="space-y-4 flex-1">
-                <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all">
-                  <p className="text-gray-500 text-[9px] uppercase font-bold tracking-widest mb-1 flex items-center gap-2">
-                     <FiX className="text-red-400" /> Gargalo
+                <div className="p-4 rounded-xl bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-all">
+                  <p className="text-foreground/50 text-[9px] uppercase font-bold tracking-widest mb-1 flex items-center gap-2">
+                     <FiX className="text-red-500 dark:text-red-400" /> Gargalo
                   </p>
-                  <p className="text-gray-400 text-xs leading-relaxed">{item.problem}</p>
+                  <p className="text-foreground/70 text-xs leading-relaxed">{item.problem}</p>
                 </div>
 
                 <div className="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/10 hover:bg-cyan-500/10 transition-all">
-                  <p className="text-cyan-400 text-[9px] uppercase font-bold tracking-widest mb-1 flex items-center gap-2">
+                  <p className="text-cyan-600 dark:text-cyan-400 text-[9px] uppercase font-bold tracking-widest mb-1 flex items-center gap-2">
                      <Zap className="w-3 h-3" /> Solução GEDS
                   </p>
-                  <p className="text-gray-200 text-xs leading-relaxed font-semibold">{item.solution}</p>
+                  <p className="text-foreground/90 text-xs leading-relaxed font-semibold">{item.solution}</p>
                 </div>
 
                 <div className="pt-4 mt-auto">
@@ -123,7 +123,7 @@ export default function Servicos() {
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center text-cyan-500 text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
+              <div className="mt-6 flex items-center text-cyan-600 dark:text-cyan-500 text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
                 <span>Saiba Mais Detalhes</span>
                 <FiArrowRight className="ml-2" />
               </div>
@@ -133,7 +133,7 @@ export default function Servicos() {
       </div>
 
       <motion.div className="flex justify-center" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-        <Link href="/servicos" className="inline-flex items-center gap-3 border border-cyan-500/20 text-cyan-400 px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-cyan-500 hover:text-black transition-all duration-300">
+        <Link href="/servicos" className="inline-flex items-center gap-3 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-cyan-500 hover:text-white dark:hover:text-black transition-all duration-300">
           Conheça nosso catálogo de Serviços
           <FiArrowRight className="text-lg" />
         </Link>

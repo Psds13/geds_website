@@ -42,22 +42,13 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#050505] text-white pt-24 pb-12 overflow-hidden border-t border-white/5">
+    <footer className="relative bg-background text-foreground pt-24 pb-12 overflow-hidden border-t border-foreground/5 transition-colors">
       {/* Premium Background Elements */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
-      {/* Grid Pattern Overlay */}
       <div 
-        className="absolute inset-0 opacity-[0.03] -z-10"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-          maskImage: "linear-gradient(180deg, white, rgba(255,255,255,0))"
-        }}
+        className="absolute inset-0 opacity-[0.03] -z-10 bg-[linear-gradient(currentColor_1px,transparent_1px),linear-gradient(90deg,currentColor_1px,transparent_1px)] bg-size-[40px_40px] text-foreground mask-[linear-gradient(180deg,black,transparent)] dark:mask-[linear-gradient(180deg,white,transparent)]"
       />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -71,7 +62,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className="flex items-center group cursor-pointer"
             >
-              <div className="relative mr-4 p-1 rounded-full bg-white/5 border border-white/10 group-hover:border-cyan-500/50 transition-all duration-500">
+              <div className="relative mr-4 p-1 rounded-full bg-foreground/5 border border-foreground/10 group-hover:border-cyan-500/50 transition-all duration-500">
                 <Image
                   src="/GEDS Inovação.png"
                   alt="GEDS Inovação"
@@ -81,7 +72,7 @@ export default function Footer() {
                 />
                 <div className="absolute inset-0 bg-cyan-500/20 blur-md rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
-              <span className="text-2xl font-black tracking-tighter bg-gradient-to-r from-white via-white to-cyan-400 bg-clip-text text-transparent">
+              <span className="text-2xl font-black tracking-tighter bg-linear-to-r from-foreground via-foreground to-cyan-500 dark:from-white dark:via-white dark:to-cyan-400 bg-clip-text text-transparent">
                 GEDS INOVAÇÃO
               </span>
             </motion.div>
@@ -91,7 +82,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-gray-400 max-w-sm leading-relaxed text-lg"
+              className="text-foreground/70 max-w-sm leading-relaxed text-lg"
             >
               Forjando o futuro digital através de engenharia disruptiva e design de precisão. Transformamos visões em realidades escaláveis.
             </motion.p>
@@ -107,12 +98,12 @@ export default function Footer() {
                 <Link
                   key={social.name}
                   href={social.href}
-                  className={`group relative w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-all duration-300 ${social.color}`}
+                  className={`group relative w-12 h-12 flex items-center justify-center rounded-xl bg-foreground/5 border border-foreground/10 text-foreground/70 hover:text-foreground transition-all duration-300 ${social.color}`}
                 >
                   <span className="text-xl relative z-10 group-hover:scale-110 transition-transform">
                     {social.icon}
                   </span>
-                  <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
+                  <div className="absolute inset-0 rounded-xl bg-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity blur-sm"></div>
                 </Link>
               ))}
             </motion.div>
@@ -120,7 +111,7 @@ export default function Footer() {
 
           {/* Navigation Links */}
           <div className="lg:col-span-2 space-y-6">
-            <h3 className="text-white font-bold text-sm uppercase tracking-widest border-l-2 border-cyan-500 pl-4">
+            <h3 className="text-foreground font-bold text-sm uppercase tracking-widest border-l-2 border-cyan-500 pl-4">
               Páginas
             </h3>
             <ul className="space-y-4">
@@ -134,7 +125,7 @@ export default function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="group text-gray-400 hover:text-cyan-400 transition-all flex items-center text-sm"
+                    className="group text-foreground/70 hover:text-cyan-500 dark:hover:text-cyan-400 transition-all flex items-center text-sm"
                   >
                     <FiChevronRight className="w-0 group-hover:w-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-cyan-500" />
                     <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
@@ -146,7 +137,7 @@ export default function Footer() {
 
           {/* Legal Section */}
           <div className="lg:col-span-2 space-y-6">
-            <h3 className="text-white font-bold text-sm uppercase tracking-widest border-l-2 border-cyan-500 pl-4">
+            <h3 className="text-foreground font-bold text-sm uppercase tracking-widest border-l-2 border-cyan-500 pl-4">
               Legal
             </h3>
             <ul className="space-y-4">
@@ -160,7 +151,7 @@ export default function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="group text-gray-400 hover:text-cyan-400 transition-all flex items-center text-sm"
+                    className="group text-foreground/70 hover:text-cyan-500 dark:hover:text-cyan-400 transition-all flex items-center text-sm"
                   >
                     <FiChevronRight className="w-0 group-hover:w-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-cyan-500" />
                     <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
@@ -172,7 +163,7 @@ export default function Footer() {
 
           {/* Contact Section */}
           <div className="lg:col-span-3 space-y-6">
-            <h3 className="text-white font-bold text-sm uppercase tracking-widest border-l-2 border-cyan-500 pl-4">
+            <h3 className="text-foreground font-bold text-sm uppercase tracking-widest border-l-2 border-cyan-500 pl-4">
               Contato
             </h3>
             <div className="space-y-6">
@@ -189,12 +180,12 @@ export default function Footer() {
                   transition={{ delay: 0.3 + (idx * 0.1) }}
                   className="flex items-start group"
                 >
-                  <div className="w-10 h-10 shrink-0 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all duration-500">
+                  <div className="w-10 h-10 shrink-0 rounded-lg bg-foreground/5 border border-foreground/10 flex items-center justify-center text-cyan-500 dark:text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white dark:group-hover:text-black transition-all duration-500">
                     {item.icon}
                   </div>
                   <div className="ml-4">
-                    <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-0.5">{item.label}</p>
-                    <p className="text-gray-300 group-hover:text-white transition-colors text-sm">{item.text}</p>
+                    <p className="text-[10px] text-foreground/50 uppercase tracking-widest mb-0.5">{item.label}</p>
+                    <p className="text-foreground/80 group-hover:text-foreground transition-colors text-sm">{item.text}</p>
                   </div>
                 </motion.div>
               ))}
@@ -204,7 +195,7 @@ export default function Footer() {
 
         {/* Divider with Glow */}
         <div className="relative">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+          <div className="h-px w-full bg-linear-to-r from-transparent via-foreground/10 to-transparent"></div>
           <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[2px] w-48 bg-cyan-500 blur-sm"></div>
         </div>
 
@@ -216,11 +207,11 @@ export default function Footer() {
             viewport={{ once: true }}
             className="flex flex-col items-center md:items-start space-y-2"
           >
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.3em]">
-              © 2026 <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GEDS INOVAÇÃO</span>
+            <p className="text-xs font-bold text-foreground/70 uppercase tracking-[0.3em]">
+              © 2026 <span className="text-foreground drop-shadow-[0_0_8px_rgba(0,0,0,0.3)] dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GEDS INOVAÇÃO</span>
             </p>
-            <p className="text-[11px] font-medium text-gray-400/80 uppercase tracking-widest flex items-center gap-2">
-              <span className="w-4 h-[1px] bg-cyan-500/50"></span>
+            <p className="text-[11px] font-medium text-foreground/70 uppercase tracking-widest flex items-center gap-2">
+              <span className="w-4 h-px bg-cyan-500/50"></span>
               Soluções Tecnológicas de Alto Desempenho
             </p>
           </motion.div>
@@ -230,9 +221,9 @@ export default function Footer() {
             whileHover={{ y: -5 }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToTop}
-            className="group relative px-8 py-3 rounded-full bg-white/5 border border-white/10 overflow-hidden transition-all duration-500 hover:border-cyan-500/50"
+            className="group relative px-8 py-3 rounded-full bg-foreground/5 border border-foreground/10 overflow-hidden transition-all duration-500 hover:border-cyan-500/50 text-foreground"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
             <div className="relative flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em]">
               <span>Voltar ao topo</span>
               <FiArrowUp className="w-4 h-4 text-cyan-500 group-hover:-translate-y-1 transition-transform" />

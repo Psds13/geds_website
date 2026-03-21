@@ -70,8 +70,8 @@ export default function Hero() {
   const [showDiagnostic, setShowDiagnostic] = useState(false);
 
   return (
-    <section id="hero" className="relative bg-black text-white min-h-[90vh] flex flex-col items-center justify-center p-6 pt-32 pb-20 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(0,219,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,219,255,1)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(circle_at_center,black,transparent_80%)]" />
+    <section id="hero" className="relative bg-background text-foreground min-h-[90vh] flex flex-col items-center justify-center p-6 pt-32 pb-20 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(var(--color-cyan)_1px,transparent_1px),linear-gradient(90deg,var(--color-cyan)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(circle_at_center,black,transparent_80%)] dark:[mask-image:radial-gradient(circle_at_center,white,transparent_80%)]" />
 
       <div className="container mx-auto relative z-10 text-center">
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="inline-block mb-10 px-5 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 backdrop-blur-sm text-cyan-400 text-[10px] uppercase font-bold tracking-widest">
@@ -83,24 +83,24 @@ export default function Hero() {
           <TypingText />
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed">
           Transformamos gargalos operacionais em vantagens tecnológicas de alto desempenho. 
           Resultados reais para empresas que buscam o próximo nível.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-20">
-          <button onClick={() => setShowDiagnostic(true)} className="w-full sm:w-auto px-10 py-5 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition-all shadow-xl font-bold uppercase text-xs tracking-widest">
+          <button onClick={() => setShowDiagnostic(true)} className="w-full sm:w-auto px-10 py-5 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 dark:bg-cyan dark:text-black transition-all shadow-xl uppercase text-xs tracking-widest">
             Fazer Diagnóstico
           </button>
-          <Link href="/contatos" className="w-full sm:w-auto px-10 py-5 border border-white/20 text-white rounded-full hover:bg-white/5 transition-all font-bold uppercase text-xs tracking-widest">
+          <Link href="/contatos" className="w-full sm:w-auto px-10 py-5 border border-foreground/20 text-foreground rounded-full hover:bg-foreground/5 transition-all font-bold uppercase text-xs tracking-widest">
             Falar com Especialista
           </Link>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {METRICS.map((m, i) => (
-            <div key={i} className="p-6 bg-white/[0.02] border border-white/5 rounded-[2rem]">
-              <div className={`text-3xl font-bold mb-1 ${m.color === "cyan" ? "text-cyan-400" : "text-emerald-400"}`}>
+            <div key={i} className="p-6 bg-foreground/[0.02] border border-foreground/5 rounded-[2rem]">
+              <div className={`text-3xl font-bold mb-1 ${m.color === "cyan" ? "text-cyan-500 dark:text-cyan-400" : "text-emerald-500 dark:text-emerald-400"}`}>
                 <AnimatedCounter target={m.value} suffix={m.suffix} />
               </div>
               <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{m.label}</p>

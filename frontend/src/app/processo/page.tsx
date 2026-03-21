@@ -35,7 +35,7 @@ const ProcessoPage = () => {
   ];
 
   return (
-    <main className="bg-black text-white">
+    <main className="bg-background text-foreground">
       <SquareReveal gridSize={12}>
         {/* Hero Section */}
         <section className="relative py-20 px-6 max-w-7xl mx-auto overflow-hidden">
@@ -55,7 +55,7 @@ const ProcessoPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Nosso Processo de <span className="text-cyan-400">Desenvolvimento</span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
               Um fluxo de trabalho transparente e eficiente que garante resultados excepcionais em cada projeto.
             </p>
           </motion.div>
@@ -67,7 +67,7 @@ const ProcessoPage = () => {
             {etapas.map((etapa, index) => (
               <motion.div
                 key={index}
-                className="bg-white/5 p-8 rounded-xl shadow-lg border border-white/10 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(0,219,255,0.1)] transition-all"
+                className="bg-foreground/5 p-8 rounded-xl shadow-lg border border-foreground/10 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(0,219,255,0.1)] transition-all"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -78,8 +78,8 @@ const ProcessoPage = () => {
                     {etapa.icon}
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-white mb-2">{etapa.title}</h2>
-                    <p className="text-gray-400">{etapa.desc}</p>
+                    <h2 className="text-2xl font-bold text-foreground mb-2">{etapa.title}</h2>
+                    <p className="text-foreground/70">{etapa.desc}</p>
                   </div>
                 </div>
 
@@ -87,7 +87,7 @@ const ProcessoPage = () => {
                   {etapa.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-2">
                       <FiCheckCircle className="text-cyan-400 shrink-0" />
-                      <span className="text-gray-300">{feature}</span>
+                      <span className="text-foreground/80">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -97,24 +97,24 @@ const ProcessoPage = () => {
         </section>
 
         {/* Highlight Section */}
-        <section className="py-20 px-6 bg-linear-to-r from-blue-900/40 to-cyan-900/40 border-y border-white/10 backdrop-blur-sm">
+        <section className="py-20 px-6 bg-linear-to-r from-blue-900/40 to-cyan-900/40 border-y border-foreground/10 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6 text-white">Compromisso com Prazos e Transparência</h2>
-            <p className="text-xl mb-8 text-gray-300">
+            <h2 className="text-3xl font-bold mb-6 text-foreground">Compromisso com Prazos e Transparência</h2>
+            <p className="text-xl mb-8 text-foreground/80">
               Sabemos que tecnologia precisa gerar valor real. Por isso, mantemos uma <strong>comunicação clara</strong> durante todo o ciclo, com cronogramas definidos e <strong>respeito absoluto aos prazos</strong>. Você acompanha cada evolução do projeto, sem surpresas.
             </p>
             <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <div className="bg-black/40 p-6 rounded-xl border border-white/10">
-                <div className="text-4xl font-bold mb-2 text-cyan-400">100%</div>
-                <div className="text-gray-400">Projetos Entregues</div>
+              <div className="bg-background flex-1 p-6 rounded-xl border border-foreground/10">
+                <div className="text-4xl font-bold mb-2 text-cyan-500 dark:text-cyan-400">100%</div>
+                <div className="text-foreground/70">Projetos Entregues</div>
               </div>
-              <div className="bg-black/40 p-6 rounded-xl border border-white/10">
-                <div className="text-4xl font-bold mb-2 text-cyan-400">24/7</div>
-                <div className="text-gray-400">Suporte Contínuo</div>
+              <div className="bg-background flex-1 p-6 rounded-xl border border-foreground/10">
+                <div className="text-4xl font-bold mb-2 text-cyan-500 dark:text-cyan-400">24/7</div>
+                <div className="text-foreground/70">Suporte Contínuo</div>
               </div>
-              <div className="bg-black/40 p-6 rounded-xl border border-white/10">
-                <div className="text-4xl font-bold mb-2 text-cyan-400">30+</div>
-                <div className="text-gray-400">Clientes Satisfeitos</div>
+              <div className="bg-background flex-1 p-6 rounded-xl border border-foreground/10">
+                <div className="text-4xl font-bold mb-2 text-cyan-500 dark:text-cyan-400">30+</div>
+                <div className="text-foreground/70">Clientes Satisfeitos</div>
               </div>
             </div>
           </div>
@@ -127,10 +127,10 @@ const ProcessoPage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white/5 p-10 rounded-2xl shadow-xl border border-white/10"
+            className="bg-foreground/5 p-10 rounded-2xl shadow-xl border border-foreground/10"
           >
-            <h2 className="text-3xl font-bold text-white mb-4">Pronto para começar seu projeto?</h2>
-            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Pronto para começar seu projeto?</h2>
+            <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
               Nosso processo comprovado garante que sua visão se torne realidade com qualidade e eficiência.
             </p>
             <Link
@@ -147,7 +147,7 @@ const ProcessoPage = () => {
         <div className="pb-16 px-6 flex justify-center">
           <Link
             href="/"
-            className="inline-flex items-center border border-white/20 text-gray-300 px-6 py-3 rounded-full font-medium hover:bg-white/10 transition"
+            className="inline-flex items-center border border-foreground/20 text-foreground/80 px-6 py-3 rounded-full font-medium hover:bg-foreground/10 transition"
           >
             Voltar para a página inicial
           </Link>

@@ -6,10 +6,10 @@ import About from "./components/About";
 
 export default function Home() {
   return (
-    <main className="bg-black min-h-screen">
+    <main className="bg-background min-h-screen">
       <Hero />
       <HomeContent />
-      <section className="bg-black border-t border-white/5">
+      <section className="bg-background border-t border-foreground/5">
         <About />
       </section>
     </main>
