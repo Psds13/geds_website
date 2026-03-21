@@ -81,13 +81,13 @@ function StepIndicator({ current, total }: { current: number; total: number }) {
         <div key={i} className="flex items-center gap-2">
           <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black transition-all duration-300 shrink-0 ${
             i < current ? 'bg-cyan-500 text-black' :
-            i === current ? 'bg-white/10 text-cyan-400 border border-cyan-500/40' :
-            'bg-white/5 text-gray-700'
+            i === current ? 'bg-foreground/10 text-cyan-400 border border-cyan-500/40' :
+            'bg-foreground/5 text-gray-700'
           }`}>
             {i < current ? <CheckCircle className="w-4 h-4" /> : i + 1}
           </div>
           {i < total - 1 && (
-            <div className={`h-px flex-1 min-w-[16px] transition-all duration-500 ${i < current ? 'bg-cyan-500' : 'bg-white/10'}`} />
+            <div className={`h-px flex-1 min-w-[16px] transition-all duration-500 ${i < current ? 'bg-cyan-500' : 'bg-foreground/10'}`} />
           )}
         </div>
       ))}
@@ -135,7 +135,7 @@ export default function Contact() {
 
   if (submitted) {
     return (
-      <main className="min-h-screen bg-black flex items-center justify-center p-4">
+      <main className="min-h-screen bg-background flex items-center justify-center p-4">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -149,11 +149,11 @@ export default function Contact() {
           >
             <CheckCircle className="w-12 h-12 text-emerald-400" />
           </motion.div>
-          <h2 className="text-3xl font-black text-white mb-3">Mensagem enviada!</h2>
-          <p className="text-gray-400 mb-6">Nossa equipe analisará sua solicitação e entrará em contato em breve com soluções personalizadas.</p>
+          <h2 className="text-3xl font-black text-foreground mb-3">Mensagem enviada!</h2>
+          <p className="text-foreground/70 mb-6">Nossa equipe analisará sua solicitação e entrará em contato em breve com soluções personalizadas.</p>
           <button
             onClick={() => { setSubmitted(false); setStep(0); setSelectedProblem(null); }}
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black px-8 py-3 rounded-full hover:shadow-[0_0_20px_rgba(0,219,255,0.4)] transition-all"
+            className="bg-linear-to-r from-cyan-500 to-blue-600 text-black font-black px-8 py-3 rounded-full hover:shadow-[0_0_20px_rgba(0,219,255,0.4)] transition-all"
           >
             Enviar nova mensagem
           </button>
@@ -163,7 +163,7 @@ export default function Contact() {
   }
 
   return (
-    <main className="min-h-screen w-full bg-black overflow-hidden relative text-white">
+    <main className="min-h-screen w-full bg-background overflow-hidden relative text-foreground">
 
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -188,10 +188,10 @@ export default function Contact() {
           <span className="inline-block mb-4 text-cyan-400 font-bold bg-cyan-500/10 px-4 py-2 rounded-full text-xs uppercase tracking-widest border border-cyan-500/20">
             Contato Inteligente
           </span>
-          <h1 className="text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
-            Vamos criar o <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">futuro</span> juntos?
+          <h1 className="text-4xl md:text-6xl font-black text-foreground mb-4 leading-tight">
+            Vamos criar o <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">futuro</span> juntos?
           </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
             Nosso sistema inteligente analisa seu problema e sugere as melhores soluções automaticamente.
           </p>
         </motion.div>
@@ -206,54 +206,54 @@ export default function Contact() {
             className="space-y-6"
           >
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
-              <div className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-all">
-                <h3 className="text-2xl font-black text-white mb-6">Canais de Atendimento</h3>
+              <div className="absolute inset-0 bg-linear-to-r from-cyan-600 to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
+              <div className="relative bg-foreground/3 backdrop-blur-xl border border-foreground/10 rounded-2xl p-8 hover:border-cyan-500/30 transition-all">
+                <h3 className="text-2xl font-black text-foreground mb-6">Canais de Atendimento</h3>
                 <div className="space-y-4">
-                  <a href="mailto:contato@gedsinovacao.com" className="flex items-center gap-5 p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:bg-white/8 hover:border-cyan-500/30 transition-all group/item">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center border border-cyan-500/30 group-hover/item:scale-110 transition-transform shrink-0">
+                  <a href="mailto:contato@gedsinovacao.com" className="flex items-center gap-5 p-4 rounded-xl bg-foreground/3 border border-foreground/5 hover:bg-foreground/8 hover:border-cyan-500/30 transition-all group/item">
+                    <div className="w-12 h-12 rounded-xl bg-linear-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center border border-cyan-500/30 group-hover/item:scale-110 transition-transform shrink-0">
                       <FaEnvelope className="text-cyan-400 text-xl" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">Email Corporativo</p>
-                      <p className="text-white font-bold group-hover/item:text-cyan-300 transition-colors">contato@gedsinovacao.com</p>
+                      <p className="text-xs text-foreground/60 uppercase tracking-wider mb-0.5">Email Corporativo</p>
+                      <p className="text-foreground font-bold group-hover/item:text-cyan-300 transition-colors">contato@gedsinovacao.com</p>
                     </div>
                   </a>
 
-                  <a href="https://wa.me/5598987654321" target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:bg-white/8 hover:border-emerald-500/30 transition-all group/item">
+                  <a href="https://wa.me/5598987654321" target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 p-4 rounded-xl bg-foreground/3 border border-foreground/5 hover:bg-foreground/8 hover:border-emerald-500/30 transition-all group/item">
                     <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center group-hover/item:scale-110 transition-transform shrink-0">
                       <FaWhatsapp className="text-emerald-400 text-xl" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">WhatsApp</p>
-                      <p className="text-white font-bold group-hover/item:text-emerald-300 transition-colors">(98) 99999-9999</p>
+                      <p className="text-xs text-foreground/60 uppercase tracking-wider mb-0.5">WhatsApp</p>
+                      <p className="text-foreground font-bold group-hover/item:text-emerald-300 transition-colors">(98) 99999-9999</p>
                     </div>
                   </a>
 
-                  <div className="flex items-center gap-5 p-4 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="flex items-center gap-5 p-4 rounded-xl bg-foreground/3 border border-foreground/5">
                     <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
                       <FaMapMarkerAlt className="text-purple-400 text-xl" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">Localização</p>
-                      <p className="text-white font-bold">São Luís – MA, Brasil</p>
-                      <p className="text-sm text-gray-500">Atendimento Remoto Global</p>
+                      <p className="text-xs text-foreground/60 uppercase tracking-wider mb-0.5">Localização</p>
+                      <p className="text-foreground font-bold">São Luís – MA, Brasil</p>
+                      <p className="text-sm text-foreground/60">Atendimento Remoto Global</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Socials */}
-                <div className="mt-8 pt-6 border-t border-white/8">
-                  <p className="text-gray-500 text-xs uppercase tracking-wider text-center mb-4">Siga-nos</p>
+                <div className="mt-8 pt-6 border-t border-foreground/8">
+                  <p className="text-foreground/60 text-xs uppercase tracking-wider text-center mb-4">Siga-nos</p>
                   <div className="flex justify-center gap-4">
                     {[
                       { icon: FaInstagram, color: "hover:text-pink-500", label: "Instagram", href: "#" },
-                      { icon: FaGithub, color: "hover:text-white", label: "Github", href: "#" },
+                      { icon: FaGithub, color: "hover:text-foreground", label: "Github", href: "#" },
                       { icon: FaLinkedin, color: "hover:text-blue-400", label: "LinkedIn", href: "#" },
                       { icon: FaGlobe, color: "hover:text-cyan-400", label: "Website", href: "#" },
                     ].map((social, i) => (
                       <a key={i} href={social.href} aria-label={social.label}
-                        className={`w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-gray-500 ${social.color} hover:bg-white/8 hover:scale-110 transition-all`}>
+                        className={`w-12 h-12 rounded-xl bg-foreground/3 border border-foreground/10 flex items-center justify-center text-foreground/60 ${social.color} hover:bg-foreground/8 hover:scale-110 transition-all`}>
                         <social.icon className="text-xl" />
                       </a>
                     ))}
@@ -263,17 +263,17 @@ export default function Contact() {
             </div>
 
             {/* Smart assistant badge */}
-            <div className="bg-gradient-to-r from-purple-950/40 to-black border border-purple-500/20 rounded-2xl p-5">
+            <div className="bg-linear-to-r from-purple-950/40 to-black border border-purple-500/20 rounded-2xl p-5">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 bg-purple-500/10 border border-purple-500/20 rounded-xl flex items-center justify-center">
                   <Brain className="w-5 h-5 text-purple-400" />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm">Formulário Inteligente</p>
+                  <p className="text-foreground font-bold text-sm">Formulário Inteligente</p>
                   <p className="text-purple-400 text-xs">IA sugerindo soluções em tempo real</p>
                 </div>
               </div>
-              <p className="text-gray-500 text-sm">
+              <p className="text-foreground/60 text-sm">
                 Selecione o tipo do seu problema e nosso sistema irá sugerir automaticamente as melhores soluções para o seu caso.
               </p>
             </div>
@@ -286,8 +286,8 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-br from-cyan-600 via-blue-600 to-purple-600 rounded-2xl blur opacity-20" />
-              <div className="relative bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
+              <div className="absolute -inset-1 bg-linear-to-br from-cyan-600 via-blue-600 to-purple-600 rounded-2xl blur opacity-20" />
+              <div className="relative bg-background/90 backdrop-blur-xl border border-foreground/10 rounded-2xl p-8 shadow-2xl">
 
                 <StepIndicator current={step} total={2} />
 
@@ -301,8 +301,8 @@ export default function Contact() {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
                     >
-                      <h3 className="text-2xl font-black text-white mb-2">Qual é o seu desafio?</h3>
-                      <p className="text-gray-400 text-sm mb-6">Selecione a categoria que melhor descreve o que você precisa</p>
+                      <h3 className="text-2xl font-black text-foreground mb-2">Qual é o seu desafio?</h3>
+                      <p className="text-foreground/70 text-sm mb-6">Selecione a categoria que melhor descreve o que você precisa</p>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                         {problemTypes.map((type) => (
@@ -316,11 +316,11 @@ export default function Contact() {
                             whileTap={{ scale: 0.98 }}
                             className={`flex items-center gap-3 p-4 rounded-xl border text-left transition-all ${
                               selectedProblem?.id === type.id
-                                ? 'bg-cyan-500/10 border-cyan-500/40 text-white'
-                                : 'bg-white/[0.02] border-white/8 text-gray-400 hover:border-cyan-500/20 hover:text-gray-200'
+                                ? 'bg-cyan-500/10 border-cyan-500/40 text-foreground'
+                                : 'bg-foreground/2 border-foreground/8 text-foreground/70 hover:border-cyan-500/20 hover:text-gray-200'
                             }`}
                           >
-                            <div className={`shrink-0 transition-colors ${selectedProblem?.id === type.id ? 'text-cyan-400' : 'text-gray-600'}`}>
+                            <div className={`shrink-0 transition-colors ${selectedProblem?.id === type.id ? 'text-cyan-400' : 'text-foreground/50'}`}>
                               {type.icon}
                             </div>
                             <span className="text-sm font-bold">{type.label}</span>
@@ -357,7 +357,7 @@ export default function Contact() {
                       <div className="flex gap-3">
                         <button
                           onClick={() => setStep(1)}
-                          className="flex-1 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black rounded-full hover:shadow-[0_0_20px_rgba(0,219,255,0.3)] transition-all flex items-center justify-center gap-2"
+                          className="flex-1 py-3 bg-linear-to-r from-cyan-500 to-blue-600 text-black font-black rounded-full hover:shadow-[0_0_20px_rgba(0,219,255,0.3)] transition-all flex items-center justify-center gap-2"
                         >
                           {selectedProblem ? 'Continuar com formulário' : 'Pular e preencher'}
                           <ChevronRight className="w-4 h-4" />
@@ -379,7 +379,7 @@ export default function Contact() {
                           <FaPaperPlane className="text-cyan-400 text-lg" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-black text-white">
+                          <h3 className="text-xl font-black text-foreground">
                             {selectedProblem ? `${selectedProblem.label}` : 'Envie sua mensagem'}
                           </h3>
                           {selectedProblem && (
@@ -393,7 +393,7 @@ export default function Contact() {
                       {selectedProblem && (
                         <div className="bg-cyan-500/5 border border-cyan-500/15 rounded-xl p-3 mb-5 flex items-center gap-3">
                           <div className="text-cyan-400 shrink-0">{selectedProblem.icon}</div>
-                          <p className="text-gray-400 text-xs leading-relaxed">{selectedProblem.suggestion}</p>
+                          <p className="text-foreground/70 text-xs leading-relaxed">{selectedProblem.suggestion}</p>
                         </div>
                       )}
 
@@ -402,9 +402,9 @@ export default function Contact() {
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <FormField control={form.control} name="name" render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-gray-400 text-sm">Seu Nome</FormLabel>
+                                <FormLabel className="text-foreground/70 text-sm">Seu Nome</FormLabel>
                                 <FormControl>
-                                  <Input placeholder="João Silva" className="py-5 bg-white/[0.03] border-white/10 text-white placeholder:text-gray-700 focus:border-cyan-500/50" {...field} />
+                                  <Input placeholder="João Silva" className="py-5 bg-foreground/3 border-foreground/10 text-foreground placeholder:text-gray-700 focus:border-cyan-500/50" {...field} />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
@@ -412,9 +412,9 @@ export default function Contact() {
 
                             <FormField control={form.control} name="email" render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-gray-400 text-sm">Seu Email</FormLabel>
+                                <FormLabel className="text-foreground/70 text-sm">Seu Email</FormLabel>
                                 <FormControl>
-                                  <Input type="email" placeholder="joao@empresa.com" className="py-5 bg-white/[0.03] border-white/10 text-white placeholder:text-gray-700 focus:border-cyan-500/50" {...field} />
+                                  <Input type="email" placeholder="joao@empresa.com" className="py-5 bg-foreground/3 border-foreground/10 text-foreground placeholder:text-gray-700 focus:border-cyan-500/50" {...field} />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
@@ -423,11 +423,11 @@ export default function Contact() {
 
                           <FormField control={form.control} name="subject" render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-gray-400 text-sm">Assunto</FormLabel>
+                              <FormLabel className="text-foreground/70 text-sm">Assunto</FormLabel>
                               <FormControl>
                                 <Input
                                   placeholder={selectedProblem ? `${selectedProblem.label} - descreva brevemente...` : "Sobre o que você quer falar?"}
-                                  className="py-5 bg-white/[0.03] border-white/10 text-white placeholder:text-gray-700 focus:border-cyan-500/50"
+                                  className="py-5 bg-foreground/3 border-foreground/10 text-foreground placeholder:text-gray-700 focus:border-cyan-500/50"
                                   {...field}
                                 />
                               </FormControl>
@@ -437,7 +437,7 @@ export default function Contact() {
 
                           <FormField control={form.control} name="message" render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-gray-400 text-sm">
+                              <FormLabel className="text-foreground/70 text-sm">
                                 Sua Mensagem
                                 {form.watch('message') && (
                                   <span className="ml-2 text-green-400 text-xs">✓ {form.watch('message').length} caracteres</span>
@@ -448,7 +448,7 @@ export default function Contact() {
                                   placeholder={selectedProblem
                                     ? `Conte mais sobre seu desafio com ${selectedProblem.label.toLowerCase()}...`
                                     : "Descreva seu projeto ou dúvida..."}
-                                  className="resize-none bg-white/[0.03] border-white/10 text-white placeholder:text-gray-700 focus:border-cyan-500/50"
+                                  className="resize-none bg-foreground/3 border-foreground/10 text-foreground placeholder:text-gray-700 focus:border-cyan-500/50"
                                   rows={4}
                                   {...field}
                                 />
@@ -461,14 +461,14 @@ export default function Contact() {
                             <button
                               type="button"
                               onClick={() => setStep(0)}
-                              className="px-5 py-3 border border-white/10 text-gray-400 rounded-full hover:bg-white/5 transition-all text-sm"
+                              className="px-5 py-3 border border-foreground/10 text-foreground/70 rounded-full hover:bg-foreground/5 transition-all text-sm"
                             >
                               ← Voltar
                             </button>
                             <Button
                               type="submit"
                               disabled={isSubmitting}
-                              className="flex-1 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black rounded-full hover:shadow-[0_0_20px_rgba(0,219,255,0.4)] transition-all disabled:opacity-60"
+                              className="flex-1 py-5 bg-linear-to-r from-cyan-500 to-blue-600 text-black font-black rounded-full hover:shadow-[0_0_20px_rgba(0,219,255,0.4)] transition-all disabled:opacity-60"
                             >
                               <span className="flex items-center justify-center gap-2">
                                 {isSubmitting ? (
@@ -480,7 +480,7 @@ export default function Contact() {
                             </Button>
                           </div>
 
-                          <p className="text-center text-[11px] text-gray-600">
+                          <p className="text-center text-[11px] text-foreground/50">
                             Ao enviar, você concorda com nossa{' '}
                             <a href="/politica-de-privacidade" className="text-cyan-500 hover:underline">Política de Privacidade</a>.
                             Respondemos em até 24h úteis.

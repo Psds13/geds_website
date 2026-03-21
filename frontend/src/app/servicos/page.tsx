@@ -72,7 +72,7 @@ const Services = () => {
   };
 
   return (
-    <section id="servicos" className="py-20 bg-black text-white">
+    <section id="servicos" className="py-20 bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Cabeçalho */}
         <motion.div
@@ -86,9 +86,9 @@ const Services = () => {
             Nossos Serviços
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Soluções <span className="text-cyan-400">Tecnológicas</span> Sob Medida
+            Soluções <span className="text-cyan-500 dark:text-cyan-400">Tecnológicas</span> Sob Medida
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
             Impulsionamos seu negócio com desenvolvimento web de alta qualidade e soluções inovadoras
           </p>
         </motion.div>
@@ -101,7 +101,7 @@ const Services = () => {
             return (
               <Link href={targetLink} key={service.id} className="block">
                 <motion.div
-                  className="group bg-white/5 rounded-xl shadow-lg overflow-hidden border border-white/10 hover:shadow-[0_0_20px_rgba(0,219,255,0.2)] hover:border-cyan-500/50 transition-all h-full"
+                  className="group bg-foreground/5 rounded-xl shadow-lg overflow-hidden border border-foreground/10 hover:shadow-[0_0_20px_rgba(0,219,255,0.2)] hover:border-cyan-500/50 transition-all h-full"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05, duration: 0.3 }}
@@ -117,16 +117,16 @@ const Services = () => {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
-                    <div className="absolute bottom-4 left-4 p-2 bg-black/60 rounded-lg backdrop-blur-md border border-white/10">
+                    <div className="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent" />
+                    <div className="absolute bottom-4 left-4 p-2 bg-background/60 rounded-lg backdrop-blur-md border border-foreground/10">
                       {renderIcon(service.nome_icone)}
                     </div>
                   </div>
 
                   <div className="p-6 flex flex-col justify-between h-[calc(100%-12rem)]">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{service.titulo}</h3>
-                      <p className="text-gray-400 mb-4">{service.descricao}</p>
+                      <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors">{service.titulo}</h3>
+                      <p className="text-foreground/70 mb-4">{service.descricao}</p>
                     </div>
                     <span className="inline-flex items-center text-cyan-400 font-medium group-hover:text-cyan-300 transition mt-4">
                       Saiba mais
@@ -141,29 +141,29 @@ const Services = () => {
 
         {/* Destaque Tecnológico */}
         <motion.div
-          className="mt-20 bg-white/5 rounded-2xl shadow-xl overflow-hidden border border-white/10 backdrop-blur-sm"
+          className="mt-20 bg-foreground/5 rounded-2xl shadow-xl overflow-hidden border border-foreground/10 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
           viewport={{ once: true }}
         >
           <div className="flex flex-col lg:flex-row">
-            <div className="lg:w-1/2 p-10 lg:p-14 bg-linear-to-r from-blue-900/60 to-cyan-900/60 text-white border-r border-white/10">
+            <div className="lg:w-1/2 p-10 lg:p-14 bg-linear-to-r from-blue-900/60 to-cyan-900/60 text-foreground border-r border-foreground/10">
               <h3 className="text-3xl font-bold mb-4">Tecnologias que Dominamos</h3>
-              <p className="text-gray-300 mb-6">
+              <p className="text-foreground/80 mb-6">
                 Utilizamos as ferramentas mais modernas do mercado para entregar soluções de alta performance e qualidade.
               </p>
               <div className="flex flex-wrap gap-3">
                 {['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS', 'MSQL'].map((tech, i) => (
-                  <span key={i} className="px-4 py-2 bg-black/40 border border-white/20 rounded-full text-sm text-cyan-300">
+                  <span key={i} className="px-4 py-2 bg-background/40 border border-foreground/20 rounded-full text-sm text-cyan-600 dark:text-cyan-300">
                     {tech}
                   </span>
                 ))}
               </div>
             </div>
             <div className="lg:w-1/2 p-10 lg:p-14">
-              <h3 className="text-3xl font-bold text-white mb-4">Nossa Abordagem</h3>
-              <p className="text-gray-400 mb-6">
+              <h3 className="text-3xl font-bold text-foreground mb-4">Nossa Abordagem</h3>
+              <p className="text-foreground/70 mb-6">
                 Combinamos metodologias ágeis com anos de experiência para entregar projetos que realmente fazem a diferença.
               </p>
               <ul className="space-y-4">
@@ -171,19 +171,19 @@ const Services = () => {
                   <div className="bg-cyan-900/40 p-1 rounded-full mt-1">
                     <ArrowRight className="text-cyan-400" />
                   </div>
-                  <span className="text-gray-300">Desenvolvimento iterativo e incremental</span>
+                  <span className="text-foreground/80">Desenvolvimento iterativo e incremental</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-cyan-900/40 p-1 rounded-full mt-1">
                     <ArrowRight className="text-cyan-400" />
                   </div>
-                  <span className="text-gray-300">Foco na experiência do usuário</span>
+                  <span className="text-foreground/80">Foco na experiência do usuário</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-cyan-900/40 p-1 rounded-full mt-1">
                     <ArrowRight className="text-cyan-400" />
                   </div>
-                  <span className="text-gray-300">Testes automatizados e qualidade garantida</span>
+                  <span className="text-foreground/80">Testes automatizados e qualidade garantida</span>
                 </li>
               </ul>
             </div>

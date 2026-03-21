@@ -60,7 +60,7 @@ const processo = [
 
 export default function SecurityPage() {
   return (
-    <div className="bg-black min-h-screen text-white selection:bg-cyan-500 selection:text-black">
+    <div className="bg-background min-h-screen text-foreground selection:bg-cyan-500 selection:text-black">
       {/* ── 1. HERO SECTION ────────────────────────────────────────── */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         {/* Background Elements */}
@@ -94,7 +94,7 @@ export default function SecurityPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-lg text-foreground/70 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             Protegemos seus sistemas, dados e infraestrutura com soluções modernas, confiáveis e uma engenharia de elite.
           </motion.p>
@@ -108,7 +108,7 @@ export default function SecurityPage() {
             <Link href="/contatos" className="px-10 py-5 bg-cyan-500 text-black font-black rounded-full text-xs uppercase tracking-widest hover:bg-cyan-400 transition-all shadow-xl hover:shadow-cyan-500/20">
               Solicitar Análise de Segurança
             </Link>
-            <Link href="#servicos" className="px-10 py-5 border border-white/10 text-white font-black rounded-full text-xs uppercase tracking-widest hover:bg-white/5 transition-all">
+            <Link href="#servicos" className="px-10 py-5 border border-foreground/10 text-foreground font-black rounded-full text-xs uppercase tracking-widest hover:bg-foreground/5 transition-all">
               Conhecer Soluções
             </Link>
           </motion.div>
@@ -126,13 +126,13 @@ export default function SecurityPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group p-8 rounded-[2.5rem] bg-[#050505] border border-white/5 hover:border-cyan-500/30 transition-all duration-500 shadow-xl"
+                className="group p-8 rounded-[2.5rem] bg-foreground/5 border border-foreground/5 hover:border-cyan-500/30 transition-all duration-500 shadow-xl"
               >
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center text-black mb-8 group-hover:scale-110 transition-transform`}>
+                <div className={`w-16 h-16 rounded-2xl bg-linear-to-br ${item.color} flex items-center justify-center text-black mb-8 group-hover:scale-110 transition-transform`}>
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-black text-white mb-4 tracking-tight uppercase italic">{item.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed font-medium group-hover:text-gray-400 transition-colors">
+                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight uppercase italic">{item.title}</h3>
+                <p className="text-foreground/60 text-sm leading-relaxed font-medium group-hover:text-foreground/70 transition-colors">
                   {item.desc}
                 </p>
               </motion.div>
@@ -142,7 +142,7 @@ export default function SecurityPage() {
       </section>
 
       {/* ── 3. DIFERENCIAIS ────────────────────────────────────────── */}
-      <section className="py-24 px-6 bg-[#030303] border-y border-white/5">
+      <section className="py-24 px-6 bg-foreground/2 border-y border-foreground/5">
         <div className="max-w-7xl mx-auto text-center mb-20">
           <span className="text-cyan-400 text-[10px] font-black uppercase tracking-widest bg-cyan-500/10 px-6 py-2 rounded-full border border-cyan-500/20">
             Diferenciais GEDS Security
@@ -153,12 +153,12 @@ export default function SecurityPage() {
             <motion.div
               key={i}
               whileHover={{ y: -5 }}
-              className="flex items-center gap-5 p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-cyan-500/5 hover:border-cyan-500/20 transition-all"
+              className="flex items-center gap-5 p-6 rounded-2xl bg-foreground/5 border border-foreground/10 hover:bg-cyan-500/5 hover:border-cyan-500/20 transition-all"
             >
               <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 shadow-[0_0_15px_rgba(0,219,255,0.1)]">
                 {item.icon}
               </div>
-              <span className="text-white font-bold text-sm tracking-tight">{item.title}</span>
+              <span className="text-foreground font-bold text-sm tracking-tight">{item.title}</span>
             </motion.div>
           ))}
         </div>
@@ -170,7 +170,7 @@ export default function SecurityPage() {
           <h2 className="text-3xl md:text-5xl font-black text-center mb-20 tracking-tighter uppercase italic">Nosso Processo de Blindagem</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
             {/* Connection Line */}
-            <div className="absolute top-1/2 left-0 w-full h-px bg-white/5 hidden lg:block -translate-y-12" />
+            <div className="absolute top-1/2 left-0 w-full h-px bg-foreground/10 hidden lg:block -translate-y-12" />
             
             {processo.map((step, i) => (
               <motion.div
@@ -181,14 +181,14 @@ export default function SecurityPage() {
                 transition={{ delay: i * 0.15 }}
                 className="relative z-10 text-center"
               >
-                <div className="w-20 h-20 bg-black border-2 border-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-8 relative group-hover:border-cyan-500 transition-colors">
+                <div className="w-20 h-20 bg-background border-2 border-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-8 relative group-hover:border-cyan-500 transition-colors">
                   <div className="absolute -top-3 -right-3 w-8 h-8 bg-cyan-500 text-black rounded-full flex items-center justify-center font-black text-xs shadow-lg">
                     {step.step}
                   </div>
                   <div className="text-cyan-400">{step.icon}</div>
                 </div>
-                <h4 className="text-white font-black text-lg mb-4 tracking-tight uppercase leading-none">{step.title}</h4>
-                <p className="text-gray-500 text-xs leading-relaxed max-w-[200px] mx-auto font-medium">{step.desc}</p>
+                <h4 className="text-foreground font-black text-lg mb-4 tracking-tight uppercase leading-none">{step.title}</h4>
+                <p className="text-foreground/60 text-xs leading-relaxed max-w-[200px] mx-auto font-medium">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -224,16 +224,16 @@ export default function SecurityPage() {
             <div className="absolute -inset-40 border border-cyan-500/5 rounded-full animate-[spin_90s_linear_infinite_reverse] pointer-events-none" />
           </motion.div>
 
-          <h3 className="text-3xl md:text-5xl font-black text-white italic tracking-tighter uppercase mb-6 drop-shadow-sm">
+          <h3 className="text-3xl md:text-5xl font-black text-foreground italic tracking-tighter uppercase mb-6 drop-shadow-sm">
             Sua segurança é nossa <span className="text-cyan-400">prioridade absoluta</span>
           </h3>
-          <p className="text-gray-500 font-bold text-xs uppercase tracking-[0.5em]">Protocolos Globais • Engenharia de Elite</p>
+          <p className="text-foreground/60 font-bold text-xs uppercase tracking-[0.5em]">Protocolos Globais • Engenharia de Elite</p>
         </div>
       </section>
 
       {/* ✨ IDEIA EXTRA: STATUS DE SEGURANÇA ──────────────────────── */}
-      <section className="py-24 px-6 bg-linear-to-b from-black to-[#050505]">
-        <div className="max-w-4xl mx-auto bg-[#080808] border border-cyan-500/20 rounded-[3rem] p-10 md:p-20 relative overflow-hidden shadow-2xl group">
+      <section className="py-24 px-6 bg-linear-to-b from-background to-foreground/5">
+        <div className="max-w-4xl mx-auto bg-foreground/5 border border-cyan-500/20 rounded-[3rem] p-10 md:p-20 relative overflow-hidden shadow-2xl group">
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[100px] -z-10" />
           
           <div className="flex flex-col md:flex-row gap-12 items-center">
@@ -246,10 +246,10 @@ export default function SecurityPage() {
             
             <div className="flex-1 space-y-8 text-center md:text-left">
                <div className="space-y-2">
-                 <h4 className="text-2xl font-black text-white tracking-tight uppercase italic flex items-center justify-center md:justify-start gap-4">
+                 <h4 className="text-2xl font-black text-foreground tracking-tight uppercase italic flex items-center justify-center md:justify-start gap-4">
                    Status do Ecossistema <span className="bg-emerald-500 w-2 h-2 rounded-full animate-ping" />
                  </h4>
-                 <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Monitoramento em tempo real ativo</p>
+                 <p className="text-foreground/60 text-xs font-bold uppercase tracking-widest">Monitoramento em tempo real ativo</p>
                </div>
 
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -259,8 +259,8 @@ export default function SecurityPage() {
                     { label: "Ameaças", status: "🟢 Nenhuma Detectada", color: "text-emerald-400" },
                     { label: "Infraestrutura", status: "🛡️ Blindada", color: "text-blue-400" },
                   ].map((stat, i) => (
-                    <div key={i} className="p-4 bg-white/[0.03] border border-white/5 rounded-2xl flex justify-between items-center group-hover:bg-white/[0.05] transition-colors">
-                      <span className="text-[10px] text-gray-500 font-black uppercase tracking-widest">{stat.label}</span>
+                    <div key={i} className="p-4 bg-background/50 border border-foreground/10 rounded-2xl flex justify-between items-center group-hover:bg-foreground/10 transition-colors">
+                      <span className="text-[10px] text-foreground/60 font-black uppercase tracking-widest">{stat.label}</span>
                       <span className={`text-xs font-black uppercase ${stat.color}`}>{stat.status}</span>
                     </div>
                   ))}
@@ -271,21 +271,21 @@ export default function SecurityPage() {
       </section>
 
       {/* ── 6. DEPOIMENTOS / CONFIANÇA ────────────────────────────── */}
-      <section className="py-24 px-6 relative overflow-hidden bg-[#030303]">
+      <section className="py-24 px-6 relative overflow-hidden bg-foreground/2">
         <div className="max-w-4xl mx-auto text-center italic relative z-10">
           <div className="text-4xl text-cyan-500/30 mb-8 tracking-none">“</div>
-           <p className="text-xl md:text-3xl text-gray-400 leading-relaxed font-medium mb-12">
+           <p className="text-xl md:text-3xl text-foreground/70 leading-relaxed font-medium mb-12">
             A GEDS Security melhorou totalmente nossa segurança digital. Implementamos protocolos que nem sabíamos que precisávamos e hoje dormimos tranquilos com monitoramento constante.
            </p>
-           <p className="text-white font-black uppercase tracking-[0.2em] italic text-sm">Diretora de Operações • Enterprise Global</p>
+           <p className="text-foreground font-black uppercase tracking-[0.2em] italic text-sm">Diretora de Operações • Enterprise Global</p>
         </div>
       </section>
 
       {/* ── 7. CTA FINAL ───────────────────────────────────────────── */}
-      <section className="relative py-32 px-6 overflow-hidden bg-[#00050a]">
+      <section className="relative py-32 px-6 overflow-hidden bg-foreground/5">
         <div className="absolute inset-0 bg-linear-to-b from-transparent to-blue-900/10" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
-           <h2 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter uppercase italic text-white drop-shadow-lg">
+           <h2 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter uppercase italic text-foreground drop-shadow-lg">
              Proteja sua empresa <span className="text-cyan-400">agora</span>
            </h2>
            <Link 
