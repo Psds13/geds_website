@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   FiUser,
   FiMail,
@@ -11,7 +12,6 @@ import {
   FiAlertCircle,
 } from "react-icons/fi";
 import SquareReveal from "../components/SquareReveal";
-import { supabase } from "@/lib/supabase";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -51,6 +51,7 @@ export default function Cadastro() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [globalError, setGlobalError] = useState("");
+  const router = useRouter();
 
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -63,42 +64,14 @@ export default function Cadastro() {
     },
   });
 
-  const onSubmit = async (values: RegisterFormValues) => {
+  const onSubmit = async () => {
     setLoading(true);
     setGlobalError("");
 
     try {
-      const client = supabase;
-      if (!client) {
-        setGlobalError("Conexão com o banco de dados não configurada.");
-        setLoading(false);
-        return;
-      }
-
-      // 1. Criar usuário no Supabase Auth
-      const { data: authData, error: signUpError } = await client.auth.signUp({
-        email: values.email,
-        password: values.password,
-      });
-
-      if (signUpError) throw signUpError;
-
-      if (authData.user) {
-        // 2. Inserir dados complementares na tabela 'usuarios'
-        const { error: dbError } = await (client.from("usuarios") as unknown as { insert: (data: Record<string, unknown>[]) => Promise<{ error: unknown }> }).insert([
-          {
-            id: authData.user.id,
-            nome: values.name,
-            email: values.email,
-            cargo: "Usuário",
-          },
-        ]);
-
-        if (dbError) throw dbError;
-      }
-
       setSuccess(true);
-      form.reset();
+      // MODO TESTE: Redirecionar direto para não depender do Supabase logar/criar
+      router.push("/userProfile");
     } catch (error: unknown) {
       console.error("Erro no cadastro:", error);
       const message = (error as Error)?.message || "Erro ao cadastrar. Tente novamente.";

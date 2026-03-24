@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 import { 
   ArrowDown, 
   Zap, 
-  LayoutGrid, 
   BarChart2, 
   Repeat, 
   Award, 
   Star, 
   FlaskConical, 
-  Leaf 
+  Leaf,
+  Terminal
 } from "lucide-react";
 
 import Servicos from "./home/Servicos";
@@ -22,12 +22,15 @@ import Diferenciais from "./home/Diferenciais";
 import SocialProof from "./home/SocialProof";
 import Portfolio from "./home/Portfolio";
 import CTA from "./home/CTA";
+import Ecosystem3D from "./home/Ecosystem3D";
+import CommandCenter from "./home/CommandCenter";
+import HomeOS from "./home/HomeOS";
 
 const navItems = [
   { id: "servicos", label: "Serviços", desc: "Soluções sob medida", icon: Zap, color: "text-cyan-400" },
   { id: "processo", label: "Processo", desc: "Como criamos seu app", icon: Repeat, color: "text-blue-400" },
   { id: "dashboard", label: "Simulador", desc: "Sinta o impacto real", icon: BarChart2, color: "text-purple-400" },
-  { id: "transformacao", label: "Inovação", desc: "Resultados reais", icon: LayoutGrid, color: "text-emerald-400" },
+  { id: "os", label: "GEDS OS", desc: "Sistema Interativo", icon: Terminal, color: "text-emerald-500" },
   { id: "geds-lab", label: "GEDS Lab", desc: "Nossos experimentos", icon: FlaskConical, color: "text-cyan-400" },
   { id: "green-tech", label: "Green Tech", desc: "Tecnologia verde", icon: Leaf, color: "text-emerald-400" },
   { id: "diferenciais", label: "Diferenciais", desc: "Por que nos escolher?", icon: Award, color: "text-yellow-400" },
@@ -115,6 +118,16 @@ const HomeContent = () => {
         <Teasers />
       </section>
 
+      {/* ── SEÇÃO COMMAND CENTER ───────────────────────────────────── */}
+      <section className="relative z-10 border-b border-foreground/5">
+        <CommandCenter />
+      </section>
+
+      {/* ── SEÇÃO GEDS OS ──────────────────────────────────────────── */}
+      <section id="os" className="relative z-10 border-b border-foreground/5">
+        <HomeOS />
+      </section>
+
       {/* ── SEÇÃO DIFERENCIAIS ─────────────────────────────────────── */}
       <section id="diferenciais" className="relative z-10 border-b border-foreground/5">
         <Diferenciais />
@@ -123,6 +136,11 @@ const HomeContent = () => {
       {/* ── SEÇÃO PROVA SOCIAL & SEGURANÇA ─────────────────────────── */}
       <section id="social-proof" className="relative z-10 border-b border-foreground/5 bg-foreground/2">
         <SocialProof />
+      </section>
+
+      {/* ── SEÇÃO ECOSYSTEM 3D ─────────────────────────────────────── */}
+      <section className="relative z-10 border-b border-foreground/5 bg-black">
+        <Ecosystem3D />
       </section>
 
       {/* ── SEÇÃO CTA FINAL ────────────────────────────────────────── */}

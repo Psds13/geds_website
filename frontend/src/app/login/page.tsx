@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { FiMail, FiLock, FiEye, FiEyeOff, FiAlertCircle } from "react-icons/fi";
 import SquareReveal from "../components/SquareReveal";
-import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -45,29 +44,13 @@ export default function LoginPage() {
     },
   });
 
-  const onSubmit = async (values: LoginFormValues) => {
+  const onSubmit = async () => {
     setError("");
     setLoading(true);
 
     try {
-      const client = supabase;
-      if (!client) {
-        setError("Serviço de autenticação indisponível.");
-        setLoading(false);
-        return;
-      }
-
-      const { data, error: signInError } = await client.auth.signInWithPassword({
-        email: values.email,
-        password: values.password,
-      });
-
-      if (signInError) throw signInError;
-
-      if (data.user) {
-        // You might want to handle 'stayLogged' here if you have specific logic for persistence
-        router.push("/userProfile");
-      }
+      // MODO TESTE: Redirecionar direto para não depender do Supabase logar
+      router.push("/userProfile");
     } catch (err) {
       console.error("Erro no login:", err);
       setError((err as Error)?.message || "Credenciais inválidas ou erro no servidor");

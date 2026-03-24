@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 const GoldChatWidget = dynamic(() => import("./GoldChatWidget"), { ssr: false });
 const Libras = dynamic(() => import("./Libras"), { ssr: false });
 const AccessibilityMenu = dynamic(() => import("./AccessibilityMenu"), { ssr: false });
+const HackerMode = dynamic(() => import("./HackerMode"), { ssr: false });
 
 export default function ClientLayoutExtras() {
   return (
@@ -12,6 +13,7 @@ export default function ClientLayoutExtras() {
       <GoldChatWidget />
       <Libras />
       <AccessibilityMenu />
+      <HackerMode />
     </>
   );
 }
