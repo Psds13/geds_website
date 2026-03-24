@@ -356,4 +356,3 @@ function OptionButton({ icon, text, onClick }: { icon?: React.ReactNode, text: s
     </motion.button>
   );
 }
-
