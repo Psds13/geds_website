@@ -416,10 +416,19 @@ export default function GedsGames() {
                 Play · Create · Innovate
               </span>
 
-              <h1 className="text-4xl md:text-8xl font-black mb-8 leading-[1.05] uppercase italic tracking-tighter text-foreground">
-                GEDS <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-cyan-400 to-yellow-400">Games</span>
-              </h1>
+              <h1 className="text-4xl md:text-7xl lg:text-8xl font-black mb-8 leading-none uppercase text-foreground">
+  <span className="block">GEDS</span>
 
+  <span
+    className="block italic text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-yellow-400"
+    style={{
+      paddingRight: "6px",
+      paddingBottom: "6px",
+    }}
+  >
+    Games
+  </span>
+</h1>
               <p className="text-lg text-foreground/60 max-w-xl mb-12 font-bold uppercase tracking-tight">
                 Uma plataforma onde tecnologia e criatividade se encontram. Jogue, aprenda e inove.
               </p>
@@ -471,21 +480,30 @@ export default function GedsGames() {
 
             {/* Image Section */}
             <motion.div className="lg:w-1/2 relative" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
-              <div className="relative z-10 w-full aspect-[4/5] sm:aspect-square overflow-hidden rounded-[3rem] border border-foreground/10 shadow-2xl group">
-                <Image src="/GEDS Games.png" alt="GEDS Games Experience" fill className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]" priority />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-10 left-10 right-10 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl text-left">
-                  <div className="flex items-center gap-5">
-                    <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center border border-purple-500/30">
-                      <Gamepad2 className="text-purple-400 w-6 h-6" />
-                    </div>
-                    <div>
-                      <p className="text-white font-black text-lg leading-none uppercase italic">Gaming Hub</p>
-                      <p className="text-purple-400 text-[9px] uppercase font-black tracking-widest mt-1">Play to Innovate</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div className="relative z-10 w-full h-auto rounded-[3rem] border border-foreground/10 shadow-2xl group overflow-hidden">
+  <Image
+    src="/GEDS Games.png"
+    alt="GEDS Games Experience"
+    width={1200}
+    height={1200}
+    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-[2000ms]"
+    priority
+  />
+
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+
+<div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-10 right-4 sm:right-6 md:right-10 p-5 sm:p-6 bg-black/30 backdrop-blur-xl border border-white/10 rounded-2xl text-left">
+  <div className="flex items-center gap-5">
+    <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center border border-purple-500/30">
+      <Gamepad2 className="text-purple-400 w-6 h-6" />
+    </div>
+    <div>
+      <p className="text-white font-black text-lg leading-none uppercase italic">Gaming Hub</p>
+      <p className="text-purple-400 text-[9px] uppercase font-black tracking-widest mt-1">Play to Innovate</p>
+    </div>
+  </div>
+</div>
+</div>
               <div className="absolute -top-12 -right-12 w-64 h-64 bg-purple-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
               <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-cyan-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
             </motion.div>

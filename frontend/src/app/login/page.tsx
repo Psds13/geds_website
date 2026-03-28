@@ -50,7 +50,7 @@ export default function LoginPage() {
 
     try {
       // MODO TESTE: Redirecionar direto para não depender do Supabase logar
-      router.push("/userProfile");
+      router.push("/");
     } catch (err) {
       console.error("Erro no login:", err);
       setError((err as Error)?.message || "Credenciais inválidas ou erro no servidor");

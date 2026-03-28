@@ -13,7 +13,7 @@ const nodes = [
 
 export default function Ecosystem3D() {
   return (
-    <section className="py-24 lg:py-40 px-6 relative overflow-hidden bg-black border-y border-white/5">
+    <section className="py-24 lg:py-40 px-4 sm:px-6 relative overflow-hidden bg-background border-y border-foreground/5">
       {/* Background Matrix/Rays effect */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,219,255,0.05)_0%,transparent_70%)] pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-50" />
@@ -32,26 +32,28 @@ export default function Ecosystem3D() {
             <span className="text-cyan-400 text-[10px] font-black uppercase tracking-[0.3em]">O Universo GEDS</span>
           </div>
           
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white uppercase italic tracking-tighter mb-6 leading-[1.1]">
-            Ecossistema <br className="hidden lg:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
-              Conectado
-            </span>
-          </h2>
+          {/* Title - Fixed and organized */}
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-foreground uppercase leading-[1.25]">
+  <span className="block">Ecossistema</span>
+  
+  <span className="block w-fit italic pr-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
+    Conectado
+  </span>
+</h2>
           
-          <p className="text-gray-400 text-sm md:text-base font-medium leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0">
-            Nossas soluções formam uma <strong className="text-white font-bold">malha neural poderosa</strong>. 
+          <p className="text-foreground/60 text-sm md:text-base font-medium leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0 mt-6">
+            Nossas soluções formam uma <strong className="text-foreground font-bold">malha neural poderosa</strong>. 
             Segurança, Rede, Gamificação e Pesquisa trabalhando lado a lado, transferindo dados em tempo real 
             para criar o ecossistema digital mais robusto do mercado.
           </p>
           
+          {/* Button - Light Blue Color */}
           <Link 
             href="/servicos" 
-            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-black uppercase tracking-widest text-xs rounded-full hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan-500 text-white font-black uppercase tracking-widest text-xs rounded-full hover:bg-cyan-400 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 hover:shadow-xl"
           >
             Ver Soluções 
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            <div className="absolute inset-0 border-[2px] border-white/50 rounded-full scale-110 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 pointer-events-none" />
           </Link>
         </motion.div>
 
@@ -68,7 +70,7 @@ export default function Ecosystem3D() {
                 className="w-full"
               >
                 <Link href={node.href} className="block group w-full h-full">
-                  <div className={`relative h-full p-6 sm:p-8 rounded-3xl bg-black/40 border border-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:${node.glow} overflow-hidden`}>
+                  <div className={`relative h-full p-6 sm:p-8 rounded-3xl bg-background/40 border border-foreground/10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden`}>
                     {/* Glowing highlight ring on hover */}
                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 border-2 rounded-3xl ${node.border} transition-all duration-500`} />
                     
@@ -80,11 +82,11 @@ export default function Ecosystem3D() {
                         <node.icon className={`w-6 h-6 ${node.color}`} />
                       </div>
                       
-                      <h3 className="text-xl font-black text-white mb-2 uppercase tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all">
+                      <h3 className="text-xl font-black text-foreground mb-2 uppercase tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-400 transition-all">
                         {node.label}
                       </h3>
                       
-                      <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-6">
+                      <p className="text-foreground/50 text-xs md:text-sm leading-relaxed mb-6">
                         {node.desc}
                       </p>
                       

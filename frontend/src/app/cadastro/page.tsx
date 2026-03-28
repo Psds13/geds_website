@@ -71,7 +71,7 @@ export default function Cadastro() {
     try {
       setSuccess(true);
       // MODO TESTE: Redirecionar direto para não depender do Supabase logar/criar
-      router.push("/userProfile");
+      router.push("/");
     } catch (error: unknown) {
       console.error("Erro no cadastro:", error);
       const message = (error as Error)?.message || "Erro ao cadastrar. Tente novamente.";
