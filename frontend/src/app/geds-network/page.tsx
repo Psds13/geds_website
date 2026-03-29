@@ -139,15 +139,17 @@ function NetworkDashboard() {
       </div>
 
       {/* Metric Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {metrics.map((m, i) => (
-          <motion.div key={i} className={`p-5 rounded-2xl border ${colorMap[m.color]} relative overflow-hidden`}>
-            <div className="flex items-center justify-between mb-3">
-              <div className={colorMap[m.color].split(' ')[0]}>{m.icon}</div>
+          <motion.div key={i} whileHover={{ y: -4 }}
+            className={`p-5 rounded-2xl border backdrop-blur-sm transition-all duration-300 ${colorMap[m.color]} relative overflow-hidden group`}>
+            <div className="absolute -right-4 -top-4 w-12 h-12 bg-current opacity-[0.03] rounded-full group-hover:scale-150 transition-transform duration-700" />
+            <div className="flex items-center justify-between mb-4">
+              <div className={`${colorMap[m.color].split(' ')[0]} p-2 bg-current/10 rounded-lg`}>{m.icon}</div>
               {m.extra}
             </div>
-            <p className={`text-2xl font-black ${colorMap[m.color].split(' ')[0]}`}>{m.value}</p>
-            <p className="text-foreground/40 text-[9px] font-black uppercase tracking-widest mt-1">{m.label}</p>
+            <p className={`text-3xl font-black ${colorMap[m.color].split(' ')[0]} tracking-tighter`}>{m.value}</p>
+            <p className="text-foreground/40 text-[9px] font-black uppercase tracking-widest mt-1.5">{m.label}</p>
           </motion.div>
         ))}
       </div>
@@ -266,13 +268,13 @@ function InfraSimulator() {
 
             {/* Company type */}
             <div>
-              <p className="text-foreground/60 text-sm font-black uppercase tracking-tight mb-3">Tipo de Empresa</p>
-              <div className="grid grid-cols-2 gap-2">
+              <p className="text-foreground/60 text-sm font-black uppercase tracking-tight mb-4">Tipo de Empresa</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {companyTypes.map(c => (
                   <button key={c.id} onClick={() => setCompany(c.id)}
-                    className={`flex items-center gap-3 p-4 rounded-2xl border text-left transition-all ${company === c.id ? "bg-blue-500/10 border-blue-500 text-foreground" : "bg-foreground/[0.02] border-foreground/5 text-foreground/40 hover:border-foreground/20"}`}>
-                    <span className="text-xl">{c.icon}</span>
-                    <span className="text-[11px] font-black uppercase tracking-tight">{c.label}</span>
+                    className={`flex items-center gap-4 p-5 rounded-2xl border text-left transition-all duration-300 ${company === c.id ? "bg-blue-500/15 border-blue-500 text-foreground shadow-[0_0_20px_rgba(59,130,246,0.15)]" : "bg-foreground/[0.02] border-foreground/5 text-foreground/40 hover:border-foreground/20"}`}>
+                    <span className="text-2xl">{c.icon}</span>
+                    <span className="text-xs font-black uppercase tracking-tight">{c.label}</span>
                   </button>
                 ))}
               </div>
@@ -398,7 +400,7 @@ const ecoColors: Record<string, string> = {
 // ── Main Page ─────────────────────────────────────────────────────
 export default function GedsNetwork() {
   return (
-    <main className="bg-background min-h-screen text-foreground overflow-hidden">
+    <main className="bg-background min-h-screen text-foreground">
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative pt-28 pb-24 overflow-hidden border-b border-foreground/5">
@@ -411,79 +413,82 @@ export default function GedsNetwork() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-16">
+            
+            {/* Text Section */}
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}
-              className="lg:w-1/2 text-left">
+              className="lg:w-[55%] text-left">
 
               {/* Badge */}
-              <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", duration: 0.8 }}
-                className="inline-flex items-center justify-center w-20 h-20 bg-blue-500/10 border border-blue-500/20 rounded-[2rem] mb-8 relative shadow-[0_0_40px_rgba(59,130,246,0.15)]">
-                <Network className="w-10 h-10 text-blue-400 relative z-10" />
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ type: "spring", duration: 0.8 }}
+                className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-blue-500/10 border border-blue-500/20 rounded-[1.5rem] sm:rounded-[2rem] mb-6 sm:mb-8 relative shadow-[0_0_40px_rgba(59,130,246,0.15)]">
+                <Network className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400 relative z-10" />
                 <div className="absolute inset-0 bg-blue-500/10 blur-[20px] rounded-[2rem]" />
               </motion.div>
 
-              <span className="inline-block mb-6 text-blue-400 font-black bg-blue-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-blue-500/20">
+              <span className="inline-block mb-4 sm:mb-6 text-blue-400 font-black bg-blue-500/10 px-4 sm:px-6 py-2 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] border border-blue-500/20 shadow-sm">
                 Infraestrutura & Conectividade
               </span>
 
-              <h1 className="text-4xl md:text-7xl font-black mb-8 leading-[1.05] uppercase italic tracking-tighter text-foreground">
-                Infraestrutura <br/>
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-cyan-400 to-blue-500">
+              <h1 className="text-[clamp(1.75rem,5vw,3.5rem)] font-black mb-5 sm:mb-6 leading-tight uppercase text-foreground tracking-tight">
+                <span className="block italic opacity-90">Infraestrutura</span>
+                <span
+                  className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
+                  style={{ paddingRight: "6px", paddingBottom: "6px" }}
+                >
                   Inteligente
                 </span>
               </h1>
 
-              <p className="text-lg text-foreground/60 max-w-xl mb-12 font-bold uppercase tracking-tight leading-relaxed">
-                Soluções completas em redes, suporte técnico e conectividade empresarial para manter sua empresa sempre online.
+              <p className="text-sm sm:text-base md:text-lg text-foreground/60 max-w-xl mb-10 sm:mb-12 font-bold uppercase tracking-tight leading-relaxed">
+                Suporte de alta performance em redes, servidores e conectividade estratégica. Desenvolvemos infraestruturas resilientes para escalar seu negócio com total estabilidade.
               </p>
 
               <div className="flex flex-wrap gap-5">
                 <Link href="/contatos"
-                  className="inline-flex items-center gap-3 bg-blue-500 hover:bg-blue-400 text-white font-black px-10 py-5 rounded-full transition-all shadow-[0_10px_40px_rgba(59,130,246,0.3)] hover:shadow-[0_15px_50px_rgba(59,130,246,0.5)] uppercase text-[10px] tracking-[0.3em]">
+                  className="inline-flex items-center gap-3 bg-blue-500 hover:bg-blue-400 text-white font-black px-8 py-4 rounded-full transition-all shadow-[0_10px_40px_rgba(59,130,246,0.3)] hover:shadow-[0_15px_50px_rgba(59,130,246,0.5)] uppercase text-[10px] tracking-[0.2em]">
                   Solicitar Análise de Rede
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href="/contatos"
-                  className="inline-flex items-center gap-3 border border-foreground/10 text-foreground hover:bg-foreground/5 font-black px-10 py-5 rounded-full transition-all uppercase text-[10px] tracking-[0.3em]">
+                  className="inline-flex items-center gap-3 border border-foreground/10 text-foreground hover:bg-foreground/5 font-black px-8 py-4 rounded-full transition-all uppercase text-[10px] tracking-[0.2em]">
                   <Headphones className="w-4 h-4" />
                   Falar com Suporte
                 </Link>
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-20 pt-10 border-t border-foreground/5">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-16 pt-8 border-t border-foreground/5 w-full">
                 {[
-                  { label: "Uptime Médio", value: 99, suffix: ".97%" },
-                  { label: "Clientes Ativos", value: 80, suffix: "+" },
-                  { label: "Incidentes Resolvidos", value: 1200, suffix: "+" },
-                  { label: "Suporte em Minutos", value: 15, suffix: "" },
+                  { label: "Uptime Global", value: 99, suffix: ".99%" },
+                  { label: "Parceiros Ativos", value: 80, suffix: "+" },
+                  { label: "Casos de Sucesso", value: 1200, suffix: "+" },
+                  { label: "SLA (minutos)", value: 15, suffix: "" },
                 ].map((s, i) => (
                   <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.1 }}>
-                    <p className="text-3xl font-black text-blue-400 uppercase italic">
-                      <Counter target={s.value} suffix={s.suffix} />
-                    </p>
-                    <p className="text-foreground/40 text-[9px] font-black uppercase tracking-widest mt-1">{s.label}</p>
+                    <p className="text-3xl md:text-4xl font-black text-blue-400 uppercase italic tracking-tighter leading-none mb-2"><Counter target={s.value} suffix={s.suffix} /></p>
+                    <p className="text-foreground/40 text-[9px] font-black uppercase tracking-widest leading-none">{s.label}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
             {/* Image Section */}
-            <motion.div className="lg:w-1/2 relative" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
-              <div className="relative z-10 w-full aspect-[4/5] sm:aspect-square overflow-hidden rounded-[3rem] border border-foreground/10 shadow-2xl group">
-                <Image src="/GEDS Network.png" alt="GEDS Network Impact" fill className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]" priority />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-10 left-10 right-10 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl">
-                  <div className="flex items-center gap-5">
-                    <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center border border-blue-500/30">
-                      <Wifi className="text-blue-400 w-6 h-6" />
+            <motion.div className="lg:w-[40%] relative w-full flex justify-center lg:justify-end mt-12 lg:mt-0" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
+              <div className="relative z-10 w-full max-w-[320px] sm:max-w-[420px] h-auto p-4 bg-foreground/[0.02] border border-foreground/5 rounded-[3.5rem] shadow-2xl">
+                <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-foreground/10 bg-background/50">
+                  <Image src="/GEDS Network.png" alt="GEDS Network Impact" fill className="object-contain p-6 group-hover:scale-105 transition-transform duration-[2000ms]" priority />
+                </div>
+                <motion.div animate={{ boxShadow: ["0 0 20px rgba(59,130,246,0.1)", "0 0 40px rgba(59,130,246,0.3)", "0 0 20px rgba(59,130,246,0.1)"] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[95%] sm:w-auto min-w-[280px] p-5 sm:p-6 bg-black/60 backdrop-blur-2xl border border-blue-500/40 rounded-[2rem] z-20">
+                  <div className="flex items-center gap-5 justify-center sm:justify-start">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                      <Wifi className="text-white w-6 h-6" />
                     </div>
                     <div>
-                      <p className="text-white font-black text-lg leading-none uppercase italic">Conectividade</p>
-                      <p className="text-blue-400 text-[9px] uppercase font-black tracking-widest mt-1">Sempre Online</p>
+                      <h4 className="text-white font-black text-xl leading-none uppercase italic tracking-tighter">Conectividade</h4>
+                      <div className="flex items-center gap-2 mt-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /><p className="text-blue-400 text-[10px] uppercase font-black tracking-widest leading-none">Sempre Online</p></div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
               <div className="absolute -top-12 -right-12 w-64 h-64 bg-blue-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
               <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-cyan-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
@@ -499,24 +504,33 @@ export default function GedsNetwork() {
             <span className="inline-block mb-4 text-blue-400 font-black bg-blue-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-blue-500/20">
               Nossos Serviços
             </span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase italic tracking-tighter">
-              Cobertura <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-400">Completa</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
+              <span className="block">Cobertura</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                Completa
+              </span>
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((s, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }} whileHover={{ y: -6 }}
-                className="group p-8 rounded-[2.5rem] bg-foreground/[0.02] border border-foreground/5 hover:border-blue-500/30 transition-all duration-300">
-                <div className={`w-16 h-16 rounded-2xl bg-linear-to-br ${s.color} flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform shadow-xl`}>
+                transition={{ delay: i * 0.1 }} whileHover={{ y: -8, scale: 1.02 }}
+                className="group p-8 sm:p-10 rounded-[2.5rem] bg-foreground/[0.02] backdrop-blur-xs border border-foreground/5 hover:border-blue-500/40 transition-all duration-500 shadow-sm hover:shadow-xl hover:shadow-blue-500/5">
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-white mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg shadow-blue-500/20`}>
                   {s.icon}
                 </div>
-                <h3 className="text-lg font-black text-foreground mb-5 uppercase italic tracking-tight">{s.title}</h3>
-                <ul className="space-y-3">
+                <h3 className="text-xl font-black text-foreground mb-6 uppercase italic tracking-tight">{s.title}</h3>
+                <ul className="space-y-4">
                   {s.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-3">
-                      <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${s.colorText}`} />
+                    <li key={j} className="flex items-start gap-3 group/item">
+                      <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 transition-transform group-hover/item:scale-110 ${s.colorText}`} />
                       <span className="text-foreground/60 text-xs font-bold uppercase tracking-tight">{item}</span>
                     </li>
                   ))}
@@ -534,8 +548,17 @@ export default function GedsNetwork() {
             <span className="inline-block mb-4 text-blue-400 font-black bg-blue-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-blue-500/20">
               Ferramentas Interativas
             </span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase italic tracking-tighter">
-              Visualize & <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-400">Diagnostique</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
+              <span className="block">Visualize &</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                Diagnostique
+              </span>
             </h2>
           </motion.div>
 
@@ -557,8 +580,17 @@ export default function GedsNetwork() {
             <span className="inline-block mb-4 text-yellow-400 font-black bg-yellow-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-yellow-500/20">
               Por que isso Importa?
             </span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase italic tracking-tighter">
-              O Custo da <span className="text-transparent bg-clip-text bg-linear-to-r from-red-400 to-yellow-400">Instabilidade</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
+              <span className="block">O Custo da</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                Instabilidade
+              </span>
             </h2>
             <p className="text-foreground/50 max-w-xl mx-auto mt-4 font-bold uppercase text-xs tracking-widest">
               Cada hora parada custa dinheiro. Veja a diferença com a GEDS Network.
@@ -603,8 +635,17 @@ export default function GedsNetwork() {
             <span className="inline-block mb-4 text-blue-400 font-black bg-blue-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-blue-500/20">
               Integração com o Ecossistema
             </span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase italic tracking-tighter">
-              Conectado a <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-400">tudo</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
+              <span className="block">Conectado</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                a tudo
+              </span>
             </h2>
           </motion.div>
 
@@ -621,18 +662,18 @@ export default function GedsNetwork() {
               </div>
 
               {/* Connections */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4">
                 {ecosystem.map((eco, i) => (
                   <motion.div key={i} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -4 }}>
+                    viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -6 }}>
                     <Link href={eco.href}
-                      className={`flex flex-col items-center p-6 rounded-2xl border ${ecoColors[eco.color]} text-center group transition-all hover:scale-105`}>
-                      <div className={`w-12 h-12 rounded-xl ${ecoColors[eco.color]} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+                      className={`flex flex-col items-center p-6 md:p-8 rounded-2xl border backdrop-blur-sm ${ecoColors[eco.color]} text-center group transition-all hover:scale-105 shadow-sm hover:shadow-lg`}>
+                      <div className={`w-14 h-14 rounded-xl ${ecoColors[eco.color]} border flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform`}>
                         {eco.icon}
                       </div>
-                      <p className="font-black text-sm uppercase tracking-tight text-foreground mb-1">{eco.name}</p>
-                      <p className="text-foreground/40 text-[9px] font-bold uppercase tracking-tight leading-tight">{eco.desc}</p>
-                      <ChevronRight className="w-3 h-3 text-foreground/30 mt-2 group-hover:translate-x-1 transition-transform" />
+                      <p className="font-black text-sm uppercase tracking-tight text-foreground mb-1.5">{eco.name}</p>
+                      <p className="text-foreground/40 text-[9px] font-bold uppercase tracking-tight leading-tight mb-2">{eco.desc}</p>
+                      <ChevronRight className="w-4 h-4 text-foreground/30 mt-auto group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </motion.div>
                 ))}
@@ -654,9 +695,17 @@ export default function GedsNetwork() {
 
             <div className="text-center mb-12 relative z-10">
               <Radio className="w-12 h-12 text-blue-400 mx-auto mb-6" />
-              <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4 uppercase italic tracking-tighter">
-                Suporte Especializado <br />
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-400">Quando Você Precisa</span>
+              <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4 uppercase leading-none tracking-tighter">
+                <span className="block">Suporte Especializado </span>
+                <span
+                  className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
+                  style={{
+                    paddingRight: "6px",
+                    paddingBottom: "6px",
+                  }}
+                >
+                  Quando Você Precisa
+                </span>
               </h2>
               <p className="text-foreground/50 max-w-xl mx-auto font-bold uppercase text-xs tracking-widest">
                 Nossa equipe técnica está pronta para agir. SLA definido, atendimento humano e resolução rápida.

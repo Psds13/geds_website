@@ -156,24 +156,26 @@ function SnakeGame({ onScore, onUnlock }: { onScore: (n: number, id: string) => 
   const touchDir = (dir: Dir) => { stateRef.current.next = dir; };
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="flex items-center justify-between w-full max-w-[320px]">
+    <div className="flex flex-col items-center gap-4 w-full max-w-full">
+      <div className="flex items-center justify-between w-full max-w-[320px] px-2">
         <span className="text-cyan-400 font-black text-sm uppercase tracking-widest">Score: {score}</span>
-        <span className="text-foreground/40 text-xs font-bold">Setas para mover</span>
+        <span className="text-foreground/40 text-[10px] font-bold">Setas para mover</span>
       </div>
-      <canvas ref={canvasRef} width={COLS * CELL} height={ROWS * CELL}
-        className="rounded-2xl border border-cyan-500/20 bg-[#050510] shadow-[0_0_30px_rgba(34,211,238,0.1)]" />
+      <div className="relative w-full max-w-[320px] aspect-square">
+        <canvas ref={canvasRef} width={COLS * CELL} height={ROWS * CELL}
+          className="w-full h-full rounded-2xl border border-cyan-500/20 bg-[#050510] shadow-[0_0_30px_rgba(34,211,238,0.1)]" />
+      </div>
       {!running && (
-        <button onClick={start} className="px-8 py-3 bg-cyan-500 text-black font-black rounded-full text-xs uppercase tracking-widest hover:bg-cyan-400 transition-all">
+        <button onClick={start} className="px-8 py-3 bg-cyan-500 text-black font-black rounded-full text-xs uppercase tracking-widest hover:bg-cyan-400 transition-all shadow-[0_5px_15px_rgba(34,211,238,0.3)] hover:scale-105 active:scale-95">
           {dead ? "🔄 Jogar Novamente" : "▶ Iniciar Snake"}
         </button>
       )}
       {running && (
-        <div className="grid grid-cols-3 gap-2 w-36">
-          <div /><button onPointerDown={() => touchDir({ x: 0, y: -1 })} className="bg-foreground/10 rounded-xl py-2 text-foreground font-black text-lg hover:bg-foreground/20">↑</button><div />
-          <button onPointerDown={() => touchDir({ x: -1, y: 0 })} className="bg-foreground/10 rounded-xl py-2 text-foreground font-black text-lg hover:bg-foreground/20">←</button>
-          <button onPointerDown={() => touchDir({ x: 0, y: 1 })}  className="bg-foreground/10 rounded-xl py-2 text-foreground font-black text-lg hover:bg-foreground/20">↓</button>
-          <button onPointerDown={() => touchDir({ x: 1, y: 0 })}  className="bg-foreground/10 rounded-xl py-2 text-foreground font-black text-lg hover:bg-foreground/20">→</button>
+        <div className="grid grid-cols-3 gap-2 w-32 mt-2">
+          <div /><button onPointerDown={() => touchDir({ x: 0, y: -1 })} className="bg-foreground/10 rounded-xl py-3 text-foreground font-black text-lg hover:bg-foreground/20 active:bg-cyan-500/20">↑</button><div />
+          <button onPointerDown={() => touchDir({ x: -1, y: 0 })} className="bg-foreground/10 rounded-xl py-3 text-foreground font-black text-lg hover:bg-foreground/20 active:bg-cyan-500/20">←</button>
+          <button onPointerDown={() => touchDir({ x: 0, y: 1 })}  className="bg-foreground/10 rounded-xl py-3 text-foreground font-black text-lg hover:bg-foreground/20 active:bg-cyan-500/20">↓</button>
+          <button onPointerDown={() => touchDir({ x: 1, y: 0 })}  className="bg-foreground/10 rounded-xl py-3 text-foreground font-black text-lg hover:bg-foreground/20 active:bg-cyan-500/20">→</button>
         </div>
       )}
     </div>
@@ -238,13 +240,13 @@ function MemoryGame({ onScore, onUnlock }: { onScore: (n: number, id: string) =>
         <span className="text-purple-400 font-black text-sm uppercase tracking-widest">Pares: {matches}/8</span>
         <span className="text-foreground/40 text-xs font-bold">Movimentos: {moves}</span>
       </div>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 gap-2 w-full max-w-[280px]">
         {cards.map((card, i) => (
           <motion.button key={card.id} onClick={() => flip(i)} whileTap={{ scale: 0.9 }}
-            className={`w-14 h-14 rounded-2xl text-2xl flex items-center justify-center border transition-all font-black
+            className={`aspect-square rounded-xl text-xl flex items-center justify-center border transition-all font-black
               ${card.matched ? "bg-purple-500/20 border-purple-500/40 cursor-default" :
-                card.revealed ? "bg-foreground/[0.08] border-foreground/20" :
-                "bg-foreground/[0.04] border-foreground/10 hover:border-purple-500/30 cursor-pointer"}`}>
+                card.revealed ? "bg-foreground/[0.08] border-foreground/20 shadow-inner" :
+                "bg-foreground/[0.04] border-foreground/10 hover:border-purple-500/30 cursor-pointer shadow-sm"}`}>
             {(card.revealed || card.matched) ? card.emoji : "?"}
           </motion.button>
         ))}
@@ -362,6 +364,16 @@ export default function GedsGames() {
   const gs = useGamesState();
   const [activeGame, setActiveGame] = useState<string | null>(null);
   const [, setSection] = useState<"play" | "dev" | "community">("play");
+  const [particles, setParticles] = useState<{left: string, top: string, duration: number, delay: number}[]>([]);
+
+  useEffect(() => {
+    setParticles([...Array(20)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      duration: 3 + Math.random() * 4,
+      delay: Math.random() * 2
+    })));
+  }, []);
 
   const GameComponent = activeGame === "snake"  ? <SnakeGame  onScore={gs.addScore} onUnlock={gs.unlock} />
                       : activeGame === "memory" ? <MemoryGame onScore={gs.addScore} onUnlock={gs.unlock} />
@@ -369,7 +381,7 @@ export default function GedsGames() {
                       : null;
 
   return (
-    <main className="bg-background min-h-screen text-foreground overflow-hidden">
+    <main className="bg-background min-h-screen text-foreground">
 
       {/* ── Achievement Toast ──────────────────────────────────── */}
       <AnimatePresence>
@@ -390,24 +402,35 @@ export default function GedsGames() {
       <section className="relative pt-28 pb-24 overflow-hidden border-b border-foreground/5">
         {/* Particle Background */}
         <div className="absolute inset-0 pointer-events-none -z-10">
-          <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: `radial-gradient(circle, rgba(168,85,247,0.8) 1px, transparent 1px)`, backgroundSize: "35px 35px" }} />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-purple-600/10 blur-[130px] rounded-full" />
-          <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-cyan-500/8 blur-[100px] rounded-full" />
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(circle, rgba(168,85,247,0.8) 1.5px, transparent 1.5px)`, backgroundSize: "40px 40px" }} />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[700px] bg-purple-600/10 blur-[150px] rounded-full" />
+          <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full" />
+          <div className="absolute top-[20%] left-[-5%] w-[500px] h-[500px] bg-yellow-500/5 blur-[120px] rounded-full" />
           {/* Floating particles */}
-          {[...Array(12)].map((_, i) => (
+          {particles.map((p, i) => (
             <motion.div key={i}
-              className="absolute w-1.5 h-1.5 rounded-full bg-purple-400/50"
-              style={{ left: `${10 + i * 8}%`, top: `${20 + (i % 3) * 25}%` }}
-              animate={{ y: [-10, 10, -10], opacity: [0.3, 0.8, 0.3] }}
-              transition={{ repeat: Infinity, duration: 2 + i * 0.4, delay: i * 0.2 }}
+              className="absolute w-2 h-2 rounded-full bg-linear-to-br from-purple-400 to-cyan-400 opacity-20 shadow-[0_0_10px_rgba(34,211,238,0.5)]"
+              style={{ left: p.left, top: p.top }}
+              animate={{ 
+                y: [0, -20, 0], 
+                x: [0, 10, 0],
+                opacity: [0.1, 0.4, 0.1],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{ 
+                repeat: Infinity, 
+                duration: p.duration, 
+                delay: p.delay,
+                ease: "easeInOut"
+              }}
             />
           ))}
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <motion.div className="lg:w-1/2 text-left" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-              <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring" }}
+          <div className="flex flex-col xl:flex-row items-center gap-12 lg:gap-20">
+            <motion.div className="xl:w-1/2 text-left" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0, y: 0 }} transition={{ duration: 0.8 }}>
+              <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ type: "spring" }}
                 className="inline-flex items-center justify-center w-20 h-20 bg-purple-500/10 border border-purple-500/20 rounded-[2rem] mb-8 shadow-[0_0_40px_rgba(168,85,247,0.2)]">
                 <Gamepad2 className="w-10 h-10 text-purple-400" />
               </motion.div>
@@ -429,8 +452,8 @@ export default function GedsGames() {
     Games
   </span>
 </h1>
-              <p className="text-lg text-foreground/60 max-w-xl mb-12 font-bold uppercase tracking-tight">
-                Uma plataforma onde tecnologia e criatividade se encontram. Jogue, aprenda e inove.
+              <p className="text-base md:text-lg text-foreground/60 max-w-xl mb-10 font-bold uppercase tracking-tight leading-relaxed">
+                Uma plataforma imersiva onde tecnologia e criatividade se fundem. Jogue títulos exclusivos, colecione conquistas e desenvolva o futuro do entretenimento digital.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-16">
@@ -445,65 +468,74 @@ export default function GedsGames() {
               </div>
 
               {/* Player HUD */}
-              <div className="inline-flex flex-col sm:flex-row items-center gap-6 bg-foreground/[0.03] border border-foreground/10 rounded-[2rem] px-8 py-5 w-full sm:w-auto">
-                <div className="flex items-center gap-4 w-full sm:w-auto">
-                  <div className="w-12 h-12 bg-purple-500/20 border border-purple-500/30 rounded-2xl flex items-center justify-center shrink-0">
-                    <Crown className="w-6 h-6 text-yellow-400" />
+              <div className="inline-flex flex-col sm:flex-row items-stretch sm:items-center gap-6 bg-foreground/[0.03] backdrop-blur-md border border-foreground/10 rounded-[2.5rem] p-6 w-full sm:w-auto">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 bg-purple-500/20 border border-purple-500/30 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-purple-500/10">
+                    <Crown className="w-7 h-7 text-yellow-400" />
                   </div>
                   <div className="text-left">
-                    <p className="text-[9px] font-black uppercase tracking-widest text-foreground/40">Nível</p>
-                    <p className="text-2xl font-black text-foreground italic uppercase">{gs.level}</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-foreground/40 leading-none mb-1">Status do Player</p>
+                    <p className="text-2xl font-black text-foreground italic uppercase leading-none">NÍVEL {gs.level}</p>
                   </div>
                 </div>
-                <div className="text-left w-full sm:w-auto">
-                  <div className="flex justify-between mb-1">
-                    <span className="text-[9px] font-black uppercase tracking-widest text-foreground/40">XP</span>
-                    <span className="text-[9px] font-black text-purple-400">{gs.xpInLevel}/{gs.xpToNext}</span>
+                
+                <div className="flex-1 sm:w-48 text-left py-2 border-y sm:border-y-0 sm:border-x border-foreground/5 sm:px-6">
+                  <div className="flex justify-between mb-2">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-foreground/40">Experiência</span>
+                    <span className="text-[9px] font-black text-purple-400">{gs.xpInLevel} / {gs.xpToNext} XP</span>
                   </div>
-                  <div className="w-full sm:w-40 h-2 bg-foreground/10 rounded-full overflow-hidden">
-                    <motion.div className="h-full bg-linear-to-r from-purple-500 to-cyan-500 rounded-full"
-                      animate={{ width: `${(gs.xpInLevel / gs.xpToNext) * 100}%` }} transition={{ duration: 0.5 }} />
+                  <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
+                    <motion.div className="h-full bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                      animate={{ width: `${(gs.xpInLevel / gs.xpToNext) * 100}%` }} transition={{ duration: 0.8, ease: "easeOut" }} />
                   </div>
                 </div>
-                <div className="flex gap-6 sm:gap-3 items-center w-full sm:w-auto justify-between sm:justify-start">
+
+                <div className="flex gap-8 px-2 sm:px-0">
                   <div className="text-center">
-                    <p className="text-lg font-black text-cyan-400">{gs.totalScore}</p>
+                    <p className="text-xl font-black text-cyan-400 leading-tight">{gs.totalScore}</p>
                     <p className="text-[9px] font-black uppercase tracking-widest text-foreground/40">Pontos</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-lg font-black text-yellow-400">{gs.achievements.size}</p>
-                    <p className="text-[9px] font-black uppercase tracking-widest text-foreground/40">Conquistas</p>
+                    <p className="text-xl font-black text-yellow-400 leading-tight">{gs.achievements.size}</p>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-foreground/40">Títulos</p>
                   </div>
                 </div>
               </div>
             </motion.div>
 
             {/* Image Section */}
-            <motion.div className="lg:w-1/2 relative" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
-              <div className="relative z-10 w-full h-auto rounded-[3rem] border border-foreground/10 shadow-2xl group overflow-hidden">
-  <Image
-    src="/GEDS Games.png"
-    alt="GEDS Games Experience"
-    width={1200}
-    height={1200}
-    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-[2000ms]"
-    priority
-  />
+            <motion.div className="xl:w-1/2 relative w-full flex justify-center xl:justify-end" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
+              <div className="relative z-10 w-full max-w-sm sm:max-w-md xl:max-w-xl h-auto rounded-[3rem] border border-foreground/10 shadow-2xl group overflow-hidden bg-foreground/[0.02]">
+                <Image
+                  src="/GEDS Games.png"
+                  alt="GEDS Games Experience"
+                  width={1200}
+                  height={1200}
+                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-[2000ms]"
+                  priority
+                />
 
-  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+              </div>
 
-<div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-10 right-4 sm:right-6 md:right-10 p-5 sm:p-6 bg-black/30 backdrop-blur-xl border border-white/10 rounded-2xl text-left">
-  <div className="flex items-center gap-5">
-    <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center border border-purple-500/30">
-      <Gamepad2 className="text-purple-400 w-6 h-6" />
-    </div>
-    <div>
-      <p className="text-white font-black text-lg leading-none uppercase italic">Gaming Hub</p>
-      <p className="text-purple-400 text-[9px] uppercase font-black tracking-widest mt-1">Play to Innovate</p>
-    </div>
-  </div>
-</div>
-</div>
+              {/* Enhanced Gaming Hub Badge */}
+              <motion.div 
+                animate={{ boxShadow: ["0 0 20px rgba(168,85,247,0.1)", "0 0 40px rgba(168,85,247,0.3)", "0 0 20px rgba(168,85,247,0.1)"] }}
+                transition={{ repeat: Infinity, duration: 4 }}
+                className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[90%] sm:w-auto min-w-[280px] p-5 sm:p-6 bg-black/60 backdrop-blur-2xl border border-purple-500/40 rounded-[2rem] z-20">
+                <div className="flex items-center gap-5 justify-center sm:justify-start">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                    <Gamepad2 className="text-white w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-black text-xl leading-none uppercase italic tracking-tighter">Gaming Hub</h4>
+                    <div className="flex items-center gap-2 mt-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <p className="text-purple-400 text-[10px] uppercase font-black tracking-widest leading-none">Play to Innovate</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
               <div className="absolute -top-12 -right-12 w-64 h-64 bg-purple-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
               <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-cyan-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
             </motion.div>
@@ -516,18 +548,27 @@ export default function GedsGames() {
         <div className="max-w-7xl mx-auto">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="inline-block mb-4 text-purple-400 font-black bg-purple-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-purple-500/20">Lobby</span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase italic tracking-tighter">
-              Escolha seu <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400">Jogo</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
+              <span className="block">Escolha seu</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-yellow-400"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                Jogo
+              </span>
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {GAMES_LIST.map((game, i) => (
               <motion.div key={game.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }} whileHover={!game.locked ? { y: -6 } : {}}
-                className={`relative p-8 rounded-[2.5rem] border transition-all duration-300
-                  ${game.locked ? "opacity-60 cursor-not-allowed" : "cursor-pointer hover:border-purple-500/30"}
-                  ${activeGame === game.id ? "border-purple-500/50 bg-purple-500/5" : "bg-foreground/[0.02] border-foreground/8"}`}
+                transition={{ delay: i * 0.08 }} whileHover={!game.locked ? { y: -8, scale: 1.02 } : {}}
+                className={`relative p-6 sm:p-8 rounded-[2.5rem] border backdrop-blur-sm transition-all duration-500
+                  ${game.locked ? "opacity-60 cursor-not-allowed grayscale" : "cursor-pointer hover:border-purple-500/40 hover:shadow-[0_20px_50px_rgba(168,85,247,0.1)]"}
+                  ${activeGame === game.id ? "border-purple-500/50 bg-purple-500/5 ring-4 ring-purple-500/10" : "bg-foreground/[0.02] border-foreground/8"}`}
                 onClick={() => !game.locked && setActiveGame(activeGame === game.id ? null : game.id)}>
 
                 {game.locked && (
@@ -566,17 +607,20 @@ export default function GedsGames() {
             {activeGame && GameComponent && (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden">
-                <div className="bg-foreground/[0.02] border border-purple-500/20 rounded-[3rem] p-8 md:p-12 flex flex-col items-center">
-                  <div className="flex items-center justify-between w-full max-w-2xl mb-8">
-                    <h3 className="text-2xl font-black text-foreground uppercase italic tracking-tighter">
-                      {GAMES_LIST.find(g => g.id === activeGame)?.title}
-                    </h3>
+                <div className="bg-foreground/[0.02] border border-purple-500/20 rounded-[3rem] p-6 md:p-12 flex flex-col items-center">
+                  <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-2xl mb-10 gap-4">
+                    <div className="text-center sm:text-left">
+                      <h3 className="text-2xl md:text-3xl font-black text-foreground uppercase italic tracking-tighter">
+                        {GAMES_LIST.find(g => g.id === activeGame)?.title}
+                      </h3>
+                      <p className="text-[10px] font-black text-purple-400 uppercase tracking-widest mt-1">Sessão Ativa • Divirta-se!</p>
+                    </div>
                     <button onClick={() => setActiveGame(null)}
-                      className="text-foreground/40 hover:text-foreground transition-colors text-xs font-black uppercase tracking-widest border border-foreground/10 px-4 py-2 rounded-full hover:border-foreground/30">
-                      Fechar ✕
+                      className="text-foreground/50 hover:text-foreground transition-all text-xs font-black uppercase tracking-widest border border-foreground/10 px-6 py-3 rounded-full hover:border-foreground/30 hover:bg-foreground/5 group">
+                      Fechar Jogo <span className="ml-2 group-hover:rotate-90 inline-block transition-transform">✕</span>
                     </button>
                   </div>
-                  <div className="w-full max-w-md">
+                  <div className="w-full flex justify-center">
                     {GameComponent}
                   </div>
                 </div>
@@ -591,8 +635,17 @@ export default function GedsGames() {
         <div className="max-w-7xl mx-auto">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="inline-block mb-4 text-yellow-400 font-black bg-yellow-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-yellow-500/20">Trofeus</span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase italic tracking-tighter">
-              Suas <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-orange-400">Conquistas</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
+              <span className="block">Suas</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                Conquistas
+              </span>
             </h2>
             <p className="text-foreground/40 text-xs font-black uppercase tracking-widest mt-3">{gs.achievements.size}/{ACHIEVEMENT_LIST.length} desbloqueadas</p>
           </motion.div>
@@ -621,8 +674,17 @@ export default function GedsGames() {
         <div className="max-w-7xl mx-auto">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="inline-block mb-4 text-cyan-400 font-black bg-cyan-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-cyan-500/20">Desenvolva</span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase italic tracking-tighter">
-              Crie seu <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">Jogo</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
+              <span className="block">Crie seu</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                Jogo
+              </span>
             </h2>
             <p className="text-foreground/50 max-w-xl mx-auto mt-4 font-bold uppercase text-xs tracking-widest">
               Ferramentas e guias para transformar sua ideia em um jogo real
@@ -659,8 +721,17 @@ export default function GedsGames() {
         <div className="max-w-7xl mx-auto">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="inline-block mb-4 text-emerald-400 font-black bg-emerald-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-emerald-500/20">Comunidade</span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase italic tracking-tighter">
-              Leaderboard <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400">Global</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
+              <span className="block">Leaderboard</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                Global
+              </span>
             </h2>
           </motion.div>
 
@@ -699,8 +770,17 @@ export default function GedsGames() {
         <div className="max-w-7xl mx-auto">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="inline-block mb-4 text-purple-400 font-black bg-purple-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-purple-500/20">Integração</span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase italic tracking-tighter">
-              Parte do <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400">Ecossistema</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
+              <span className="block">Parte do</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-yellow-400"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                Ecossistema
+              </span>
             </h2>
           </motion.div>
 
@@ -732,8 +812,17 @@ export default function GedsGames() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-full bg-linear-to-r from-transparent via-purple-500 to-transparent" />
             <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-purple-500/10 blur-[80px]" />
             <span className="text-6xl block mb-6 relative z-10">🎮</span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4 uppercase italic tracking-tighter relative z-10">
-              Pronto para <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400">jogar?</span>
+            <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4 uppercase leading-none tracking-tighter relative z-10">
+              <span className="block">Pronto para</span>
+              <span
+                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-yellow-400"
+                style={{
+                  paddingRight: "6px",
+                  paddingBottom: "6px",
+                }}
+              >
+                jogar?
+              </span>
             </h2>
             <p className="text-foreground/50 mb-10 max-w-xl mx-auto font-bold uppercase text-xs tracking-widest relative z-10">
               Jogue, crie, colecione conquistas e suba no ranking da GEDS Games.
