@@ -167,7 +167,7 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
           </div>
           <span className={`text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full border ${categoryColors[project.categoryColor]}`}>{project.category}</span>
         </div>
-        <h3 className="text-foreground font-black text-lg mb-2 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">{project.title}</h3>
+        <h3 className="text-foreground font-black text-lg mb-2 group-hover:text-cyan-400 transition-colors uppercase tracking-tight pr-2">{project.title}</h3>
         <p className="text-foreground/50 text-sm leading-relaxed mb-4">{project.desc}</p>
         <div className="mb-4">
           <div className="flex justify-between mb-2">
@@ -271,9 +271,9 @@ export default function GedsLab() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* ── Hero ──────────────────────────────────────────────── */}
-        <section className="mb-24 mt-12">
+        <section className="mb-24 mt-8 md:mt-12">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <motion.div className="lg:w-1/2 text-left" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+            <motion.div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring' }}
                 className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl mb-6 relative border border-cyan-500/20">
                 <Beaker className="w-8 h-8 text-cyan-400 relative z-10" />
@@ -282,23 +282,23 @@ export default function GedsLab() {
               <span className="inline-block mb-4 text-cyan-400 font-black bg-cyan-500/10 px-4 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-cyan-500/20">
                 Innovation Testing Grounds
               </span>
-              <h1 className="text-5xl md:text-7xl font-black mb-6 leading-[1.1] uppercase italic tracking-tighter text-foreground">
-                GEDS <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">Lab</span>
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-[1.1] uppercase italic tracking-tight text-foreground pr-4">
+                GEDS <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 pr-2">Lab</span>
               </h1>
-              <p className="text-lg text-foreground/60 mb-8 max-w-xl leading-relaxed font-bold uppercase tracking-tight">
+              <p className="text-base sm:text-lg text-foreground/60 mb-8 max-w-xl leading-relaxed font-bold uppercase tracking-tight">
                 Onde a imaginação encontra a execução técnica. Projetamos, testamos e validamos as tecnologias que ditarão o ritmo do mercado amanhã.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-10">
-                <Link href="/contatos" className="bg-cyan-500 hover:bg-cyan-400 text-black font-black px-10 py-4 rounded-full transition-all shadow-[0_10px_30px_rgba(0,219,255,0.2)] hover:shadow-[0_15px_40px_rgba(0,219,255,0.4)] uppercase text-[10px] tracking-[0.3em]">
+                <Link href="/contatos" className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-400 text-black font-black px-10 py-4 rounded-full transition-all shadow-[0_10px_30px_rgba(0,219,255,0.2)] hover:shadow-[0_15px_40px_rgba(0,219,255,0.4)] uppercase text-[10px] tracking-[0.3em]">
                   Iniciar um Projeto
                 </Link>
-                <a href="#roadmap" className="px-10 py-4 rounded-full border border-foreground/10 hover:border-cyan-500/50 text-foreground font-black uppercase text-[10px] tracking-[0.3em] transition-all">
+                <a href="#roadmap" className="w-full sm:w-auto px-10 py-4 rounded-full border border-foreground/10 hover:border-cyan-500/50 text-foreground font-black uppercase text-[10px] tracking-[0.3em] transition-all">
                   Ver Roadmap
                 </a>
               </div>
 
-              <div className="flex flex-wrap gap-8 items-center border-t border-foreground/5 pt-8">
+              <div className="flex flex-wrap gap-8 items-center justify-center lg:justify-start border-t border-foreground/5 pt-8">
                 {[{ label: 'Projetos Ativos', value: '12+' }, { label: 'P&D Mensal', value: '300h+' }].map((stat, i) => (
                   <div key={i}>
                     <p className="text-2xl font-black text-foreground uppercase italic">{stat.value}</p>
@@ -308,11 +308,11 @@ export default function GedsLab() {
               </div>
             </motion.div>
 
-            <motion.div className="lg:w-1/2 relative" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
-              <div className="relative z-10 w-full aspect-[4/5] sm:aspect-square overflow-hidden rounded-[3rem] border border-foreground/10 shadow-2xl group">
+            <motion.div className="w-full lg:w-1/2 relative flex justify-center" initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1 }}>
+              <div className="relative z-10 w-full max-w-lg aspect-square sm:aspect-square overflow-hidden rounded-[3rem] border border-foreground/10 shadow-2xl group">
                 <Image src="/GEDS Lab.jpg" alt="GEDS Lab Environment" fill className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]" priority />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-10 left-10 right-10 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl">
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 p-5 md:p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl">
                   <div className="flex items-center gap-5">
                     <div className="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center border border-cyan-500/30">
                       <Cpu className="text-cyan-400 w-6 h-6" />
@@ -335,7 +335,7 @@ export default function GedsLab() {
           <div className="bg-linear-to-r from-purple-950/30 via-background to-blue-950/30 border border-purple-500/20 rounded-[2.5rem] p-6 md:p-10">
             <div className="flex items-center gap-3 mb-4">
               <Brain className="w-6 h-6 text-purple-400" />
-              <h2 className="text-2xl font-black text-foreground uppercase italic tracking-tighter">Teste nossa IA</h2>
+              <h2 className="text-xl md:text-2xl font-black text-foreground uppercase italic tracking-tighter pr-2">Teste nossa IA</h2>
               <span className="text-[9px] bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2 py-0.5 rounded-full font-black uppercase tracking-widest">BETA</span>
             </div>
             <p className="text-foreground/50 text-sm mb-6 max-w-xl font-bold uppercase tracking-tight">
@@ -349,7 +349,7 @@ export default function GedsLab() {
         <section className="mb-24">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
             <div>
-              <h2 className="text-3xl md:text-4xl font-black text-foreground mb-2 uppercase italic tracking-tighter">Projetos do Lab</h2>
+              <h2 className="text-3xl md:text-4xl font-black text-foreground mb-2 uppercase italic tracking-tighter pr-2">Projetos do Lab</h2>
               <p className="text-foreground/50 text-sm uppercase font-black tracking-tight">Do conceito ao produto final, aqui está o que estamos construindo</p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -378,7 +378,7 @@ export default function GedsLab() {
             <span className="inline-block mb-4 text-cyan-400 font-black bg-cyan-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-cyan-500/20">
               Visão de Futuro
             </span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4 uppercase italic tracking-tighter">
+            <h2 className="text-3xl md:text-6xl font-black text-foreground mb-4 uppercase italic tracking-tighter pr-4">
               Roadmap <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">GEDS Lab</span>
             </h2>
             <p className="text-foreground/50 max-w-xl mx-auto font-bold uppercase text-xs tracking-widest">
@@ -412,7 +412,7 @@ export default function GedsLab() {
                           </div>
                           <div>
                             <span className={`text-[9px] font-black uppercase tracking-widest ${c.text}`}>{item.quarter}</span>
-                            <p className="text-foreground font-black uppercase italic tracking-tight text-lg leading-none">{item.title}</p>
+                            <p className="text-foreground font-black uppercase italic tracking-tight text-lg leading-tight pr-2">{item.title}</p>
                           </div>
                           {item.status === 'done' && <span className="ml-auto text-[8px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-full border border-emerald-500/20">Concluído</span>}
                           {item.status === 'active' && <span className="ml-auto text-[8px] font-black uppercase tracking-widest text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded-full border border-cyan-500/20 animate-pulse">Em Curso</span>}
@@ -447,7 +447,7 @@ export default function GedsLab() {
           className="text-center bg-linear-to-br from-cyan-950/30 to-background border border-cyan-500/15 rounded-[3rem] p-10 md:p-16 relative overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-full bg-linear-to-r from-transparent via-cyan-500 to-transparent" />
           <FlaskConical className="w-12 h-12 text-cyan-400 mx-auto mb-6" />
-          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4 uppercase italic tracking-tighter">
+          <h2 className="text-2xl md:text-5xl font-black text-foreground mb-4 uppercase italic tracking-tighter pr-2">
             Quer transformar sua ideia em um protótipo?
           </h2>
           <p className="text-foreground/50 mb-8 max-w-xl mx-auto uppercase text-xs font-black tracking-widest">

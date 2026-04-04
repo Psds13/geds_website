@@ -11,9 +11,14 @@ export default function HomeOS() {
     { id: "2", text: "Copyright (c) GEDS Inovação. All rights reserved.", color: "text-emerald-500" },
     { id: "3", text: "Type 'help' to see available commands.", color: "text-emerald-300" }
   ]);
+  const isFirstMount = useRef(true);
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [output]);
 

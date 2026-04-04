@@ -236,9 +236,9 @@ export default function GreenTech() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* ── Hero ──────────────────────────────────────────────── */}
-        <section className="mb-24 mt-12">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 text-left">
-            <motion.div className="lg:w-1/2" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+        <section className="mb-24 mt-8 md:mt-12">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <motion.div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring' }}
                 className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-emerald-500/20 to-cyan-500/20 rounded-2xl mb-6 border border-emerald-500/20">
                 <Leaf className="w-8 h-8 text-emerald-400 relative z-10" />
@@ -247,23 +247,23 @@ export default function GreenTech() {
               <span className="inline-block mb-4 text-emerald-400 font-black bg-emerald-500/10 px-4 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-emerald-500/20">
                 Future Impact & Sustainability
               </span>
-              <h1 className="text-5xl md:text-7xl font-black mb-6 leading-[1.1] uppercase italic tracking-tighter text-foreground">
-                GEDS <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400">Green Tech</span>
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-[1.1] uppercase italic tracking-tight text-foreground">
+                GEDS<br className="sm:hidden" /> <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 inline-block pr-6 -mr-6">Green Tech</span>
               </h1>
-              <p className="text-lg text-foreground/60 mb-8 max-w-xl leading-relaxed font-bold uppercase tracking-tight">
+              <p className="text-base sm:text-lg text-foreground/60 mb-8 max-w-xl leading-relaxed font-bold uppercase tracking-tight">
                 Transformando a pegada digital em um legado positivo. Desenvolvemos soluções que escalam seu negócio enquanto protegem o planeta.
               </p>
 
-              <div className="flex flex-wrap gap-4 mb-10">
-                <Link href="/contatos" className="bg-emerald-500 hover:bg-emerald-400 text-black font-black px-10 py-4 rounded-full transition-all shadow-[0_10px_30px_rgba(16,185,129,0.2)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.4)] uppercase text-[10px] tracking-[0.3em]">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10 w-full">
+                <Link href="/contatos" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-black font-black px-10 py-4 rounded-full transition-all shadow-[0_10px_30px_rgba(16,185,129,0.2)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.4)] uppercase text-[10px] tracking-[0.3em]">
                   Fazer meu diagnóstico
                 </Link>
-                <a href="#esg" className="px-10 py-4 rounded-full border border-foreground/10 hover:border-emerald-500/50 text-foreground font-black uppercase text-[10px] tracking-[0.3em] transition-all">
+                <a href="#esg" className="w-full sm:w-auto px-10 py-4 rounded-full border border-foreground/10 hover:border-emerald-500/50 text-foreground font-black uppercase text-[10px] tracking-[0.3em] transition-all">
                   Metas ESG 2026
                 </a>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-foreground/5">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-foreground/5 justify-center lg:justify-start">
                 {[
                   { icon: '🌳', label: 'Árvores', value: 240 },
                   { icon: '🌍', label: 'CO₂ (t)', value: 18 },
@@ -280,11 +280,11 @@ export default function GreenTech() {
               </div>
             </motion.div>
 
-            <motion.div className="lg:w-1/2 relative" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
-              <div className="relative z-10 w-full aspect-[4/5] sm:aspect-square overflow-hidden rounded-[3rem] border border-foreground/10 shadow-2xl group">
+            <motion.div className="w-full lg:w-1/2 relative flex justify-center" initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1 }}>
+              <div className="relative z-10 w-full max-w-lg aspect-square sm:aspect-square overflow-hidden rounded-[3rem] border border-foreground/10 shadow-2xl group">
                 <Image src="/GEDS Green Tech.jpg" alt="GEDS Green Tech" fill className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]" priority />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-10 left-10 right-10 p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl">
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 p-5 md:p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl">
                   <div className="flex items-center gap-5">
                     <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center border border-emerald-500/30"><Zap className="text-emerald-400 w-6 h-6" /></div>
                     <div>
@@ -305,7 +305,7 @@ export default function GreenTech() {
           <motion.div className="text-center mb-12" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             <span className="inline-block mb-4 text-emerald-400 font-black bg-emerald-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-emerald-500/20">Ferramentas Interativas</span>
             <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4 uppercase italic tracking-tighter">
-              Calcule seu <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400">impacto real</span>
+              Calcule seu <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 inline-block pr-4 -mr-4">impacto real</span>
             </h2>
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -319,7 +319,7 @@ export default function GreenTech() {
           <motion.div className="text-center mb-12" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             <span className="inline-block mb-4 text-emerald-400 font-black bg-emerald-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-emerald-500/20">Monitoramento Global</span>
             <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4 uppercase italic tracking-tighter">
-              Dashboard <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400">sustentável global</span>
+              Dashboard <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 inline-block pr-4 -mr-4">sustentável global</span>
             </h2>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
@@ -332,7 +332,7 @@ export default function GreenTech() {
           <motion.div className="text-center mb-12" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             <span className="inline-block mb-4 text-emerald-400 font-black bg-emerald-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-emerald-500/20">Nossas Soluções</span>
             <h2 className="text-3xl md:text-5xl font-black text-foreground uppercase italic tracking-tighter">
-              Tecnologia verde <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400">na prática</span>
+              Tecnologia verde <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 inline-block pr-4 -mr-4">na prática</span>
             </h2>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -349,7 +349,7 @@ export default function GreenTech() {
                 <div className={`w-14 h-14 bg-${item.color}-500/10 border border-${item.color}-500/20 text-${item.color}-400 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   {item.icon}
                 </div>
-                <h3 className="text-foreground font-black text-lg mb-2 uppercase italic tracking-tight">{item.title}</h3>
+                <h3 className="text-foreground font-black text-lg mb-2 uppercase italic tracking-tight pr-2">{item.title}</h3>
                 <p className="text-foreground/50 text-sm leading-relaxed mb-3 font-bold">{item.desc}</p>
                 <span className={`text-${item.color}-400 text-[9px] font-black bg-${item.color}-500/10 px-3 py-1 rounded-full border border-${item.color}-500/20 uppercase tracking-widest`}>{item.impact}</span>
               </motion.div>
@@ -364,7 +364,7 @@ export default function GreenTech() {
               Compromisso com o Futuro
             </span>
             <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4 uppercase italic tracking-tighter">
-              Metas <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400">ESG 2026</span>
+              Metas <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 inline-block pr-4 -mr-4">ESG 2026</span>
             </h2>
             <p className="text-foreground/50 max-w-2xl mx-auto font-bold uppercase text-xs tracking-widest">
               Nossa agenda de responsabilidade ambiental, social e de governança — com métricas reais de progresso.
@@ -382,7 +382,7 @@ export default function GreenTech() {
                     <div className={`w-14 h-14 rounded-2xl ${c.bg} border ${c.border} flex items-center justify-center ${c.text}`}>{pillar.icon}</div>
                     <div>
                       <p className={`text-[9px] font-black uppercase tracking-widest ${c.text}`}>Pilar</p>
-                      <h3 className="text-foreground font-black text-2xl uppercase italic tracking-tighter">{pillar.pillar}</h3>
+                      <h3 className="text-foreground font-black text-2xl uppercase italic tracking-tighter pr-2">{pillar.pillar}</h3>
                     </div>
                   </div>
 
@@ -427,7 +427,7 @@ export default function GreenTech() {
               <TrendingUp className="w-8 h-8 text-emerald-400" />
               <div>
                 <p className="text-[9px] text-foreground/40 font-black uppercase tracking-widest">Score ESG Global GEDS</p>
-                <p className="text-4xl font-black text-foreground uppercase italic tracking-tighter">57% <span className="text-emerald-400">Concluído</span></p>
+                <p className="text-4xl font-black text-foreground uppercase italic tracking-tighter pr-2">57% <span className="text-emerald-400">Concluído</span></p>
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -446,7 +446,7 @@ export default function GreenTech() {
             <div className="flex flex-col md:flex-row gap-8 items-center relative z-10">
               <Target className="w-16 h-16 text-emerald-400 shrink-0" />
               <div>
-                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3 uppercase italic tracking-tighter">Nosso compromisso</h2>
+                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3 uppercase italic tracking-tighter pr-2">Nosso compromisso</h2>
                 <p className="text-foreground/60 text-lg leading-relaxed italic max-w-3xl font-bold">
                   &ldquo;Desenvolver software é criar o futuro. E nós tomamos a decisão de construir um amanhã onde a agilidade dos negócios coexista perfeitamente com a responsabilidade para com o planeta. Cada byte de código que escrevemos carrega esse compromisso.&rdquo;
                 </p>
@@ -459,7 +459,7 @@ export default function GreenTech() {
         <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
           <span className="text-5xl block mb-4">🌱</span>
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4 uppercase italic tracking-tighter">
-            Pronto para um tech mais <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400">verde?</span>
+            Pronto para um tech mais <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 inline-block pr-4 -mr-4">verde?</span>
           </h2>
           <p className="text-foreground/50 mb-8 max-w-xl mx-auto uppercase text-xs font-black tracking-widest">
             Descubra como nossas soluções sustentáveis podem transformar seu negócio e o impacto que ele deixa no mundo.
