@@ -157,7 +157,7 @@ const PaymentContent = () => {
 
   const getPixCode = () => {
     const valor = descontoAplicado ? valorComDesconto : valorOriginal;
-    return `00020126360014BR.GOV.BCB.PIX0114+5548999999999520400005303986540${valor.toFixed(2).length.toString().padStart(2, '0')}${valor.toFixed(2)}5802BR5925GEDS INOVACAO6007BRASILIA62070503***6304`;
+    return `00020126360014BR.GOV.BCB.PIX0114+5548999999999520400005303986540${valor.toFixed(2).length.toString().padStart(2, '0')}${valor.toFixed(2)}5802BR5925Nortech INOVACAO6007BRASILIA62070503***6304`;
   };
 
   const copyPixCode = () => {
@@ -185,7 +185,7 @@ const PaymentContent = () => {
       const { data: userData } = await (client
         .from('usuarios')
         .select('id')
-        .eq('email', 'edmilson@gedsinovacao.com')
+        .eq('email', 'edmilson@nortechinovacao.com')
         .single() as unknown as Promise<PostgrestSingleResponse<Record<string, unknown>>>);
 
       const { data: planData } = await (client
@@ -238,14 +238,14 @@ const PaymentContent = () => {
     pdf.rect(0, 0, 210, 40, 'F');
     pdf.setTextColor(255, 255, 255);
     pdf.setFontSize(22);
-    pdf.text('GEDS INOVAÇÃO', 50, 20);
+    pdf.text('Nortech INOVAÇÃO', 50, 20);
     pdf.setFontSize(14);
     pdf.text('DETALHES DO PEDIDO', 20, 60);
     pdf.setTextColor(0, 0, 0);
     pdf.text(`Plano: ${planName}`, 20, 75);
     pdf.text(`Valor: ${formatCurrency(descontoAplicado ? valorComDesconto : valorOriginal)}`, 20, 85);
     pdf.text(`Código de Barras: ${boletoCode}`, 20, 100);
-    pdf.save('boleto-geds.pdf');
+    pdf.save('boleto-nortech.pdf');
   };
 
   const formatCurrency = (value: number) => {
@@ -464,7 +464,7 @@ const PaymentPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>GEDS - Finalizar Pagamento</title>
+        <title>Nortech - Finalizar Pagamento</title>
       </Head>
       <Suspense fallback={<div className="h-screen w-full bg-black flex items-center justify-center text-white">Carregando...</div>}>
         <PaymentContent />

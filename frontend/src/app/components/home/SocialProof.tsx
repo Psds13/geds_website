@@ -5,9 +5,9 @@ import { FiStar } from "react-icons/fi";
 import { ShieldCheck, MessageSquare } from "lucide-react";
 
 const testimonials = [
-  { name: "Carlos Mendes", role: "CEO – TechBrasil", text: "A GEDS transformou nossos processos internos. Ganhamos produtividade em poucas semanas de projeto.", stars: 5, avatar: "C" },
-  { name: "Ana Rodrigues", role: "Diretora – MedPlus", text: "O sistema desenvolvido pela GEDS reduziu drasticamente o tempo de resposta hospitalar. Resultado técnico impressionante!", stars: 5, avatar: "A" },
-  { name: "Pedro Alves", role: "Founder – StartupX", text: "Lançamos nosso MVP em tempo recorde mundial. A abordagem ágil e a qualidade de dados da GEDS são incomparáveis.", stars: 5, avatar: "P" },
+  { name: "Carlos Mendes", role: "CEO – TechBrasil", text: "A Nortech transformou nossos processos internos. Ganhamos produtividade em poucas semanas de projeto.", stars: 5, avatar: "C" },
+  { name: "Ana Rodrigues", role: "Diretora – MedPlus", text: "O sistema desenvolvido pela Nortech reduziu drasticamente o tempo de resposta hospitalar. Resultado técnico impressionante!", stars: 5, avatar: "A" },
+  { name: "Pedro Alves", role: "Founder – StartupX", text: "Lançamos nosso MVP em tempo recorde mundial. A abordagem ágil e a qualidade de dados da Nortech são incomparáveis.", stars: 5, avatar: "P" },
 ];
 
 export default function SocialProof() {
@@ -27,7 +27,7 @@ export default function SocialProof() {
           <h2 className="text-3xl md:text-5xl font-extrabold text-cyan-600 dark:text-cyan-400 mb-6 tracking-tight leading-tight">
             Para quem busca resultados reais
           </h2>
-          <p className="text-lg text-foreground/60 max-w-xl mx-auto leading-relaxed italic">O que dizem os líderes que escalam através da engenharia GEDS.</p>
+          <p className="text-lg text-foreground/60 max-w-xl mx-auto leading-relaxed italic">O que dizem os líderes que escalam através da engenharia Nortech.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -86,7 +86,7 @@ export default function SocialProof() {
                Cibersegurança Enterprise
             </span>
             <h3 className="text-3xl md:text-4xl font-extrabold text-blue-600 dark:text-blue-400 tracking-tight">
-              Blindagem pela elite de dados GEDS
+              Blindagem pela elite de dados Nortech
             </h3>
             <p className="text-lg text-foreground/70 leading-relaxed max-w-3xl italic">
               Seguimos protocolos globais: criptografia militar de ponta a ponta e conformidade LGPD avançada.

@@ -169,10 +169,10 @@ export default function CommandCenter() {
             </span>
           </div>
           
-          {/* Title - GEDS COMMAND on first line, CENTER on second line with different font */}
+          {/* Title - Nortech COMMAND on first line, CENTER on second line with different font */}
           <div className="flex flex-col items-center justify-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-foreground uppercase tracking-tighter mb-2 font-['Poppins',_sans-serif]">
-              GEDS COMMAND
+              Nortech COMMAND
             </h2>
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase tracking-wider">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 font-['Orbitron',_monospace]">
@@ -289,7 +289,7 @@ export default function CommandCenter() {
             {[...Array(5)].map((_, i) => (
               <span key={i} className="flex items-center gap-3 sm:gap-4">
                 <Radio className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                GEDS NETWORK STATUS: OPTIMAL \\ NODE UPTIME: 99.9% \\ SECURITY PATCH V.2.4.0 DEPLOYED \\ REAL-TIME MONITORING ENABLED \\
+                Nortech NETWORK STATUS: OPTIMAL \\ NODE UPTIME: 99.9% \\ SECURITY PATCH V.2.4.0 DEPLOYED \\ REAL-TIME MONITORING ENABLED \\
               </span>
             ))}
           </motion.div>

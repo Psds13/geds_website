@@ -22,14 +22,14 @@ export default function TermsOfUse() {
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-4">1. Aceitação dos Termos</h2>
                                 <p>
-                                    Ao acessar e utilizar o site da GEDS Inovação Tech, você concorda expressamente com estes Termos de Uso e com nossa Política de Privacidade. Caso não concorde com qualquer disposição destes termos, recomendamos que não utilize nosso site.
+                                    Ao acessar e utilizar o site da Nortech Inovação Tech, você concorda expressamente com estes Termos de Uso e com nossa Política de Privacidade. Caso não concorde com qualquer disposição destes termos, recomendamos que não utilize nosso site.
                                 </p>
                             </section>
 
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-4">2. Uso do Site</h2>
                                 <p>
-                                    O conteúdo deste site é destinado a fins informativos e institucionais sobre os serviços de tecnologia prestados pela GEDS Inovação Tech.
+                                    O conteúdo deste site é destinado a fins informativos e institucionais sobre os serviços de tecnologia prestados pela Nortech Inovação Tech.
                                 </p>
                                 <p className="mt-4">
                                     Você concorda em não:
@@ -44,14 +44,14 @@ export default function TermsOfUse() {
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-4">3. Propriedade Intelectual</h2>
                                 <p>
-                                    Todo o conteúdo presente neste site, incluindo textos, logotipos, imagens, gráficos, códigos e software, é propriedade exclusiva da GEDS Inovação Tech ou de seus licenciadores, sendo protegido pelas leis de direitos autorais e propriedade intelectual. O uso indevido de qualquer material é estritamente proibido.
+                                    Todo o conteúdo presente neste site, incluindo textos, logotipos, imagens, gráficos, códigos e software, é propriedade exclusiva da Nortech Inovação Tech ou de seus licenciadores, sendo protegido pelas leis de direitos autorais e propriedade intelectual. O uso indevido de qualquer material é estritamente proibido.
                                 </p>
                             </section>
 
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-4">4. Limitação de Responsabilidade</h2>
                                 <p>
-                                    A GEDS Inovação Tech envida os melhores esforços para manter as informações do site precisas e atualizadas. No entanto, não garantimos que o site estará livre de erros ou interrupções. Em nenhuma circunstância seremos responsáveis por danos diretos, indiretos ou consequenciais decorrentes do uso ou impossibilidade de uso deste site.
+                                    A Nortech Inovação Tech envida os melhores esforços para manter as informações do site precisas e atualizadas. No entanto, não garantimos que o site estará livre de erros ou interrupções. Em nenhuma circunstância seremos responsáveis por danos diretos, indiretos ou consequenciais decorrentes do uso ou impossibilidade de uso deste site.
                                 </p>
                             </section>
 

@@ -39,8 +39,8 @@ export default function About() {
           >
             <div className="relative group w-full h-[300px] sm:h-[400px] lg:h-[450px] overflow-hidden rounded-4xl shadow-2xl border border-foreground/5 group-hover:border-cyan-500/20 transition-all duration-500">
               <Image
-                src="/GEDS Inovação.jpg"
-                alt="Equipe GEDS Inovação"
+                src="/Nortech Inovação.jpg"
+                alt="Equipe Nortech Inovação"
                 fill
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-1000"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -71,7 +71,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             <div>
-              <p className="text-cyan-500 dark:text-cyan-400 text-[10px] uppercase font-black tracking-widest mb-4">GEDS Inovação Tech</p>
+              <p className="text-cyan-500 dark:text-cyan-400 text-[10px] uppercase font-black tracking-widest mb-4">Nortech Inovação Tech</p>
               <h2 className="text-3xl font-extrabold text-foreground mb-6 tracking-tight uppercase italic opacity-90">
                 Engenharia de precisão para resultados exponenciais
               </h2>

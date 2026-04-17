@@ -384,10 +384,10 @@ const beforeAfter = [
 
 // ── Ecosystem ─────────────────────────────────────────────────────
 const ecosystem = [
-  { name: "GEDS Inovação", icon: <Zap className="w-5 h-5" />, desc: "Sistemas dependem de rede estável", color: "cyan", href: "/" },
-  { name: "GEDS Security", icon: <Shield className="w-5 h-5" />, desc: "Proteção da infraestrutura de rede", color: "blue", href: "/geds-security" },
-  { name: "GEDS Lab", icon: <Beaker className="w-5 h-5" />, desc: "Testes e inovação em topologias", color: "purple", href: "/geds-lab" },
-  { name: "GEDS Green Tech", icon: <Leaf className="w-5 h-5" />, desc: "Eficiência energética dos servidores", color: "emerald", href: "/green-tech" },
+  { name: "Nortech Inovação", icon: <Zap className="w-5 h-5" />, desc: "Sistemas dependem de rede estável", color: "cyan", href: "/" },
+  { name: "Nortech Security", icon: <Shield className="w-5 h-5" />, desc: "Proteção da infraestrutura de rede", color: "blue", href: "/nortech-security" },
+  { name: "Nortech Lab", icon: <Beaker className="w-5 h-5" />, desc: "Testes e inovação em topologias", color: "purple", href: "/nortech-lab" },
+  { name: "Nortech Green", icon: <Leaf className="w-5 h-5" />, desc: "Eficiência energética dos servidores", color: "emerald", href: "/green-tech" },
 ];
 
 const ecoColors: Record<string, string> = {
@@ -398,7 +398,7 @@ const ecoColors: Record<string, string> = {
 };
 
 // ── Main Page ─────────────────────────────────────────────────────
-export default function GedsNetwork() {
+export default function NortechNetwork() {
   return (
     <main className="bg-background min-h-screen text-foreground">
 
@@ -476,7 +476,7 @@ export default function GedsNetwork() {
             <motion.div className="lg:w-[40%] relative w-full flex justify-center lg:justify-end mt-12 lg:mt-0" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
               <div className="relative z-10 w-full max-w-[320px] sm:max-w-[420px] h-auto p-4 bg-foreground/[0.02] border border-foreground/5 rounded-[3.5rem] shadow-2xl">
                 <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-foreground/10 bg-background/50">
-                  <Image src="/GEDS Network.png" alt="GEDS Network Impact" fill className="object-contain p-6 group-hover:scale-105 transition-transform duration-[2000ms]" priority />
+                  <Image src="/Nortech Network.png" alt="Nortech Network Impact" fill className="object-contain p-6 group-hover:scale-105 transition-transform duration-[2000ms]" priority />
                 </div>
                 <motion.div animate={{ boxShadow: ["0 0 20px rgba(59,130,246,0.1)", "0 0 40px rgba(59,130,246,0.3)", "0 0 20px rgba(59,130,246,0.1)"] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[95%] sm:w-auto min-w-[280px] p-5 sm:p-6 bg-black/60 backdrop-blur-2xl border border-blue-500/40 rounded-[2rem] z-20">
                   <div className="flex items-center gap-5 justify-center sm:justify-start">
@@ -593,7 +593,7 @@ export default function GedsNetwork() {
               </span>
             </h2>
             <p className="text-foreground/50 max-w-xl mx-auto mt-4 font-bold uppercase text-xs tracking-widest">
-              Cada hora parada custa dinheiro. Veja a diferença com a GEDS Network.
+              Cada hora parada custa dinheiro. Veja a diferença com a Nortech Network.
             </p>
           </motion.div>
 
@@ -601,11 +601,11 @@ export default function GedsNetwork() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div className="flex items-center gap-3 p-4 rounded-2xl bg-red-500/10 border border-red-500/20">
               <TrendingDown className="w-5 h-5 text-red-400" />
-              <span className="text-red-400 font-black text-sm uppercase tracking-widest">Sem GEDS Network</span>
+              <span className="text-red-400 font-black text-sm uppercase tracking-widest">Sem Nortech Network</span>
             </div>
             <div className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
               <TrendingUp className="w-5 h-5 text-emerald-400" />
-              <span className="text-emerald-400 font-black text-sm uppercase tracking-widest">Com GEDS Network</span>
+              <span className="text-emerald-400 font-black text-sm uppercase tracking-widest">Com Nortech Network</span>
             </div>
           </div>
 
@@ -657,7 +657,7 @@ export default function GedsNetwork() {
                 <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3 }}
                   className="w-24 h-24 bg-blue-500/10 border-2 border-blue-500/40 rounded-3xl flex flex-col items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.2)] relative z-10">
                   <Network className="w-8 h-8 text-blue-400" />
-                  <p className="text-[8px] font-black text-blue-400 uppercase tracking-widest mt-1">GEDS<br/>Network</p>
+                  <p className="text-[8px] font-black text-blue-400 uppercase tracking-widest mt-1">Nortech<br/>Network</p>
                 </motion.div>
               </div>
 

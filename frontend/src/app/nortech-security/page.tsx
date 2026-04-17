@@ -145,7 +145,7 @@ export default function SecurityPage() {
       <section className="py-24 px-6 bg-foreground/2 border-y border-foreground/5">
         <div className="max-w-7xl mx-auto text-center mb-20">
           <span className="text-cyan-400 text-[10px] font-black uppercase tracking-widest bg-cyan-500/10 px-6 py-2 rounded-full border border-cyan-500/20">
-            Diferenciais GEDS Security
+            Diferenciais Nortech Security
           </span>
         </div>
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -212,8 +212,8 @@ export default function SecurityPage() {
             
             <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 mx-auto">
               <Image 
-                src="/GEDS Security.png" 
-                alt="Blindagem GEDS" 
+                src="/Nortech Security.png" 
+                alt="Blindagem Nortech" 
                 fill 
                 className="object-contain drop-shadow-[0_0_50px_rgba(0,219,255,0.4)]"
               />
@@ -275,7 +275,7 @@ export default function SecurityPage() {
         <div className="max-w-4xl mx-auto text-center italic relative z-10">
           <div className="text-4xl text-cyan-500/30 mb-8 tracking-none">“</div>
            <p className="text-xl md:text-3xl text-foreground/70 leading-relaxed font-medium mb-12">
-            A GEDS Security melhorou totalmente nossa segurança digital. Implementamos protocolos que nem sabíamos que precisávamos e hoje dormimos tranquilos com monitoramento constante.
+            A Nortech Security melhorou totalmente nossa segurança digital. Implementamos protocolos que nem sabíamos que precisávamos e hoje dormimos tranquilos com monitoramento constante.
            </p>
            <p className="text-foreground font-black uppercase tracking-[0.2em] italic text-sm">Diretora de Operações • Enterprise Global</p>
         </div>

@@ -226,13 +226,13 @@ export default function Contact() {
               <h3 className="text-[10px] font-bold uppercase tracking-widest text-cyan-500">Diretórios de Contato</h3>
               
               <div className="grid gap-4">
-                <a href="mailto:contato.gedsinovacao@gmail.com" className="group flex items-center gap-6 p-6 rounded-[2rem] bg-foreground/[0.02] border border-foreground/5 hover:border-cyan-500/30 hover:bg-foreground/[0.04] transition-all">
+                <a href="mailto:contato.nortechinovacao@gmail.com" className="group flex items-center gap-6 p-6 rounded-[2rem] bg-foreground/[0.02] border border-foreground/5 hover:border-cyan-500/30 hover:bg-foreground/[0.04] transition-all">
                   <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:scale-110 transition-transform">
                     <FaEnvelope className="text-cyan-400 text-2xl" />
                   </div>
                   <div>
                     <p className="text-[9px] text-foreground/40 font-bold uppercase tracking-widest mb-1">Email Principal</p>
-                    <p className="text-base font-bold tracking-tight group-hover:text-cyan-500 transition-colors break-all">contato.gedsinovacao@gmail.com</p>
+                    <p className="text-base font-bold tracking-tight group-hover:text-cyan-500 transition-colors break-all">contato.nortechinovacao@gmail.com</p>
                   </div>
                 </a>
 
@@ -260,7 +260,7 @@ export default function Contact() {
 
             {/* Social Matrix - Updated colors */}
             <div className="space-y-6">
-              <p className="text-[10px] text-foreground/40 font-bold uppercase tracking-widest text-center md:text-left">Rede Global GEDS</p>
+              <p className="text-[10px] text-foreground/40 font-bold uppercase tracking-widest text-center md:text-left">Rede Global Nortech</p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
                 {[
                   { icon: FaInstagram, color: "hover:text-pink-500", label: "Instagram", href: "#" },

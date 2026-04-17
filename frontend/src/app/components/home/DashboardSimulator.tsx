@@ -16,7 +16,7 @@ function DashboardPreview() {
       <div className="flex items-center justify-between mb-8 border-b border-foreground/5 pb-6">
         <div>
           <p className="text-cyan-600 dark:text-cyan-400 text-[9px] uppercase font-black tracking-widest mb-1 items-center flex gap-2">
-            GEDS Insight Dashboard
+            Nortech Insight Dashboard
           </p>
           <h3 className="text-foreground font-bold text-xl tracking-tight">Performance Técnica</h3>
         </div>

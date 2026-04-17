@@ -142,7 +142,7 @@ function LiveDashboard() {
     <div className="bg-foreground/[0.02] border border-emerald-500/20 rounded-[2.5rem] p-6 shadow-[0_0_40px_rgba(52,211,153,0.05)]">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-foreground font-black text-lg uppercase italic tracking-tighter">Dashboard Sustentável GEDS</h3>
+          <h3 className="text-foreground font-black text-lg uppercase italic tracking-tighter">Dashboard Sustentável Nortech</h3>
           <p className="text-foreground/40 text-xs font-black uppercase tracking-widest">Impacto acumulado em tempo real</p>
         </div>
         <motion.span animate={{ opacity: [1, 0.5, 1] }} transition={{ repeat: Infinity, duration: 2 }}
@@ -248,7 +248,7 @@ export default function GreenTech() {
                 Future Impact & Sustainability
               </span>
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-[1.1] uppercase italic tracking-tight text-foreground">
-                GEDS<br className="sm:hidden" /> <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 inline-block pr-6 -mr-6">Green Tech</span>
+                Nortech<br className="sm:hidden" /> <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-cyan-400 inline-block pr-6 -mr-6">Green</span>
               </h1>
               <p className="text-base sm:text-lg text-foreground/60 mb-8 max-w-xl leading-relaxed font-bold uppercase tracking-tight">
                 Transformando a pegada digital em um legado positivo. Desenvolvemos soluções que escalam seu negócio enquanto protegem o planeta.
@@ -282,7 +282,7 @@ export default function GreenTech() {
 
             <motion.div className="w-full lg:w-1/2 relative flex justify-center" initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1 }}>
               <div className="relative z-10 w-full max-w-lg aspect-square sm:aspect-square overflow-hidden rounded-[3rem] border border-foreground/10 shadow-2xl group">
-                <Image src="/GEDS Green Tech.jpg" alt="GEDS Green Tech" fill className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]" priority />
+                <Image src="/Nortech Green.png" alt="Nortech Green" fill className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]" priority />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 p-5 md:p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl">
                   <div className="flex items-center gap-5">
@@ -426,7 +426,7 @@ export default function GreenTech() {
             <div className="flex items-center gap-4">
               <TrendingUp className="w-8 h-8 text-emerald-400" />
               <div>
-                <p className="text-[9px] text-foreground/40 font-black uppercase tracking-widest">Score ESG Global GEDS</p>
+                <p className="text-[9px] text-foreground/40 font-black uppercase tracking-widest">Score ESG Global Nortech</p>
                 <p className="text-4xl font-black text-foreground uppercase italic tracking-tighter pr-2">57% <span className="text-emerald-400">Concluído</span></p>
               </div>
             </div>

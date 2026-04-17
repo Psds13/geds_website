@@ -72,7 +72,7 @@ export default function AccessibilityPage() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4 md:space-y-6">
             <h1 className="text-4xl md:text-8xl font-extrabold mb-4 md:mb-8 tracking-tighter leading-none text-cyan-500">
-              GEDS <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">Accessibility</span>
+              Nortech <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">Accessibility</span>
             </h1>
             <p className="text-sm md:text-2xl text-foreground/70 max-w-2xl mx-auto leading-relaxed font-medium">
               Engenharia de inclusão para uma experiência física e digital <span className="text-foreground italic">totalmente universal</span>.
@@ -103,8 +103,8 @@ export default function AccessibilityPage() {
             {/* Image Container - Better proportions */}
             <div className="relative w-full aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-foreground/10 shadow-2xl group bg-foreground/[0.02]">
               <Image 
-                src="/GEDS Accessibility.png" 
-                alt="Plataforma GEDS Accessibility" 
+                src="/Nortech Accessibility.png" 
+                alt="Plataforma Nortech Accessibility" 
                 fill 
                 className="object-cover transition-transform duration-1000 group-hover:scale-105" 
               />
@@ -131,7 +131,7 @@ export default function AccessibilityPage() {
       <section id="recursos" className="py-20 md:py-32 px-6 bg-foreground/[0.01] border-y border-foreground/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 md:mb-24 space-y-3">
-            <span className="text-cyan-500 text-[9px] font-bold uppercase tracking-widest bg-cyan-500/10 px-6 py-2 rounded-full border border-cyan-500/20">Ecossistema GEDS</span>
+            <span className="text-cyan-500 text-[9px] font-bold uppercase tracking-widest bg-cyan-500/10 px-6 py-2 rounded-full border border-cyan-500/20">Ecossistema Nortech</span>
             <h2 className="text-3xl md:text-6xl font-extrabold tracking-tight text-cyan-500">Funcionalidades</h2>
           </div>
 
@@ -164,7 +164,7 @@ export default function AccessibilityPage() {
               </h2>
             </div>
             <p className="text-sm md:text-lg text-foreground/50 leading-relaxed font-medium">
-              O GEDS Accessibility opera de forma invisível, garantindo que o seu produto atenda as normas WCAG 2.1 AA sem comprometer o design premium da sua marca.
+              O Nortech Accessibility opera de forma invisível, garantindo que o seu produto atenda as normas WCAG 2.1 AA sem comprometer o design premium da sua marca.
             </p>
             <div className="grid grid-cols-2 gap-4">
               {benefits.map((benefit, i) => (

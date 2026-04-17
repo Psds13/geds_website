@@ -334,11 +334,11 @@ function ReflexGame({ onScore, onUnlock }: { onScore: (n: number, id: string) =>
 //  MAIN PAGE
 // ─────────────────────────────────────────────────────────────────
 const GAMES_LIST = [
-  { id: "snake",   title: "🐍 GEDS Snake",         desc: "Clássico reinventado com visual neon",        category: "Arcade",     locked: false,  color: "cyan"   },
+  { id: "snake",   title: "🐍 Nortech Snake",         desc: "Clássico reinventado com visual neon",        category: "Arcade",     locked: false,  color: "cyan"   },
   { id: "memory",  title: "🧠 Memory Tech",         desc: "Teste sua memória com emojis de tech",        category: "Puzzle",     locked: false,  color: "purple" },
   { id: "reflex",  title: "⚡ Reflex Challenge",    desc: "Quanto tempo seu reflexo leva?",              category: "Skill",      locked: false,  color: "yellow" },
   { id: "code",    title: "💻 Code Runner",         desc: "Aventura de programação em plataforma 2D",    category: "Em breve",   locked: true,   color: "blue"   },
-  { id: "builder", title: "🏗️ City Builder",       desc: "Construa a cidade do futuro com tech GEDS",   category: "Em breve",   locked: true,   color: "emerald"},
+  { id: "builder", title: "🏗️ City Builder",       desc: "Construa a cidade do futuro com tech Nortech",   category: "Em breve",   locked: true,   color: "emerald"},
   { id: "hack",    title: "🔐 HackSim",             desc: "Simulador de hacking ético e segurança",      category: "Em breve",   locked: true,   color: "red"    },
 ];
 
@@ -360,7 +360,7 @@ const devTools = [
   { icon: <BookOpen className="w-6 h-6" />, name: "WebAssembly", desc: "Performance máxima com Rust/C++ no navegador", color: "red" },
 ];
 
-export default function GedsGames() {
+export default function NortechGames() {
   const gs = useGamesState();
   const [activeGame, setActiveGame] = useState<string | null>(null);
   const [, setSection] = useState<"play" | "dev" | "community">("play");
@@ -440,7 +440,7 @@ export default function GedsGames() {
               </span>
 
               <h1 className="text-4xl md:text-7xl lg:text-8xl font-black mb-8 leading-none uppercase text-foreground">
-  <span className="block">GEDS</span>
+  <span className="block">Nortech</span>
 
   <span
     className="block italic text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-yellow-400"
@@ -507,8 +507,8 @@ export default function GedsGames() {
             <motion.div className="xl:w-1/2 relative w-full flex justify-center xl:justify-end" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
               <div className="relative z-10 w-full max-w-sm sm:max-w-md xl:max-w-xl h-auto rounded-[3rem] border border-foreground/10 shadow-2xl group overflow-hidden bg-foreground/[0.02]">
                 <Image
-                  src="/GEDS Games.png"
-                  alt="GEDS Games Experience"
+                  src="/Nortech Games.png"
+                  alt="Nortech Games Experience"
                   width={1200}
                   height={1200}
                   className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-[2000ms]"
@@ -706,8 +706,8 @@ export default function GedsGames() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/geds-lab" className="inline-flex items-center gap-3 bg-cyan-500 hover:bg-cyan-400 text-black font-black px-10 py-4 rounded-full transition-all uppercase text-[10px] tracking-[0.3em]">
-              <Beaker className="w-4 h-4" /> Ir para GEDS Lab
+            <Link href="/nortech-lab" className="inline-flex items-center gap-3 bg-cyan-500 hover:bg-cyan-400 text-black font-black px-10 py-4 rounded-full transition-all uppercase text-[10px] tracking-[0.3em]">
+              <Beaker className="w-4 h-4" /> Ir para Nortech Lab
             </Link>
             <Link href="/contatos" className="inline-flex items-center gap-3 border border-foreground/10 hover:border-cyan-500/30 text-foreground font-black px-10 py-4 rounded-full transition-all uppercase text-[10px] tracking-[0.3em]">
               <Sparkles className="w-4 h-4" /> Propor um Jogo
@@ -786,10 +786,10 @@ export default function GedsGames() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { name: "GEDS Lab", icon: <Beaker className="w-6 h-6" />, desc: "Protótipos e testes de jogos", color: "cyan", href: "/geds-lab" },
-              { name: "GEDS Inovação", icon: <Zap className="w-6 h-6" />, desc: "Dev de jogos com IA", color: "yellow", href: "/" },
-              { name: "GEDS Network", icon: <Network className="w-6 h-6" />, desc: "Infraestrutura online", color: "blue", href: "/geds-network" },
-              { name: "GEDS Security", icon: <Shield className="w-6 h-6" />, desc: "Proteção de dados", color: "emerald", href: "/geds-security" },
+              { name: "Nortech Lab", icon: <Beaker className="w-6 h-6" />, desc: "Protótipos e testes de jogos", color: "cyan", href: "/nortech-lab" },
+              { name: "Nortech Inovação", icon: <Zap className="w-6 h-6" />, desc: "Dev de jogos com IA", color: "yellow", href: "/" },
+              { name: "Nortech Network", icon: <Network className="w-6 h-6" />, desc: "Infraestrutura online", color: "blue", href: "/nortech-network" },
+              { name: "Nortech Security", icon: <Shield className="w-6 h-6" />, desc: "Proteção de dados", color: "emerald", href: "/nortech-security" },
             ].map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                 <Link href={item.href} className={`flex flex-col items-center p-7 rounded-[2rem] border ${colorMap[item.color]} text-center group hover:scale-105 transition-all`}>
@@ -825,7 +825,7 @@ export default function GedsGames() {
               </span>
             </h2>
             <p className="text-foreground/50 mb-10 max-w-xl mx-auto font-bold uppercase text-xs tracking-widest relative z-10">
-              Jogue, crie, colecione conquistas e suba no ranking da GEDS Games.
+              Jogue, crie, colecione conquistas e suba no ranking da Nortech Games.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
               <button onClick={() => document.getElementById("play-section")?.scrollIntoView({ behavior: "smooth" })}

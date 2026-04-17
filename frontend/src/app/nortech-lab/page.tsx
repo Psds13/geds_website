@@ -46,7 +46,7 @@ function TerminalDemo({ code }: { code: string[] }) {
         <div className="w-3 h-3 rounded-full bg-red-500/60" />
         <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
         <div className="w-3 h-3 rounded-full bg-green-500/60" />
-        <span className="text-gray-600 text-xs ml-2 font-mono">geds-terminal v2.0</span>
+        <span className="text-gray-600 text-xs ml-2 font-mono">nortech-terminal v2.0</span>
         <button onClick={run} disabled={running}
           className="ml-auto flex items-center gap-2 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-xs px-3 py-1 rounded-full border border-cyan-500/20 transition-all disabled:opacity-50">
           <Play className="w-3 h-3" /> {running ? 'Executando...' : 'Executar'}
@@ -83,7 +83,7 @@ function AITest() {
 
   const RESPONSES: Record<string, string> = {
     default: "Analisando seu contexto empresarial... Baseado nos dados fornecidos, recomendo implementar automação de processos para reduzir em até 40% o tempo operacional. Posso iniciar um diagnóstico completo?",
-    automação: "Para automação de processos, a GEDS oferece soluções customizadas com integração de IA. Empresas que implementaram nossas soluções reduziram em média 65% das tarefas manuais. Quer ver um caso de uso real?",
+    automação: "Para automação de processos, a Nortech oferece soluções customizadas com integração de IA. Empresas que implementaram nossas soluções reduziram em média 65% das tarefas manuais. Quer ver um caso de uso real?",
     custo: "Calculando ROI... Com base no perfil da sua empresa, estimo uma economia de R$45.000/mês após a implementação completa. O investimento se paga em média em 4 meses. Detalho o plano?",
     ia: "Nossa IA analisa padrões de comportamento, identifica gargalos e sugere otimizações em tempo real. É como ter um consultor estratégico trabalhando 24/7 para sua empresa.",
   };
@@ -106,7 +106,7 @@ function AITest() {
           <Brain className="w-4 h-4 text-purple-400" />
         </div>
         <div>
-          <p className="text-foreground font-bold text-sm">GEDS AI Assistant</p>
+          <p className="text-foreground font-bold text-sm">Nortech AI Assistant</p>
           <p className="text-emerald-400 text-[10px] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" /> Online</p>
         </div>
       </div>
@@ -138,12 +138,12 @@ function AITest() {
 
 // ── Projects ──────────────────────────────────────────────────────
 const projects = [
-  { id: 'smart-process', icon: <Cpu className="w-6 h-6" />, category: 'Em Desenvolvimento', categoryColor: 'cyan', title: 'GEDS Process AI', desc: 'Sistema de automação inteligente que analisa gargalos empresariais e sugere otimizações em tempo real usando machine learning.', tech: ['Python', 'TensorFlow', 'FastAPI', 'React'], progress: 72, terminal: ['> Inicializando módulo de análise...', '> Carregando modelo de IA v3.2...', '[IA] Analisando padrões de processo...', '[IA] Detectados 7 gargalos operacionais', '[IA] Calculando otimizações possíveis...', '✓ Relatório gerado: 43% de melhoria estimada'] },
-  { id: 'startup-hub', icon: <Lightbulb className="w-6 h-6" />, category: 'Em Desenvolvimento', categoryColor: 'cyan', title: 'Startup Hub Platform', desc: 'Plataforma colaborativa para conectar startups com investidores, mentores e recursos tecnológicos do ecossistema GEDS.', tech: ['Next.js', 'Supabase', 'Stripe', 'AI'], progress: 55, terminal: ['> Conectando ao servidor...', '> Carregando perfis de startups...', '[IA] Analisando compatibilidade investidor-startup...', '[IA] Match score calculado: 94%', '> Gerando proposta de conexão...', '✓ 3 conexões estratégicas identificadas'] },
+  { id: 'smart-process', icon: <Cpu className="w-6 h-6" />, category: 'Em Desenvolvimento', categoryColor: 'cyan', title: 'Nortech Process AI', desc: 'Sistema de automação inteligente que analisa gargalos empresariais e sugere otimizações em tempo real usando machine learning.', tech: ['Python', 'TensorFlow', 'FastAPI', 'React'], progress: 72, terminal: ['> Inicializando módulo de análise...', '> Carregando modelo de IA v3.2...', '[IA] Analisando padrões de processo...', '[IA] Detectados 7 gargalos operacionais', '[IA] Calculando otimizações possíveis...', '✓ Relatório gerado: 43% de melhoria estimada'] },
+  { id: 'startup-hub', icon: <Lightbulb className="w-6 h-6" />, category: 'Em Desenvolvimento', categoryColor: 'cyan', title: 'Startup Hub Platform', desc: 'Plataforma colaborativa para conectar startups com investidores, mentores e recursos tecnológicos do ecossistema Nortech.', tech: ['Next.js', 'Supabase', 'Stripe', 'AI'], progress: 55, terminal: ['> Conectando ao servidor...', '> Carregando perfis de startups...', '[IA] Analisando compatibilidade investidor-startup...', '[IA] Match score calculado: 94%', '> Gerando proposta de conexão...', '✓ 3 conexões estratégicas identificadas'] },
   { id: 'interactive-site', icon: <Globe className="w-6 h-6" />, category: 'Protótipo', categoryColor: 'blue', title: 'Site Interativo v2', desc: 'Plataforma web com experiências imersivas, elementos de gamificação e inteligência adaptativa baseada no comportamento do usuário.', tech: ['React', 'GSAP', 'WebGL', 'Three.js'], progress: 88, terminal: ['> Inicializando WebGL engine...', '> Carregando shaders 3D...', '[RENDER] 60fps atingido', '[UX] Carregando módulo adaptativo...', '[UX] Perfil de usuário analisado', '✓ Experiência personalizada ativa'] },
-  { id: 'mvp-app', icon: <Code className="w-6 h-6" />, category: 'MVP', categoryColor: 'purple', title: 'GEDS Mobile MVP', desc: 'Aplicativo mobile que centraliza todos os serviços GEDS: diagnóstico, acompanhamento de projetos e suporte em tempo real.', tech: ['React Native', 'Expo', 'Supabase', 'Push Notifications'], progress: 40, terminal: ['> Inicializando React Native...', '> Conectando à API GEDS...', '[AUTH] Verificando credenciais...', '[SYNC] Sincronizando dados do projeto...', '> Carregando dashboard mobile...', '✓ App pronto para uso'] },
-  { id: 'ia-connector', icon: <Brain className="w-6 h-6" />, category: 'Conceito', categoryColor: 'emerald', title: 'GEDS AI Connector', desc: 'Middleware inteligente que conecta qualquer sistema legado a APIs modernas de IA, sem necessidade de refatoração completa.', tech: ['Python', 'LangChain', 'OpenAI', 'Node.js'], progress: 20, terminal: ['> Detectando sistema legado...', '> Mapeando estrutura de dados...', '[IA] Analisando endpoints disponíveis...', '[IA] Gerando adaptadores automáticos...', '> Bridge configurada com sucesso', '✓ Sistema legado conectado à IA'] },
-  { id: 'collab-platform', icon: <GitBranch className="w-6 h-6" />, category: 'Ideia', categoryColor: 'yellow', title: 'TechCollab Network', desc: 'Rede de colaboração tecnológica onde desenvolvedores, designers e PMs podem co-criar soluções open-source sob a curadoria GEDS.', tech: ['Next.js', 'GitHub API', 'WebSockets', 'AI'], progress: 10, terminal: ['> Inicializando rede de colaboração...', '> Mapeando habilidades dos membros...', '[IA] Identificando projetos compatíveis...', '[MATCH] 12 colaboradores disponíveis', '> Criando sala de projeto...', '✓ Equipe montada com sucesso'] },
+  { id: 'mvp-app', icon: <Code className="w-6 h-6" />, category: 'MVP', categoryColor: 'purple', title: 'Nortech Mobile MVP', desc: 'Aplicativo mobile que centraliza todos os serviços Nortech: diagnóstico, acompanhamento de projetos e suporte em tempo real.', tech: ['React Native', 'Expo', 'Supabase', 'Push Notifications'], progress: 40, terminal: ['> Inicializando React Native...', '> Conectando à API Nortech...', '[AUTH] Verificando credenciais...', '[SYNC] Sincronizando dados do projeto...', '> Carregando dashboard mobile...', '✓ App pronto para uso'] },
+  { id: 'ia-connector', icon: <Brain className="w-6 h-6" />, category: 'Conceito', categoryColor: 'emerald', title: 'Nortech AI Connector', desc: 'Middleware inteligente que conecta qualquer sistema legado a APIs modernas de IA, sem necessidade de refatoração completa.', tech: ['Python', 'LangChain', 'OpenAI', 'Node.js'], progress: 20, terminal: ['> Detectando sistema legado...', '> Mapeando estrutura de dados...', '[IA] Analisando endpoints disponíveis...', '[IA] Gerando adaptadores automáticos...', '> Bridge configurada com sucesso', '✓ Sistema legado conectado à IA'] },
+  { id: 'collab-platform', icon: <GitBranch className="w-6 h-6" />, category: 'Ideia', categoryColor: 'yellow', title: 'TechCollab Network', desc: 'Rede de colaboração tecnológica onde desenvolvedores, designers e PMs podem co-criar soluções open-source sob a curadoria Nortech.', tech: ['Next.js', 'GitHub API', 'WebSockets', 'AI'], progress: 10, terminal: ['> Inicializando rede de colaboração...', '> Mapeando habilidades dos membros...', '[IA] Identificando projetos compatíveis...', '[MATCH] 12 colaboradores disponíveis', '> Criando sala de projeto...', '✓ Equipe montada com sucesso'] },
 ];
 
 const categoryColors: Record<string, string> = {
@@ -204,7 +204,7 @@ const roadmapItems = [
     quarter: 'Q1 2025',
     status: 'done',
     title: 'Fundação da Plataforma',
-    items: ['Lançamento do Website GEDS v1.0', 'Infraestrutura de backend (Supabase)', 'Sistema de identidade visual', 'Formação do time técnico core'],
+    items: ['Lançamento do Website Nortech v1.0', 'Infraestrutura de backend (Supabase)', 'Sistema de identidade visual', 'Formação do time técnico core'],
     icon: <CheckCircle2 className="w-5 h-5" />,
     color: 'emerald',
   },
@@ -212,7 +212,7 @@ const roadmapItems = [
     quarter: 'Q2 2025',
     status: 'done',
     title: 'Primeiros Produtos',
-    items: ['GEDS Process AI – MVP interno', 'Dashboard de clientes v1', 'Integração Supabase + Next.js', 'Onboarding de primeiros clientes'],
+    items: ['Nortech Process AI – MVP interno', 'Dashboard de clientes v1', 'Integração Supabase + Next.js', 'Onboarding de primeiros clientes'],
     icon: <CheckCircle2 className="w-5 h-5" />,
     color: 'emerald',
   },
@@ -220,7 +220,7 @@ const roadmapItems = [
     quarter: 'Q3 2025',
     status: 'done',
     title: 'Expansão e Design System',
-    items: ['Design System GEDS UI Kit', 'Website v2.0 (atual)', 'GEDS Lab – Ambiente de experimentação', 'Green Tech – Módulo sustentável'],
+    items: ['Design System Nortech UI Kit', 'Website v2.0 (atual)', 'Nortech Lab – Ambiente de experimentação', 'Nortech Green – Módulo sustentável'],
     icon: <CheckCircle2 className="w-5 h-5" />,
     color: 'emerald',
   },
@@ -228,7 +228,7 @@ const roadmapItems = [
     quarter: 'Q4 2025',
     status: 'active',
     title: 'IA & Automação Avançada',
-    items: ['GEDS AI Connector – Beta', 'Startup Hub Platform – Lançamento', 'Sistema de acessibilidade universal', 'GEDS Mobile MVP – Alpha'],
+    items: ['Nortech AI Connector – Beta', 'Startup Hub Platform – Lançamento', 'Sistema de acessibilidade universal', 'Nortech Mobile MVP – Alpha'],
     icon: <Clock className="w-5 h-5" />,
     color: 'cyan',
   },
@@ -236,7 +236,7 @@ const roadmapItems = [
     quarter: 'Q1 2026',
     status: 'upcoming',
     title: 'Escala e Distribuição',
-    items: ['TechCollab Network – Beta público', 'Expansão de parceiros', 'GEDS Marketplace de soluções', 'Certificação ESG & LGPD'],
+    items: ['TechCollab Network – Beta público', 'Expansão de parceiros', 'Nortech Marketplace de soluções', 'Certificação ESG & LGPD'],
     icon: <MapPin className="w-5 h-5" />,
     color: 'purple',
   },
@@ -244,7 +244,7 @@ const roadmapItems = [
     quarter: 'Q2 2026',
     status: 'upcoming',
     title: 'Produto Global',
-    items: ['Lançamento internacional (🇧🇷→🌎)', 'GEDS AI v2.0 com reasoning avançado', 'Site Interativo v2 em produção', 'Rodada de investimento'],
+    items: ['Lançamento internacional (🇧🇷→🌎)', 'Nortech AI v2.0 com reasoning avançado', 'Site Interativo v2 em produção', 'Rodada de investimento'],
     icon: <Rocket className="w-5 h-5" />,
     color: 'blue',
   },
@@ -258,7 +258,7 @@ const roadmapColors: Record<string, { border: string; bg: string; text: string; 
 };
 
 // ── Main Page ─────────────────────────────────────────────────────
-export default function GedsLab() {
+export default function NortechLab() {
   const [activeFilter, setActiveFilter] = useState('Todos');
   const filters = ['Todos', 'Em Desenvolvimento', 'Protótipo', 'MVP', 'Conceito', 'Ideia'];
 
@@ -283,7 +283,7 @@ export default function GedsLab() {
                 Innovation Testing Grounds
               </span>
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-[1.1] uppercase italic tracking-tight text-foreground pr-4">
-                GEDS <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 pr-2">Lab</span>
+                Nortech <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500 pr-2">Lab</span>
               </h1>
               <p className="text-base sm:text-lg text-foreground/60 mb-8 max-w-xl leading-relaxed font-bold uppercase tracking-tight">
                 Onde a imaginação encontra a execução técnica. Projetamos, testamos e validamos as tecnologias que ditarão o ritmo do mercado amanhã.
@@ -310,7 +310,7 @@ export default function GedsLab() {
 
             <motion.div className="w-full lg:w-1/2 relative flex justify-center" initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1 }}>
               <div className="relative z-10 w-full max-w-lg aspect-square sm:aspect-square overflow-hidden rounded-[3rem] border border-foreground/10 shadow-2xl group">
-                <Image src="/GEDS Lab.jpg" alt="GEDS Lab Environment" fill className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]" priority />
+                <Image src="/Nortech LAB.png" alt="Nortech Lab Environment" fill className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]" priority />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 p-5 md:p-6 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl">
                   <div className="flex items-center gap-5">
@@ -379,7 +379,7 @@ export default function GedsLab() {
               Visão de Futuro
             </span>
             <h2 className="text-3xl md:text-6xl font-black text-foreground mb-4 uppercase italic tracking-tighter pr-4">
-              Roadmap <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">GEDS Lab</span>
+              Roadmap <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">Nortech Lab</span>
             </h2>
             <p className="text-foreground/50 max-w-xl mx-auto font-bold uppercase text-xs tracking-widest">
               Nossa jornada de inovação, cada entrega e o que está por vir.
@@ -451,7 +451,7 @@ export default function GedsLab() {
             Quer transformar sua ideia em um protótipo?
           </h2>
           <p className="text-foreground/50 mb-8 max-w-xl mx-auto uppercase text-xs font-black tracking-widest">
-            Entre em contato e descubra como o GEDS Lab pode acelerar o desenvolvimento da sua solução.
+            Entre em contato e descubra como o Nortech Lab pode acelerar o desenvolvimento da sua solução.
           </p>
           <Link href="/contatos" className="inline-flex items-center gap-2 bg-linear-to-r from-cyan-500 to-blue-600 text-black font-black px-10 py-4 rounded-full hover:shadow-[0_0_30px_rgba(0,219,255,0.4)] transition-all uppercase text-[10px] tracking-[0.3em]">
             Iniciar meu projeto →

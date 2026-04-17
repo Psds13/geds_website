@@ -20,7 +20,7 @@ export default function Transformacao() {
           O Ponto de Inflexão do seu negócio
         </h2>
         <p className="text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed italic font-medium">
-          Compare a eficiência operacional antes e depois da implementação GEDS.
+          Compare a eficiência operacional antes e depois da implementação Nortech.
         </p>
       </motion.div>
 
@@ -70,7 +70,7 @@ export default function Transformacao() {
              <div className="w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(52,211,153,0.2)]">
                 <FiCheck className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
              </div>
-            <h3 className="text-xl font-bold text-foreground tracking-tight uppercase italic">Futuro GEDS</h3>
+            <h3 className="text-xl font-bold text-foreground tracking-tight uppercase italic">Futuro Nortech</h3>
           </div>
           <ul className="space-y-6">
             {[

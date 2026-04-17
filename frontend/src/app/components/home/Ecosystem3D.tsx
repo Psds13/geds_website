@@ -5,10 +5,10 @@ import { Shield, Gamepad2, FlaskConical, Globe, ArrowRight, Zap } from "lucide-r
 import Link from "next/link";
 
 const nodes = [
-  { id: "security", label: "GEDS Security", desc: "Proteção impenetrável de escopo total", icon: Shield, color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/50", glow: "shadow-[0_0_30px_rgba(16,185,129,0.3)]", href: "/geds-security" },
-  { id: "network", label: "GEDS Network", desc: "Conectividade de hiper baixa latência", icon: Globe, color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/50", glow: "shadow-[0_0_30px_rgba(6,182,212,0.3)]", href: "/geds-network" },
-  { id: "games", label: "GEDS Games", desc: "Performance de jogo e interatividade", icon: Gamepad2, color: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/50", glow: "shadow-[0_0_30px_rgba(168,85,247,0.3)]", href: "/geds-games" },
-  { id: "lab", label: "GEDS Lab", desc: "Inovação, pesquisa e experimentação", icon: FlaskConical, color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/50", glow: "shadow-[0_0_30px_rgba(59,130,246,0.3)]", href: "/geds-lab" },
+  { id: "security", label: "Nortech Security", desc: "Proteção impenetrável de escopo total", icon: Shield, color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/50", glow: "shadow-[0_0_30px_rgba(16,185,129,0.3)]", href: "/nortech-security" },
+  { id: "network", label: "Nortech Network", desc: "Conectividade de hiper baixa latência", icon: Globe, color: "text-cyan-400", bg: "bg-cyan-500/10", border: "border-cyan-500/50", glow: "shadow-[0_0_30px_rgba(6,182,212,0.3)]", href: "/nortech-network" },
+  { id: "games", label: "Nortech Games", desc: "Performance de jogo e interatividade", icon: Gamepad2, color: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/50", glow: "shadow-[0_0_30px_rgba(168,85,247,0.3)]", href: "/nortech-games" },
+  { id: "lab", label: "Nortech Lab", desc: "Inovação, pesquisa e experimentação", icon: FlaskConical, color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/50", glow: "shadow-[0_0_30px_rgba(59,130,246,0.3)]", href: "/nortech-lab" },
 ];
 
 export default function Ecosystem3D() {
@@ -29,7 +29,7 @@ export default function Ecosystem3D() {
         >
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 backdrop-blur-md">
             <Zap className="w-4 h-4 text-cyan-400" />
-            <span className="text-cyan-400 text-[10px] font-black uppercase tracking-[0.3em]">O Universo GEDS</span>
+            <span className="text-cyan-400 text-[10px] font-black uppercase tracking-[0.3em]">O Universo Nortech</span>
           </div>
           
           {/* Title - Fixed and organized */}

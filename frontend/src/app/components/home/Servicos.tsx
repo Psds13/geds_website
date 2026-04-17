@@ -76,7 +76,7 @@ export default function Servicos() {
         </span>
         <h2 className="text-3xl md:text-5xl font-extrabold text-cyan-500 dark:text-cyan-400 mb-6 tracking-tight leading-tight">
           Cada problema tem uma<br />
-          solução GEDS de precisão
+          solução Nortech de precisão
         </h2>
         <p className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed">
           Engenharia disruptiva para desafios complexos. Transformamos gargalos em vantagens competitivas de mercado.
@@ -110,7 +110,7 @@ export default function Servicos() {
 
                 <div className="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/10 hover:bg-cyan-500/10 transition-all">
                   <p className="text-cyan-600 dark:text-cyan-400 text-[9px] uppercase font-bold tracking-widest mb-1 flex items-center gap-2">
-                     <Zap className="w-3 h-3" /> Solução GEDS
+                     <Zap className="w-3 h-3" /> Solução Nortech
                   </p>
                   <p className="text-foreground/90 text-xs leading-relaxed font-semibold">{item.solution}</p>
                 </div>

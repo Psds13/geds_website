@@ -15,16 +15,16 @@ const fontMain = Outfit({
 });
 
 export const metadata = {
-  title: "GEDS Inovação",
+  title: "Nortech Inovação",
   description: "Soluções de tecnologia sob medida para o seu negócio.",
   icons: {
-    icon: "/GEDS Inovação.png",
-    apple: "/GEDS Inovação.png",
+    icon: "/Nortech Inovação.png",
+    apple: "/Nortech Inovação.png",
   },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    title: "GEDS Inovação",
+    title: "Nortech Inovação",
   },
 };
 
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${fontMain.variable} ${fontMain.className}`} suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/GEDS Inovação.png" />
+        <link rel="icon" href="/Nortech Inovação.png" />
       </head>
       <body className="relative min-h-screen flex flex-col bg-background text-foreground selection:bg-cyan selection:text-black antialiased">
         <ThemeProvider

@@ -55,7 +55,7 @@ export default function Diferenciais() {
           Vantagem Competitiva
         </span>
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-cyan-600 dark:text-cyan-400 mb-4 sm:mb-6 lg:mb-8 tracking-tight leading-tight px-4">
-          Por que líderes escolhem a GEDS Inovação?
+          Por que líderes escolhem a Nortech Inovação?
         </h2>
         <p className="text-base sm:text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed font-medium px-4">
           Onde a fronteira tecnológica encontra a estratégia de elite.

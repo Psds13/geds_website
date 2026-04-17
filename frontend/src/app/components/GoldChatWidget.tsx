@@ -44,7 +44,7 @@ export default function GoldChatWidget() {
     await new Promise(r => setTimeout(r, 800));
     setIsTyping(false);
     
-    addMessage("gold", "Olá! Eu sou Gold, seu Consultor GEDS AI. 🚀\nEstou aqui para mapear a jornada de transformação da sua empresa.");
+    addMessage("gold", "Olá! Eu sou Gold, seu Consultor Nortech AI. 🚀\nEstou aqui para mapear a jornada de transformação da sua empresa.");
     
     await new Promise(r => setTimeout(r, 600));
     
@@ -89,7 +89,7 @@ export default function GoldChatWidget() {
     await new Promise(r => setTimeout(r, 1200));
     setIsTyping(false);
     
-    addMessage("gold", "Entendido. A conectividade e segurança são pilares na GEDS. Por favor, digite seu **Nome e o Nome da Empresa** para que eu possa gerar o seu Blueprint exclusivo.");
+    addMessage("gold", "Entendido. A conectividade e segurança são pilares na Nortech. Por favor, digite seu **Nome e o Nome da Empresa** para que eu possa gerar o seu Blueprint exclusivo.");
   };
 
   const handleTextSubmit = async () => {
@@ -117,7 +117,7 @@ export default function GoldChatWidget() {
       setIsTyping(true);
       await new Promise(r => setTimeout(r, 1000));
       setIsTyping(false);
-      addMessage("gold", "Nossa equipe foi notificada do seu interesse e logo entrará em contato. Que a força da inovação GEDS esteja com você!");
+      addMessage("gold", "Nossa equipe foi notificada do seu interesse e logo entrará em contato. Que a força da inovação Nortech esteja com você!");
       setStep("initial");
     }
   };
@@ -126,19 +126,19 @@ export default function GoldChatWidget() {
     setStep("blueprint_done");
     
     let Icon = Shield;
-    let title = "GEDS Cybersecurity Shield";
+    let title = "Nortech Cybersecurity Shield";
     let color = "from-emerald-500 to-cyan-500";
     let stats = ["Zero-Trust Arc", "12.4k Ameaças/s"];
 
     if (focus === "Software") {
-      Icon = Code2; title = "GEDS Lab Factory"; color = "from-purple-500 to-blue-500"; stats = ["Cloud-Native", "99.9% Uptime"];
+      Icon = Code2; title = "Nortech Lab Factory"; color = "from-purple-500 to-blue-500"; stats = ["Cloud-Native", "99.9% Uptime"];
     } else if (focus === "Network") {
-      Icon = Network; title = "GEDS Neural Net"; color = "from-cyan-500 to-blue-600"; stats = ["Latência < 5ms", "SD-WAN"];
+      Icon = Network; title = "Nortech Neural Net"; color = "from-cyan-500 to-blue-600"; stats = ["Latência < 5ms", "SD-WAN"];
     } else if (focus === "GreenTech") {
-      Icon = Leaf; title = "GEDS Eco Core"; color = "from-green-400 to-emerald-600"; stats = ["Zero Carbon", "Painel ESG"];
+      Icon = Leaf; title = "Nortech Eco Core"; color = "from-green-400 to-emerald-600"; stats = ["Zero Carbon", "Painel ESG"];
     }
 
-    addMessage("gold", "✅ Diagnóstico concluído! Aqui está a sua planta tática personalizada GEDS:");
+    addMessage("gold", "✅ Diagnóstico concluído! Aqui está a sua planta tática personalizada Nortech:");
     
     addMessage("gold", "", (
       <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className={`mt-2 rounded-2xl p-[1px] bg-gradient-to-br ${color} overflow-hidden shadow-2xl`}>
@@ -150,7 +150,7 @@ export default function GoldChatWidget() {
                <Icon className="w-5 h-5 text-white" />
              </div>
              <div>
-               <p className="text-[10px] text-gray-400 font-bold tracking-widest uppercase">GEDS Blueprint</p>
+               <p className="text-[10px] text-gray-400 font-bold tracking-widest uppercase">Nortech Blueprint</p>
                <h4 className="text-white font-black text-sm leading-tight">{title}</h4>
              </div>
            </div>
@@ -176,7 +176,7 @@ export default function GoldChatWidget() {
     ));
 
     setTimeout(() => {
-      addMessage("gold", "Fascinante, não é? Um especialista da GEDS entrará em contato com você em menos de 15 minutos para falar sobre esse diagnóstico.");
+      addMessage("gold", "Fascinante, não é? Um especialista da Nortech entrará em contato com você em menos de 15 minutos para falar sobre esse diagnóstico.");
     }, 1500);
   };
 
@@ -245,7 +245,7 @@ export default function GoldChatWidget() {
               </div>
               <div>
                 <h3 className="text-white font-black text-lg tracking-tight leading-none mb-1 flex items-center gap-2">
-                  GEDS AI <Sparkles className="w-4 h-4 text-cyan-400"/>
+                  Nortech AI <Sparkles className="w-4 h-4 text-cyan-400"/>
                 </h3>
                 <p className="text-cyan-400 text-[9px] font-black uppercase tracking-widest flex items-center gap-1.5 mt-1">
                   Consultoria Avançada
@@ -332,7 +332,7 @@ export default function GoldChatWidget() {
             
             <div className="flex justify-center mt-3 items-center gap-1 opacity-40">
               <Shield className="w-3 h-3 text-cyan-400" />
-              <span className="text-[8px] uppercase font-black tracking-widest text-cyan-400">GEDS Secure Encryption</span>
+              <span className="text-[8px] uppercase font-black tracking-widest text-cyan-400">Nortech Secure Encryption</span>
             </div>
           </div>
         </motion.div>

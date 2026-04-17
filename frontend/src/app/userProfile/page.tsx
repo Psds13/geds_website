@@ -36,7 +36,7 @@ export default function UserProfile() {
         const { data, error } = await (client
           .from('usuarios')
           .select('*')
-          .eq('email', 'edmilson@gedsinovacao.com')
+          .eq('email', 'edmilson@nortechinovacao.com')
           .single() as unknown as Promise<PostgrestSingleResponse<Record<string, unknown>>>);
 
         if (error) throw error;
@@ -104,7 +104,7 @@ export default function UserProfile() {
         <div>
           <p className="text-cyan-400 font-black text-[10px] uppercase tracking-[0.4em] mb-1 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            GEDS Hub / Sistema Operacional Conectado
+            Nortech Hub / Sistema Operacional Conectado
           </p>
           <h1 className="text-3xl md:text-5xl font-black italic tracking-tighter uppercase">Painel de Comando</h1>
         </div>
@@ -130,7 +130,7 @@ export default function UserProfile() {
           <div className="flex justify-between items-start mb-6">
             <div>
               <h3 className="text-lg font-black uppercase tracking-tight text-white mb-1"><FiCpu className="inline mr-2 text-cyan-400" /> Andamento do Projeto</h3>
-              <p className="text-xs text-gray-400 uppercase tracking-widest">App Transformation GEDS</p>
+              <p className="text-xs text-gray-400 uppercase tracking-widest">App Transformation Nortech</p>
             </div>
             <span className="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-cyan-500/30">Fase 3: Cloud</span>
           </div>
@@ -150,7 +150,7 @@ export default function UserProfile() {
         <motion.div drag dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }} dragElastic={0.1} whileDrag={{ scale: 1.05, zIndex: 100 }}
           className="col-span-1 row-span-1 bg-black/40 border border-white/10 rounded-3xl p-6 relative overflow-hidden backdrop-blur-xl shadow-2xl cursor-grab active:cursor-grabbing border-t-purple-500/50">
           <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-500/10 blur-[60px] rounded-full" />
-          <h3 className="text-sm font-black uppercase tracking-tight text-white mb-6"><FiActivity className="inline mr-2 text-purple-400" /> GEDS Network</h3>
+          <h3 className="text-sm font-black uppercase tracking-tight text-white mb-6"><FiActivity className="inline mr-2 text-purple-400" /> Nortech Network</h3>
           <div className="flex flex-col items-center justify-center h-28">
             <div className="relative flex items-center justify-center w-20 h-20">
               <div className="absolute inset-0 border-[3px] border-purple-500/20 rounded-full" />
@@ -219,7 +219,7 @@ export default function UserProfile() {
             </div>
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
               <span className="block text-3xl font-black text-white italic mb-1">{user.stats.clients}</span>
-              <span className="text-[9px] text-gray-400 uppercase font-black tracking-widest">Assinaturas GEDS</span>
+              <span className="text-[9px] text-gray-400 uppercase font-black tracking-widest">Assinaturas Nortech</span>
             </div>
           </div>
         </motion.div>

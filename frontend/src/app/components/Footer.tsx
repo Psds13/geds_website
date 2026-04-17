@@ -28,7 +28,7 @@ const quickLinks = [
   { label: 'Portfólio', href: '/#portfolio' },
   { label: 'Planos', href: '/plans' },
   { label: 'Processo', href: '/processo' },
-  { label: 'Acessibilidade', href: '/geds-accessibility' },
+  { label: 'Acessibilidade', href: '/nortech-accessibility' },
 ];
 
 const legalLinks = [
@@ -64,8 +64,8 @@ export default function Footer() {
             >
               <div className="relative mr-4 p-1 rounded-full bg-foreground/5 border border-foreground/10 group-hover:border-cyan-500/50 transition-all duration-500">
                 <Image
-                  src="/GEDS Inovação.png"
-                  alt="GEDS Inovação"
+                  src="/Nortech Inovação.png"
+                  alt="Nortech Inovação"
                   width={44}
                   height={44}
                   className="rounded-full"
@@ -73,7 +73,7 @@ export default function Footer() {
                 <div className="absolute inset-0 bg-cyan-500/20 blur-md rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
               <span className="text-2xl font-black tracking-tighter bg-linear-to-r from-foreground via-foreground to-cyan-500 dark:from-white dark:via-white dark:to-cyan-400 bg-clip-text text-transparent">
-                GEDS INOVAÇÃO
+                Nortech INOVAÇÃO
               </span>
             </motion.div>
 
@@ -168,7 +168,7 @@ export default function Footer() {
             </h3>
             <div className="space-y-6">
               {[
-                { icon: <FiMail />, text: 'contato.gedsinovacao@gmail.com', label: 'E-mail' },
+                { icon: <FiMail />, text: 'contato.nortechinovacao@gmail.com', label: 'E-mail' },
                 { icon: <FiPhone />, text: '+55 (98) 9999-9999', label: 'Telefone' },
                 { icon: <FiMapPin />, text: 'São Luís - MA, Brasil', label: 'Localização' },
               ].map((item, idx) => (
@@ -208,7 +208,7 @@ export default function Footer() {
             className="flex flex-col items-center md:items-start space-y-2"
           >
             <p className="text-xs font-bold text-foreground/70 uppercase tracking-[0.3em]">
-              © 2026 <span className="text-foreground drop-shadow-[0_0_8px_rgba(0,0,0,0.3)] dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">GEDS INOVAÇÃO</span>
+              © 2026 <span className="text-foreground drop-shadow-[0_0_8px_rgba(0,0,0,0.3)] dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">Nortech INOVAÇÃO</span>
             </p>
             <p className="text-[11px] font-medium text-foreground/70 uppercase tracking-widest flex items-center gap-2">
               <span className="w-4 h-px bg-cyan-500/50"></span>

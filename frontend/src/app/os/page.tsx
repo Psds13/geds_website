@@ -10,8 +10,8 @@ import Link from "next/link";
 function TerminalApp() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<{ id: string; text: string; color?: string }[]>([
-    { id: "1", text: "GEDS OS [Version 2.0.0.1]", color: "text-emerald-500" },
-    { id: "2", text: "Copyright (c) GEDS Inovação. All rights reserved.", color: "text-emerald-500" },
+    { id: "1", text: "Nortech OS [Version 2.0.0.1]", color: "text-emerald-500" },
+    { id: "2", text: "Copyright (c) Nortech Inovação. All rights reserved.", color: "text-emerald-500" },
     { id: "3", text: "Type 'help' to see available commands.", color: "text-emerald-300" }
   ]);
   const endRef = useRef<HTMLDivElement>(null);
@@ -22,14 +22,14 @@ function TerminalApp() {
 
   const handleCommand = (cmd: string) => {
     const c = cmd.trim().toLowerCase();
-    const newOut = [...output, { id: Math.random().toString(), text: `root@geds:~# ${cmd}` }];
+    const newOut = [...output, { id: Math.random().toString(), text: `root@nortech:~# ${cmd}` }];
 
     if (c === "help") {
-      newOut.push({ id: Math.random().toString(), text: "AVAILABLE COMMANDS:\n  help      - Show this message\n  about     - Info about GEDS\n  status    - Check system diagnostics\n  clear     - Clean terminal\n  matrix    - Initialize visual protocol" });
+      newOut.push({ id: Math.random().toString(), text: "AVAILABLE COMMANDS:\n  help      - Show this message\n  about     - Info about Nortech\n  status    - Check system diagnostics\n  clear     - Clean terminal\n  matrix    - Initialize visual protocol" });
     } else if (c === "about") {
-      newOut.push({ id: Math.random().toString(), text: "GEDS Inovação: Transformando problemas complexos em soluções digitais avançadas usando IA, Cloud e Green Tech.", color: "text-cyan-400" });
+      newOut.push({ id: Math.random().toString(), text: "Nortech Inovação: Transformando problemas complexos em soluções digitais avançadas usando IA, Cloud e Green Tech.", color: "text-cyan-400" });
     } else if (c === "status") {
-      newOut.push({ id: Math.random().toString(), text: "[OK] All core systems operational.\n[OK] GEDS Security firewall active.\n[OK] Green Tech optimization running at 98% efficiency.", color: "text-emerald-400" });
+      newOut.push({ id: Math.random().toString(), text: "[OK] All core systems operational.\n[OK] Nortech Security firewall active.\n[OK] Green Tech optimization running at 98% efficiency.", color: "text-emerald-400" });
     } else if (c === "matrix") {
       newOut.push({ id: Math.random().toString(), text: "Waking up in the Matrix...", color: "text-emerald-500 font-bold" });
     } else if (c === "clear") {
@@ -55,7 +55,7 @@ function TerminalApp() {
         <div ref={endRef} />
       </div>
       <div className="flex items-center mt-3 pt-3 border-t border-emerald-900/50 relative group">
-        <span className="mr-2 text-emerald-500 font-bold drop-shadow-[0_0_5px_rgba(16,185,129,0.8)]">root@geds:~#</span>
+        <span className="mr-2 text-emerald-500 font-bold drop-shadow-[0_0_5px_rgba(16,185,129,0.8)]">root@nortech:~#</span>
         <input 
           type="text" 
           value={input}
@@ -79,11 +79,11 @@ function SecurityApp() {
   useEffect(() => {
     const threats = [
       "Analyzing incoming packets from 192.168.1.104...",
-      "[CLEAN] Traffic validated via GEDS Shield.",
+      "[CLEAN] Traffic validated via Nortech Shield.",
       "Scanning internal modules for vulnerabilities...",
       "[OK] 0 vulnerabilities found.",
       "Updating malware signatures...",
-      "Connecting to GEDS Security Global Grid...",
+      "Connecting to Nortech Security Global Grid...",
       "[SECURE] All systems encrypted at rest.",
     ];
     let i = 0;
@@ -104,7 +104,7 @@ function SecurityApp() {
         <Shield size={200} />
       </div>
       <h2 className="text-xl font-bold flex items-center gap-2 mb-4 border-b border-cyan-800/50 pb-2">
-        <Shield className="text-cyan-400" /> GEDS Security Grid
+        <Shield className="text-cyan-400" /> Nortech Security Grid
       </h2>
       <div className="flex-1 overflow-y-auto space-y-2">
         {logs.map((log, idx) => (
@@ -150,7 +150,7 @@ export default function OSPage() {
   const [windows, setWindows] = useState<WindowData[]>([
     {
       id: "terminal",
-      title: "GEDS_TERMINAL",
+      title: "Nortech_TERMINAL",
       icon: <Terminal size={18} />,
       content: <TerminalApp />,
       isOpen: true,
@@ -160,7 +160,7 @@ export default function OSPage() {
     },
     {
       id: "security",
-      title: "GEDS_SECURITY_CORE",
+      title: "Nortech_SECURITY_CORE",
       icon: <Shield size={18} />,
       content: <SecurityApp />,
       isOpen: false,
@@ -208,7 +208,7 @@ export default function OSPage() {
           className="text-center"
         >
           <Cpu className="w-16 h-16 mx-auto mb-6 animate-pulse" />
-          <h1 className="text-2xl font-bold mb-2">GEDS OS</h1>
+          <h1 className="text-2xl font-bold mb-2">Nortech OS</h1>
           <p className="text-emerald-700">Inicializando módulos de segurança...</p>
           <div className="w-48 h-1 bg-emerald-950 mt-4 rounded overflow-hidden mx-auto">
             <motion.div 

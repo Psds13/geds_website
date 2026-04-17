@@ -16,8 +16,8 @@ const Header = () => {
         <Link href="/" className="flex items-center gap-2 xl:gap-3 group shrink-0">
           <div className="relative">
             <Image
-              src="/GEDS Inovação.png"
-              alt="Logo GEDS Inovação"
+              src="/Nortech Inovação.png"
+              alt="Logo Nortech Inovação"
               width={50}
               height={50}
               className="rounded-full transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:shadow-[0_0_15px_rgba(0,219,255,0.6)]"
@@ -26,7 +26,7 @@ const Header = () => {
             <div className="absolute inset-0 rounded-full bg-cyan/20 blur-md -z-10 group-hover:bg-cyan/40 transition-all"></div>
           </div>
           <span className="hidden sm:block font-black text-xl bg-linear-to-r from-foreground to-cyan bg-clip-text text-transparent tracking-tighter">
-            GEDS INOVAÇÃO
+            Nortech INOVAÇÃO
           </span>
         </Link>
 
@@ -36,8 +36,8 @@ const Header = () => {
             { name: "Início", href: "/" },
             { name: "Sobre", href: "/#about" },
             { name: "Serviços", href: "/servicos" },
-            { name: "Network", href: "/geds-network" },
-            { name: "Games", href: "/geds-games" }
+            { name: "Network", href: "/nortech-network" },
+            { name: "Games", href: "/nortech-games" }
           ].map((item) => (
             <Link
               key={item.name}
@@ -88,10 +88,10 @@ const Header = () => {
                 { name: "Início", href: "/" },
                 { name: "Sobre", href: "/#about" },
                 { name: "Serviços", href: "/servicos" },
-                { name: "Segurança", href: "/geds-security" },
-                { name: "Network", href: "/geds-network" },
-                { name: "Games", href: "/geds-games" },
-                { name: "Acessibilidade", href: "/geds-accessibility" },
+                { name: "Segurança", href: "/nortech-security" },
+                { name: "Network", href: "/nortech-network" },
+                { name: "Games", href: "/nortech-games" },
+                { name: "Acessibilidade", href: "/nortech-accessibility" },
                 { name: "Processos", href: "/processo" },
                 { name: "Contato", href: "/contatos" }
               ].map((item) => (
@@ -112,11 +112,11 @@ const Header = () => {
                 <span>🌱</span> Green Tech
               </Link>
               <Link
-                href="/#geds-lab"
+                href="/#nortech-lab"
                 className="bg-linear-to-r from-cyan to-blue-600 text-white dark:text-foreground px-4 py-3 rounded-full transition-all duration-300 font-bold text-center flex items-center justify-center gap-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span>🧪</span> GEDS Lab
+                <span>🧪</span> Nortech Lab
               </Link>
               <Link
                 href="/plans"

@@ -39,7 +39,7 @@ export default function CTA() {
             transition={{ delay: 0.4 }}
             className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed mb-12"
           >
-            Fale hoje com nosso time de elite e descubra como a GEDS Inovação impulsionará sua escalabilidade.
+            Fale hoje com nosso time de elite e descubra como a Nortech Inovação impulsionará sua escalabilidade.
           </motion.p>
           
           <motion.div

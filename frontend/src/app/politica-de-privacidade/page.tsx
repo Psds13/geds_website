@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-4">1. Introdução</h2>
                                 <p>
-                                    A GEDS Inovação Tech (&quot;nós&quot;, &quot;nosso&quot;) leva a sua privacidade a sério. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos as informações pessoais que você nos fornece ao utilizar nosso site e serviços. Ao acessar nossa plataforma, você concorda com as práticas descritas neste documento.
+                                    A Nortech Inovação Tech (&quot;nós&quot;, &quot;nosso&quot;) leva a sua privacidade a sério. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos as informações pessoais que você nos fornece ao utilizar nosso site e serviços. Ao acessar nossa plataforma, você concorda com as práticas descritas neste documento.
                                 </p>
                             </section>
 

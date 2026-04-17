@@ -7,9 +7,9 @@ import Link from "next/link";
 export default function Teasers() {
   return (
     <section className="max-w-7xl mx-auto py-24 px-6 bg-background transition-colors flex flex-col gap-16">
-      {/* ── GEDS SECURITY TEASER ── */}
+      {/* ── Nortech SECURITY TEASER ── */}
       <motion.div
-        id="geds-security"
+        id="nortech-security"
         className="relative bg-background border border-blue-500/10 p-8 md:p-16 rounded-[2.5rem] overflow-hidden shadow-xl flex flex-col md:flex-row items-center justify-between gap-12 group"
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -25,14 +25,14 @@ export default function Teasers() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-blue-600 dark:text-blue-400 mb-6 tracking-tight leading-tight">
-             GEDS Security
+             Nortech Security
           </h2>
           <p className="text-lg text-foreground/70 max-w-xl leading-relaxed mb-10">
             Proteção digital avançada para ativos críticos. Da análise de vulnerabilidades à blindagem total da infraestrutura.
           </p>
         </div>
 
-        <Link href="/geds-security" className="w-full md:w-auto">
+        <Link href="/nortech-security" className="w-full md:w-auto">
           <motion.div 
             whileHover={{ scale: 1.05, x: 5 }}
             className="inline-flex items-center gap-3 border border-blue-500/30 text-blue-600 dark:text-blue-400 font-bold px-10 py-5 rounded-full shadow-lg text-sm uppercase tracking-widest hover:bg-blue-500 hover:text-white dark:hover:text-black transition-all"
@@ -43,9 +43,9 @@ export default function Teasers() {
         </Link>
       </motion.div>
 
-      {/* ── GEDS LAB TEASER ── */}
+      {/* ── Nortech LAB TEASER ── */}
       <motion.div
-        id="geds-lab"
+        id="nortech-lab"
         className="relative bg-background border border-cyan-500/10 p-8 md:p-16 rounded-[2.5rem] overflow-hidden shadow-xl flex flex-col md:flex-row items-center justify-between gap-12 group"
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -61,7 +61,7 @@ export default function Teasers() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-cyan-600 dark:text-cyan-400 mb-6 tracking-tight leading-tight">
-            Explore o GEDS Lab
+            Explore o Nortech Lab
           </h2>
           <p className="text-lg text-foreground/70 max-w-xl leading-relaxed mb-10">
             O ambiente onde ideias se transformam em tecnologia real. Explore nossos <strong>protótipos interativos</strong> e 
@@ -69,7 +69,7 @@ export default function Teasers() {
           </p>
         </div>
 
-        <Link href="/geds-lab" className="w-full md:w-auto">
+        <Link href="/nortech-lab" className="w-full md:w-auto">
           <motion.div 
             whileHover={{ scale: 1.05, x: 5 }}
             className="inline-flex items-center gap-3 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 font-bold px-10 py-5 rounded-full shadow-lg text-sm uppercase tracking-widest hover:bg-cyan-500 hover:text-white dark:hover:text-black transition-all"
@@ -98,7 +98,7 @@ export default function Teasers() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-emerald-600 dark:text-emerald-400 mb-6 tracking-tight leading-tight">
-            GEDS Green Tech
+            Nortech Green
           </h2>
           <p className="text-lg text-foreground/70 max-w-xl leading-relaxed mb-10">
             Tecnologia que cuida do planeta. Meça o impacto ambiental real das soluções digitais e monitore a redução de CO₂.

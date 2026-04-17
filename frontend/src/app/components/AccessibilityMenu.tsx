@@ -148,7 +148,7 @@ const AccessibilityMenu = () => {
     } else {
       setIsSirenActive(true);
       setIsMenuFogo(true);
-      alert("🚨 ALARME GEDS ATIVADO: O sistema visual e sonoro de emergência está em execução.");
+      alert("🚨 ALARME Nortech ATIVADO: O sistema visual e sonoro de emergência está em execução.");
     }
   };
 
@@ -230,9 +230,9 @@ const AccessibilityMenu = () => {
           word-spacing: 0.2em !important;
         }
         .menu-fogo-active {
-          animation: geds-sos-pulse 1.5s infinite alternate;
+          animation: nortech-sos-pulse 1.5s infinite alternate;
         }
-        @keyframes geds-sos-pulse {
+        @keyframes nortech-sos-pulse {
           from { border: 4px solid #ff4500; box-shadow: inset 0 0 40px rgba(255, 69, 0, 0.3); }
           to { border: 4px solid #ff0000; box-shadow: inset 0 0 80px rgba(255, 0, 0, 0.6); }
         }
@@ -330,8 +330,8 @@ const AccessibilityMenu = () => {
                 
                 <div className={`relative z-10 w-16 h-16 rounded-full overflow-hidden border-2 shadow-xl shrink-0 ${isMenuFogo ? "border-white/20" : "border-black/20"}`}>
                   <Image 
-                    src="/GEDS Accessibility.png" 
-                    alt="GEDS Accessibility" 
+                    src="/Nortech Accessibility.png" 
+                    alt="Nortech Accessibility" 
                     fill 
                     className="object-cover"
                   />
@@ -339,7 +339,7 @@ const AccessibilityMenu = () => {
 
                 <div className="relative z-10 flex-1">
                    <h2 className={`text-lg font-black uppercase italic tracking-tighter leading-none mb-2 ${isMenuFogo ? "text-white" : "text-black"}`}>
-                     GEDS Accessibility
+                     Nortech Accessibility
                    </h2>
                    <div className="flex items-center gap-2">
                      <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${isMenuFogo ? "bg-red-200" : "bg-black"}`} />
@@ -409,7 +409,7 @@ const AccessibilityMenu = () => {
                     ))}
                  </div>
                  <p className="text-[9px] text-gray-600 font-black uppercase tracking-[0.5em]">
-                   GEDS Universal Interface
+                   Nortech Universal Interface
                  </p>
               </div>
             </motion.div>

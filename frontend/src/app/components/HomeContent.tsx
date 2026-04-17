@@ -30,8 +30,8 @@ const navItems = [
   { id: "servicos", label: "Serviços", desc: "Soluções sob medida", icon: Zap, color: "text-cyan-400" },
   { id: "processo", label: "Processo", desc: "Como criamos seu app", icon: Repeat, color: "text-blue-400" },
   { id: "dashboard", label: "Simulador", desc: "Sinta o impacto real", icon: BarChart2, color: "text-purple-400" },
-  { id: "os", label: "GEDS OS", desc: "Sistema Interativo", icon: Terminal, color: "text-emerald-500" },
-  { id: "geds-lab", label: "GEDS Lab", desc: "Nossos experimentos", icon: FlaskConical, color: "text-cyan-400" },
+  { id: "os", label: "Nortech OS", desc: "Sistema Interativo", icon: Terminal, color: "text-emerald-500" },
+  { id: "nortech-lab", label: "Nortech Lab", desc: "Nossos experimentos", icon: FlaskConical, color: "text-cyan-400" },
   { id: "green-tech", label: "Green Tech", desc: "Tecnologia verde", icon: Leaf, color: "text-emerald-400" },
   { id: "diferenciais", label: "Diferenciais", desc: "Por que nos escolher?", icon: Award, color: "text-yellow-400" },
   { id: "portfolio", label: "Cases", desc: "Sucesso garantido", icon: Star, color: "text-purple-400" },
@@ -123,7 +123,7 @@ const HomeContent = () => {
         <CommandCenter />
       </section>
 
-      {/* ── SEÇÃO GEDS OS ──────────────────────────────────────────── */}
+      {/* ── SEÇÃO Nortech OS ──────────────────────────────────────────── */}
       <section id="os" className="relative z-10 border-b border-foreground/5">
         <HomeOS />
       </section>

@@ -7,8 +7,8 @@ import Link from "next/link";
 export default function HomeOS() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<{ id: string; text: string; color?: string }[]>([
-    { id: "1", text: "GEDS OS [Version 2.0.0.1]", color: "text-emerald-500" },
-    { id: "2", text: "Copyright (c) GEDS Inovação. All rights reserved.", color: "text-emerald-500" },
+    { id: "1", text: "Nortech OS [Version 2.0.0.1]", color: "text-emerald-500" },
+    { id: "2", text: "Copyright (c) Nortech Inovação. All rights reserved.", color: "text-emerald-500" },
     { id: "3", text: "Type 'help' to see available commands.", color: "text-emerald-300" }
   ]);
   const isFirstMount = useRef(true);
@@ -24,14 +24,14 @@ export default function HomeOS() {
 
   const handleCommand = (cmd: string) => {
     const c = cmd.trim().toLowerCase();
-    const newOut = [...output, { id: Math.random().toString(), text: `root@geds:~# ${cmd}` }];
+    const newOut = [...output, { id: Math.random().toString(), text: `root@nortech:~# ${cmd}` }];
 
     if (c === "help") {
-      newOut.push({ id: Math.random().toString(), text: "AVAILABLE COMMANDS:\n  help      - Show this message\n  about     - Info about GEDS\n  status    - Check system diagnostics\n  clear     - Clean terminal\n  matrix    - Initialize visual protocol" });
+      newOut.push({ id: Math.random().toString(), text: "AVAILABLE COMMANDS:\n  help      - Show this message\n  about     - Info about Nortech\n  status    - Check system diagnostics\n  clear     - Clean terminal\n  matrix    - Initialize visual protocol" });
     } else if (c === "about") {
-      newOut.push({ id: Math.random().toString(), text: "GEDS Inovação: Transformando problemas complexos em soluções digitais avançadas usando IA, Cloud e Green Tech.", color: "text-cyan-400" });
+      newOut.push({ id: Math.random().toString(), text: "Nortech Inovação: Transformando problemas complexos em soluções digitais avançadas usando IA, Cloud e Green Tech.", color: "text-cyan-400" });
     } else if (c === "status") {
-      newOut.push({ id: Math.random().toString(), text: "[OK] All core systems operational.\n[OK] GEDS Security firewall active.\n[OK] Green Tech optimization running at 98% efficiency.", color: "text-emerald-400" });
+      newOut.push({ id: Math.random().toString(), text: "[OK] All core systems operational.\n[OK] Nortech Security firewall active.\n[OK] Green Tech optimization running at 98% efficiency.", color: "text-emerald-400" });
     } else if (c === "matrix") {
       newOut.push({ id: Math.random().toString(), text: "Waking up in the Matrix...", color: "text-emerald-500 font-bold" });
     } else if (c === "clear") {
@@ -54,7 +54,7 @@ export default function HomeOS() {
       <div className="mb-8 text-center relative z-10 w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="text-left">
           <h2 className="text-3xl md:text-4xl font-black flex items-center gap-3 text-white mb-2">
-            <Terminal className="text-emerald-500 w-8 h-8" /> GEDS OS Terminal
+            <Terminal className="text-emerald-500 w-8 h-8" /> Nortech OS Terminal
           </h2>
           <p className="text-emerald-500/80 uppercase tracking-widest text-xs md:text-sm font-bold">
             ACESSO CONSOLE DE SISTEMA
@@ -66,7 +66,7 @@ export default function HomeOS() {
         {/* Header */}
         <div className="p-3 flex items-center gap-2 border-b bg-emerald-950/40 border-emerald-900/50">
           <Terminal size={14} className="text-emerald-500" />
-          <span className="text-xs font-bold tracking-widest text-emerald-500">GEDS_TERMINAL_ROOT</span>
+          <span className="text-xs font-bold tracking-widest text-emerald-500">Nortech_TERMINAL_ROOT</span>
           <div className="ml-auto flex gap-2">
             <div className="w-3 h-3 rounded-full bg-red-500/20" />
             <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
@@ -86,7 +86,7 @@ export default function HomeOS() {
 
         {/* Input Area */}
         <div className="flex items-center px-4 pb-4 pt-3 border-t border-emerald-900/50 bg-black/40 relative group">
-          <span className="mr-2 text-emerald-500 font-bold drop-shadow-[0_0_5px_rgba(16,185,129,0.8)] mt-0.5">root@geds:~#</span>
+          <span className="mr-2 text-emerald-500 font-bold drop-shadow-[0_0_5px_rgba(16,185,129,0.8)] mt-0.5">root@nortech:~#</span>
           <input 
             type="text" 
             value={input}
@@ -104,7 +104,7 @@ export default function HomeOS() {
           href="/os" 
           className="bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold px-6 py-2.5 rounded-lg transition-all flex items-center gap-2 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:-translate-y-0.5"
         >
-          <Terminal size={16} /> Acessar GEDS OS Completo
+          <Terminal size={16} /> Acessar Nortech OS Completo
         </Link>
       </div>
     </div>
