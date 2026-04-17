@@ -16,7 +16,7 @@ import {
 
 const socialLinks = [
   { name: 'Facebook', icon: <FiFacebook />, href: '#', color: 'hover:bg-blue-600' },
-  { name: 'Instagram', icon: <FiInstagram />, href: '#', color: 'hover:bg-pink-600' },
+  { name: 'Instagram', icon: <FiInstagram />, href: 'https://www.instagram.com/nortech.inovacao', color: 'hover:bg-pink-600' },
   { name: 'LinkedIn', icon: <FiLinkedin />, href: '#', color: 'hover:bg-blue-700' },
 ];
 
@@ -98,6 +98,8 @@ export default function Footer() {
                 <Link
                   key={social.name}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`group relative w-12 h-12 flex items-center justify-center rounded-xl bg-foreground/5 border border-foreground/10 text-foreground/70 hover:text-foreground transition-all duration-300 ${social.color}`}
                 >
                   <span className="text-xl relative z-10 group-hover:scale-110 transition-transform">

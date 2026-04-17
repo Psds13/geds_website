@@ -263,12 +263,12 @@ export default function Contact() {
               <p className="text-[10px] text-foreground/40 font-bold uppercase tracking-widest text-center md:text-left">Rede Global Nortech</p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
                 {[
-                  { icon: FaInstagram, color: "hover:text-pink-500", label: "Instagram", href: "#" },
+                  { icon: FaInstagram, color: "hover:text-pink-500", label: "Instagram", href: "https://www.instagram.com/nortech.inovacao" },
                   { icon: FaGithub, color: "hover:text-foreground", label: "Github", href: "#" },
                   { icon: FaLinkedin, color: "hover:text-blue-400", label: "LinkedIn", href: "#" },
                   { icon: FaGlobe, color: "hover:text-cyan-400", label: "Website", href: "#" },
                 ].map((social, i) => (
-                  <a key={i} href={social.href} aria-label={social.label}
+                  <a key={i} href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer"
                     className={`w-14 h-14 rounded-2xl bg-foreground/[0.03] border border-foreground/10 flex items-center justify-center text-foreground/40 ${social.color} hover:bg-foreground/[0.08] hover:scale-110 transition-all`}>
                     <social.icon className="text-2xl" />
                   </a>
