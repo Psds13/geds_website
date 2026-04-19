@@ -5,9 +5,9 @@ import { FiStar } from "react-icons/fi";
 import { ShieldCheck, MessageSquare } from "lucide-react";
 
 const testimonials = [
-  { name: "Carlos Mendes", role: "CEO – TechBrasil", text: "A Nortech transformou nossos processos internos. Ganhamos produtividade em poucas semanas de projeto.", stars: 5, avatar: "C" },
-  { name: "Ana Rodrigues", role: "Diretora – MedPlus", text: "O sistema desenvolvido pela Nortech reduziu drasticamente o tempo de resposta hospitalar. Resultado técnico impressionante!", stars: 5, avatar: "A" },
-  { name: "Pedro Alves", role: "Founder – StartupX", text: "Lançamos nosso MVP em tempo recorde mundial. A abordagem ágil e a qualidade de dados da Nortech são incomparáveis.", stars: 5, avatar: "P" },
+  { name: "Carlos Mendes", role: "CEO – TechBrasil", text: "A Nortech transformou nossos processos internos. Ganhamos produtividade em poucas semanas de projeto.", stars: 5, image: "https://randomuser.me/api/portraits/men/32.jpg", avatar: "C" },
+  { name: "Ana Rodrigues", role: "Diretora – MedPlus", text: "O sistema desenvolvido pela Nortech reduziu drasticamente o tempo de resposta hospitalar. Resultado técnico impressionante!", stars: 5, image: "https://randomuser.me/api/portraits/women/44.jpg", avatar: "A" },
+  { name: "Pedro Alves", role: "Founder – StartupX", text: "Lançamos nosso MVP em tempo recorde mundial. A abordagem ágil e a qualidade de dados da Nortech são incomparáveis.", stars: 5, image: "https://randomuser.me/api/portraits/men/46.jpg", avatar: "P" },
 ];
 
 export default function SocialProof() {
@@ -55,9 +55,14 @@ export default function SocialProof() {
               </div>
 
               <div className="flex items-center gap-5 mt-10 pt-8 border-t border-foreground/5 z-10">
-                <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white dark:text-black font-black text-xl shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0">
-                  {t.avatar}
-                </div>
+                {t.image ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={t.image} alt={t.name} className="w-12 h-12 rounded-2xl object-cover shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0" />
+                ) : (
+                  <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white dark:text-black font-black text-xl shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0">
+                    {t.avatar}
+                  </div>
+                )}
                 <div className="shrink-0 max-w-[150px]">
                   <p className="text-foreground font-bold text-lg tracking-tight leading-tight truncate">{t.name}</p>
                   <p className="text-cyan-600 dark:text-cyan-400/80 text-[9px] uppercase font-black tracking-widest leading-none mt-1">{t.role}</p>
