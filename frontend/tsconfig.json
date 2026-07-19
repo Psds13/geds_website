@@ -20,6 +20,9 @@
     "ignoreDeprecations": "6.0",
     "baseUrl": ".", // Certifique-se de que baseUrl está definido
     "paths": {
+      "@/components/*": [
+        "src/app/components/*"
+      ], // Mapeando componentes UI do app para o diretório correto
       "@/*": [
         "src/*"
       ], // Mapeando o alias '@' para a pasta src

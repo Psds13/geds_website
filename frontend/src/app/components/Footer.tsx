@@ -84,7 +84,7 @@ export default function Footer() {
               transition={{ delay: 0.1 }}
               className="text-foreground/70 max-w-sm leading-relaxed text-lg"
             >
-              Forjando o futuro digital através de engenharia disruptiva e design de precisão. Transformamos visões em realidades escaláveis.
+              Desenvolvimento de software com foco em qualidade e resultados concretos.
             </motion.p>
 
             <motion.div
@@ -214,7 +214,7 @@ export default function Footer() {
             </p>
             <p className="text-[11px] font-medium text-foreground/70 uppercase tracking-widest flex items-center gap-2">
               <span className="w-4 h-px bg-cyan-500/50"></span>
-              Soluções Tecnológicas de Alto Desempenho
+              Desenvolvimento de Software
             </p>
           </motion.div>
 

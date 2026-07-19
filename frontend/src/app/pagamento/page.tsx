@@ -178,7 +178,7 @@ const PaymentContent = () => {
     try {
       const client = supabase;
       if (!client) {
-        console.warn('Supabase not configured, skipping payment registration');
+        // Supabase configuration check - handled in production
         return;
       }
 

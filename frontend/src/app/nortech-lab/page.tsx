@@ -1,4 +1,9 @@
-"use client";
+// ═══════════════════════════════════════════════════════════════════════════
+// NORTECH LAB - INNOVATION TESTING GROUNDS
+// ═══════════════════════════════════════════════════════════════════════════
+// Showcase de projetos em desenvolvimento, demonstrações de IA e roadmap.
+// Padrões: Next.js App Router, Framer Motion, TypeScript strict
+// ═══════════════════════════════════════════════════════════════════════════
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
@@ -9,7 +14,10 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-// ── Background ───────────────────────────────────────────────────
+/**
+ * Renderiza o fundo animado do Lab com grid e gradientes de cor
+ * Componente puramente visual - não interativo
+ */
 function LabBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
@@ -25,7 +33,10 @@ function LabBackground() {
   );
 }
 
-// ── Terminal Demo ─────────────────────────────────────────────────
+/**
+ * Simula a execução de um terminal com animações de digitação
+ * @param code - Array de strings representando linhas do terminal
+ */
 function TerminalDemo({ code }: { code: string[] }) {
   const [lines, setLines] = useState<string[]>([]);
   const [running, setRunning] = useState(false);
@@ -75,7 +86,10 @@ function TerminalDemo({ code }: { code: string[] }) {
   );
 }
 
-// ── AI Chat ───────────────────────────────────────────────────────
+/**
+ * Chatbot de IA que simula respostas inteligentes sobre automação e custos
+ * Uso: Demonstração das capacidades de IA da Nortech
+ */
 function AITest() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<{ role: 'user' | 'ai'; text: string }[]>([]);
@@ -136,10 +150,13 @@ function AITest() {
   );
 }
 
-// ── Projects ──────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────
+// DADOS: Projetos em desenvolvimento
+// Estrutura: id, ícone, categoria, título, descrição, tech stack, progresso
+// ─────────────────────────────────────────────────────────────────
 const projects = [
   { id: 'smart-process', icon: <Cpu className="w-6 h-6" />, category: 'Em Desenvolvimento', categoryColor: 'cyan', title: 'Nortech Process AI', desc: 'Sistema de automação inteligente que analisa gargalos empresariais e sugere otimizações em tempo real usando machine learning.', tech: ['Python', 'TensorFlow', 'FastAPI', 'React'], progress: 72, terminal: ['> Inicializando módulo de análise...', '> Carregando modelo de IA v3.2...', '[IA] Analisando padrões de processo...', '[IA] Detectados 7 gargalos operacionais', '[IA] Calculando otimizações possíveis...', '✓ Relatório gerado: 43% de melhoria estimada'] },
-  { id: 'startup-hub', icon: <Lightbulb className="w-6 h-6" />, category: 'Em Desenvolvimento', categoryColor: 'cyan', title: 'Startup Hub Platform', desc: 'Plataforma colaborativa para conectar startups com investidores, mentores e recursos tecnológicos do ecossistema Nortech.', tech: ['Next.js', 'Supabase', 'Stripe', 'AI'], progress: 55, terminal: ['> Conectando ao servidor...', '> Carregando perfis de startups...', '[IA] Analisando compatibilidade investidor-startup...', '[IA] Match score calculado: 94%', '> Gerando proposta de conexão...', '✓ 3 conexões estratégicas identificadas'] },
+  { id: 'startup-hub', icon: <Lightbulb className="w-6 h-6" />, category: 'Em Desenvolvimento', categoryColor: 'cyan', title: 'Startup Hub Platform', desc: 'Plataforma colaborativa para conectar startups com investidores, mentores e recursos da Nortech.', tech: ['Next.js', 'Supabase', 'Stripe', 'AI'], progress: 55, terminal: ['> Conectando ao servidor...', '> Carregando perfis de startups...', '[IA] Analisando compatibilidade investidor-startup...', '[IA] Match score calculado: 94%', '> Gerando proposta de conexão...', '✓ 3 conexões estratégicas identificadas'] },
   { id: 'interactive-site', icon: <Globe className="w-6 h-6" />, category: 'Protótipo', categoryColor: 'blue', title: 'Site Interativo v2', desc: 'Plataforma web com experiências imersivas, elementos de gamificação e inteligência adaptativa baseada no comportamento do usuário.', tech: ['React', 'GSAP', 'WebGL', 'Three.js'], progress: 88, terminal: ['> Inicializando WebGL engine...', '> Carregando shaders 3D...', '[RENDER] 60fps atingido', '[UX] Carregando módulo adaptativo...', '[UX] Perfil de usuário analisado', '✓ Experiência personalizada ativa'] },
   { id: 'mvp-app', icon: <Code className="w-6 h-6" />, category: 'MVP', categoryColor: 'purple', title: 'Nortech Mobile MVP', desc: 'Aplicativo mobile que centraliza todos os serviços Nortech: diagnóstico, acompanhamento de projetos e suporte em tempo real.', tech: ['React Native', 'Expo', 'Supabase', 'Push Notifications'], progress: 40, terminal: ['> Inicializando React Native...', '> Conectando à API Nortech...', '[AUTH] Verificando credenciais...', '[SYNC] Sincronizando dados do projeto...', '> Carregando dashboard mobile...', '✓ App pronto para uso'] },
   { id: 'ia-connector', icon: <Brain className="w-6 h-6" />, category: 'Conceito', categoryColor: 'emerald', title: 'Nortech AI Connector', desc: 'Middleware inteligente que conecta qualquer sistema legado a APIs modernas de IA, sem necessidade de refatoração completa.', tech: ['Python', 'LangChain', 'OpenAI', 'Node.js'], progress: 20, terminal: ['> Detectando sistema legado...', '> Mapeando estrutura de dados...', '[IA] Analisando endpoints disponíveis...', '[IA] Gerando adaptadores automáticos...', '> Bridge configurada com sucesso', '✓ Sistema legado conectado à IA'] },
@@ -154,7 +171,37 @@ const categoryColors: Record<string, string> = {
   yellow: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20',
 };
 
-// ── Project Card ─────────────────────────────────────────────────
+const diferenciais = [
+  {
+    title: 'Estratégia com execução real',
+    text: 'Transformamos ideias em soluções testadas, com foco em impacto, velocidade e escalabilidade.',
+    icon: <Lightbulb className="w-6 h-6" />,
+    accent: 'cyan',
+  },
+  {
+    title: 'Tecnologia aplicada aos processos',
+    text: 'Integramos IA, automação e arquitetura moderna para reduzir gargalos e aumentar produtividade.',
+    icon: <Cpu className="w-6 h-6" />,
+    accent: 'blue',
+  },
+  {
+    title: 'Resultados mensuráveis',
+    text: 'Cada projeto é pensado para entregar eficiência, clareza e retorno concreto para o negócio.',
+    icon: <Rocket className="w-6 h-6" />,
+    accent: 'purple',
+  },
+];
+
+const diferencialColors: Record<string, string> = {
+  cyan: 'border-cyan-500/20 bg-cyan-500/10 text-cyan-400',
+  blue: 'border-blue-500/20 bg-blue-500/10 text-blue-400',
+  purple: 'border-purple-500/20 bg-purple-500/10 text-purple-400',
+};
+
+/**
+ * Card individual de projeto no Lab
+ * Exibe informações do projeto, progresso e permite expandir terminal demo
+ */
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -198,7 +245,10 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
   );
 }
 
-// ── Roadmap Data ─────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────
+// DADOS: Roadmap de entregas
+// Formato: Quarter, status (done/active/upcoming), items, metadata
+// ─────────────────────────────────────────────────────────────────
 const roadmapItems = [
   {
     quarter: 'Q1 2025',
@@ -258,6 +308,16 @@ const roadmapColors: Record<string, { border: string; bg: string; text: string; 
 };
 
 // ── Main Page ─────────────────────────────────────────────────────
+/**
+ * Página principal do Nortech Lab
+ * Showcase de projetos em desenvolvimento, roadmap e demonstrações de IA
+ * 
+ * Arquitetura:
+ * - LabBackground: fundo visual
+ * - AITest: interação de IA
+ * - ProjectCard: grid de projetos filtráveis
+ * - Roadmap: timeline de entregas
+ */
 export default function NortechLab() {
   const [activeFilter, setActiveFilter] = useState('Todos');
   const filters = ['Todos', 'Em Desenvolvimento', 'Protótipo', 'MVP', 'Conceito', 'Ideia'];
@@ -327,6 +387,40 @@ export default function NortechLab() {
               <div className="absolute -top-12 -right-12 w-64 h-64 bg-cyan-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
               <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-blue-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
             </motion.div>
+          </div>
+        </section>
+
+        {/* ── Diferenciais ─────────────────────────────────────── */}
+        <section className="mb-20">
+          <div className="rounded-[2.5rem] border border-foreground/10 bg-foreground/[0.02] p-6 md:p-10 backdrop-blur-sm">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8">
+              <div className="max-w-2xl">
+                <p className="text-cyan-400 text-[10px] font-black uppercase tracking-[0.35em] mb-3">Nossos diferenciais</p>
+                <h2 className="text-2xl md:text-3xl font-black text-foreground uppercase italic tracking-tighter pr-2">Por que marcas escolhem a Nortech para transformar ideias em resultado</h2>
+              </div>
+              <p className="text-foreground/50 text-sm max-w-xl leading-relaxed font-bold uppercase tracking-tight">
+                Não trabalhamos com soluções genéricas. Cada projeto é desenhado para combinar visão estratégica, tecnologia de ponta e execução prática.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {diferenciais.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.08 }}
+                  className="rounded-3xl border border-foreground/8 bg-background/70 p-6 hover:border-cyan-500/30 transition-all"
+                >
+                  <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl border ${diferencialColors[item.accent]}`}>
+                    {item.icon}
+                  </div>
+                  <h3 className="mt-5 text-lg font-black text-foreground uppercase tracking-tight">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-foreground/60">{item.text}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 

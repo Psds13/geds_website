@@ -6,38 +6,38 @@ import Image from "next/image";
 const diferenciais = [
   { 
     icon: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=200&h=200&fit=crop", 
-    title: "IA Integrada", 
-    desc: "Soluções com IA de última geração integradas desde a primeira linha de código. Machine learning e processamento de linguagem natural para resultados excepcionais.", 
+    title: "Integração com IA", 
+    desc: "Utilizamos inteligência artificial quando faz sentido para o projeto. Não é mágica, é tecnologia aplicada.", 
     size: "lg" 
   },
   { 
     icon: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=200&h=200&fit=crop", 
-    title: "Segurança Total", 
-    desc: "Dados protegidos com padrões enterprise e criptografia de nível militar. Proteção avançada contra ameaças cibernéticas.", 
+    title: "Segurança", 
+    desc: "Seguimos boas práticas de segurança da informação. Seus dados estão protegidos.", 
     size: "sm" 
   },
   { 
     icon: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=200&h=200&fit=crop", 
-    title: "Sustentabilidade", 
-    desc: "Tecnologia verde que otimiza recursos e respeita o meio ambiente. Redução de carbono e eficiência energética certificada.", 
+    title: "Eficiência", 
+    desc: "Otimizamos recursos e processos para reduzir custos e aumentar produtividade.", 
     size: "sm" 
   },
   { 
     icon: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=200&h=200&fit=crop", 
-    title: "Elite Tech", 
-    desc: "50+ projetos entregues com métricas reais de sucesso e escalabilidade. Cases de sucesso em Fortune 500.", 
+    title: "Experiência Comprovada", 
+    desc: "Mais de 50 projetos entregues. Cases reais com resultados mensuráveis.", 
     size: "sm" 
   },
   { 
     icon: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=200&h=200&fit=crop", 
-    title: "Time Sênior Dedicado", 
-    desc: "Suporte especializado por engenheiros sêniores em tempo real. Disponibilidade 24/7 com tempo de resposta ultrarrápido.", 
+    title: "Suporte Dedicado", 
+    desc: "Equipe técnica disponível para ajudar. Respondemos rápido e resolvemos problemas.", 
     size: "lg" 
   },
   { 
     icon: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=200&h=200&fit=crop", 
-    title: "Next-Gen Stack", 
-    desc: "As tecnologias mais performáticas do ecossistema global. Sempre atualizados com as últimas inovações do mercado.", 
+    title: "Tecnologia Atual", 
+    desc: "Usamos ferramentas modernas e atualizadas. Sem tecnologia obsoleta.", 
     size: "sm" 
   },
 ];
@@ -52,13 +52,13 @@ export default function Diferenciais() {
         viewport={{ once: true }}
       >
         <span className="inline-block mb-4 sm:mb-5 text-cyan-600 dark:text-cyan-400 font-bold bg-cyan-500/10 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs uppercase tracking-widest border border-cyan-500/20">
-          Vantagem Competitiva
+          Diferenciais
         </span>
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-cyan-600 dark:text-cyan-400 mb-4 sm:mb-6 lg:mb-8 tracking-tight leading-tight px-4">
-          Por que líderes escolhem a Nortech Inovação?
+          Por que trabalhar conosco?
         </h2>
         <p className="text-base sm:text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed font-medium px-4">
-          Onde a fronteira tecnológica encontra a estratégia de elite.
+          Foco em qualidade, transparência e resultados.
         </p>
       </motion.div>
 

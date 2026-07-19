@@ -10,7 +10,7 @@ const ProcessoPage = () => {
   const etapas = [
     {
       title: "1. Diagnóstico e Imersão",
-      desc: "Antes de escrevermos uma linha de código, mergulhamos no seu ecossistema. Realizamos workshops de descoberta para mapear dores, identificar oportunidades e definir KPIs claros de sucesso.",
+      desc: "Antes de escrevermos uma linha de código, entendemos o seu negócio. Realizamos sessões para mapear dores, identificar oportunidades e definir metas claras.",
       icon: <Search className="w-12 h-12 text-cyan-400" />,
       features: ["Análise de viabilidade técnica", "Mapeamento de jornada do usuário", "Definição de arquitetura"]
     },
@@ -28,7 +28,7 @@ const ProcessoPage = () => {
     },
     {
       title: "4. Qualidade & Scale",
-      desc: "Garantimos a robustez da aplicação através de testes automatizados e pipelines de CI/CD. Preparamos o ambiente para suportar crescimento exponencial com segurança.",
+      desc: "Garantimos a robustez da aplicação através de testes automatizados e pipelines de CI/CD. Preparamos o ambiente para suportar crescimento com segurança.",
       icon: <ShieldCheck className="w-12 h-12 text-cyan-400" />,
       features: ["Testes Automatizados", "Monitoramento de Performance", "Infraestrutura Cloud Scalável"]
     },

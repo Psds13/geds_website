@@ -8,10 +8,10 @@ import {
   Network, Server, Wifi, Monitor, Shield, Zap, Leaf, Beaker,
   Activity, AlertTriangle, CheckCircle2, ArrowRight, Headphones,
   TicketCheck, MapPin, Cpu, BarChart3, Radio,
-  TrendingDown, TrendingUp, ChevronRight, RotateCcw
+  TrendingDown, TrendingUp, ChevronRight, RotateCcw,
+  Building2, Rocket, Building, Hospital,
 } from "lucide-react";
 
-// ── Animated Network Background ─────────────────────────────────
 function NetworkBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -25,44 +25,42 @@ function NetworkBackground() {
     canvas.height = canvas.offsetHeight;
 
     const nodes: { x: number; y: number; vx: number; vy: number }[] = [];
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 30; i++) {
       nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
       });
     }
 
     let frame: number;
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      nodes.forEach(n => {
-        n.x += n.vx; n.y += n.vy;
+      nodes.forEach((n) => {
+        n.x += n.vx;
+        n.y += n.vy;
         if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
         if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
       });
-
       nodes.forEach((a, i) => {
         nodes.forEach((b, j) => {
           if (i >= j) return;
           const dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < 160) {
+          if (dist < 140) {
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(59,130,246,${0.15 * (1 - dist / 160)})`;
+            ctx.strokeStyle = `rgba(59,130,246,${0.1 * (1 - dist / 140)})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
         });
         ctx.beginPath();
-        ctx.arc(a.x, a.y, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(59,130,246,0.5)";
+        ctx.arc(a.x, a.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(59,130,246,0.4)";
         ctx.fill();
       });
-
       frame = requestAnimationFrame(draw);
     };
     draw();
@@ -70,14 +68,10 @@ function NetworkBackground() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-60"
-    />
+    <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none opacity-40" />
   );
 }
 
-// ── Animated Counter ─────────────────────────────────────────────
 function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [val, setVal] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -86,11 +80,14 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting && !started.current) {
         started.current = true;
-        let c = 0; const step = target / 60;
+        let c = 0;
+        const step = target / 60;
         const id = setInterval(() => {
           c += step;
-          if (c >= target) { setVal(target); clearInterval(id); }
-          else setVal(Math.floor(c));
+          if (c >= target) {
+            setVal(target);
+            clearInterval(id);
+          } else setVal(Math.floor(c));
         }, 16);
       }
     }, { threshold: 0.3 });
@@ -100,10 +97,12 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
   return <span ref={ref}>{val}{suffix}</span>;
 }
 
-// ── Live Network Dashboard ────────────────────────────────────────
 function NetworkDashboard() {
   const [tick, setTick] = useState(0);
-  useEffect(() => { const id = setInterval(() => setTick(t => t + 1), 2000); return () => clearInterval(id); }, []);
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), 2000);
+    return () => clearInterval(id);
+  }, []);
 
   const bandwidth = [42, 58, 61, 55, 70, 63, 78, 72, 80, 75, 85, 88 + (tick % 6)];
   const latency = 12 + (tick % 4);
@@ -111,84 +110,60 @@ function NetworkDashboard() {
   const uptime = 99.97;
 
   const metrics = [
-    { label: "Status da Rede", value: "Online", icon: <Wifi className="w-5 h-5" />, color: "emerald", extra: <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block" /> },
-    { label: "Uso de Banda", value: `${bandwidth[bandwidth.length - 1]}%`, icon: <BarChart3 className="w-5 h-5" />, color: "blue", extra: null },
-    { label: "Dispositivos", value: String(devices), icon: <Monitor className="w-5 h-5" />, color: "purple", extra: null },
-    { label: "Latência (ms)", value: String(latency), icon: <Activity className="w-5 h-5" />, color: "cyan", extra: null },
+    { label: "Status da rede", value: "Online", icon: Wifi, ok: true },
+    { label: "Uso de banda", value: `${bandwidth[bandwidth.length - 1]}%`, icon: BarChart3, ok: false },
+    { label: "Dispositivos", value: String(devices), icon: Monitor, ok: false },
+    { label: "Latência", value: `${latency} ms`, icon: Activity, ok: false },
   ];
 
-  const colorMap: Record<string, string> = {
-    emerald: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    blue: "text-blue-400 bg-blue-500/10 border-blue-500/20",
-    purple: "text-purple-400 bg-purple-500/10 border-purple-500/20",
-    cyan: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
-  };
-
   return (
-    <div className="bg-foreground/[0.02] border border-blue-500/20 rounded-[3rem] p-8 md:p-10 shadow-2xl">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+    <div className="border border-foreground/10 rounded-xl p-6 md:p-8 bg-background">
+      <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-foreground font-black text-xl uppercase italic tracking-tighter">Painel de Controle de Rede</h3>
-          <p className="text-foreground/40 text-[10px] font-black uppercase tracking-widest">Monitoramento em tempo real</p>
+          <h3 className="text-lg font-semibold text-foreground">Painel de rede</h3>
+          <p className="text-foreground/50 text-sm">Monitoramento em tempo real</p>
         </div>
-        <motion.div animate={{ opacity: [1, 0.4, 1] }} transition={{ repeat: Infinity, duration: 2 }}
-          className="flex items-center gap-2 text-emerald-400 text-[10px] font-black bg-emerald-500/10 px-4 py-2 rounded-full border border-emerald-500/20 uppercase tracking-widest">
-          <span className="w-2 h-2 rounded-full bg-emerald-400" /> AO VIVO
-        </motion.div>
+        <span className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-xs font-medium bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          Online
+        </span>
       </div>
 
-      {/* Metric Cards */}
-      <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
         {metrics.map((m, i) => (
-          <motion.div key={i} whileHover={{ y: -4 }}
-            className={`p-5 rounded-2xl border backdrop-blur-sm transition-all duration-300 ${colorMap[m.color]} relative overflow-hidden group`}>
-            <div className="absolute -right-4 -top-4 w-12 h-12 bg-current opacity-[0.03] rounded-full group-hover:scale-150 transition-transform duration-700" />
-            <div className="flex items-center justify-between mb-4">
-              <div className={`${colorMap[m.color].split(' ')[0]} p-2 bg-current/10 rounded-lg`}>{m.icon}</div>
-              {m.extra}
-            </div>
-            <p className={`text-3xl font-black ${colorMap[m.color].split(' ')[0]} tracking-tighter`}>{m.value}</p>
-            <p className="text-foreground/40 text-[9px] font-black uppercase tracking-widest mt-1.5">{m.label}</p>
-          </motion.div>
+          <div key={i} className="p-4 rounded-lg border border-foreground/10 bg-foreground/[0.02]">
+            <m.icon size={18} className="text-blue-600 dark:text-blue-400 mb-3" />
+            <p className="text-xl font-semibold text-foreground">{m.value}</p>
+            <p className="text-foreground/50 text-xs mt-1">{m.label}</p>
+          </div>
         ))}
       </div>
 
-      {/* Bandwidth Graph */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <p className="text-foreground/50 text-[10px] font-black uppercase tracking-widest">Uso de Banda — últimos 12 ciclos</p>
-          <span className="text-blue-400 text-[10px] font-black">Mbps</span>
-        </div>
-        <div className="flex items-end gap-1.5 h-24 bg-foreground/[0.02] rounded-2xl p-3">
+      <div className="mb-4">
+        <p className="text-foreground/50 text-xs mb-3">Uso de banda — últimos 12 ciclos</p>
+        <div className="flex items-end gap-1 h-20 bg-foreground/[0.02] rounded-lg p-3 border border-foreground/10">
           {bandwidth.map((v, i) => (
-            <motion.div key={i} className="flex-1 rounded-t-md bg-linear-to-t from-blue-600 to-blue-400 opacity-80"
-              style={{ height: `${v}%` }} whileHover={{ opacity: 1 }} />
+            <div key={i} className="flex-1 rounded-sm bg-blue-500/60" style={{ height: `${v}%` }} />
           ))}
         </div>
       </div>
 
-      {/* Uptime */}
-      <div className="p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 flex items-center justify-between">
+      <div className="p-4 rounded-lg bg-emerald-500/5 border border-emerald-500/20 flex items-center justify-between">
         <div>
-          <p className="text-foreground/40 text-[9px] font-black uppercase tracking-widest">Uptime Total</p>
-          <p className="text-3xl font-black text-emerald-400">{uptime}%</p>
+          <p className="text-foreground/50 text-xs">Uptime</p>
+          <p className="text-2xl font-semibold text-emerald-600 dark:text-emerald-400">{uptime}%</p>
         </div>
-        <div className="w-16 h-16 rounded-full border-4 border-emerald-500/30 flex items-center justify-center relative">
-          <div className="absolute inset-0 rounded-full border-4 border-emerald-400" style={{ clipPath: "inset(0 0 3% 0)" }} />
-          <CheckCircle2 className="w-6 h-6 text-emerald-400" />
-        </div>
+        <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
       </div>
     </div>
   );
 }
 
-// ── Infrastructure Simulator ──────────────────────────────────────
 const companyTypes = [
-  { id: "startup", label: "Startup / PME", icon: "🚀" },
-  { id: "medium", label: "Empresa Média", icon: "🏢" },
-  { id: "enterprise", label: "Enterprise", icon: "🏙️" },
-  { id: "hospital", label: "Hospital / Clínica", icon: "🏥" },
+  { id: "startup", label: "Startup / PME", icon: Rocket },
+  { id: "medium", label: "Empresa média", icon: Building2 },
+  { id: "enterprise", label: "Enterprise", icon: Building },
+  { id: "hospital", label: "Hospital / Clínica", icon: Hospital },
 ];
 
 const problemsList = [
@@ -206,132 +181,153 @@ function InfraSimulator() {
   const [result, setResult] = useState<{ bottleneck: string; solution: string; priority: string } | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
 
-  const toggleProblem = (p: string) => setProblems(prev => prev.includes(p) ? prev.filter(x => x !== p) : [...prev, p]);
+  const toggleProblem = (p: string) =>
+    setProblems((prev) => (prev.includes(p) ? prev.filter((x) => x !== p) : [...prev, p]));
 
   const analyze = async () => {
     if (!company || problems.length === 0) return;
     setAnalyzing(true);
-    await new Promise(r => setTimeout(r, 1800));
+    await new Promise((r) => setTimeout(r, 1500));
 
     const bottlenecks: Record<string, string> = {
-      startup: computers < 15 ? "Infraestrutura básica sem redundância" : "Crescimento acelerado sem planejamento de escalabilidade",
-      medium: "Mistura de equipamentos antigos com novos criando gargalos",
-      enterprise: "Segmentação inadequada da rede e sobrecarga de switches de distribuição",
-      hospital: "Rede crítica sem VLAN dedicada para equipamentos médicos",
+      startup: "Infraestrutura básica sem redundância",
+      medium: "Equipamentos antigos e novos criando gargalos",
+      enterprise: "Segmentação inadequada e sobrecarga de switches",
+      hospital: "Rede crítica sem VLAN para equipamentos médicos",
     };
-
     const solutions: Record<string, string> = {
-      startup: "Switch gerenciável + firewall dedicado + monitoramento 24/7",
-      medium: "Unificação da infraestrutura com switches gerenciáveis e cabeamento estruturado",
-      enterprise: "Redesign da topologia de rede com SD-WAN e segmentação por VLAN",
-      hospital: "Rede crítica segregada com QoS prioritário e redundância de link",
+      startup: "Switch gerenciável + firewall + monitoramento",
+      medium: "Unificação com switches gerenciáveis e cabeamento estruturado",
+      enterprise: "Redesign com SD-WAN e segmentação por VLAN",
+      hospital: "Rede segregada com QoS prioritário e redundância",
     };
 
     setResult({
-      bottleneck: bottlenecks[company] || "Infraestrutura mal dimensionada para o volume de usuários",
-      solution: solutions[company] || "Auditoria completa seguida de reestruturação gradual",
+      bottleneck: bottlenecks[company] || "Infraestrutura mal dimensionada",
+      solution: solutions[company] || "Auditoria completa e reestruturação gradual",
       priority: problems.length >= 3 ? "Alta" : problems.length === 2 ? "Média" : "Baixa",
     });
     setAnalyzing(false);
   };
 
-  const reset = () => { setResult(null); setComputers(20); setCompany(""); setProblems([]); };
+  const reset = () => {
+    setResult(null);
+    setComputers(20);
+    setCompany("");
+    setProblems([]);
+  };
 
   return (
-    <div className="bg-foreground/[0.02] border border-blue-500/20 rounded-[3rem] p-8 md:p-10">
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/30 rounded-2xl flex items-center justify-center">
-          <Cpu className="w-6 h-6 text-blue-400" />
+    <div className="border border-foreground/10 rounded-xl p-6 md:p-8 bg-background">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
+          <Cpu className="w-5 h-5 text-blue-600 dark:text-blue-400" />
         </div>
         <div>
-          <h3 className="text-foreground font-black text-xl uppercase italic tracking-tighter">Simulador de Infraestrutura</h3>
-          <p className="text-foreground/40 text-[10px] font-black uppercase tracking-widest">Diagnóstico inteligente de rede</p>
+          <h3 className="text-lg font-semibold">Diagnóstico de infraestrutura</h3>
+          <p className="text-foreground/50 text-sm">Simule o perfil da sua empresa</p>
         </div>
       </div>
 
       <AnimatePresence mode="wait">
         {!result ? (
-          <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-7">
-            {/* Computers slider */}
+          <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6">
             <div>
               <div className="flex justify-between mb-2">
-                <label className="text-foreground/60 text-sm font-black uppercase tracking-tight">Computadores / Dispositivos</label>
-                <span className="text-blue-400 font-black text-sm">{computers}</span>
+                <label className="text-sm text-foreground/70">Dispositivos na rede</label>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-400">{computers}</span>
               </div>
-              <input type="range" min={1} max={500} value={computers}
-                onChange={e => setComputers(Number(e.target.value))}
-                className="w-full h-2 rounded-full appearance-none cursor-pointer accent-blue-400" />
-              <div className="flex justify-between text-[9px] font-black text-foreground/30 uppercase tracking-widest mt-1">
-                <span>1</span><span>500</span>
-              </div>
+              <input
+                type="range"
+                min={1}
+                max={500}
+                value={computers}
+                onChange={(e) => setComputers(Number(e.target.value))}
+                className="w-full accent-blue-500"
+              />
             </div>
 
-            {/* Company type */}
             <div>
-              <p className="text-foreground/60 text-sm font-black uppercase tracking-tight mb-4">Tipo de Empresa</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {companyTypes.map(c => (
-                  <button key={c.id} onClick={() => setCompany(c.id)}
-                    className={`flex items-center gap-4 p-5 rounded-2xl border text-left transition-all duration-300 ${company === c.id ? "bg-blue-500/15 border-blue-500 text-foreground shadow-[0_0_20px_rgba(59,130,246,0.15)]" : "bg-foreground/[0.02] border-foreground/5 text-foreground/40 hover:border-foreground/20"}`}>
-                    <span className="text-2xl">{c.icon}</span>
-                    <span className="text-xs font-black uppercase tracking-tight">{c.label}</span>
+              <p className="text-sm text-foreground/70 mb-3">Tipo de empresa</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {companyTypes.map((c) => (
+                  <button
+                    key={c.id}
+                    onClick={() => setCompany(c.id)}
+                    className={`flex items-center gap-3 p-4 rounded-lg border text-left text-sm transition-colors ${
+                      company === c.id
+                        ? "bg-blue-500/10 border-blue-500/30 text-foreground"
+                        : "border-foreground/10 text-foreground/60 hover:border-foreground/20"
+                    }`}
+                  >
+                    <c.icon size={18} />
+                    {c.label}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Problems */}
             <div>
-              <p className="text-foreground/60 text-sm font-black uppercase tracking-tight mb-3">Problemas Identificados</p>
+              <p className="text-sm text-foreground/70 mb-3">Problemas identificados</p>
               <div className="space-y-2">
-                {problemsList.map(p => (
-                  <button key={p} onClick={() => toggleProblem(p)}
-                    className={`w-full flex items-center gap-3 p-4 rounded-2xl border text-left transition-all ${problems.includes(p) ? "bg-yellow-500/10 border-yellow-500/50 text-foreground" : "bg-foreground/[0.02] border-foreground/5 text-foreground/40 hover:border-foreground/20"}`}>
-                    <div className={`w-4 h-4 rounded-full border-2 shrink-0 flex items-center justify-center ${problems.includes(p) ? "border-yellow-500 bg-yellow-500" : "border-foreground/20"}`}>
+                {problemsList.map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => toggleProblem(p)}
+                    className={`w-full flex items-center gap-3 p-3 rounded-lg border text-left text-sm transition-colors ${
+                      problems.includes(p)
+                        ? "bg-yellow-500/10 border-yellow-500/30 text-foreground"
+                        : "border-foreground/10 text-foreground/60 hover:border-foreground/20"
+                    }`}
+                  >
+                    <div
+                      className={`w-4 h-4 rounded border-2 shrink-0 flex items-center justify-center ${
+                        problems.includes(p) ? "border-yellow-500 bg-yellow-500" : "border-foreground/20"
+                      }`}
+                    >
                       {problems.includes(p) && <CheckCircle2 className="w-2.5 h-2.5 text-black" />}
                     </div>
-                    <span className="text-[11px] font-black uppercase tracking-tight">{p}</span>
+                    {p}
                   </button>
                 ))}
               </div>
             </div>
 
-            <button onClick={analyze} disabled={!company || problems.length === 0 || analyzing}
-              className="w-full py-5 bg-blue-500 hover:bg-blue-400 text-white font-black rounded-full transition-all disabled:opacity-40 disabled:cursor-not-allowed text-[10px] uppercase tracking-[0.3em] flex items-center justify-center gap-2">
-              {analyzing ? (
-                <><motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1 }}>⟳</motion.span> Analisando rede...</>
-              ) : "Diagnosticar Infraestrutura →"}
+            <button
+              onClick={analyze}
+              disabled={!company || problems.length === 0 || analyzing}
+              className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg text-sm hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              {analyzing ? "Analisando..." : "Diagnosticar infraestrutura"}
             </button>
           </motion.div>
         ) : (
-          <motion.div key="result" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
-            <div className={`p-5 rounded-2xl border ${result.priority === "Alta" ? "bg-red-500/10 border-red-500/30" : result.priority === "Média" ? "bg-yellow-500/10 border-yellow-500/30" : "bg-emerald-500/10 border-emerald-500/30"}`}>
-              <p className="text-[9px] font-black uppercase tracking-widest text-foreground/50 mb-1">Nível de Prioridade</p>
-              <p className={`text-2xl font-black uppercase italic ${result.priority === "Alta" ? "text-red-400" : result.priority === "Média" ? "text-yellow-400" : "text-emerald-400"}`}>{result.priority}</p>
+          <motion.div key="result" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+            <div className="p-4 rounded-lg border border-foreground/10">
+              <p className="text-xs text-foreground/50 mb-1">Prioridade</p>
+              <p className="text-lg font-semibold text-foreground">{result.priority}</p>
             </div>
-
-            <div className="p-5 rounded-2xl bg-foreground/[0.03] border border-foreground/10">
-              <div className="flex items-center gap-2 mb-2">
-                <AlertTriangle className="w-4 h-4 text-yellow-400" />
-                <p className="text-[9px] font-black uppercase tracking-widest text-yellow-400">Gargalo Identificado</p>
-              </div>
-              <p className="text-sm font-bold text-foreground leading-relaxed">{result.bottleneck}</p>
+            <div className="p-4 rounded-lg border border-yellow-500/20 bg-yellow-500/5">
+              <p className="text-xs text-yellow-600 dark:text-yellow-400 mb-1">Gargalo identificado</p>
+              <p className="text-sm text-foreground">{result.bottleneck}</p>
             </div>
-
-            <div className="p-5 rounded-2xl bg-blue-500/5 border border-blue-500/20">
-              <div className="flex items-center gap-2 mb-2">
-                <CheckCircle2 className="w-4 h-4 text-blue-400" />
-                <p className="text-[9px] font-black uppercase tracking-widest text-blue-400">Solução Recomendada</p>
-              </div>
-              <p className="text-sm font-bold text-foreground leading-relaxed">{result.solution}</p>
+            <div className="p-4 rounded-lg border border-blue-500/20 bg-blue-500/5">
+              <p className="text-xs text-blue-600 dark:text-blue-400 mb-1">Solução recomendada</p>
+              <p className="text-sm text-foreground">{result.solution}</p>
             </div>
-
             <div className="flex gap-3">
-              <Link href="/contatos" className="flex-1 text-center py-4 bg-blue-500 hover:bg-blue-400 text-white font-black rounded-full text-[10px] uppercase tracking-[0.2em] transition-all">
-                Solicitar Solução
+              <Link
+                href="/contatos"
+                className="flex-1 text-center py-3 bg-blue-600 text-white font-medium rounded-lg text-sm hover:opacity-90"
+              >
+                Solicitar solução
               </Link>
-              <button onClick={reset} className="p-4 border border-foreground/10 rounded-full hover:bg-foreground/5 transition-all text-foreground/50">
-                <RotateCcw className="w-4 h-4" />
+              <button
+                onClick={reset}
+                className="p-3 border border-foreground/10 rounded-lg hover:bg-foreground/5 transition-colors"
+                aria-label="Reiniciar"
+              >
+                <RotateCcw className="w-4 h-4 text-foreground/50" />
               </button>
             </div>
           </motion.div>
@@ -341,197 +337,146 @@ function InfraSimulator() {
   );
 }
 
-// ── Services Data ─────────────────────────────────────────────────
 const services = [
   {
-    icon: <Headphones className="w-8 h-8" />,
-    title: "Suporte Técnico",
-    color: "from-blue-500 to-blue-600",
-    colorText: "text-blue-400",
-    items: ["Atendimento rápido e humanizado", "Manutenção preventiva agendada", "Suporte remoto e presencial"],
+    icon: Headphones,
+    title: "Suporte técnico",
+    items: ["Atendimento humanizado", "Manutenção preventiva", "Suporte remoto e presencial"],
   },
   {
-    icon: <Network className="w-8 h-8" />,
-    title: "Infraestrutura de Redes",
-    color: "from-cyan-500 to-blue-500",
-    colorText: "text-cyan-400",
-    items: ["Montagem de redes corporativas", "Cabeamento estruturado certificado", "Configuração de equipamentos"],
+    icon: Network,
+    title: "Infraestrutura de redes",
+    items: ["Redes corporativas", "Cabeamento estruturado", "Configuração de equipamentos"],
   },
   {
-    icon: <Activity className="w-8 h-8" />,
+    icon: Activity,
     title: "Monitoramento 24/7",
-    color: "from-purple-500 to-blue-600",
-    colorText: "text-purple-400",
-    items: ["Monitoramento em tempo real", "Alertas automáticos de instabilidade", "Identificação proativa de falhas"],
+    items: ["Monitoramento em tempo real", "Alertas automáticos", "Identificação proativa de falhas"],
   },
   {
-    icon: <Server className="w-8 h-8" />,
-    title: "Gestão de Servidores",
-    color: "from-blue-600 to-indigo-600",
-    colorText: "text-indigo-400",
-    items: ["Configuração e manutenção contínua", "Alta disponibilidade garantida", "Controle de desempenho em tempo real"],
+    icon: Server,
+    title: "Gestão de servidores",
+    items: ["Configuração e manutenção", "Alta disponibilidade", "Controle de desempenho"],
   },
 ];
 
-// ── Before/After comparison ───────────────────────────────────────
 const beforeAfter = [
-  { before: "Quedas de internet todo dia", after: "Uptime de 99,97% garantido" },
+  { before: "Quedas de internet frequentes", after: "Uptime de 99,97%" },
   { before: "Horas paradas por falha de rede", after: "Failover automático em segundos" },
   { before: "Sem visibilidade da infraestrutura", after: "Dashboard em tempo real" },
   { before: "Suporte lento e sem SLA", after: "Atendimento com SLA definido" },
   { before: "Servidores sem backup", after: "Backup automatizado com versionamento" },
 ];
 
-// ── Ecosystem ─────────────────────────────────────────────────────
 const ecosystem = [
-  { name: "Nortech Inovação", icon: <Zap className="w-5 h-5" />, desc: "Sistemas dependem de rede estável", color: "cyan", href: "/" },
-  { name: "Nortech Security", icon: <Shield className="w-5 h-5" />, desc: "Proteção da infraestrutura de rede", color: "blue", href: "/nortech-security" },
-  { name: "Nortech Lab", icon: <Beaker className="w-5 h-5" />, desc: "Testes e inovação em topologias", color: "purple", href: "/nortech-lab" },
-  { name: "Nortech Green", icon: <Leaf className="w-5 h-5" />, desc: "Eficiência energética dos servidores", color: "emerald", href: "/green-tech" },
+  { name: "Nortech Inovação", icon: Zap, desc: "Sistemas que dependem de rede estável", href: "/" },
+  { name: "Nortech Security", icon: Shield, desc: "Proteção da infraestrutura", href: "/nortech-security" },
+  { name: "Nortech Lab", icon: Beaker, desc: "Testes e inovação", href: "/nortech-lab" },
+  { name: "Nortech Green", icon: Leaf, desc: "Eficiência energética", href: "/green-tech" },
 ];
 
-const ecoColors: Record<string, string> = {
-  cyan: "bg-cyan-500/10 border-cyan-500/20 text-cyan-400",
-  blue: "bg-blue-500/10 border-blue-500/20 text-blue-400",
-  purple: "bg-purple-500/10 border-purple-500/20 text-purple-400",
-  emerald: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
-};
-
-// ── Main Page ─────────────────────────────────────────────────────
 export default function NortechNetwork() {
   return (
     <main className="bg-background min-h-screen text-foreground">
-
-      {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section className="relative pt-28 pb-24 overflow-hidden border-b border-foreground/5">
+      {/* Hero */}
+      <section className="relative pt-28 pb-20 overflow-hidden border-b border-foreground/5">
         <NetworkBackground />
-
-        {/* Background glows */}
-        <div className="absolute inset-0 pointer-events-none -z-10">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-blue-600/8 blur-[120px] rounded-full" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-cyan-500/5 blur-[100px] rounded-full" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-16">
-            
-            {/* Text Section */}
-            <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}
-              className="lg:w-[55%] text-left">
-
-              {/* Badge */}
-              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ type: "spring", duration: 0.8 }}
-                className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-blue-500/10 border border-blue-500/20 rounded-[1.5rem] sm:rounded-[2rem] mb-6 sm:mb-8 relative shadow-[0_0_40px_rgba(59,130,246,0.15)]">
-                <Network className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400 relative z-10" />
-                <div className="absolute inset-0 bg-blue-500/10 blur-[20px] rounded-[2rem]" />
-              </motion.div>
-
-              <span className="inline-block mb-4 sm:mb-6 text-blue-400 font-black bg-blue-500/10 px-4 sm:px-6 py-2 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] border border-blue-500/20 shadow-sm">
-                Infraestrutura & Conectividade
-              </span>
-
-              <h1 className="text-[clamp(1.75rem,5vw,3.5rem)] font-black mb-5 sm:mb-6 leading-tight uppercase text-foreground tracking-tight">
-                <span className="block italic opacity-90">Infraestrutura</span>
-                <span
-                  className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
-                  style={{ paddingRight: "6px", paddingBottom: "6px" }}
-                >
-                  Inteligente
-                </span>
-              </h1>
-
-              <p className="text-sm sm:text-base md:text-lg text-foreground/60 max-w-xl mb-10 sm:mb-12 font-bold uppercase tracking-tight leading-relaxed">
-                Suporte de alta performance em redes, servidores e conectividade estratégica. Desenvolvemos infraestruturas resilientes para escalar seu negócio com total estabilidade.
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="lg:w-3/5"
+            >
+              <p className="text-xs font-medium uppercase tracking-wide text-blue-600 dark:text-blue-400 mb-4">
+                Infraestrutura & conectividade
               </p>
-
-              <div className="flex flex-wrap gap-5">
-                <Link href="/contatos"
-                  className="inline-flex items-center gap-3 bg-blue-500 hover:bg-blue-400 text-white font-black px-8 py-4 rounded-full transition-all shadow-[0_10px_40px_rgba(59,130,246,0.3)] hover:shadow-[0_15px_50px_rgba(59,130,246,0.5)] uppercase text-[10px] tracking-[0.2em]">
-                  Solicitar Análise de Rede
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight leading-tight">
+                Redes e servidores para empresas
+              </h1>
+              <p className="text-lg text-foreground/60 max-w-xl mb-8 leading-relaxed">
+                Suporte em redes, servidores e conectividade. Montamos infraestruturas
+                resilientes para o seu negócio operar com estabilidade.
+              </p>
+              <div className="flex flex-wrap gap-4 mb-12">
+                <Link
+                  href="/contatos"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-600 text-white font-medium rounded-lg text-sm hover:opacity-90"
+                >
+                  Solicitar análise
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href="/contatos"
-                  className="inline-flex items-center gap-3 border border-foreground/10 text-foreground hover:bg-foreground/5 font-black px-8 py-4 rounded-full transition-all uppercase text-[10px] tracking-[0.2em]">
+                <Link
+                  href="/contatos"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 border border-foreground/20 rounded-lg font-medium text-sm hover:bg-foreground/5"
+                >
                   <Headphones className="w-4 h-4" />
-                  Falar com Suporte
+                  Falar com suporte
                 </Link>
               </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-16 pt-8 border-t border-foreground/5 w-full">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-foreground/10">
                 {[
-                  { label: "Uptime Global", value: 99, suffix: ".99%" },
-                  { label: "Parceiros Ativos", value: 80, suffix: "+" },
-                  { label: "Casos de Sucesso", value: 1200, suffix: "+" },
-                  { label: "SLA (minutos)", value: 15, suffix: "" },
+                  { label: "Uptime", value: 99, suffix: ".97%" },
+                  { label: "Parceiros", value: 80, suffix: "+" },
+                  { label: "Projetos", value: 120, suffix: "+" },
+                  { label: "SLA (min)", value: 15, suffix: "" },
                 ].map((s, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.1 }}>
-                    <p className="text-3xl md:text-4xl font-black text-blue-400 uppercase italic tracking-tighter leading-none mb-2"><Counter target={s.value} suffix={s.suffix} /></p>
-                    <p className="text-foreground/40 text-[9px] font-black uppercase tracking-widest leading-none">{s.label}</p>
-                  </motion.div>
+                  <div key={i}>
+                    <p className="text-2xl font-semibold text-blue-600 dark:text-blue-400">
+                      <Counter target={s.value} suffix={s.suffix} />
+                    </p>
+                    <p className="text-foreground/50 text-xs mt-1">{s.label}</p>
+                  </div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Image Section */}
-            <motion.div className="lg:w-[40%] relative w-full flex justify-center lg:justify-end mt-12 lg:mt-0" initial={{ opacity: 0, scale: 0.95, x: 30 }} animate={{ opacity: 1, scale: 1, x: 0 }} transition={{ duration: 1 }}>
-              <div className="relative z-10 w-full max-w-[320px] sm:max-w-[420px] h-auto p-4 bg-foreground/[0.02] border border-foreground/5 rounded-[3.5rem] shadow-2xl">
-                <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-foreground/10 bg-background/50">
-                  <Image src="/Nortech Network.png" alt="Nortech Network Impact" fill className="object-contain p-6 group-hover:scale-105 transition-transform duration-[2000ms]" priority />
-                </div>
-                <motion.div animate={{ boxShadow: ["0 0 20px rgba(59,130,246,0.1)", "0 0 40px rgba(59,130,246,0.3)", "0 0 20px rgba(59,130,246,0.1)"] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[95%] sm:w-auto min-w-[280px] p-5 sm:p-6 bg-black/60 backdrop-blur-2xl border border-blue-500/40 rounded-[2rem] z-20">
-                  <div className="flex items-center gap-5 justify-center sm:justify-start">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                      <Wifi className="text-white w-6 h-6" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-black text-xl leading-none uppercase italic tracking-tighter">Conectividade</h4>
-                      <div className="flex items-center gap-2 mt-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /><p className="text-blue-400 text-[10px] uppercase font-black tracking-widest leading-none">Sempre Online</p></div>
-                    </div>
-                  </div>
-                </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="lg:w-2/5 w-full flex justify-center"
+            >
+              <div className="relative w-full max-w-sm aspect-square rounded-xl border border-foreground/10 overflow-hidden bg-foreground/[0.02]">
+                <Image
+                  src="/Nortech Network.png"
+                  alt="Nortech Network"
+                  fill
+                  className="object-contain p-6"
+                  priority
+                />
               </div>
-              <div className="absolute -top-12 -right-12 w-64 h-64 bg-blue-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
-              <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-cyan-500/15 rounded-full blur-[100px] -z-10 animate-pulse" />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ── SERVICES ──────────────────────────────────────────────── */}
-      <section className="py-24 px-6 border-b border-foreground/5 bg-foreground/[0.01]">
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span className="inline-block mb-4 text-blue-400 font-black bg-blue-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-blue-500/20">
-              Nossos Serviços
-            </span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
-              <span className="block">Cobertura</span>
-              <span
-                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
-                style={{
-                  paddingRight: "6px",
-                  paddingBottom: "6px",
-                }}
-              >
-                Completa
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Serviços */}
+      <section className="py-20 md:py-24 px-6 bg-foreground/[0.02] border-b border-foreground/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold tracking-tight mb-3">Nossos serviços</h2>
+            <p className="text-foreground/60">Cobertura completa de infraestrutura de TI.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {services.map((s, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }} whileHover={{ y: -8, scale: 1.02 }}
-                className="group p-8 sm:p-10 rounded-[2.5rem] bg-foreground/[0.02] backdrop-blur-xs border border-foreground/5 hover:border-blue-500/40 transition-all duration-500 shadow-sm hover:shadow-xl hover:shadow-blue-500/5">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-white mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-lg shadow-blue-500/20`}>
-                  {s.icon}
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="p-6 rounded-xl border border-foreground/10 bg-background hover:border-foreground/20 transition-colors"
+              >
+                <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-5">
+                  <s.icon size={20} />
                 </div>
-                <h3 className="text-xl font-black text-foreground mb-6 uppercase italic tracking-tight">{s.title}</h3>
-                <ul className="space-y-4">
+                <h3 className="font-semibold text-foreground mb-4">{s.title}</h3>
+                <ul className="space-y-2">
                   {s.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-3 group/item">
-                      <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 transition-transform group-hover/item:scale-110 ${s.colorText}`} />
-                      <span className="text-foreground/60 text-xs font-bold uppercase tracking-tight">{item}</span>
+                    <li key={j} className="flex items-start gap-2 text-sm text-foreground/60">
+                      <CheckCircle2 size={14} className="text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" />
+                      {item}
                     </li>
                   ))}
                 </ul>
@@ -541,205 +486,118 @@ export default function NortechNetwork() {
         </div>
       </section>
 
-      {/* ── DASHBOARD + SIMULATOR ─────────────────────────────────── */}
-      <section className="py-24 px-6 border-b border-foreground/5">
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span className="inline-block mb-4 text-blue-400 font-black bg-blue-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-blue-500/20">
-              Ferramentas Interativas
-            </span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
-              <span className="block">Visualize &</span>
-              <span
-                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
-                style={{
-                  paddingRight: "6px",
-                  paddingBottom: "6px",
-                }}
-              >
-                Diagnostique
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <NetworkDashboard />
-            </motion.div>
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
-              <InfraSimulator />
-            </motion.div>
+      {/* Dashboard + Simulador */}
+      <section className="py-20 md:py-24 px-6 border-b border-foreground/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold tracking-tight mb-3">Ferramentas interativas</h2>
+            <p className="text-foreground/60">Visualize e diagnostique sua infraestrutura.</p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <NetworkDashboard />
+            <InfraSimulator />
           </div>
         </div>
       </section>
 
-      {/* ── BEFORE / AFTER ────────────────────────────────────────── */}
-      <section className="py-24 px-6 border-b border-foreground/5 bg-foreground/[0.01]">
-        <div className="max-w-5xl mx-auto">
-          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span className="inline-block mb-4 text-yellow-400 font-black bg-yellow-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-yellow-500/20">
-              Por que isso Importa?
-            </span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
-              <span className="block">O Custo da</span>
-              <span
-                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400"
-                style={{
-                  paddingRight: "6px",
-                  paddingBottom: "6px",
-                }}
-              >
-                Instabilidade
-              </span>
-            </h2>
-            <p className="text-foreground/50 max-w-xl mx-auto mt-4 font-bold uppercase text-xs tracking-widest">
-              Cada hora parada custa dinheiro. Veja a diferença com a Nortech Network.
-            </p>
-          </motion.div>
-
-          {/* Column Headers */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div className="flex items-center gap-3 p-4 rounded-2xl bg-red-500/10 border border-red-500/20">
-              <TrendingDown className="w-5 h-5 text-red-400" />
-              <span className="text-red-400 font-black text-sm uppercase tracking-widest">Sem Nortech Network</span>
+      {/* Antes / Depois */}
+      <section className="py-20 md:py-24 px-6 bg-foreground/[0.02] border-b border-foreground/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold tracking-tight mb-3">Antes e depois</h2>
+            <p className="text-foreground/60">O impacto de uma infraestrutura bem gerenciada.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-red-500/5 border border-red-500/15">
+              <TrendingDown size={16} className="text-red-500" />
+              <span className="text-sm font-medium text-red-600 dark:text-red-400">Sem suporte especializado</span>
             </div>
-            <div className="flex items-center gap-3 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
-              <TrendingUp className="w-5 h-5 text-emerald-400" />
-              <span className="text-emerald-400 font-black text-sm uppercase tracking-widest">Com Nortech Network</span>
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
+              <TrendingUp size={16} className="text-emerald-500" />
+              <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">Com Nortech Network</span>
             </div>
           </div>
-
-          <div className="space-y-3">
+          <div className="space-y-2">
             {beforeAfter.map((item, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-5 rounded-2xl bg-red-500/5 border border-red-500/10">
-                  <AlertTriangle className="w-4 h-4 text-red-400 shrink-0" />
-                  <span className="text-foreground/60 text-xs font-bold uppercase tracking-tight">{item.before}</span>
+              <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div className="flex items-center gap-2 p-4 rounded-lg border border-red-500/10 bg-red-500/[0.03]">
+                  <AlertTriangle size={14} className="text-red-500 shrink-0" />
+                  <span className="text-sm text-foreground/70">{item.before}</span>
                 </div>
-                <div className="flex items-center gap-3 p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/10">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span className="text-foreground/80 text-xs font-bold uppercase tracking-tight">{item.after}</span>
+                <div className="flex items-center gap-2 p-4 rounded-lg border border-emerald-500/10 bg-emerald-500/[0.03]">
+                  <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
+                  <span className="text-sm text-foreground/80">{item.after}</span>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ecossistema */}
+      <section className="py-20 md:py-24 px-6 border-b border-foreground/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold tracking-tight mb-3">Integração com o ecossistema</h2>
+            <p className="text-foreground/60">Soluções conectadas entre si.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {ecosystem.map((eco, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+              >
+                <Link
+                  href={eco.href}
+                  className="flex flex-col items-center p-6 rounded-xl border border-foreground/10 hover:border-foreground/20 bg-background text-center transition-colors group"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
+                    <eco.icon size={20} />
+                  </div>
+                  <p className="font-semibold text-sm text-foreground mb-1">{eco.name}</p>
+                  <p className="text-foreground/50 text-xs mb-3">{eco.desc}</p>
+                  <ChevronRight size={16} className="text-foreground/30 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── ECOSYSTEM ─────────────────────────────────────────────── */}
-      <section className="py-24 px-6 border-b border-foreground/5">
-        <div className="max-w-7xl mx-auto">
-          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span className="inline-block mb-4 text-blue-400 font-black bg-blue-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] border border-blue-500/20">
-              Integração com o Ecossistema
-            </span>
-            <h2 className="text-4xl md:text-6xl font-black text-foreground uppercase leading-none tracking-tighter">
-              <span className="block">Conectado</span>
-              <span
-                className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
-                style={{
-                  paddingRight: "6px",
-                  paddingBottom: "6px",
-                }}
+      {/* CTA */}
+      <section className="py-20 md:py-24 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <Radio className="w-10 h-10 text-blue-600 dark:text-blue-400 mx-auto mb-6" />
+          <h2 className="text-3xl font-bold mb-4 tracking-tight">Suporte especializado</h2>
+          <p className="text-foreground/60 mb-8 max-w-lg mx-auto">
+            SLA definido, atendimento humano e resolução rápida quando você precisar.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
+            {[
+              { icon: Headphones, label: "Suporte técnico", href: "/contatos" },
+              { icon: TicketCheck, label: "Abrir chamado", href: "/contatos" },
+              { icon: MapPin, label: "Visita técnica", href: "/contatos" },
+            ].map((btn, i) => (
+              <Link
+                key={i}
+                href={btn.href}
+                className="flex flex-col items-center p-5 rounded-xl border border-foreground/10 hover:border-blue-500/30 transition-colors"
               >
-                a tudo
-              </span>
-            </h2>
-          </motion.div>
-
-          {/* Network node visualization */}
-          <div className="flex flex-col items-center mb-12">
-            <div className="relative w-full max-w-3xl">
-              {/* Center node */}
-              <div className="flex justify-center mb-8">
-                <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ repeat: Infinity, duration: 3 }}
-                  className="w-24 h-24 bg-blue-500/10 border-2 border-blue-500/40 rounded-3xl flex flex-col items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.2)] relative z-10">
-                  <Network className="w-8 h-8 text-blue-400" />
-                  <p className="text-[8px] font-black text-blue-400 uppercase tracking-widest mt-1">Nortech<br/>Network</p>
-                </motion.div>
-              </div>
-
-              {/* Connections */}
-              <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-4">
-                {ecosystem.map((eco, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -6 }}>
-                    <Link href={eco.href}
-                      className={`flex flex-col items-center p-6 md:p-8 rounded-2xl border backdrop-blur-sm ${ecoColors[eco.color]} text-center group transition-all hover:scale-105 shadow-sm hover:shadow-lg`}>
-                      <div className={`w-14 h-14 rounded-xl ${ecoColors[eco.color]} border flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform`}>
-                        {eco.icon}
-                      </div>
-                      <p className="font-black text-sm uppercase tracking-tight text-foreground mb-1.5">{eco.name}</p>
-                      <p className="text-foreground/40 text-[9px] font-bold uppercase tracking-tight leading-tight mb-2">{eco.desc}</p>
-                      <ChevronRight className="w-4 h-4 text-foreground/30 mt-auto group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SPECIALIZED CTA ───────────────────────────────────────── */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="relative rounded-[3.5rem] overflow-hidden border border-blue-500/20 bg-linear-to-br from-blue-950/40 via-background to-cyan-950/20 p-12 md:p-20">
-
-            {/* Top line */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-full bg-linear-to-r from-transparent via-blue-500 to-transparent" />
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 blur-[80px]" />
-
-            <div className="text-center mb-12 relative z-10">
-              <Radio className="w-12 h-12 text-blue-400 mx-auto mb-6" />
-              <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4 uppercase leading-none tracking-tighter">
-                <span className="block">Suporte Especializado </span>
-                <span
-                  className="block italic text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500"
-                  style={{
-                    paddingRight: "6px",
-                    paddingBottom: "6px",
-                  }}
-                >
-                  Quando Você Precisa
-                </span>
-              </h2>
-              <p className="text-foreground/50 max-w-xl mx-auto font-bold uppercase text-xs tracking-widest">
-                Nossa equipe técnica está pronta para agir. SLA definido, atendimento humano e resolução rápida.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 relative z-10">
-              {[
-                { icon: <Headphones className="w-6 h-6" />, label: "Falar com Suporte Técnico", desc: "Atendimento imediato", color: "blue", href: "/contatos" },
-                { icon: <TicketCheck className="w-6 h-6" />, label: "Abrir Chamado", desc: "SLA garantido", color: "purple", href: "/contatos" },
-                { icon: <MapPin className="w-6 h-6" />, label: "Solicitar Visita Técnica", desc: "Equipe presencial", color: "cyan", href: "/contatos" },
-              ].map((btn, i) => (
-                <motion.div key={i} whileHover={{ y: -4 }} whileTap={{ scale: 0.97 }}>
-                  <Link href={btn.href}
-                    className={`flex flex-col items-center text-center p-8 rounded-[2rem] border ${ecoColors[btn.color]} hover:opacity-90 transition-all group`}>
-                    <div className={`w-14 h-14 rounded-2xl ${ecoColors[btn.color]} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
-                      {btn.icon}
-                    </div>
-                    <p className="font-black text-foreground text-sm uppercase italic tracking-tight mb-1">{btn.label}</p>
-                    <p className="text-foreground/40 text-[9px] font-black uppercase tracking-widest">{btn.desc}</p>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Bottom CTA */}
-            <div className="text-center mt-12 relative z-10">
-              <Link href="/contatos"
-                className="inline-flex items-center gap-3 bg-blue-500 hover:bg-blue-400 text-white font-black px-12 py-5 rounded-full transition-all shadow-[0_10px_40px_rgba(59,130,246,0.3)] hover:shadow-[0_15px_50px_rgba(59,130,246,0.5)] uppercase text-[10px] tracking-[0.3em]">
-                Quero uma Infraestrutura Estável
-                <ArrowRight className="w-4 h-4" />
+                <btn.icon size={20} className="text-blue-600 dark:text-blue-400 mb-2" />
+                <span className="text-sm font-medium">{btn.label}</span>
               </Link>
-            </div>
-          </motion.div>
+            ))}
+          </div>
+          <Link
+            href="/contatos"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-600 text-white font-medium rounded-lg text-sm hover:opacity-90"
+          >
+            Quero uma infraestrutura estável
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
     </main>

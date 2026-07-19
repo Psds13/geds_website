@@ -44,7 +44,7 @@ export default function GoldChatWidget() {
     await new Promise(r => setTimeout(r, 800));
     setIsTyping(false);
     
-    addMessage("gold", "Olá! Eu sou Gold, seu Consultor Nortech AI. 🚀\nEstou aqui para mapear a jornada de transformação da sua empresa.");
+    addMessage("gold", "Olá! Eu sou Gold, consultor Nortech AI.\nEstou aqui para ajudar com sua empresa.");
     
     await new Promise(r => setTimeout(r, 600));
     
@@ -203,7 +203,7 @@ export default function GoldChatWidget() {
             className="absolute bottom-20 right-0 bg-[#0a0a0a]/90 backdrop-blur-xl text-cyan-400 text-[10px] sm:text-xs font-black px-6 py-3 rounded-2xl shadow-[0_0_30px_rgba(0,219,255,0.2)] border border-cyan-500/30 mb-2 whitespace-nowrap uppercase tracking-widest flex items-center gap-2"
           >
             <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-            Inovação a um clique <span className="animate-bounce inline-block ml-1">👇</span>
+            Inovação a um clique <span className="animate-bounce inline-block ml-1">↓</span>
           </motion.div>
         )}
       </AnimatePresence>

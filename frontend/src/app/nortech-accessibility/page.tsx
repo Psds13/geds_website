@@ -1,4 +1,10 @@
-"use client";
+// ═══════════════════════════════════════════════════════════════════════════
+// NORTECH ACCESSIBILITY - UNIVERSAL DIGITAL INCLUSION
+// ═══════════════════════════════════════════════════════════════════════════
+// Soluções de acessibilidade: tipografia adaptativa, modo disléxico, 
+// daltonismo, alto contraste, navegação por voz.
+// Padrão: WCAG AA, semantic HTML, ARIA labels.
+// ═══════════════════════════════════════════════════════════════════════════
 
 import { motion } from "framer-motion";
 import {
@@ -15,6 +21,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "../components/Footer";
 
+// ─────────────────────────────────────────────────────────────────
+// DADOS: Funcionalidades de Acessibilidade
+// Cada feature com: ícone, título, descrição, cores, sombra
+// ─────────────────────────────────────────────────────────────────
 const features = [
   {
     icon: <Type className="w-6 h-6 md:w-8 md:h-8" />,
@@ -51,6 +61,19 @@ const benefits = [
   { title: "IA Semântica", desc: "Leitores de tela aprimorados com IA.", icon: <Brain className="w-5 h-5 text-cyan-400" /> }
 ];
 
+/**
+ * Página de Acessibilidade Digital da Nortech
+ * 
+ * Compromisso de inclusão:
+ * - WCAG AA garantido
+ * - Suporte a Libras
+ * - Modo disléxico
+ * - Daltonismo
+ * - Navegação por voz
+ * 
+ * Este arquivo serve como showcase dos padrões de acessibilidade
+ * que implementamos em todo o projeto
+ */
 export default function AccessibilityPage() {
   return (
     <div className="bg-background min-h-screen text-foreground selection:bg-cyan-500 selection:text-black">

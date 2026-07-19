@@ -14,13 +14,13 @@ export default function Transformacao() {
         viewport={{ once: true }}
       >
         <span className="inline-block mb-4 text-cyan-600 dark:text-cyan-400 font-bold bg-cyan-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-widest border border-cyan-500/20">
-          Transformação Digital
+          Antes e Depois
         </span>
         <h2 className="text-3xl md:text-5xl font-extrabold text-cyan-600 dark:text-cyan-400 mb-6 tracking-tight leading-tight">
-          O Ponto de Inflexão do seu negócio
+          Comparativo de eficiência
         </h2>
         <p className="text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed italic font-medium">
-          Compare a eficiência operacional antes e depois da implementação Nortech.
+          Veja a diferença entre processos manuais e automatizados.
         </p>
       </motion.div>
 
@@ -74,11 +74,11 @@ export default function Transformacao() {
           </div>
           <ul className="space-y-6">
             {[
-              "Automação inteligente e precisão absoluta de dados",
-              "Infraestrutura elástica pronta para o crescimento",
-              "Interfaces ultra-performantes com foco em conversão",
-              "Time focado em inovação estratégica de alto valor",
-              "Dashboards avançados para decisões analíticas",
+              "Automação de processos com dados confiáveis",
+              "Infraestrutura preparada para crescer",
+              "Interfaces rápidas com foco em conversão",
+              "Time focado em inovação",
+              "Dashboards para decisões baseadas em dados",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-4 text-foreground/90 text-sm leading-relaxed font-bold tracking-tight">
                 <FiCheck className="text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5 w-5 h-5 shadow-[0_0_10px_rgba(52,211,153,0.3)]" />

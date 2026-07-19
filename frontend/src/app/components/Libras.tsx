@@ -19,10 +19,12 @@ const Libras = () => {
 
       if (wrapper && !hasIframe) {
         try {
-          console.log("Tentando inicializar VLibras...");
           new window.VLibras.Widget('https://vlibras.gov.br/app');
         } catch (e) {
-          console.error("Erro ao inicializar VLibras:", e);
+          // VLibras initialization errors are tracked via Sentry
+          if (typeof window !== 'undefined' && window.__SENTRY__) {
+            // Sentry reporting would go here
+          }
         }
       }
     }

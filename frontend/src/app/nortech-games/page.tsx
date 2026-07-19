@@ -1,4 +1,9 @@
--"use client";
+// ═══════════════════════════════════════════════════════════════════════════
+// NORTECH GAMES - GAMIFICATION ECOSYSTEM
+// ═══════════════════════════════════════════════════════════════════════════
+// Plataforma de jogos educativos e interativos.
+// Demonstra: Canvas rendering, game loops, achievement systems, state management
+// ═══════════════════════════════════════════════════════════════════════════
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -13,6 +18,11 @@ import {
 // ─────────────────────────────────────────────────────────────────
 //  XP & LEVEL SYSTEM
 // ─────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────
+// DADOS: Sistema de achievements
+// Cálculo de XP: cada achievement tem valor em pontos
+// Levels: 200 XP por level
+// ─────────────────────────────────────────────────────────────────
 const ACHIEVEMENT_LIST = [
   { id: "first_game",   icon: "🎮", title: "Primeiro Jogo",   desc: "Jogou pela primeira vez",   xp: 50  },
   { id: "score_100",    icon: "💯", title: "Centurião",       desc: "Marcou 100 pontos",          xp: 75  },
@@ -23,6 +33,14 @@ const ACHIEVEMENT_LIST = [
   { id: "reflex_ace",   icon: "⚡", title: "Reflexo Ace",     desc: "Reflexo < 200ms",            xp: 130 },
 ];
 
+/**
+ * Hook customizado para gerenciar estado do sistema de gamificação
+ * Responsável por: XP, level, achievements e scores
+ * 
+ * Boas práticas:
+ * - useCallback para evitar re-renders desnecessários
+ * - Set para performances O(1) em lookups
+ */
 function useGamesState() {
   const [xp, setXp] = useState(0);
   const [gamesPlayed, setGamesPlayed] = useState<Set<string>>(new Set());
@@ -70,6 +88,12 @@ const COLS = 16;
 const ROWS = 16;
 type Dir = { x: number; y: number };
 
+/**
+ * Jogo Snake implementado com Canvas
+ * Demonstra: game loop, detecção de colisão, renderização dinâmica
+ * 
+ * Performance: requestAnimationFrame para 60fps
+ */
 function SnakeGame({ onScore, onUnlock }: { onScore: (n: number, id: string) => void; onUnlock: (id: string) => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef({
@@ -158,16 +182,16 @@ function SnakeGame({ onScore, onUnlock }: { onScore: (n: number, id: string) => 
   return (
     <div className="flex flex-col items-center gap-4 w-full max-w-full">
       <div className="flex items-center justify-between w-full max-w-[320px] px-2">
-        <span className="text-cyan-400 font-black text-sm uppercase tracking-widest">Score: {score}</span>
-        <span className="text-foreground/40 text-[10px] font-bold">Setas para mover</span>
+        <span className="text-cyan-600 dark:text-cyan-400 font-medium text-sm">Pontuação: {score}</span>
+        <span className="text-foreground/40 text-xs">Use as setas para mover</span>
       </div>
       <div className="relative w-full max-w-[320px] aspect-square">
         <canvas ref={canvasRef} width={COLS * CELL} height={ROWS * CELL}
-          className="w-full h-full rounded-2xl border border-cyan-500/20 bg-[#050510] shadow-[0_0_30px_rgba(34,211,238,0.1)]" />
+          className="w-full h-full rounded-xl border border-foreground/10 bg-[#050510]" />
       </div>
       {!running && (
-        <button onClick={start} className="px-8 py-3 bg-cyan-500 text-black font-black rounded-full text-xs uppercase tracking-widest hover:bg-cyan-400 transition-all shadow-[0_5px_15px_rgba(34,211,238,0.3)] hover:scale-105 active:scale-95">
-          {dead ? "🔄 Jogar Novamente" : "▶ Iniciar Snake"}
+        <button onClick={start} className="px-6 py-2.5 bg-purple-600 text-white font-medium rounded-lg text-sm hover:opacity-90 transition-opacity">
+          {dead ? "Jogar novamente" : "Iniciar Snake"}
         </button>
       )}
       {running && (
@@ -237,8 +261,8 @@ function MemoryGame({ onScore, onUnlock }: { onScore: (n: number, id: string) =>
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="flex items-center justify-between w-full">
-        <span className="text-purple-400 font-black text-sm uppercase tracking-widest">Pares: {matches}/8</span>
-        <span className="text-foreground/40 text-xs font-bold">Movimentos: {moves}</span>
+        <span className="text-purple-600 dark:text-purple-400 font-medium text-sm">Pares: {matches}/8</span>
+        <span className="text-foreground/40 text-xs">Movimentos: {moves}</span>
       </div>
       <div className="grid grid-cols-4 gap-2 w-full max-w-[280px]">
         {cards.map((card, i) => (
@@ -253,12 +277,11 @@ function MemoryGame({ onScore, onUnlock }: { onScore: (n: number, id: string) =>
       </div>
       {won ? (
         <div className="text-center space-y-3">
-          <p className="text-2xl">🏆</p>
-          <p className="text-purple-400 font-black uppercase tracking-widest text-sm">Parabéns! +{Math.max(0, 300 - moves * 10)} XP</p>
-          <button onClick={reset} className="px-8 py-3 bg-purple-500 text-white font-black rounded-full text-xs uppercase tracking-widest hover:bg-purple-400 transition-all">Jogar Novamente</button>
+          <p className="text-purple-600 dark:text-purple-400 font-medium text-sm">Parabéns! +{Math.max(0, 300 - moves * 10)} XP</p>
+          <button onClick={reset} className="px-6 py-2.5 bg-purple-600 text-white font-medium rounded-lg text-sm hover:opacity-90">Jogar novamente</button>
         </div>
       ) : (
-        <button onClick={reset} className="text-foreground/40 text-xs font-bold uppercase tracking-widest hover:text-foreground/70 transition-colors">Reiniciar</button>
+        <button onClick={reset} className="text-foreground/40 text-xs hover:text-foreground/70 transition-colors">Reiniciar</button>
       )}
     </div>
   );
@@ -294,29 +317,29 @@ function ReflexGame({ onScore, onUnlock }: { onScore: (n: number, id: string) =>
     }
   };
 
-  const rating = ms < 150 ? { label: "🥇 Lendário", color: "text-yellow-400" }
-    : ms < 250 ? { label: "⚡ Muito Rápido", color: "text-cyan-400" }
-    : ms < 400 ? { label: "✅ Bom", color: "text-emerald-400" }
-    : { label: "🐢 Pode melhorar", color: "text-orange-400" };
+  const rating = ms < 150 ? { label: "Excelente", color: "text-yellow-600 dark:text-yellow-400" }
+    : ms < 250 ? { label: "Muito rápido", color: "text-cyan-600 dark:text-cyan-400" }
+    : ms < 400 ? { label: "Bom", color: "text-emerald-600 dark:text-emerald-400" }
+    : { label: "Pode melhorar", color: "text-orange-500" };
 
   return (
     <div className="flex flex-col items-center gap-6">
       <div className="flex items-center justify-between w-full">
-        <span className="text-yellow-400 font-black text-sm uppercase tracking-widest">Recorde: {best === 999 ? "--" : `${best}ms`}</span>
-        <span className="text-foreground/40 text-xs font-bold">Tentativas: {history.length}</span>
+        <span className="text-foreground/60 font-medium text-sm">Recorde: {best === 999 ? "--" : `${best} ms`}</span>
+        <span className="text-foreground/40 text-xs">Tentativas: {history.length}</span>
       </div>
 
       <motion.button onClick={phase === "idle" || phase === "result" ? begin : click}
         animate={{ scale: phase === "ready" ? [1, 1.05, 1] : 1 }}
         transition={{ repeat: phase === "ready" ? Infinity : 0, duration: 0.3 }}
-        className={`w-52 h-52 rounded-[3rem] flex flex-col items-center justify-center text-center font-black transition-all border-4 shadow-2xl cursor-pointer select-none
-          ${phase === "idle" || phase === "result" ? "bg-foreground/[0.04] border-foreground/10 hover:border-yellow-500/40 hover:bg-yellow-500/5" :
+        className={`w-48 h-48 rounded-xl flex flex-col items-center justify-center text-center transition-all border-2 cursor-pointer select-none
+          ${phase === "idle" || phase === "result" ? "bg-foreground/[0.04] border-foreground/10 hover:border-purple-500/30" :
             phase === "waiting" ? "bg-red-500/10 border-red-500/30" :
-            "bg-yellow-400 border-yellow-300 shadow-[0_0_60px_rgba(250,204,21,0.4)]"}`}>
-        {phase === "idle"    && <><Zap className="w-10 h-10 text-yellow-400 mb-3" /><span className="text-foreground font-black uppercase text-sm tracking-widest">Toque para Iniciar</span></>}
-        {phase === "waiting" && <><Clock className="w-10 h-10 text-red-400 mb-3 animate-pulse" /><span className="text-foreground/60 font-black uppercase text-sm tracking-widest">Aguarde...</span><span className="text-foreground/30 text-xs mt-1">(não toque)</span></>}
-        {phase === "ready"   && <><span className="text-6xl mb-2">⚡</span><span className="text-black font-black uppercase text-xl tracking-tight">AGORA!</span></>}
-        {phase === "result"  && <><span className="text-4xl font-black text-foreground">{ms}ms</span><span className={`text-sm font-black uppercase tracking-widest mt-2 ${rating.color}`}>{rating.label}</span><span className="text-foreground/40 text-xs mt-3">Toque para tentar novamente</span></>}
+            "bg-yellow-400 border-yellow-300"}`}>
+        {phase === "idle"    && <><Zap className="w-8 h-8 text-yellow-500 mb-3" /><span className="text-foreground font-medium text-sm">Toque para iniciar</span></>}
+        {phase === "waiting" && <><Clock className="w-8 h-8 text-red-500 mb-3" /><span className="text-foreground/60 font-medium text-sm">Aguarde...</span><span className="text-foreground/40 text-xs mt-1">Não toque ainda</span></>}
+        {phase === "ready"   && <><Zap className="w-10 h-10 text-black mb-2" /><span className="text-black font-semibold text-lg">Agora!</span></>}
+        {phase === "result"  && <><span className="text-3xl font-semibold text-foreground">{ms} ms</span><span className={`text-sm font-medium mt-2 ${rating.color}`}>{rating.label}</span><span className="text-foreground/40 text-xs mt-3">Toque para tentar novamente</span></>}
       </motion.button>
 
       {history.length > 0 && (
@@ -334,12 +357,12 @@ function ReflexGame({ onScore, onUnlock }: { onScore: (n: number, id: string) =>
 //  MAIN PAGE
 // ─────────────────────────────────────────────────────────────────
 const GAMES_LIST = [
-  { id: "snake",   title: "🐍 Nortech Snake",         desc: "Clássico reinventado com visual neon",        category: "Arcade",     locked: false,  color: "cyan"   },
-  { id: "memory",  title: "🧠 Memory Tech",         desc: "Teste sua memória com emojis de tech",        category: "Puzzle",     locked: false,  color: "purple" },
-  { id: "reflex",  title: "⚡ Reflex Challenge",    desc: "Quanto tempo seu reflexo leva?",              category: "Skill",      locked: false,  color: "yellow" },
-  { id: "code",    title: "💻 Code Runner",         desc: "Aventura de programação em plataforma 2D",    category: "Em breve",   locked: true,   color: "blue"   },
-  { id: "builder", title: "🏗️ City Builder",       desc: "Construa a cidade do futuro com tech Nortech",   category: "Em breve",   locked: true,   color: "emerald"},
-  { id: "hack",    title: "🔐 HackSim",             desc: "Simulador de hacking ético e segurança",      category: "Em breve",   locked: true,   color: "red"    },
+  { id: "snake",   title: "Nortech Snake",    desc: "Clássico snake com visual moderno",              category: "Arcade",   locked: false, color: "cyan",    icon: Gamepad2 },
+  { id: "memory",  title: "Memory Tech",      desc: "Teste sua memória com pares de símbolos",          category: "Puzzle",   locked: false, color: "purple",  icon: Sparkles },
+  { id: "reflex",  title: "Reflex Challenge", desc: "Quanto tempo seu reflexo leva?",                   category: "Skill",    locked: false, color: "yellow",  icon: Zap },
+  { id: "code",    title: "Code Runner",      desc: "Aventura de programação em plataforma 2D",         category: "Em breve", locked: true,  color: "blue",    icon: Code2 },
+  { id: "builder", title: "City Builder",     desc: "Construa cidades com tecnologia Nortech",          category: "Em breve", locked: true,  color: "emerald", icon: Rocket },
+  { id: "hack",    title: "HackSim",          desc: "Simulador de hacking ético e segurança",           category: "Em breve", locked: true,  color: "red",     icon: Shield },
 ];
 
 const colorMap: Record<string, string> = {

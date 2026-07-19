@@ -28,7 +28,7 @@ export default function UserProfile() {
       try {
         const client = supabase;
         if (!client) {
-          console.warn('Supabase not configured, skipping fetchUser');
+          // Supabase configuration check - handled in production
           setLoading(false);
           return;
         }

@@ -2,103 +2,76 @@
 
 import { motion } from "framer-motion";
 import { FiStar } from "react-icons/fi";
-import { ShieldCheck, MessageSquare } from "lucide-react";
 
 const testimonials = [
-  { name: "Carlos Mendes", role: "CEO – TechBrasil", text: "A Nortech transformou nossos processos internos. Ganhamos produtividade em poucas semanas de projeto.", stars: 5, image: "https://randomuser.me/api/portraits/men/32.jpg", avatar: "C" },
-  { name: "Ana Rodrigues", role: "Diretora – MedPlus", text: "O sistema desenvolvido pela Nortech reduziu drasticamente o tempo de resposta hospitalar. Resultado técnico impressionante!", stars: 5, image: "https://randomuser.me/api/portraits/women/44.jpg", avatar: "A" },
-  { name: "Pedro Alves", role: "Founder – StartupX", text: "Lançamos nosso MVP em tempo recorde mundial. A abordagem ágil e a qualidade de dados da Nortech são incomparáveis.", stars: 5, image: "https://randomuser.me/api/portraits/men/46.jpg", avatar: "P" },
+  {
+    name: "Carlos Mendes",
+    role: "CEO — TechBrasil",
+    text: "A Nortech ajudou a otimizar nossos processos. Em poucas semanas já vimos melhoria na produtividade.",
+    stars: 5,
+  },
+  {
+    name: "Ana Rodrigues",
+    role: "Diretora — MedPlus",
+    text: "O sistema que desenvolveram reduziu o tempo de resposta do hospital. Trabalho bem feito.",
+    stars: 5,
+  },
+  {
+    name: "Pedro Alves",
+    role: "Founder — StartupX",
+    text: "Conseguimos lançar nosso MVP rápido. A equipe é ágil e entregou o que foi combinado.",
+    stars: 5,
+  },
 ];
 
 export default function SocialProof() {
   return (
-    <section className="max-w-7xl mx-auto py-24 px-6 bg-background transition-colors space-y-32">
-      {/* ── TESTIMONIALS ─────────────────────────────────────── */}
-      <div className="space-y-16">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <span className="inline-block mb-4 text-cyan-600 dark:text-cyan-400 font-bold bg-cyan-500/10 px-6 py-2 rounded-full text-[10px] uppercase tracking-widest border border-cyan-500/20 shadow-xl">
-            Confiança de Elite
-          </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-cyan-600 dark:text-cyan-400 mb-6 tracking-tight leading-tight">
-            Para quem busca resultados reais
-          </h2>
-          <p className="text-lg text-foreground/60 max-w-xl mx-auto leading-relaxed italic">O que dizem os líderes que escalam através da engenharia Nortech.</p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-              className="group relative bg-background border border-foreground/5 hover:border-cyan-500/20 rounded-4xl p-10 transition-all duration-300 flex flex-col justify-between shadow-xl min-h-[350px]"
-            >
-              <div className="absolute top-8 right-8 text-foreground opacity-[0.02] group-hover:opacity-[0.05] transition-opacity duration-500 pointer-events-none">
-                <MessageSquare className="w-16 h-16" />
-              </div>
-
-              <div className="relative z-10">
-                <div className="flex gap-1 mb-8">
-                  {Array.from({ length: t.stars }).map((_, j) => (
-                    <FiStar key={j} className="text-cyan-500 dark:text-cyan-400 fill-cyan-500 dark:fill-cyan-400 w-4 h-4 shadow-[0_0_10px_rgba(0,219,255,0.4)]" />
-                  ))}
-                </div>
-                <p className="text-foreground/80 text-lg leading-relaxed font-medium italic group-hover:text-foreground transition-colors duration-500">&ldquo;{t.text}&rdquo;</p>
-              </div>
-
-              <div className="flex items-center gap-5 mt-10 pt-8 border-t border-foreground/5 z-10">
-                {t.image ? (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img src={t.image} alt={t.name} className="w-12 h-12 rounded-2xl object-cover shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0" />
-                ) : (
-                  <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white dark:text-black font-black text-xl shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0">
-                    {t.avatar}
-                  </div>
-                )}
-                <div className="shrink-0 max-w-[150px]">
-                  <p className="text-foreground font-bold text-lg tracking-tight leading-tight truncate">{t.name}</p>
-                  <p className="text-cyan-600 dark:text-cyan-400/80 text-[9px] uppercase font-black tracking-widest leading-none mt-1">{t.role}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── SECURITY ─────────────────────────────────────────── */}
+    <section className="max-w-6xl mx-auto py-24 px-6 bg-background">
       <motion.div
+        className="mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="relative bg-background border border-blue-500/10 rounded-[2.5rem] p-12 md:p-16 shadow-xl group"
       >
-        <div className="flex flex-col md:flex-row gap-12 items-center relative z-10">
-          <div className="shrink-0 relative">
-            <div className="w-24 h-24 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center shadow-xl relative z-10 group-hover:scale-105 transition-transform">
-              <ShieldCheck className="w-12 h-12 text-blue-600 dark:text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
-            </div>
-          </div>
-          <div className="flex-1 text-center md:text-left space-y-6">
-            <span className="inline-block text-blue-600 dark:text-blue-400 text-[9px] uppercase tracking-widest font-black bg-blue-500/10 px-6 py-2 rounded-full border border-blue-500/20">
-               Cibersegurança Enterprise
-            </span>
-            <h3 className="text-3xl md:text-4xl font-extrabold text-blue-600 dark:text-blue-400 tracking-tight">
-              Blindagem pela elite de dados Nortech
-            </h3>
-            <p className="text-lg text-foreground/70 leading-relaxed max-w-3xl italic">
-              Seguimos protocolos globais: criptografia militar de ponta a ponta e conformidade LGPD avançada.
-            </p>
-          </div>
-        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 tracking-tight">
+          O que dizem nossos clientes
+        </h2>
+        <p className="text-foreground/50 max-w-xl leading-relaxed">
+          Feedback de quem já trabalhou conosco.
+        </p>
       </motion.div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {testimonials.map((t, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            viewport={{ once: true }}
+            className="bg-background border border-foreground/10 rounded-xl p-8 flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex gap-0.5 mb-6">
+                {Array.from({ length: t.stars }).map((_, j) => (
+                  <FiStar
+                    key={j}
+                    className="text-cyan-600 dark:text-cyan-400 fill-cyan-600 dark:fill-cyan-400 w-4 h-4"
+                  />
+                ))}
+              </div>
+              <p className="text-foreground/70 text-sm leading-relaxed mb-8">
+                &ldquo;{t.text}&rdquo;
+              </p>
+            </div>
+
+            <div className="border-t border-foreground/10 pt-6">
+              <p className="text-foreground font-medium text-sm">{t.name}</p>
+              <p className="text-foreground/40 text-xs mt-0.5">{t.role}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 }

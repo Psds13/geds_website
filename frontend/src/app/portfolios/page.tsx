@@ -59,11 +59,10 @@ export default function PortfoliosPage() {
               Nosso Portfólio
             </span>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-linear-to-r from-foreground via-foreground/80 to-foreground/50 bg-clip-text text-transparent">
-              Projetos de Excelência
+              Nossos Projetos
             </h1>
             <p className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-              Materializamos ideias complexas em plataformas digitais de alto impacto.
-              Explore alguns de nossos trabalhos mais recentes e veja como aplicamos tecnologia de ponta na prática.
+              Veja alguns dos nossos trabalhos recentes e como aplicamos tecnologia na prática.
             </p>
           </motion.div>
 

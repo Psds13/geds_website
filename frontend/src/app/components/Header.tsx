@@ -4,7 +4,7 @@ import Image from "next/image";
 import { LogIn, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ThemeToggle } from "@/app/components/ThemeToggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -109,14 +109,14 @@ const Header = () => {
                 className="bg-linear-to-r from-emerald-400 to-cyan-400 text-black px-4 py-3 rounded-full transition-all duration-300 font-bold text-center flex items-center justify-center gap-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span>🌱</span> Green Tech
+                Green Tech
               </Link>
               <Link
                 href="/#nortech-lab"
                 className="bg-linear-to-r from-cyan to-blue-600 text-white dark:text-foreground px-4 py-3 rounded-full transition-all duration-300 font-bold text-center flex items-center justify-center gap-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span>🧪</span> Nortech Lab
+                Nortech Lab
               </Link>
               <Link
                 href="/plans"

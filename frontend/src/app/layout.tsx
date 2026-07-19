@@ -5,7 +5,7 @@ import ClientLayoutExtras from "@/app/components/ClientLayoutExtras";
 import "./globals.css";
 
 import { Outfit } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/app/components/ThemeProvider";
 
 const fontMain = Outfit({
   subsets: ["latin"],

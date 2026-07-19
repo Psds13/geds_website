@@ -1,305 +1,281 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { 
-  ShieldCheck, 
-  Lock, 
-  Network, 
-  Cpu, 
-  Cloud, 
-  Search, 
-  AlertTriangle, 
-  CheckCircle2, 
+import {
+  ShieldCheck,
+  Lock,
+  Network,
+  Cpu,
+  Cloud,
+  Search,
+  AlertTriangle,
+  CheckCircle2,
   Activity,
   ArrowRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "../components/Footer";
 
 const services = [
   {
-    icon: <Lock className="w-8 h-8" />,
-    title: "Segurança de Sistemas",
+    icon: Lock,
+    title: "Segurança de sistemas",
     desc: "Proteção contra invasões, vulnerabilidades e ataques em nível de aplicação.",
-    color: "from-blue-500 to-cyan-500"
   },
   {
-    icon: <Network className="w-8 h-8" />,
-    title: "Segurança de Redes",
-    desc: "Monitoramento constante e proteção da infraestrutura de comunicação interna.",
-    color: "from-cyan-500 to-blue-600"
+    icon: Network,
+    title: "Segurança de redes",
+    desc: "Monitoramento e proteção da infraestrutura de comunicação interna.",
   },
   {
-    icon: <Cpu className="w-8 h-8" />,
-    title: "Pentest (Teste de Invasão)",
-    desc: "Simulação de ataques reais controlados para identificar e corrigir falhas críticas.",
-    color: "from-blue-600 to-indigo-600"
+    icon: Cpu,
+    title: "Pentest",
+    desc: "Testes de invasão controlados para identificar e corrigir falhas críticas.",
   },
   {
-    icon: <Cloud className="w-8 h-8" />,
-    title: "Segurança em Nuvem",
-    desc: "Proteção avançada de dados e fluxos em AWS, Azure e ambientes híbridos.",
-    color: "from-cyan-400 to-blue-400"
-  }
+    icon: Cloud,
+    title: "Segurança em nuvem",
+    desc: "Proteção de dados e fluxos em AWS, Azure e ambientes híbridos.",
+  },
 ];
 
 const diferenciais = [
-  { title: "Monitoramento em Tempo Real", icon: <Activity className="w-5 h-5" /> },
-  { title: "Soluções Personalizadas", icon: <Cpu className="w-5 h-5" /> },
-  { title: "Tecnologia de Ponta", icon: <ShieldCheck className="w-5 h-5" /> },
-  { title: "Equipe Especializada", icon: <Lock className="w-5 h-5" /> },
+  { title: "Monitoramento em tempo real", icon: Activity },
+  { title: "Soluções personalizadas", icon: Cpu },
+  { title: "Tecnologia atualizada", icon: ShieldCheck },
+  { title: "Equipe especializada", icon: Lock },
 ];
 
 const processo = [
-  { step: "01", icon: <Search />, title: "Análise do Ambiente", desc: "Mapeamento completo da sua infraestrutura atual." },
-  { step: "02", icon: <AlertTriangle />, title: "Identificação de Riscos", desc: "Triagem de vulnerabilidades e pontos de falha." },
-  { step: "03", icon: <Cpu />, title: "Implementação de Soluções", desc: "Correção e blindagem de todos os pontos críticos." },
-  { step: "04", icon: <Activity />, title: "Monitoramento Contínuo", desc: "Vigilância 24/7 para prevenir novos vetores de ataque." },
+  { step: "01", icon: Search, title: "Análise do ambiente", desc: "Mapeamento completo da infraestrutura atual." },
+  { step: "02", icon: AlertTriangle, title: "Identificação de riscos", desc: "Triagem de vulnerabilidades e pontos de falha." },
+  { step: "03", icon: Cpu, title: "Implementação", desc: "Correção e reforço dos pontos críticos identificados." },
+  { step: "04", icon: Activity, title: "Monitoramento contínuo", desc: "Vigilância 24/7 para prevenir novos vetores de ataque." },
 ];
 
 export default function SecurityPage() {
   return (
-    <div className="bg-background min-h-screen text-foreground selection:bg-cyan-500 selection:text-black">
-      {/* ── 1. HERO SECTION ────────────────────────────────────────── */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none -z-10">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-cyan-500/10 blur-[120px] rounded-full" />
-          <div className="absolute top-20 right-1/4 w-[400px] h-[400px] bg-blue-600/5 blur-[100px] rounded-full" />
-        </div>
-
-        {/* Particles / Circuit Background Simulation (SVG Pattern) */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none -z-10 bg-[url('/grid-pattern.png')] bg-repeat" />
-
-        <div className="container mx-auto px-6 text-center">
+    <div className="bg-background min-h-screen text-foreground">
+      {/* Hero */}
+      <section className="relative pt-28 pb-20 px-6 border-b border-foreground/5">
+        <div className="max-w-6xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="w-20 h-20 bg-cyan-500/10 border border-cyan-500/20 rounded-3xl flex items-center justify-center mx-auto mb-10 shadow-[0_0_30px_rgba(0,219,255,0.2)]"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-14 h-14 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-8"
           >
-            <ShieldCheck className="w-10 h-10 text-cyan-400" />
+            <ShieldCheck className="w-7 h-7 text-blue-600 dark:text-blue-400" />
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-7xl font-black mb-8 tracking-tighter leading-none"
+            transition={{ delay: 0.05 }}
+            className="text-4xl md:text-5xl font-bold mb-6 tracking-tight"
           >
-            Segurança Digital <br />
-            <span className="text-cyan-400 italic">Inteligente</span> para Negócios.
+            Segurança digital para empresas
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-foreground/70 max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-lg text-foreground/60 max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Protegemos seus sistemas, dados e infraestrutura com soluções modernas, confiáveis e uma engenharia de elite.
+            Protegemos seus sistemas, dados e infraestrutura com auditorias,
+            pentest e monitoramento contínuo.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            transition={{ delay: 0.15 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link href="/contatos" className="px-10 py-5 bg-cyan-500 text-black font-black rounded-full text-xs uppercase tracking-widest hover:bg-cyan-400 transition-all shadow-xl hover:shadow-cyan-500/20">
-              Solicitar Análise de Segurança
+            <Link
+              href="/contatos"
+              className="px-8 py-3.5 bg-blue-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity text-sm"
+            >
+              Solicitar análise
             </Link>
-            <Link href="#servicos" className="px-10 py-5 border border-foreground/10 text-foreground font-black rounded-full text-xs uppercase tracking-widest hover:bg-foreground/5 transition-all">
-              Conhecer Soluções
+            <Link
+              href="#servicos"
+              className="px-8 py-3.5 border border-foreground/20 rounded-lg font-medium text-sm hover:bg-foreground/5 transition-colors"
+            >
+              Ver soluções
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* ── 2. NOSSOS SERVIÇOS ─────────────────────────────────────── */}
-      <section id="servicos" className="py-24 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* Serviços */}
+      <section id="servicos" className="py-20 md:py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12">
+            <p className="text-xs font-medium uppercase tracking-wide text-blue-600 dark:text-blue-400 mb-3">
+              Serviços
+            </p>
+            <h2 className="text-3xl font-bold tracking-tight">O que oferecemos</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {services.map((item, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group p-8 rounded-[2.5rem] bg-foreground/5 border border-foreground/5 hover:border-cyan-500/30 transition-all duration-500 shadow-xl"
+                transition={{ delay: i * 0.05 }}
+                className="p-6 rounded-xl bg-background border border-foreground/10 hover:border-foreground/20 transition-colors"
               >
-                <div className={`w-16 h-16 rounded-2xl bg-linear-to-br ${item.color} flex items-center justify-center text-black mb-8 group-hover:scale-110 transition-transform`}>
-                  {item.icon}
+                <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-5">
+                  <item.icon size={20} />
                 </div>
-                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight uppercase italic">{item.title}</h3>
-                <p className="text-foreground/60 text-sm leading-relaxed font-medium group-hover:text-foreground/70 transition-colors">
-                  {item.desc}
-                </p>
+                <h3 className="text-base font-semibold text-foreground mb-2">{item.title}</h3>
+                <p className="text-foreground/50 text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── 3. DIFERENCIAIS ────────────────────────────────────────── */}
-      <section className="py-24 px-6 bg-foreground/2 border-y border-foreground/5">
-        <div className="max-w-7xl mx-auto text-center mb-20">
-          <span className="text-cyan-400 text-[10px] font-black uppercase tracking-widest bg-cyan-500/10 px-6 py-2 rounded-full border border-cyan-500/20">
-            Diferenciais Nortech Security
-          </span>
-        </div>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {diferenciais.map((item, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ y: -5 }}
-              className="flex items-center gap-5 p-6 rounded-2xl bg-foreground/5 border border-foreground/10 hover:bg-cyan-500/5 hover:border-cyan-500/20 transition-all"
-            >
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 shadow-[0_0_15px_rgba(0,219,255,0.1)]">
-                {item.icon}
-              </div>
-              <span className="text-foreground font-bold text-sm tracking-tight">{item.title}</span>
-            </motion.div>
-          ))}
+      {/* Diferenciais */}
+      <section className="py-20 md:py-24 px-6 bg-foreground/[0.02] border-y border-foreground/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Por que a Nortech Security</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {diferenciais.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="flex items-center gap-4 p-5 rounded-xl border border-foreground/10 bg-background"
+              >
+                <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+                  <item.icon size={18} />
+                </div>
+                <span className="text-foreground font-medium text-sm">{item.title}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── 4. COMO FUNCIONA (PROCESSO) ────────────────────────────── */}
-      <section className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black text-center mb-20 tracking-tighter uppercase italic">Nosso Processo de Blindagem</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
-            {/* Connection Line */}
-            <div className="absolute top-1/2 left-0 w-full h-px bg-foreground/10 hidden lg:block -translate-y-12" />
-            
+      {/* Processo */}
+      <section className="py-20 md:py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">Como funciona</h2>
+            <p className="text-foreground/60 max-w-xl mx-auto">
+              Processo estruturado em 4 etapas, do diagnóstico ao monitoramento.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {processo.map((step, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="relative z-10 text-center"
+                transition={{ delay: i * 0.08 }}
+                className="text-center p-6 rounded-xl border border-foreground/10"
               >
-                <div className="w-20 h-20 bg-background border-2 border-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-8 relative group-hover:border-cyan-500 transition-colors">
-                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-cyan-500 text-black rounded-full flex items-center justify-center font-black text-xs shadow-lg">
+                <div className="w-12 h-12 rounded-full border border-blue-500/20 flex items-center justify-center mx-auto mb-4 relative">
+                  <span className="absolute -top-2 -right-2 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-medium">
                     {step.step}
-                  </div>
-                  <div className="text-cyan-400">{step.icon}</div>
+                  </span>
+                  <step.icon size={20} className="text-blue-600 dark:text-blue-400" />
                 </div>
-                <h4 className="text-foreground font-black text-lg mb-4 tracking-tight uppercase leading-none">{step.title}</h4>
-                <p className="text-foreground/60 text-xs leading-relaxed max-w-[200px] mx-auto font-medium">{step.desc}</p>
+                <h4 className="font-semibold text-foreground mb-2">{step.title}</h4>
+                <p className="text-foreground/50 text-sm leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── 5. SEÇÃO VISUAL (IMPACTO) ──────────────────────────────── */}
-      <section className="relative py-40 overflow-hidden">
-        <div className="absolute inset-0 grayscale opacity-20 pointer-events-none -z-10">
-           {/* Placeholder for visual impact background */}
-        </div>
-        <div className="container mx-auto px-6 flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative mb-16"
-          >
-            {/* Glow and Pulse Effects */}
-            <div className="absolute inset-0 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse" />
-            
-            <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 mx-auto">
-              <Image 
-                src="/Nortech Security.png" 
-                alt="Blindagem Nortech" 
-                fill 
-                className="object-contain drop-shadow-[0_0_50px_rgba(0,219,255,0.4)]"
-              />
-            </div>
-            
-            {/* Circuit Lines Decoration (Abstract) */}
-            <div className="absolute -inset-20 border border-cyan-500/10 rounded-full animate-[spin_60s_linear_infinite] pointer-events-none" />
-            <div className="absolute -inset-40 border border-cyan-500/5 rounded-full animate-[spin_90s_linear_infinite_reverse] pointer-events-none" />
-          </motion.div>
-
-          <h3 className="text-3xl md:text-5xl font-black text-foreground italic tracking-tighter uppercase mb-6 drop-shadow-sm">
-            Sua segurança é nossa <span className="text-cyan-400">prioridade absoluta</span>
+      {/* Visual */}
+      <section className="py-20 px-6 bg-foreground/[0.02] border-y border-foreground/5">
+        <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+          <div className="relative w-48 h-48 md:w-56 md:h-56 mb-8">
+            <Image
+              src="/Nortech Security.png"
+              alt="Nortech Security"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
+            Segurança como prioridade
           </h3>
-          <p className="text-foreground/60 font-bold text-xs uppercase tracking-[0.5em]">Protocolos Globais • Engenharia de Elite</p>
+          <p className="text-foreground/60 max-w-lg">
+            Protocolos de proteção adaptados ao porte e ao setor da sua empresa.
+          </p>
         </div>
       </section>
 
-      {/* ✨ IDEIA EXTRA: STATUS DE SEGURANÇA ──────────────────────── */}
-      <section className="py-24 px-6 bg-linear-to-b from-background to-foreground/5">
-        <div className="max-w-4xl mx-auto bg-foreground/5 border border-cyan-500/20 rounded-[3rem] p-10 md:p-20 relative overflow-hidden shadow-2xl group">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[100px] -z-10" />
-          
-          <div className="flex flex-col md:flex-row gap-12 items-center">
-            <div className="shrink-0">
-               <div className="w-24 h-24 rounded-3xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-emerald-500/10 animate-pulse" />
-                  <CheckCircle2 className="w-12 h-12 text-emerald-400 relative z-10" />
-               </div>
+      {/* Status */}
+      <section className="py-20 md:py-24 px-6">
+        <div className="max-w-3xl mx-auto border border-foreground/10 rounded-xl p-8 md:p-10">
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
             </div>
-            
-            <div className="flex-1 space-y-8 text-center md:text-left">
-               <div className="space-y-2">
-                 <h4 className="text-2xl font-black text-foreground tracking-tight uppercase italic flex items-center justify-center md:justify-start gap-4">
-                   Status do Ecossistema <span className="bg-emerald-500 w-2 h-2 rounded-full animate-ping" />
-                 </h4>
-                 <p className="text-foreground/60 text-xs font-bold uppercase tracking-widest">Monitoramento em tempo real ativo</p>
-               </div>
-
-               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    { label: "Sistemas Digitais", status: "🔒 Seguro", color: "text-emerald-400" },
-                    { label: "Monitoramento", status: "⚡ Ativo", color: "text-cyan-400" },
-                    { label: "Ameaças", status: "🟢 Nenhuma Detectada", color: "text-emerald-400" },
-                    { label: "Infraestrutura", status: "🛡️ Blindada", color: "text-blue-400" },
-                  ].map((stat, i) => (
-                    <div key={i} className="p-4 bg-background/50 border border-foreground/10 rounded-2xl flex justify-between items-center group-hover:bg-foreground/10 transition-colors">
-                      <span className="text-[10px] text-foreground/60 font-black uppercase tracking-widest">{stat.label}</span>
-                      <span className={`text-xs font-black uppercase ${stat.color}`}>{stat.status}</span>
-                    </div>
-                  ))}
-               </div>
+            <div className="flex-1 space-y-6">
+              <div>
+                <h4 className="text-xl font-semibold text-foreground mb-1">
+                  Monitoramento ativo
+                </h4>
+                <p className="text-foreground/50 text-sm">
+                  Acompanhamento contínuo da infraestrutura protegida.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { label: "Sistemas digitais", status: "Protegido" },
+                  { label: "Monitoramento", status: "Ativo" },
+                  { label: "Ameaças", status: "Nenhuma detectada" },
+                  { label: "Infraestrutura", status: "Reforçada" },
+                ].map((stat, i) => (
+                  <div
+                    key={i}
+                    className="p-4 bg-foreground/[0.02] border border-foreground/10 rounded-lg flex justify-between items-center"
+                  >
+                    <span className="text-sm text-foreground/60">{stat.label}</span>
+                    <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
+                      {stat.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 6. DEPOIMENTOS / CONFIANÇA ────────────────────────────── */}
-      <section className="py-24 px-6 relative overflow-hidden bg-foreground/2">
-        <div className="max-w-4xl mx-auto text-center italic relative z-10">
-          <div className="text-4xl text-cyan-500/30 mb-8 tracking-none">“</div>
-           <p className="text-xl md:text-3xl text-foreground/70 leading-relaxed font-medium mb-12">
-            A Nortech Security melhorou totalmente nossa segurança digital. Implementamos protocolos que nem sabíamos que precisávamos e hoje dormimos tranquilos com monitoramento constante.
-           </p>
-           <p className="text-foreground font-black uppercase tracking-[0.2em] italic text-sm">Diretora de Operações • Enterprise Global</p>
+      {/* CTA */}
+      <section className="py-20 md:py-24 px-6 bg-foreground/[0.02] border-t border-foreground/5">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+            Proteja sua empresa
+          </h2>
+          <p className="text-foreground/60 mb-8 max-w-lg mx-auto">
+            Entre em contato para uma análise inicial da sua infraestrutura.
+          </p>
+          <Link
+            href="/contatos"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-600 text-white font-medium rounded-lg hover:opacity-90 transition-opacity text-sm"
+          >
+            Falar com especialista
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
-
-      {/* ── 7. CTA FINAL ───────────────────────────────────────────── */}
-      <section className="relative py-32 px-6 overflow-hidden bg-foreground/5">
-        <div className="absolute inset-0 bg-linear-to-b from-transparent to-blue-900/10" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-           <h2 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter uppercase italic text-foreground drop-shadow-lg">
-             Proteja sua empresa <span className="text-cyan-400">agora</span>
-           </h2>
-           <Link 
-            href="/contatos" 
-            className="inline-flex items-center gap-4 px-12 py-6 bg-cyan-500 text-black font-black rounded-full hover:bg-cyan-400 transition-all shadow-[0_20px_50px_rgba(0,211,255,0.2)] hover:shadow-[0_20px_60px_rgba(0,211,255,0.4)] transform hover:-translate-y-1 uppercase text-sm tracking-widest"
-           >
-             Falar com um de nossos especialista
-             <ArrowRight />
-           </Link>
-        </div>
-      </section>
-
-      {/* ── 8. RODAPÉ ──────────────────────────────────────────────── */}
-      <Footer />
     </div>
   );
 }
